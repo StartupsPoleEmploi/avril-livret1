@@ -44,6 +44,7 @@ export default {
   mounted() {
     this.$store.commit('experiences/addRemplissage', 40)
     this.$store.commit('experiences/enableFormationStepper')
+    this.$store.commit('experiences/disableExperienceStepper')
     this.$store.commit('experiences/changeTab', 1)
   },
   methods: {

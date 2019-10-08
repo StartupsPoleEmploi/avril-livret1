@@ -7,7 +7,7 @@
         <div class="title is-4">Mes expériences professionnelles</div>
         <div class="progress-vision">
           <div class="progress__bar --hours"><div class="progress__bar--suivi" :style="`width:${pourcentage}%`"></div></div>
-          <p v-if="heures < 1607">Vous avez ajouté <strong>{{heures}}</strong> heure<span v-if="(heures) > 0">s</span> / 1607 demandées.</p>
+          <p v-if="heures < 1607">Vous avez ajouté <strong>{{heures}}</strong> heure<span v-if="(heures) > 0">s</span> sur 1607 demandées.</p>
           <p v-if="heures >= 1607">Vous avez renseigné <strong>{{heures}}</strong> heure<span v-if="heures > 0">s</span>.</p>
         </div>
       </nuxt-link>
@@ -16,6 +16,7 @@
         <div class="navigation-indicator">2</div>
         <div v-if="heures < 1607">
           <div class="title is-4">Ma formation</div>
+          <p class="small">Vous devez d'abord renseigner vos expériences professionnelles</p>
           <div class="navigation-locked">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <title>lock-8</title>
@@ -34,6 +35,7 @@
         <div class="navigation-indicator">3</div>
         <span v-if="monDossier != true">
           <div class="title is-4">Mon livret 1</div>
+          <p class="small">Vous devez d'abord renseigner vos formations</p>
           <div class="navigation-locked">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <title>lock-8</title>
