@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div class="form-fields">
-      <h1 class="title is-3">Dernière question</h1>
+      <h1 class="title is-3">Dernière question !</h1>
       <h3 class="title is-5">Cette certification est ?</h3>
       <div class="columns">
         <div class="column">

@@ -3,13 +3,26 @@
 
     <div class="form-fields">
 
-        <h3 class="title is-6">Si vous possédez une certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE), indiquez son ou leur/s intitulé/s exact/s</h3>
-
         <div class="field">
+          <label class="label">Si vous possédez une certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE), indiquez son ou leur/s intitulé/s exact/s</label>
+          <div class="control">
+            <input class="input" ref="avril__name" type="text" placeholder="Exemple : Bac pro commerce" @keyup.enter="addTitre">
+            <div class="push-enter is-pulled-right">
+              Appuyez sur <strong>Entrée</strong> pour ajouter ce titre
+            </div>
+          </div>
+          <div class="titres">
+            <div v-for="titre in titres">
+              <span class="box">{{titre}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="field">
           <div class="control">
             <textarea class="textarea" placeholder="Exemple : Bac pro commerce, TP ADVF" @input="addRNCP"></textarea>
           </div>
-        </div>
+        </div> -->
 
         <div class="field">
           <div class="control">
@@ -29,21 +42,19 @@
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
-// const ioHook = require('iohook');
+import _ from 'lodash';
+
 export default {
   layout: 'experience',
   components: {
     // Logo
   },
   computed: {
-
+    titres () {
+      let act = _.cloneDeep(this.$store.state.experiences.titres)
+      return act.reverse()
+    },
   },
-
-  created() {
-    // console.log('accueil created')
-  },
-
   mounted() {
     this.$store.commit('experiences/addRemplissage', 80)
   },
@@ -51,10 +62,16 @@ export default {
     addRNCP (e) {
       this.$store.commit('experiences/addRNCP', e.target.value)
     },
+    addTitre (e) {
+      this.$store.commit('experiences/addTitre', e.target.value)
+      this.$refs.avril__name.value = ''
+    },
   }
 }
 </script>
 
 <style>
-
+.titres {
+    margin-top: 4rem;
+}
 </style>

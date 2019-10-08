@@ -1,6 +1,8 @@
 export const state = () => ({
   experiences: [],
   activites: [],
+  titres: [],
+  formationsContinues: [],
   formations: {
     classe: null,
     diplome: null,
@@ -91,6 +93,14 @@ export const mutations = {
 
   addActivite (state, val) {
     state.activites.push(val)
+  },
+
+  addTitre (state, val) {
+    state.titres.push(val)
+  },
+
+  addFormationContinue (state, val) {
+    state.formationsContinues.push(val)
   },
 
   // Remplissage

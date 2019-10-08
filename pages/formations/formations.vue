@@ -3,13 +3,20 @@
 
     <div class="form-fields">
 
-        <h3 class="title is-5">Indiquez les éventuelles formations courtes suivies dans le cadre de la formation continue (stage, certification,...), en relation avec la certification visée</h3>
-
-        <div class="field">
-          <div class="control">
-            <textarea class="textarea" placeholder="Exemple : CACES, BTS MUC" @input="addFormations"></textarea>
+      <div class="field">
+        <label class="label">Indiquez les éventuelles formations courtes suivies dans le cadre de la formation continue (stage, certification,...), en relation avec la certification visée</label>
+        <div class="control">
+          <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, BTS MUC" @keyup.enter="addFormationsContinues">
+          <div class="push-enter is-pulled-right">
+            Appuyez sur <strong>Entrée</strong> pour ajouter cette formation continue
           </div>
         </div>
+        <div class="formations">
+          <div v-for="formationsContinue in formationsContinues">
+            <span class="box">{{formationsContinue}}</span>
+          </div>
+        </div>
+      </div>
 
         <div class="field">
           <div class="control">
@@ -29,23 +36,35 @@
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
-// const ioHook = require('iohook');
+import _ from 'lodash';
+
 export default {
   layout: 'experience',
+  computed: {
+    formationsContinues () {
+      let act = _.cloneDeep(this.$store.state.experiences.formationsContinues)
+      return act.reverse()
+    },
+  },
   mounted() {
     this.$store.commit('experiences/addRemplissage', 90)
     this.$store.commit('experiences/enableFormationStepper')
   },
   methods: {
     addFormations (e) {
-      this.$store.commit('experiences/enableMonDossier')
       this.$store.commit('experiences/addFormations', e.target.value)
+    },
+    addFormationsContinues (e) {
+      this.$store.commit('experiences/enableMonDossier')
+      this.$store.commit('experiences/addFormationContinue', e.target.value)
+      this.$refs.avril__name.value = ''
     },
   }
 }
 </script>
 
 <style>
-
+.formations {
+    margin-top: 4rem;
+}
 </style>

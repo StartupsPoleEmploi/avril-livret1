@@ -46,7 +46,7 @@
           </div>
         </span>
         <span v-if="monDossier == true">
-          <div class="title is-4">Ma formation</div>
+          <div class="title is-4">Mon livret 1</div>
         </span>
       </nuxt-link>
 
