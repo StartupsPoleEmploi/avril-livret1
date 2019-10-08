@@ -4,6 +4,7 @@
 @import 'variables';
 @import 'functions';
 
+@import 'components/buttons';
 @import 'components/form';
 @import 'components/layouts';
 @import 'components/layout-form';
@@ -13,10 +14,15 @@
 @import 'components/swiper';
 @import 'components/tabs';
 @import 'components/transition';
+@import 'components/progressbar';
 
-body{
+html,body{
   background: avril-color('gray');
 }
 svg{
   width: 20px;
+}
+.steps.is-hollow .is-active .steps-marker, .steps .is-active .steps-marker.is-hollow {
+    border-color: avril-color('blue');
+    background: avril-color('blue');
 }

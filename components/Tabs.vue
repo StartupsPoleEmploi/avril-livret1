@@ -7,7 +7,7 @@
         <div class="title is-4">Mes expériences professionnelles</div>
         <div class="progress-vision">
           <div class="progress__bar --hours"><div class="progress__bar--suivi" :style="`width:${pourcentage}%`"></div></div>
-          <p v-if="heures < 1607">Il vous manque <strong>{{1607 - heures}}</strong> heure<span v-if="(1607 - heures) > 0">s</span>.</p>
+          <p v-if="heures < 1607">Il vous reste <strong>{{1607 - heures}}</strong> heure<span v-if="(1607 - heures) > 0">s</span>.</p>
           <p v-if="heures >= 1607">Vous avez renseigné <strong>{{heures}}</strong> heure<span v-if="heures > 0">s</span>.</p>
         </div>
       </nuxt-link>

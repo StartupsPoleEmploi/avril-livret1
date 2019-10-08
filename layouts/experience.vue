@@ -38,7 +38,6 @@
 
           <StepperExperience/>
           <StepperFormation/>
-
           <nuxt />
 
         </div>

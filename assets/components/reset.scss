@@ -5,8 +5,11 @@ body{
   font-family: 'Nunito Sans', BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
-a:hover{
+a{
   color: avril-color('marine') !important;
+  &:hover{
+    color: lighten(avril-color('blue'),5%) !important;
+  }
 }
 
 .box:not(:last-child){

@@ -1,13 +1,12 @@
 .form{
   display: flex;
   flex-direction: row;
-  // padding-top: 5rem;
   &-header {
     z-index: 99;
+    padding: 1rem;
     padding-bottom: 7vh;
-    // margin-top: -5rem;
     .title{
-      padding: 0 3rem;
+      padding: 0 4rem;
     }
   }
   &-fields{
