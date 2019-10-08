@@ -2,14 +2,14 @@
 .progress__{
   &bar{
     background: #d0d2d8;
-    height: 16px;
+    height: 6px;
     width: 100%;
     display: block;
     margin: 4px 0;
     &--suivi{
       background: avril-color('blue');
       width: 0%;
-      height: 16px;
+      height: 6px;
       display: block;
     }
   }

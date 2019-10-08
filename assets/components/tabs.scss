@@ -8,8 +8,11 @@
   }
 }
 .navigation{
+  &-header{
+    padding-top: 3rem;
+  }
   &-tabs {
-    padding: 3rem 0;
+    padding: 2rem 0;
   }
   &-tab{
     display: block;

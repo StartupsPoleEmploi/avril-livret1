@@ -25,12 +25,12 @@
       </div>
       <div class="form-field-action field">
         <div class="control">
-          <nuxt-link v-on:click.native="gotoNext" to="famille" class="is-ok button is-dark is-rounded is-pulled-right">
-            Continuer : Famille professionnelle
-          </nuxt-link>
           <div class="push-enter is-pulled-right">
             Appuyez sur <strong>Entrée</strong> ou &nbsp;
           </div>
+          <nuxt-link v-on:click.native="gotoNext" to="famille" class="is-ok button is-dark is-rounded is-pulled-right">
+            Continuer : Famille professionnelle
+          </nuxt-link>
         </div>
       </div>
     </div>
