@@ -35,6 +35,11 @@ export default {
 </script>
 
 <style>
+.avril__page{
+  width: 100%;
+  text-align: center;
+  padding-top: 20vh;
+}
 .avril__ajouter__experience {
   display: block
 }

@@ -1,10 +1,8 @@
 <template>
   <div>
-
-      <div class="avril-default">
-        <nuxt />
-      </div>
-
+    <div class="avril-default">
+      <nuxt />
+    </div>
   </div>
 </template>
 
