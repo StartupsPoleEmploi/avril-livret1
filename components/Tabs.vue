@@ -1,0 +1,77 @@
+<template>
+
+  <div class="navigation-tabs">
+
+      <nuxt-link to="/experiences" :class="tab == 0 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
+        <div class="navigation-indicator">1</div>
+        <div class="title is-4">Mes expériences professionnelles</div>
+        <div class="progress-vision">
+          <div class="progress__bar --hours"><div class="progress__bar--suivi" :style="`width:${pourcentage}%`"></div></div>
+          <p v-if="heures < 1607">Il vous manque <strong>{{1607 - heures}}</strong> heure<span v-if="(1607 - heures) > 0">s</span>.</p>
+          <p v-if="heures >= 1607">Vous avez renseigné <strong>{{heures}}</strong> heure<span v-if="heures > 0">s</span>.</p>
+        </div>
+      </nuxt-link>
+
+      <nuxt-link to="/formations" :event="heures < 1607 ? '' : 'click'"  :class="tab == 1 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
+        <div class="navigation-indicator">2</div>
+        <div v-if="heures < 1607">
+          <div class="title is-4">Ma formation</div>
+          <div class="navigation-locked">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>lock-8</title>
+                <rect x="16.746" y="17.5" width="4.754" height="2" rx="0.25" ry="0.25"></rect>
+                <path d="M17,21a1.752,1.752,0,0,1-1.75-1.75v-5A1.752,1.752,0,0,1,17,12.5H21.25a.25.25,0,0,0,.25-.25V11.5a2,2,0,0,0-2-2h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2v-.75a.25.25,0,0,0-.25-.25ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"></path>
+                <rect x="16.746" y="14" width="4.754" height="2" rx="0.25" ry="0.25"></rect>
+            </svg>
+          </div>
+        </div>
+        <div v-if="heures >= 1607">
+          <div class="title is-4">Ma formation</div>
+        </div>
+      </nuxt-link>
+
+      <nuxt-link to="/certification" :event="monDossier != false ? '' : 'click'"  :class="tab == 2 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
+        <div class="navigation-indicator">3</div>
+        <span v-if="monDossier != true">
+          <div class="title is-4">Mon livret 1</div>
+          <div class="navigation-locked">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>lock-8</title>
+                <rect x="16.746" y="17.5" width="4.754" height="2" rx="0.25" ry="0.25"></rect>
+                <path d="M17,21a1.752,1.752,0,0,1-1.75-1.75v-5A1.752,1.752,0,0,1,17,12.5H21.25a.25.25,0,0,0,.25-.25V11.5a2,2,0,0,0-2-2h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2v-.75a.25.25,0,0,0-.25-.25ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"></path>
+                <rect x="16.746" y="14" width="4.754" height="2" rx="0.25" ry="0.25"></rect>
+            </svg>
+          </div>
+        </span>
+        <span v-if="monDossier == true">
+          <div class="title is-4">Ma formation</div>
+        </span>
+      </nuxt-link>
+
+    </div>
+
+
+</template>
+<script>
+import _ from 'lodash';
+
+export default {
+  computed: {
+    heures () {
+      return this.$store.state.experiences.heures
+    },
+    monDossier () {
+      return this.$store.state.experiences.monDossier
+    },
+    pourcentage () {
+      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
+        return 100
+      else
+        return (this.$store.state.experiences.heures*100)/1607
+    },
+    tab () {
+      return this.$store.state.experiences.tab
+    }
+  },
+}
+</script>

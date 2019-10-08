@@ -1,0 +1,14 @@
+.title{
+  color: avril-color('marine') !important;
+}
+body{
+  font-family: 'Nunito Sans', BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+a:hover{
+  color: avril-color('marine') !important;
+}
+
+.box:not(:last-child){
+  margin-bottom: .5rem !important;
+}

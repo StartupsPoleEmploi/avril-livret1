@@ -1,0 +1,22 @@
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/bulma";
+
+@import 'variables';
+@import 'functions';
+
+@import 'components/form';
+@import 'components/layouts';
+@import 'components/layout-form';
+@import 'components/layout-help';
+@import 'components/reset';
+@import 'components/stepper';
+@import 'components/swiper';
+@import 'components/tabs';
+@import 'components/transition';
+
+body{
+  background: avril-color('gray');
+}
+svg{
+  width: 20px;
+}

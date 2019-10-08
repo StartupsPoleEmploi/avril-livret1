@@ -1,0 +1,28 @@
+.input, .textarea{
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  align-items: center;
+  background-color: #FAFAFA !important;
+  border: 1px solid transparent;
+  border-color: #E7E8EB !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.25em;
+  line-height: 1.5;
+  padding-bottom: calc(1.5em - 1px) !important;
+  padding-left: calc(0.625em - 1px);
+  padding-right: calc(0.625em - 1px);
+  padding-top: calc(1.5em - 1px) !important;
+  position: relative;
+  vertical-align: top;
+  color: avril-color('blue') !important;
+  font-size: 22px !important;
+  &:focus{
+    box-shadow: 0 0 0 2px avril-color('blue') !important;
+  }
+}
+.field{
+  margin-bottom: 3rem !important;
+}
