@@ -5,9 +5,6 @@
 
         <div class="field">
           <label class="label">Activités exercées en rapport direct avec la certification visée</label>
-          <!-- <div class="control">
-            <textarea ref="avril__name" class="textarea" placeholder="Exemple : Pétrissage de pâte à pain, fabrication de chocolatine, ..." @input="addPrecision"></textarea>
-          </div> -->
           <div class="control">
             <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivite">
             <div class="push-enter is-pulled-right">
@@ -32,10 +29,44 @@
 
       </div>
 
-
       <div class="form-help">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <p>
+          Pour aider le certificateur à bien comprendre quel a été votre rôle au sein de [entreprise], vous devez indiquer une liste de tâche que vous avez
+          effectué au quotidien.
+        </p>
+        <p>Voici une liste d'activité pour vous aider. Vous pouvez les ajouter ou en créer une nouvelle.</p>
+        <br/>
+        <div class="form-help-ativites">
+          <a class="box" v-on:click="addExp">
+            <input type="radio" name="answer"> &nbsp;Déterminer les mesures d’hygiène, de santé et de mise en sécurité
+          </a>
+          <a class="box" v-on:click="addExp">
+            <input type="radio" name="answer"> &nbsp;Définir les besoins
+          </a>
+          <a class="box" v-on:click="addExp">
+            <input type="radio" name="answer"> &nbsp;Collecter, traiter et organiser l’information – proposer et argumenter
+          </a>
+          <a class="box" v-on:click="addExp">
+            <input type="radio" name="answer"> &nbsp;Préparer les espaces de travail
+          </a>
+          <a class="box" v-on:click="addExp">
+            <input type="radio" name="answer"> &nbsp;Identifier les éléments de la qualité
+          </a>
+          <a class="box" v-on:click="addExp">
+            <input type="radio" name="answer"> &nbsp;Détecter les anomalies
+          </a>
+          <a class="box" v-on:click="addExp">
+            <input type="radio" name="answer"> &nbsp;Préparer les espaces de travail
+          </a>
+          <a class="box" v-on:click="addExp">
+            <input type="radio" name="answer"> &nbsp;Mettre en oeuvre des mesures d’hygiène
+          </a>
+          <a class="box" v-on:click="addExp">
+            <input type="radio" name="answer"> &nbsp;Réceptionner, stocker
+          </a>
+        </div>
       </div>
+
     </div>
 </template>
 
@@ -77,6 +108,13 @@ export default {
       this.$store.commit('experiences/addActivite', e.target.value)
       this.$refs.avril__name.value = ''
     },
+    addExp (e) {
+      this.$store.commit('experiences/addActivite', e.target.outerText.trim());
+      e.target.remove()
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
   }
 }
 </script>
@@ -90,5 +128,10 @@ export default {
 }
 .mx-datepicker-range {
   width: 100%;
+}
+.form-help-ativites{
+  height: 300px;
+  padding: 1rem;
+  overflow: auto;
 }
 </style>
