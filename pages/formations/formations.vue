@@ -7,17 +7,15 @@
         <label class="label">Indiquez les éventuelles formations courtes suivies dans le cadre de la formation continue (stage, certification,...), en relation avec la certification visée</label>
       </div>
 
-      <div class="field has-addons">
+      <div class="field">
         <div class="control">
           <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, BTS MUC" @keyup.enter="addFormationsContinues">
-          <div class="push-enter is-pulled-right">
-            Appuyez sur <strong>Entrée</strong> pour ajouter cette formation continue
-          </div>
-        </div>
-        <div class="control">
-          <a class="button is-default is-large" @click="addFormationsContinues">
-            +
+          <a class="button is-default is-small is-pulled-right" @click="addFormationsContinues" style="margin-top:4px">
+            + Ajouter
           </a>
+          <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
+            Appuyez sur <strong>Entrée</strong> pour ajouter ou
+          </div>
         </div>
       </div>
 
@@ -68,6 +66,9 @@ export default {
       this.$store.commit('experiences/addFormations', e.target.value)
     },
     addFormationsContinues (e) {
+      if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
+        return false;
+      }
       this.$store.commit('experiences/enableMonDossier')
       this.$store.commit('experiences/addFormationContinue', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''

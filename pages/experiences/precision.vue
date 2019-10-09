@@ -3,17 +3,15 @@
 
     <div class="form-fields">
 
-      <div class="field has-addons">
+      <div class="field">
         <div class="control">
           <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivite">
-          <div class="push-enter is-pulled-right">
-            Appuyez sur <strong>Entrée</strong> pour ajouter cette activité
-          </div>
-        </div>
-        <div class="control">
-          <a class="button is-default is-large" @click="addActivite">
-            +
+          <a class="button is-default is-small is-pulled-right" @click="addActivite" style="margin-top:4px">
+            + Ajouter
           </a>
+          <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
+            Appuyez sur <strong>Entrée</strong> pour ajouter cette activité ou
+          </div>
         </div>
       </div>
 
@@ -127,6 +125,9 @@ export default {
       this.$store.commit('experiences/addPrecision', e.target.value)
     },
     addActivite (e) {
+      if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
+        return false;
+      }
       this.$store.commit('experiences/addActivite', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''
     },

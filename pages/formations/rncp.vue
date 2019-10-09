@@ -7,17 +7,15 @@
         <label class="label">Si vous possédez une certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE), indiquez son ou leur/s intitulé/s exact/s</label>
       </div>
 
-      <div class="field has-addons">
+      <div class="field">
         <div class="control">
           <input class="input" ref="avril__name" type="text" placeholder="Exemple : Bac pro commerce" @keyup.enter="addTitre">
-          <div class="push-enter is-pulled-right">
-            Appuyez sur <strong>Entrée</strong> pour ajouter ce titre
-          </div>
-        </div>
-        <div class="control">
-          <a class="button is-default is-large" @click="addTitre">
-            +
+          <a class="button is-default is-small is-pulled-right" @click="addTitre" style="margin-top:4px">
+            + Ajouter
           </a>
+          <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
+            Appuyez sur <strong>Entrée</strong> pour ajouter ce titre ou
+          </div>
         </div>
       </div>
 
@@ -70,6 +68,9 @@ export default {
       this.$store.commit('experiences/addRNCP', e.target.value)
     },
     addTitre (e) {
+      if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
+        return false;
+      }
       this.$store.commit('experiences/addTitre', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''
     },
