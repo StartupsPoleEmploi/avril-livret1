@@ -3,7 +3,29 @@
 
     <div class="form-fields">
 
-        <div class="field">
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivite">
+          <div class="push-enter is-pulled-right">
+            Appuyez sur <strong>Entrée</strong> pour ajouter cette activité
+          </div>
+        </div>
+        <div class="control">
+          <a class="button is-default is-large" @click="addActivite">
+            +
+          </a>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="activites">
+          <div v-for="activite in activites">
+            <span class="box">{{activite}}</span>
+          </div>
+        </div>
+      </div>
+
+        <!-- <div class="field">
           <label class="label">Activités exercées en rapport direct avec la certification visée</label>
           <div class="control">
             <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivite">
@@ -17,7 +39,7 @@
             </div>
           </div>
 
-        </div>
+        </div> -->
 
         <div class="field">
           <div class="control">
@@ -105,7 +127,7 @@ export default {
       this.$store.commit('experiences/addPrecision', e.target.value)
     },
     addActivite (e) {
-      this.$store.commit('experiences/addActivite', e.target.value)
+      this.$store.commit('experiences/addActivite', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''
     },
     addExp (e) {
