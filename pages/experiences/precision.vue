@@ -152,7 +152,7 @@ export default {
   width: 100%;
 }
 .form-help-ativites{
-  height: 300px;
+  height: 60%;
   padding: 1rem;
   overflow: auto;
 }
