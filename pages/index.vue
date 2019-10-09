@@ -29,7 +29,7 @@
       </div>
 
 <!-- Preformulaire -->
-      <div class="avril-preform">
+      <!-- <div class="avril-preform">
         <div class="field">
           <label class="label">Langue&nbsp; | &nbsp;Language&nbsp; | &nbsp;言語&nbsp; | &nbsp;لغة &nbsp;</label>
           <div class="control">
@@ -44,7 +44,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 <!-- bouton start -->
       <div class="avril-start">
