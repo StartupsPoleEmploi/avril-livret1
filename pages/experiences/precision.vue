@@ -16,14 +16,12 @@
       </div>
 
       <div class="field">
-        {{heures}}
         <div class="activites">
           <div v-for="activite in activites">
             <span class="box">{{activite}}</span>
           </div>
         </div>
       </div>
-
       <div class="field" v-if="heures >= 1607" style="margin-right:3rem">
         <div class="control">
           <nuxt-link to="/formations" class="is-ok button is-text is-rounded is-pulled-left">
@@ -39,7 +37,6 @@
           </nuxt-link>
         </div>
       </div>
-
     </div>
 
       <div class="form-help">
@@ -105,7 +102,9 @@ export default {
         return (this.$store.state.experiences.heures*100)/1607
     }
   },
-
+  created() {
+    this.$store.commit('experiences/addHours')
+  },
   mounted() {
     this.$refs.avril__name.focus()
     this.$store.commit('experiences/disableFormationStepper')

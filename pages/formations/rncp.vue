@@ -30,7 +30,10 @@
       <div class="field">
         <div class="control">
           <nuxt-link to="formations" class="is-ok button is-dark is-rounded is-pulled-right">
-            Continuer : Formations
+            Aucun, continuer
+          </nuxt-link>
+          <nuxt-link to="formations" class="is-ok button is-text is-rounded is-pulled-left">
+            Remplir plus tard
           </nuxt-link>
         </div>
       </div>

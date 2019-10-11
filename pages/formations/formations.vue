@@ -27,6 +27,17 @@
         </div>
       </div>
 
+      <div class="field">
+        <div class="control">
+          <nuxt-link to="/certification" class="is-ok button is-dark is-rounded is-pulled-right">
+            Aucune, continuer
+          </nuxt-link>
+          <nuxt-link to="/certification" class="is-ok button is-text is-rounded is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+        </div>
+      </div>
+
     </div>
 
 

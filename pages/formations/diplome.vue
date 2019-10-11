@@ -32,7 +32,14 @@
             <nuxt-link v-on:click.native="addDiplome('G')" to="autre" class="box">
               <input type="radio" name="answer"> &nbsp;Doctorat, DEA de niveau I (niveau CEC : 8)
             </nuxt-link>
-
+            
+            <div class="form-field-action field" style="margin-top: 20px">
+              <div class="control">
+                <nuxt-link v-on:click.native="addDiplome('H')" to="autre" class="is-ok button is-text is-rounded is-pulled-left">
+                  Remplir plus tard
+                </nuxt-link>
+              </div>
+            </div>
 
       </div>
 
