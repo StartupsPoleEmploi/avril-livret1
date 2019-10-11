@@ -2,10 +2,18 @@
 
   <div class="form-header" v-if="displayExperienceStepper == true">
 
-    <div class="field" v-if="slugIndex == 5" style="margin-right:3rem">
+    <div class="field" v-if="slugIndex == 5 && heures >= 1607" style="margin-right:3rem">
       <div class="control">
         <nuxt-link to="/experiences" class="is-ok button is-dark is-rounded is-pulled-right">
           J'ai fini, aller aux formations
+        </nuxt-link>
+      </div>
+    </div>
+
+    <div class="field" v-if="slugIndex == 5 && heures < 1607" style="margin-right:3rem">
+      <div class="control">
+        <nuxt-link to="/experiences" class="is-ok button is-dark is-rounded is-pulled-right">
+          Ajouter une expérience
         </nuxt-link>
       </div>
     </div>
@@ -66,7 +74,6 @@ export default {
   watch: {
     $route (to, from) {
       this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
-      console.log(this.slugIndex);
     }
   },
   data: () => ({

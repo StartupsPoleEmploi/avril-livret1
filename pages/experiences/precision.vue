@@ -16,6 +16,7 @@
       </div>
 
       <div class="field">
+        {{heures}}
         <div class="activites">
           <div v-for="activite in activites">
             <span class="box">{{activite}}</span>
@@ -23,23 +24,23 @@
         </div>
       </div>
 
-        <!-- <div class="field">
-          <label class="label">Activités exercées en rapport direct avec la certification visée</label>
-          <div class="control">
-            <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivite">
-            <div class="push-enter is-pulled-right">
-              Appuyez sur <strong>Entrée</strong> pour ajouter cette activité
-            </div>
-          </div>
-          <div class="activites">
-            <div v-for="activite in activites">
-              <span class="box">{{activite}}</span>
-            </div>
-          </div>
-
-        </div> -->
-
+      <div class="field" v-if="heures >= 1607" style="margin-right:3rem">
+        <div class="control">
+          <nuxt-link to="/formations" class="is-ok button is-text is-rounded is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+        </div>
       </div>
+
+      <div class="field" v-if="heures < 1607" style="margin-right:3rem">
+        <div class="control">
+          <nuxt-link to="/experiences" class="is-ok button is-text is-rounded is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+        </div>
+      </div>
+
+    </div>
 
       <div class="form-help">
         <p>
@@ -94,6 +95,7 @@ export default {
       return act.reverse()
     },
     heures () {
+      console.log(this.$store.state)
       return this.$store.state.experiences.heures
     },
     pourcentage () {
@@ -102,10 +104,6 @@ export default {
       else
         return (this.$store.state.experiences.heures*100)/1607
     }
-  },
-
-  created() {
-    this.$store.commit('experiences/addHours')
   },
 
   mounted() {

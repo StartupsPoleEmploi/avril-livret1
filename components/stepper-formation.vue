@@ -1,5 +1,14 @@
 <template>
   <div class="form-header" v-if="displayFormationStepper == true">
+
+    <div class="field" v-if="slugIndex == 12" style="margin-right:3rem">
+      <div class="control">
+        <nuxt-link to="/certification" class="is-ok button is-dark is-rounded is-pulled-right">
+          J'ai fini
+        </nuxt-link>
+      </div>
+    </div>
+
     <h3 class="title is-6">Ajouter une formation</h3>
     <div class="avril-stepper-container">
       <div class="avril-stepper">

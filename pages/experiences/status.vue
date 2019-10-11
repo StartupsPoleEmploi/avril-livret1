@@ -35,7 +35,7 @@
 
           <div class="form-field-action field" style="margin-top: 20px">
             <div class="control">
-              <nuxt-link v-on:click.native="addFamille('H')" to="status" class="is-ok button is-default is-rounded is-pulled-left">
+              <nuxt-link v-on:click.native="addStatus('H')" to="periode" class="is-ok button is-text is-rounded is-pulled-left">
                 Remplir plus tard
               </nuxt-link>
             </div>
