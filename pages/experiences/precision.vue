@@ -39,14 +39,6 @@
 
         </div> -->
 
-        <div class="field">
-          <div class="control">
-            <nuxt-link to="/experiences" class="is-ok button is-dark is-rounded is-pulled-right">
-              Enregistrer cette expérience
-            </nuxt-link>
-          </div>
-        </div>
-
       </div>
 
       <div class="form-help">

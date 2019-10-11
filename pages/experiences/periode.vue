@@ -17,8 +17,11 @@
 
         <div class="field">
           <div class="control">
+            <nuxt-link to="precision" class="is-ok button is-text is-rounded is-pulled-left">
+              Remplir plus tard
+            </nuxt-link>
             <nuxt-link to="precision" class="is-ok button is-dark is-rounded is-pulled-right">
-              Continuer : Description des activités
+              Continuer
             </nuxt-link>
           </div>
         </div>

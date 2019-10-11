@@ -21,18 +21,23 @@
         <label class="label">Adresse de l'entreprise ou association</label>
         <div class="control">
           <input class="input" v-on:keyup="next" type="text" placeholder="Exemple : 40 boulevard machin, 56000 Lorient" @input="addEntreprise">
+          <!-- <div class="push-enter is-pulled-right">
+            Appuyez sur <strong>Entrée</strong>
+          </div> -->
         </div>
       </div>
+
       <div class="form-field-action field">
         <div class="control">
-          <div class="push-enter is-pulled-right">
-            Appuyez sur <strong>Entrée</strong> ou &nbsp;
-          </div>
-          <nuxt-link v-on:click.native="gotoNext" to="famille" class="is-ok button is-dark is-rounded is-pulled-right">
-            Continuer : Famille professionnelle
+          <nuxt-link to="famille" class="is-ok button is-text is-rounded is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+          <nuxt-link to="famille" class="is-ok button is-dark is-rounded is-pulled-right">
+            Continuer
           </nuxt-link>
         </div>
       </div>
+
     </div>
 
     <div class="form-help">

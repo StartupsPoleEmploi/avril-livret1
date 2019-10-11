@@ -1,7 +1,18 @@
 <template>
+
   <div class="form-header" v-if="displayExperienceStepper == true">
+
+    <div class="field" v-if="slugIndex == 5" style="margin-right:3rem">
+      <div class="control">
+        <nuxt-link to="/experiences" class="is-ok button is-dark is-rounded is-pulled-right">
+          J'ai fini, aller aux formations
+        </nuxt-link>
+      </div>
+    </div>
+
     <h3 class="title is-6">Ajouter une expérience professionnelle</h3>
     <div class="avril-stepper-container">
+
       <div class="avril-stepper">
     <ul class="steps is-small is-centered has-content-centered">
       <li :class="slugIndex == 1 || slugIndex == 0 ? 'steps-segment is-active' : 'steps-segment'">
