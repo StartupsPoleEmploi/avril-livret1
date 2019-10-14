@@ -4,11 +4,11 @@
 
     <div class="field" v-if="slugIndex == 5 && heures >= 1607" style="margin-right:3rem">
       <div class="control">
-        <nuxt-link to="/experiences/fonction" class="is-ok button is-text is-rounded is-pulled-left">
-          Ajouter une nouvelle expérience
-        </nuxt-link>
         <nuxt-link to="/formations" class="is-ok button is-dark is-rounded is-pulled-right">
           J'ai fini, aller aux formations
+        </nuxt-link>
+        <nuxt-link to="/experiences/fonction" class="is-ok button is-text is-rounded is-pulled-right">
+          Ajouter une nouvelle expérience ou
         </nuxt-link>
       </div>
     </div>

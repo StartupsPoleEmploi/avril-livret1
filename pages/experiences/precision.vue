@@ -5,6 +5,7 @@
 
       <div class="field">
         <div class="control">
+          <label class="label">Qu'avez fait dans votre métier ?</label>
           <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivite">
           <a class="button is-default is-small is-pulled-right" @click="addActivite" style="margin-top:4px">
             + Ajouter
@@ -40,6 +41,7 @@
     </div>
 
       <div class="form-help">
+        <h3 class="title is-3">Besoin d'aide ?</h3>
         <p>
           Pour aider le certificateur à bien comprendre quel a été votre rôle au sein de [entreprise], vous devez indiquer une liste de tâche que vous avez
           effectué au quotidien.
