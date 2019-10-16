@@ -26,10 +26,10 @@
             <nuxt-link v-on:click.native="addDiplome('G')" to="autre" class="box">
               <input type="radio" name="answer"> &nbsp;Licence, licence professionnelle, Maîtrise ou autre certification de niveau II (niveau CEC : 6)
             </nuxt-link>
-            <nuxt-link v-on:click.native="addDiplome('G')" to="autre" class="box">
+            <nuxt-link v-on:click.native="addDiplome('H')" to="autre" class="box">
               <input type="radio" name="answer"> &nbsp;DESS, Master, titre d’ingénieur ou autre certification de niveau I (niveau CEC : 7)
             </nuxt-link>
-            <nuxt-link v-on:click.native="addDiplome('G')" to="autre" class="box">
+            <nuxt-link v-on:click.native="addDiplome('I')" to="autre" class="box">
               <input type="radio" name="answer"> &nbsp;Doctorat, DEA de niveau I (niveau CEC : 8)
             </nuxt-link>
 

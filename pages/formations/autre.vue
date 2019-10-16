@@ -5,12 +5,12 @@
       <h3 class="title is-5">Avez-vous une ou plusieurs partie(s) de certification professionnelle ?</h3>
       <div class="columns">
         <div class="column">
-          <nuxt-link v-on:click.native="addCertification('A')" to="rncp" class="box">
+          <nuxt-link v-on:click.native="addCertification('oui')" to="rncp" class="box">
             <input type="radio" name="answer"> &nbsp;Oui
           </nuxt-link>
         </div>
         <div class="column">
-          <nuxt-link v-on:click.native="addCertification('B')" to="rncp" class="box">
+          <nuxt-link v-on:click.native="addCertification('non')" to="rncp" class="box">
             <input type="radio" name="answer"> &nbsp;Non
           </nuxt-link>
         </div>
@@ -18,7 +18,7 @@
 
       <div class="form-field-action field" style="margin-top: 20px">
         <div class="control">
-          <nuxt-link v-on:click.native="addCertification('B')" to="rncp" class="is-ok button is-text is-pulled-left">
+          <nuxt-link to="rncp" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
         </div>

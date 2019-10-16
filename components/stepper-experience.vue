@@ -7,9 +7,9 @@
         <nuxt-link to="/recapitulatif" class="is-ok button is-dark is-pulled-right">
           Enregistrer mon livret de recevabilité
         </nuxt-link>
-        <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">
+        <!-- <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">
           Ajouter une nouvelle expérience
-        </nuxt-link>
+        </nuxt-link> -->
       </div>
     </div>
 
