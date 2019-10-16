@@ -77,6 +77,9 @@
             <input type="radio" name="answer"> &nbsp;Réceptionner, stocker
           </a>
         </div>
+        <p style="margin-top:1rem">
+          <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+        </p>
       </div>
 
     </div>
