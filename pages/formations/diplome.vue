@@ -62,7 +62,7 @@
 export default {
   layout: 'experience',
   mounted() {
-    this.$store.commit('experiences/addRemplissage', 50)
+    // this.$store.commit('application/addRemplissage', 50)
   },
   methods: {
     addDiplome (e) {

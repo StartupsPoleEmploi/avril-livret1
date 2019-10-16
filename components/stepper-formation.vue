@@ -58,7 +58,7 @@ export default {
       return this.$store.state.experiences.heures
     },
     displayFormationStepper () {
-      return this.$store.state.experiences.displayFormationStepper
+      return this.$store.state.application.displayFormationStepper
     },
   },
   watch: {

@@ -36,7 +36,7 @@
 export default {
   layout: 'experience',
   mounted() {
-    this.$store.commit('experiences/addRemplissage', 60)
+    // this.$store.commit('application/addRemplissage', 60)
   },
   methods: {
     addComparatibilite (e) {

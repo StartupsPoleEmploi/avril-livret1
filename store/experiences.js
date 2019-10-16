@@ -15,11 +15,6 @@ export const state = () => ({
   },
   certification: null,
   heures: 0,
-  remplissage: 0,
-  monDossier: null,
-  displayExperienceStepper: false,
-  displayFormationStepper: false,
-  tab: 0
 })
 
 export const mutations = {
@@ -104,36 +99,9 @@ export const mutations = {
     state.formationsContinues.push(val)
   },
 
-  // Remplissage
-  addRemplissage (state, val) {
-    state.remplissage = val
-  },
-
-  enableMonDossier (state) {
-    state.monDossier = true
-  },
-
 
   remove (state, { todo }) {
     state.experiences.splice(state.experiences.indexOf(todo), 1)
   },
-
-  enableExperienceStepper(state) {
-    state.displayExperienceStepper = true;
-  },
-  disableExperienceStepper(state) {
-    state.displayExperienceStepper = false;
-  },
-
-  enableFormationStepper(state) {
-    state.displayFormationStepper = true;
-  },
-  disableFormationStepper(state) {
-    state.displayFormationStepper = false;
-  },
-
-  changeTab(state, tab) {
-    state.tab = tab;
-  }
 
 }

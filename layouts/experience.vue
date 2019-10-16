@@ -70,7 +70,7 @@ import StepperFormation from '~/components/stepper-formation.vue';
         return this.$store.state.experiences.heures
       },
       remplissage () {
-        return this.$store.state.experiences.remplissage
+        return this.$store.state.application.remplissage
       },
     },
     methods: {

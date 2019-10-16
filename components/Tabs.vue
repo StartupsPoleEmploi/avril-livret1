@@ -67,7 +67,7 @@ export default {
       return this.$store.state.experiences.heures
     },
     monDossier () {
-      return this.$store.state.experiences.monDossier
+      return this.$store.state.application.monDossier
     },
     pourcentage () {
       if( (this.$store.state.experiences.heures*100)/1607 > 100 )
@@ -76,7 +76,7 @@ export default {
         return (this.$store.state.experiences.heures*100)/1607
     },
     tab () {
-      return this.$store.state.experiences.tab
+      return this.$store.state.application.tab
     }
   },
 }

@@ -65,8 +65,8 @@ export default {
     },
   },
   mounted() {
-    this.$store.commit('experiences/addRemplissage', 90)
-    this.$store.commit('experiences/enableFormationStepper')
+    // this.$store.commit('application/addRemplissage', 90)
+    this.$store.commit('application/enableFormationStepper')
   },
   methods: {
     addFormations (e) {
@@ -76,7 +76,7 @@ export default {
       if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
         return false;
       }
-      this.$store.commit('experiences/enableMonDossier')
+      this.$store.commit('application/enableMonDossier')
       this.$store.commit('experiences/addFormationContinue', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''
     },

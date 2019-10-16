@@ -48,10 +48,10 @@
 export default {
   layout: 'experience',
   mounted() {
-    this.$store.commit('experiences/addRemplissage', 40)
-    this.$store.commit('experiences/enableFormationStepper')
-    this.$store.commit('experiences/disableExperienceStepper')
-    this.$store.commit('experiences/changeTab', 1)
+    // this.$store.commit('application/addRemplissage', 40)
+    this.$store.commit('application/enableFormationStepper')
+    this.$store.commit('application/disableExperienceStepper')
+    this.$store.commit('application/changeTab', 1)
   },
   methods: {
     addClasse (e) {

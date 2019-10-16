@@ -71,7 +71,7 @@ export default {
       return this.$store.state.experiences.heures
     },
     displayExperienceStepper () {
-      return this.$store.state.experiences.displayExperienceStepper
+      return this.$store.state.application.displayExperienceStepper
     },
   },
   watch: {

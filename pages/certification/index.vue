@@ -31,9 +31,9 @@
 export default {
   layout: 'experience',
   mounted() {
-    this.$store.commit('experiences/addRemplissage', 95)
-    this.$store.commit('experiences/disableFormationStepper')
-    this.$store.commit('experiences/changeTab', 2)
+    this.$store.commit('application/addRemplissage', 95)
+    this.$store.commit('application/disableFormationStepper')
+    this.$store.commit('application/changeTab', 2)
   },
   methods: {
     chooseType (e) {

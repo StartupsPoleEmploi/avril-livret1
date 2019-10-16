@@ -82,12 +82,12 @@ export default {
   },
 
   mounted() {
-    this.$store.commit('experiences/disableFormationStepper')
-    this.$store.commit('experiences/changeTab', 0)
+    this.$store.commit('application/disableFormationStepper')
+    this.$store.commit('application/changeTab', 0)
 
     this.$store.commit('experiences/new')
-    this.$store.commit('experiences/enableExperienceStepper')
-    
+    this.$store.commit('application/enableExperienceStepper')
+
     this.$refs.avril__emploi.focus()
   },
   methods: {

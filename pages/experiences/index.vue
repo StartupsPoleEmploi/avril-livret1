@@ -76,9 +76,9 @@ export default {
 
   mounted() {
     // this.$refs.avril__name.focus()
-    this.$store.commit('experiences/disableExperienceStepper')
-    this.$store.commit('experiences/disableFormationStepper')
-    this.$store.commit('experiences/changeTab', 0)
+    this.$store.commit('application/disableExperienceStepper')
+    this.$store.commit('application/disableFormationStepper')
+    this.$store.commit('application/changeTab', 0)
   },
   methods: {
     keymonitor: function(event) {
