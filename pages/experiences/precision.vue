@@ -5,7 +5,7 @@
 
       <div class="field">
         <div class="control">
-          <label class="label">Qu'avez fait dans votre métier ?</label>
+          <label class="label">Qu'avez-vous fait dans votre métier ?</label>
           <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivite">
           <a class="button is-default is-small is-pulled-right" @click="addActivite" style="margin-top:4px">
             + Ajouter
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <div class="field" v-if="heures >= 1607" style="margin-right:3rem">
+      <div class="field" v-if="heures >= 1607">
         <div class="control">
           <nuxt-link to="/formations" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
@@ -31,10 +31,13 @@
         </div>
       </div>
 
-      <div class="field" v-if="heures < 1607" style="margin-right:3rem">
+      <div class="field" v-if="heures < 1607">
         <div class="control">
           <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
+          </nuxt-link>
+          <nuxt-link to="/formations" class="is-ok button is-dark is-pulled-right">
+            Continuer
           </nuxt-link>
         </div>
       </div>

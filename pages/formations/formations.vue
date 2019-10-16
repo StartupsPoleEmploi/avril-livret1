@@ -29,10 +29,10 @@
 
       <div class="field">
         <div class="control">
-          <nuxt-link to="/certification" class="is-ok button is-dark is-pulled-right">
+          <nuxt-link to="/experiences/fonction" class="is-ok button is-dark is-pulled-right">
             Aucune, continuer
           </nuxt-link>
-          <nuxt-link to="/certification" class="is-ok button is-text is-pulled-left">
+          <nuxt-link to="/experiences/fonction" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
         </div>

@@ -5,7 +5,7 @@
     <div class="field" v-if="slugIndex == 5" style="margin-right:3rem">
       <div class="control">
         <nuxt-link to="/formations" class="is-ok button is-dark is-pulled-right">
-          J'ai fini, aller aux formations
+          Enregistrer mon livret de recevabilité
         </nuxt-link>
         <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">
           Ajouter une nouvelle expérience

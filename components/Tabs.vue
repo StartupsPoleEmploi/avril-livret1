@@ -2,16 +2,6 @@
 
   <div class="navigation-tabs">
 
-      <nuxt-link to="/experiences" :class="tab == 0 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
-        <!-- <div class="navigation-indicator">1</div> -->
-        <div class="title is-4">Mes expériences professionnelles</div>
-        <div class="progress-vision">
-          <div class="progress__bar --hours"><div class="progress__bar--suivi" :style="`width:${pourcentage}%`"></div></div>
-          <p v-if="heures < 1607">Vous avez ajouté <strong>{{heures}}</strong> heure<span v-if="(heures) > 0">s</span> sur 1607 demandées.</p>
-          <p v-if="heures >= 1607">Vous avez renseigné <strong>{{heures}}</strong> heure<span v-if="heures > 0">s</span>.</p>
-        </div>
-      </nuxt-link>
-
       <nuxt-link to="/formations"  :class="tab == 1 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
         <!-- <div class="navigation-indicator">2</div> -->
         <!-- <div v-if="heures < 1607">
@@ -31,7 +21,17 @@
         </div>
       </nuxt-link>
 
-      <nuxt-link to="." class="button is-default" style="margin-top:2rem">
+      <nuxt-link to="/experiences" :class="tab == 0 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
+        <!-- <div class="navigation-indicator">1</div> -->
+        <div class="title is-4">Mes expériences professionnelles</div>
+        <div class="progress-vision">
+          <div class="progress__bar --hours"><div class="progress__bar--suivi" :style="`width:${pourcentage}%`"></div></div>
+          <p v-if="heures < 1607">Vous avez ajouté <strong>{{heures}}</strong> heure<span v-if="(heures) > 0">s</span> sur 1607 demandées.</p>
+          <p v-if="heures >= 1607">Vous avez renseigné <strong>{{heures}}</strong> heure<span v-if="heures > 0">s</span>.</p>
+        </div>
+      </nuxt-link>
+
+      <nuxt-link to="/" class="button is-default" style="margin-top:2rem" disabled>
         Transmettre à mon certificateur
       </nuxt-link>
 
