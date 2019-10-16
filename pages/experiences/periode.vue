@@ -12,17 +12,7 @@
 
         <div class="field natural-language">
           <span class="title is-5">
-            J'ai travaillé à
-          </span>
-          <span class="select time">
-            <select>
-              <option>temps plein</option>
-              <option>temps partiel</option>
-              <option>stage</option>
-            </select>
-          </span>
-          <span class="title is-5">
-            pendant
+            J'ai travaillé pendant
           </span>
           <span class="select years">
             <select>
@@ -38,6 +28,7 @@
           <span class="select hours">
             <select>
               <option>35 heures</option>
+              <option>plus de 35 heures</option>
               <option>entre 25 et 34 heures</option>
               <option>entre 15 et 24 heures</option>
               <option>moins de 15 heures</option>
