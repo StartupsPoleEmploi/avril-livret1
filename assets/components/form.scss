@@ -26,3 +26,45 @@
 .field{
   margin-bottom: 3rem !important;
 }
+
+.natural-language {
+  .title{
+    line-height: 40px !important;
+    font-weight: 400 !important;
+  }
+  .select {
+    margin-right: 1em;
+    select{
+      border: none;
+      font-weight: 600;
+      font-size: 18px;
+      &:not([multiple]){
+        // padding-right: 1.9rem
+      }
+    }
+    &:not(.is-multiple) {
+        height: 3em;
+    }
+    &:not(.is-multiple):not(.is-loading)::after{
+      border: 3px solid #58585a;
+      border-right: 0;
+      border-top: 0;
+      margin-top: -11px;
+      height: .7em;
+      width: .7em;
+      right: 0.4em;
+    }
+    &.time{
+      width: 160px;
+    }
+    &.years{
+      width: 120px;
+    }
+    &.hours{
+      width: 140px;
+    }
+  }
+}
+.select:not(.is-multiple):not(.is-loading)::after{
+
+}

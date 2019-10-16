@@ -3,16 +3,55 @@
 
     <div class="form-fields">
 
-        <div class="field">
+        <!-- <div class="field">
           <label class="label">Durée totale exprimée en heures</label>
           <div class="control">
             <input ref="avril__name" class="input" type="number" placeholder="Exemple : 1300" @input="addDuree">
           </div>
+        </div> -->
+
+        <div class="field natural-language">
+          <span class="title is-5">
+            J'ai travaillé à
+          </span>
+          <span class="select time">
+            <select>
+              <option>temps plein</option>
+              <option>temps partiel</option>
+              <option>stage</option>
+            </select>
+          </span>
+          <span class="title is-5">
+            pendant
+          </span>
+          <span class="select years">
+            <select>
+              <option>1 année</option>
+              <option>2 années</option>
+              <option>3 années</option>
+              <option>plus de 3 années</option>
+            </select>
+          </span>
+          <span class="title is-5">
+            à
+          </span>
+          <span class="select hours">
+            <select>
+              <option>35 heures</option>
+              <option>entre 25 et 34 heures</option>
+              <option>entre 15 et 24 heures</option>
+              <option>moins de 15 heures</option>
+            </select>
+          </span>
+          <span class="title is-5">
+            par semaine
+          </span>
+
         </div>
 
         <div class="field">
           <label class="label">Sur quelle période ?</label>
-          <date-picker v-model="time3" range lang="fr" format="DD-MM-YYYY" confirm></date-picker>
+          <date-picker v-model="time3" range lang="fr" format="DD/MM/YYYY" confirm></date-picker>
         </div>
 
         <div class="field">
