@@ -8,7 +8,7 @@
         <div class="field">
           <p>Est-ce exact ?</p>
           <div class="control">
-            <nuxt-link to="/" class="is-ok button is-dark is-rounded">
+            <nuxt-link to="/" class="is-ok button is-dark">
               Oui
             </nuxt-link>
           </div>

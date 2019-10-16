@@ -3,7 +3,7 @@
   <div class="navigation-tabs">
 
       <nuxt-link to="/experiences" :class="tab == 0 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
-        <div class="navigation-indicator">1</div>
+        <!-- <div class="navigation-indicator">1</div> -->
         <div class="title is-4">Mes expériences professionnelles</div>
         <div class="progress-vision">
           <div class="progress__bar --hours"><div class="progress__bar--suivi" :style="`width:${pourcentage}%`"></div></div>
@@ -12,9 +12,9 @@
         </div>
       </nuxt-link>
 
-      <nuxt-link to="/formations" :event="heures < 1607 ? '' : 'click'"  :class="tab == 1 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
-        <div class="navigation-indicator">2</div>
-        <div v-if="heures < 1607">
+      <nuxt-link to="/formations"  :class="tab == 1 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
+        <!-- <div class="navigation-indicator">2</div> -->
+        <!-- <div v-if="heures < 1607">
           <div class="title is-4">Ma formation</div>
           <p class="small">Vous devez d'abord renseigner vos expériences professionnelles</p>
           <div class="navigation-locked">
@@ -25,13 +25,17 @@
                 <rect x="16.746" y="14" width="4.754" height="2" rx="0.25" ry="0.25"></rect>
             </svg>
           </div>
-        </div>
-        <div v-if="heures >= 1607">
+        </div> -->
+        <div>
           <div class="title is-4">Ma formation</div>
         </div>
       </nuxt-link>
 
-      <nuxt-link to="/certification" :event="monDossier != false ? '' : 'click'"  :class="tab == 2 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
+      <nuxt-link to="." class="button is-default" style="margin-top:2rem">
+        Transmettre à mon certificateur
+      </nuxt-link>
+
+      <!-- <nuxt-link to="/certification"  :class="tab == 2 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
         <div class="navigation-indicator">3</div>
         <span v-if="monDossier != true">
           <div class="title is-4">Mon livret 1</div>
@@ -45,10 +49,10 @@
             </svg>
           </div>
         </span>
-        <span v-if="monDossier == true">
+        <span>
           <div class="title is-4">Mon livret 1</div>
         </span>
-      </nuxt-link>
+      </nuxt-link> -->
 
     </div>
 

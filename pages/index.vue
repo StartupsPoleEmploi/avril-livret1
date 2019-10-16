@@ -48,7 +48,7 @@
 
 <!-- bouton start -->
       <div class="avril-start">
-        <nuxt-link to="/experiences" class="is-ok button is-pink is-rounded">
+        <nuxt-link to="/experiences" class="is-ok button is-pink">
           Démarrer ma demande de recevabilité
         </nuxt-link>
       </div>

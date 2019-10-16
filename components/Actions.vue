@@ -1,6 +1,6 @@
 <template>
   <div class="avril-actions">
-    <a href="#" class="avril__button__download button is-text is-rounded">
+    <a href="#" class="avril__button__download button is-text">
       <span class="icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>common-file-text-download</title>
@@ -12,7 +12,7 @@
       </span>
       <span>Télécharger</span>
     </a>
-    <a href="#" class="avril__button__save button is-text is-rounded">
+    <a href="#" class="avril__button__save button is-text">
       <span class="icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>send-email</title>
