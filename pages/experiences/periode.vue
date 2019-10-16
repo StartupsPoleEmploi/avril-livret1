@@ -110,7 +110,7 @@ export default {
   },
 
   mounted() {
-    this.$refs.avril__name.focus()
+    // this.$refs.avril__name.focus()
   },
   methods: {
     keymonitor: function(event) {
