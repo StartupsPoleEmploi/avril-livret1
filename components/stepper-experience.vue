@@ -2,24 +2,24 @@
 
   <div class="form-header" v-if="displayExperienceStepper == true">
 
-    <div class="field" v-if="slugIndex == 5 && heures >= 1607" style="margin-right:3rem">
+    <div class="field" v-if="slugIndex == 5" style="margin-right:3rem">
       <div class="control">
-        <nuxt-link to="/formations" class="is-ok button is-dark is-rounded is-pulled-right">
+        <nuxt-link to="/formations" class="is-ok button is-dark is-pulled-right">
           J'ai fini, aller aux formations
         </nuxt-link>
-        <nuxt-link to="/experiences/fonction" class="is-ok button is-text is-rounded is-pulled-right">
-          Ajouter une nouvelle expérience ou
+        <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">
+          Ajouter une nouvelle expérience
         </nuxt-link>
       </div>
     </div>
 
-    <div class="field" v-if="slugIndex == 5 && heures < 1607" style="margin-right:3rem">
+    <!-- <div class="field" v-if="slugIndex == 5" style="margin-right:3rem">
       <div class="control">
-        <nuxt-link to="/experiences/fonction" class="is-ok button is-dark is-rounded is-pulled-right">
+        <nuxt-link to="/experiences/fonction" class="is-ok button is-dark is-pulled-right">
           Ajouter une expérience
         </nuxt-link>
       </div>
-    </div>
+    </div> -->
 
     <h3 class="title is-6">Ajouter une expérience professionnelle</h3>
     <div class="avril-stepper-container">

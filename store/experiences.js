@@ -27,11 +27,12 @@ export const mutations = {
     state.experiences.push({
       fonction: null,
       entreprise: null,
+      adresseEntreprise: null,
       famille: null,
       status: null,
       periode: null,
       duree: null,
-      precision: null
+      activities: []
     })
   },
   addFonction (state, fonction) {
@@ -52,9 +53,9 @@ export const mutations = {
   addDuree (state, duree) {
     state.experiences[state.experiences.length - 1].duree = duree
   },
-  addPrecision (state, precision) {
-    state.experiences[state.experiences.length - 1].precision = precision
-  },
+  // addPrecision (state, precision) {
+  //   state.experiences[state.experiences.length - 1].precision = precision
+  // },
   addHours (state) {
     state.heures = state.heures + state.experiences[state.experiences.length - 1].duree
   },
@@ -92,7 +93,7 @@ export const mutations = {
   },
 
   addActivite (state, val) {
-    state.activites.push(val)
+    state.experiences[state.experiences.length - 1].activities.push(val)
   },
 
   addTitre (state, val) {

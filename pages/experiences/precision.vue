@@ -25,7 +25,7 @@
       </div>
       <div class="field" v-if="heures >= 1607" style="margin-right:3rem">
         <div class="control">
-          <nuxt-link to="/formations" class="is-ok button is-text is-rounded is-pulled-left">
+          <nuxt-link to="/formations" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
         </div>
@@ -33,7 +33,7 @@
 
       <div class="field" v-if="heures < 1607" style="margin-right:3rem">
         <div class="control">
-          <nuxt-link to="/experiences" class="is-ok button is-text is-rounded is-pulled-left">
+          <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
         </div>
@@ -41,7 +41,7 @@
     </div>
 
       <div class="form-help">
-        <h3 class="title is-3">Besoin d'aide ?</h3>
+        <h3 class="title is-4">Besoin d'aide ?</h3>
         <p>
           Pour aider le certificateur à bien comprendre quel a été votre rôle au sein de [entreprise], vous devez indiquer une liste de tâche que vous avez
           effectué au quotidien.
@@ -90,11 +90,10 @@ export default {
   components: {},
   computed: {
     activites () {
-      let act = _.cloneDeep(this.$store.state.experiences.activites)
+      let act = _.cloneDeep(this.$store.state.experiences.experiences[this.$store.state.experiences.experiences.length - 1].activities)
       return act.reverse()
     },
     heures () {
-      console.log(this.$store.state)
       return this.$store.state.experiences.heures
     },
     pourcentage () {

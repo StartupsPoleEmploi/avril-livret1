@@ -3,7 +3,7 @@
 
     <div class="field" v-if="slugIndex == 12" style="margin-right:3rem">
       <div class="control">
-        <nuxt-link to="/certification" class="is-ok button is-dark is-rounded is-pulled-right">
+        <nuxt-link to="/certification" class="is-ok button is-dark is-pulled-right">
           J'ai fini
         </nuxt-link>
       </div>

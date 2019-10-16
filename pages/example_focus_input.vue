@@ -12,7 +12,7 @@
 
         <div class="field">
           <div class="control">
-            <nuxt-link to="name" class="is-ok button is-dark is-rounded is-small is-pulled-right">
+            <nuxt-link to="name" class="is-ok button is-dark is-small is-pulled-right">
               Name
             </nuxt-link>
             <div class=" is-pulled-right">

@@ -5,14 +5,14 @@
 
         <h1 class="title is-5">Vos expériences professionnelles</h1>
 
-        <nuxt-link to="experiences/fonction" :class="heures<1607 ? 'button is-dark is-rounded' : 'button is-rounded'">
+        <nuxt-link to="experiences/fonction" :class="heures<1607 ? 'button is-dark' : 'button'">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>add</title>
               <path d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
           </svg>&nbsp; Ajouter une expérience
         </nuxt-link>
         <span class="avril-ou" v-if="heures >= 1607">&nbsp;ou&nbsp;</span>
-        <nuxt-link v-if="heures >= 1607" :event="heures < 1607 ? '' : 'click'" to="/formations" class="is-ok button is-dark is-rounded">
+        <nuxt-link v-if="heures >= 1607" :event="heures < 1607 ? '' : 'click'" to="/formations" class="is-ok button is-dark">
           Avancer vers mes formations
         </nuxt-link>
 
@@ -36,6 +36,7 @@
 
 
       <div class="form-help">
+        <h3 class="title is-4">Besoin d'aide ?</h3>
         <div class="form-help-content">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </div>
