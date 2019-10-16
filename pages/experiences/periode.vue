@@ -12,7 +12,7 @@
 
         <div class="field">
           <label class="label">Sur quelle période ?</label>
-          <date-picker v-model="time3" range :lang="lang"></date-picker>
+          <date-picker v-model="time3" range lang="fr" format="DD-MM-YYYY" confirm></date-picker>
         </div>
 
         <div class="field">
