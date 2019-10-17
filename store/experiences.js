@@ -8,6 +8,7 @@ export const state = () => ({
     certification: null,
   },
   heures: 0,
+  periodes: [],
 })
 
 // - experiences
@@ -22,9 +23,6 @@ export const mutations = {
       adresseEntreprise: null,
       famille: null,
       status: null,
-      periode: null,
-      duree: null,
-      temps: null,
       activities: []
     })
   },
@@ -55,8 +53,8 @@ export const mutations = {
   // addPrecision (state, precision) {
   //   state.experiences[state.experiences.length - 1].precision = precision
   // },
-  addHours (state) {
-    state.heures = state.heures + state.experiences[state.experiences.length - 1].duree
+  addHours (state, heure) {
+    state.heures = state.heures + heure
   },
   // -------------
   // FORMATIONS
@@ -97,6 +95,10 @@ export const mutations = {
 
   addTitre (state, val) {
     state.titres.push(val)
+  },
+
+  addPeriodes (state, val) {
+    state.periodes.push(val)
   },
 
   addFormationContinue (state, val) {

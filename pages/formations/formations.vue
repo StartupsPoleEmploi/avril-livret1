@@ -10,11 +10,11 @@
       <div class="field">
         <div class="control">
           <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, BTS MUC" @keyup.enter="addFormationsContinues">
-          <a class="button is-default is-small is-pulled-right" @click="addFormationsContinues" style="margin-top:4px">
+          <a class="button is-dark is-pulled-right" @click="addFormationsContinues" style="margin-top:4px">
             + Ajouter
           </a>
           <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
-            Appuyez sur <strong>Entrée</strong> pour ajouter ou
+            Pour ajouter, appuyez sur <strong>Entrée</strong> ou
           </div>
         </div>
       </div>
@@ -29,10 +29,10 @@
 
       <div class="field">
         <div class="control">
-          <nuxt-link v-if="displayNextButton" to="/experiences/fonction" class="is-ok button is-dark is-pulled-right">
+          <nuxt-link v-if="displayNextButton" to="/experiences/fonction" class="is-ok button is-default is-pulled-right">
             Continuer
           </nuxt-link>
-          <nuxt-link v-else to="/experiences/fonction" class="is-ok button is-dark is-pulled-right">
+          <nuxt-link v-else to="/experiences/fonction" class="is-ok button is-default is-pulled-right">
             Aucun, continuer
           </nuxt-link>
           <nuxt-link to="/experiences/fonction" class="is-ok button is-text is-pulled-left">
@@ -94,6 +94,6 @@ export default {
 
 <style>
 .formations {
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
 }
 </style>

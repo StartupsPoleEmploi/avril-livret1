@@ -65,7 +65,7 @@
 
           <div class="field is-pulled-right">
             <div class="control">
-              <nuxt-link to="/recapitulatif" class="is-ok button is-dark">
+              <nuxt-link to="/recapitulatif" class="is-ok button is-default">
                 Enregistrer mon livret de recevabilité
               </nuxt-link>
               <!-- <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">

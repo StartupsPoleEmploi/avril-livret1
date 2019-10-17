@@ -41,7 +41,11 @@ module.exports = {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/moment'
   ],
+  moment: {
+    locales: ['fr']
+  },
   /*
   ** Nuxt.js modules
   */
