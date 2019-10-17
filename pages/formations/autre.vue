@@ -30,8 +30,9 @@
     <div class="form-help">
       <h3 class="title is-4">Besoin d'aide ?</h3>
       <div class="form-help-content">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </div>
+Sélectionnez la bonne case. Dites nous simplement quel est le dernier diplôme que vous avez obtenu. Ne vous inquiétez pas, il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.
+Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
+Et oui, que vous ayez déjà ou non un diplôme, vous pouvez vous lancer dans une démarche de VAE !      </div>
       <p style="margin-top:1rem">
         <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
       </p>
