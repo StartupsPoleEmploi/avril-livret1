@@ -30,10 +30,10 @@
           <p v-if="heures >= 1607">Vous avez renseigné <strong>{{heures}}</strong> heure<span v-if="heures > 0">s</span>.</p>
         </div>
       </nuxt-link>
-
+<!-- 
       <nuxt-link to="/" class="button is-default" style="margin-top:2rem" disabled>
         Transmettre à mon certificateur
-      </nuxt-link>
+      </nuxt-link> -->
 
       <!-- <nuxt-link to="/certification"  :class="tab == 2 ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
         <div class="navigation-indicator">3</div>

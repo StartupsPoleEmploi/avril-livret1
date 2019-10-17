@@ -34,6 +34,48 @@
       <!-- Fake form + aide -->
       <div class="avril-content">
 
+        <div class="experiences-header">
+
+          <div class="field has-addons is-pulled-left">
+            <p class="control">
+              <nuxt-link class="button lefty" to="/">
+                <svg viewBox="0 0 24 24">
+                    <defs>
+                        <style>.a{fill:none;stroke:#00163C;stroke-linecap:round;stroke-linejoin:round;}</style>
+                    </defs>
+                    <title>keyboard-arrow-left</title>
+                    <polyline class="a" points="5.5 17.497 0.5 12.497 5.5 7.497"></polyline>
+                    <line class="a" x1="0.5" y1="12.497" x2="23.5" y2="12.497"></line>
+                </svg>
+              </nuxt-link>
+            </p>
+            <p class="control">
+              <nuxt-link class="button righty" to="/">
+                <svg viewBox="0 0 24 24">
+                    <defs>
+                        <style>.a{fill:none;stroke:#00163C;stroke-linecap:round;stroke-linejoin:round;}</style>
+                    </defs>
+                    <title>keyboard-arrow-right</title>
+                    <polyline class="a" points="18.5 7.497 23.5 12.497 18.5 17.497"></polyline>
+                    <line class="a" x1="23.5" y1="12.497" x2="0.5" y2="12.497"></line>
+                </svg>
+              </nuxt-link>
+            </p>
+          </div>
+
+          <div class="field is-pulled-right">
+            <div class="control">
+              <nuxt-link to="/recapitulatif" class="is-ok button is-dark">
+                Enregistrer mon livret de recevabilité
+              </nuxt-link>
+              <!-- <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">
+                Ajouter une nouvelle expérience
+              </nuxt-link> -->
+            </div>
+          </div>
+
+        </div>
+
         <div class="avril-form-help-container">
 
           <StepperExperience/>

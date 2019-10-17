@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <h3 class="title is-6">Ajouter une formation</h3>
+    <!-- <h3 class="title is-6">Ajouter une formation</h3> -->
     <div class="avril-stepper-container">
       <div class="avril-stepper">
     <ul class="steps is-small is-centered has-content-centered">
