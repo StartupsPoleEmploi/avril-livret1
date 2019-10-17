@@ -1,15 +1,15 @@
 <template>
   <div class="form-header" v-if="displayFormationStepper == true">
 
-    <div class="field" v-if="slugIndex == 12" style="margin-right:3rem">
+    <!-- <div class="field" v-if="slugIndex == 12" style="margin-right:3rem">
       <div class="control">
         <nuxt-link to="/experiences/fonction" class="is-ok button is-dark is-pulled-right">
           J'ai fini, aller aux expériences
         </nuxt-link>
       </div>
-    </div>
+    </div> -->
 
-    <h3 class="title is-6">Ajouter une formation</h3>
+    <!-- <h3 class="title is-6">Ajouter une formation</h3> -->
     <div class="avril-stepper-container">
       <div class="avril-stepper">
     <ul class="steps is-small is-centered has-content-centered">

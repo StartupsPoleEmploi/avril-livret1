@@ -34,6 +34,48 @@
       <!-- Fake form + aide -->
       <div class="avril-content">
 
+        <div class="experiences-header">
+
+          <div class="field has-addons is-pulled-left">
+            <p class="control">
+              <a href="#" @click="back" :class="!displayBack ? 'button lefty is-static' : 'button lefty'">
+                <svg viewBox="0 0 24 24">
+                    <defs>
+                        <style>.a{fill:none;stroke:#00163C;stroke-linecap:round;stroke-linejoin:round;}</style>
+                    </defs>
+                    <title>keyboard-arrow-left</title>
+                    <polyline class="a" points="5.5 17.497 0.5 12.497 5.5 7.497"></polyline>
+                    <line class="a" x1="0.5" y1="12.497" x2="23.5" y2="12.497"></line>
+                </svg>
+              </a>
+            </p>
+            <p class="control">
+              <a href="#" @click="next" :class="!displayNext ? 'button righty is-static' : 'button righty'">
+                <svg viewBox="0 0 24 24">
+                    <defs>
+                        <style>.a{fill:none;stroke:#00163C;stroke-linecap:round;stroke-linejoin:round;}</style>
+                    </defs>
+                    <title>keyboard-arrow-right</title>
+                    <polyline class="a" points="18.5 7.497 23.5 12.497 18.5 17.497"></polyline>
+                    <line class="a" x1="23.5" y1="12.497" x2="0.5" y2="12.497"></line>
+                </svg>
+              </a>
+            </p>
+          </div>
+
+          <div class="field is-pulled-right">
+            <div class="control">
+              <nuxt-link to="/recapitulatif" class="is-ok button is-dark">
+                Enregistrer mon livret de recevabilité
+              </nuxt-link>
+              <!-- <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">
+                Ajouter une nouvelle expérience
+              </nuxt-link> -->
+            </div>
+          </div>
+
+        </div>
+
         <div class="avril-form-help-container">
 
           <StepperExperience/>
@@ -72,7 +114,6 @@ import StepperFormation from '~/components/stepper-formation.vue';
       remplissage () {
         let counter = 0;
 
-        // let sections = _.size(this.$store.state.experiences) + _.size(this.$store.state.experiences.formations);
         let sections = 6;
         let valeurs = this.$store.state.experiences;
 
@@ -85,26 +126,42 @@ import StepperFormation from '~/components/stepper-formation.vue';
         if( !_.isEmpty( valeurs.formations.certification ) ) counter++;
 
         let sut = ( counter / sections ) * 100;
-        // application/addRemplissage
-        // console.log('nombre de champs remplis', counter, sut)
-        this.$store.commit('application/addRemplissage', sut)
-        return sut
+        this.$store.commit('application/addRemplissage', sut);
+        return sut;
       },
     },
     methods: {
-      back: function (event) {
-        console.log('back')
+      back: function (e) {
+        if(this.slugIndex == this.way[0]){
+          this.displayBack = false;
+          return false;
+        }
+        let previous = this.way[(_.indexOf(this.way, this.slugIndex)-1)];
+        let url = this.cerfa[previous].slug.replace('-', '/');
+        this.$router.push({
+            path: '/' + url
+        });
       },
-      next: function (event) {
-        console.log('next')
+      next: function (e) {
+        if(_.indexOf(this.way, this.slugIndex) == this.way.length - 1){
+          this.displayNext = false;
+          return false;
+        }
+        let next = this.way[(_.indexOf(this.way, this.slugIndex)+1)];
+        let url = this.cerfa[next].slug.replace('-', '/');
+        this.$router.push({
+            path: '/' + url
+        });
       }
     },
     mounted() {
-
+      this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
     },
     watch: {
       $route (to, from) {
         this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
+        if(this.slugIndex != this.way[0]) this.displayBack = true;
+        if(this.slugIndex == this.way[this.way.length-1]) this.displayNext = false;
       }
     },
     afterCreated() {
@@ -113,6 +170,9 @@ import StepperFormation from '~/components/stepper-formation.vue';
     data: () => ({
       current: 0,
       slugIndex: 0,
+      way: [6,7,8,11,12,0,1,2,3,4,5],
+      displayBack: false,
+      displayNext: true,
       cerfa:[{
         slug: 'experiences',
         title: "Mes expériences",

@@ -1,20 +1,6 @@
 <template>
   <div class="form">
 
-    <div class="field" v-if="slugIndex == 0" style="margin-right:3rem">
-      <div class="control">
-        <nuxt-link to="/recapitulatif" class="is-ok button is-dark is-pulled-right">
-          Enregistrer mon livret de recevabilité
-        </nuxt-link>
-        <!-- <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">
-        Ajouter une nouvelle expérience
-      </nuxt-link> -->
-    </div>
-  </div>
-
-    <p>TODO : ajouter un message pour cloturer le livret 1, l'envoyer ou l'enregistrer pour remplir plus tard</p>
-    <p>Tout ça seulement si le taux de remplissage est suffisant</p>
-
     <div class="form-fields">
 
         <h1 class="title is-5">Vos expériences professionnelles</h1>
