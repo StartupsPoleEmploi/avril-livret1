@@ -125,7 +125,8 @@ export default {
         return false;
       }
       this.$store.commit('experiences/addActivite', this.$refs.avril__name.value)
-      this.$refs.avril__name.value = ''
+      this.$refs.avril__name.value = '';
+      return false;
     },
     addExp (e) {
       this.$store.commit('experiences/addActivite', e.target.outerText.trim());

@@ -72,8 +72,9 @@ export default {
     },
   },
   mounted() {
-    // this.$store.commit('application/addRemplissage', 90)
     this.$store.commit('application/enableFormationStepper')
+    this.$store.commit('application/disableExperienceStepper')
+    this.$store.commit('application/changeTab', 1)
   },
   methods: {
     addFormations (e) {
