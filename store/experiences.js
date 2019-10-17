@@ -8,7 +8,6 @@ export const state = () => ({
     certification: null,
   },
   heures: 0,
-  periodes: [],
 })
 
 // - experiences
@@ -23,7 +22,8 @@ export const mutations = {
       adresseEntreprise: null,
       famille: null,
       status: null,
-      activities: []
+      activities: [],
+      periodes: []
     })
   },
   addFonction (state, fonction) {
@@ -98,7 +98,7 @@ export const mutations = {
   },
 
   addPeriodes (state, val) {
-    state.periodes.push(val)
+    state.experiences[state.experiences.length - 1].periodes.push(val)
   },
 
   addFormationContinue (state, val) {

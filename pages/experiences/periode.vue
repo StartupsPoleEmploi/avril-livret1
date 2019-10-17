@@ -88,7 +88,7 @@ export default {
       return this.$store.state.experiences.heures
     },
     periodes () {
-      return this.$store.state.experiences.periodes
+      return this.$store.state.experiences.experiences[this.$store.state.experiences.experiences.length - 1].periodes
     },
     pourcentage () {
       if( (this.$store.state.experiences.heures*100)/1607 > 100 )
