@@ -9,7 +9,7 @@
             <date-picker v-model="secondePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> à <input class="input heure" type="number" v-model="heurePeriode" value="35"> heures par semaine.
           </span>
           <div class="">
-            <a class="button is-default" @click="addPeriodes" style="margin-top:1rem">
+            <a class="button is-dark" @click="addPeriodes" style="margin-top:1rem">
               + Ajouter cette période
             </a>
           </div>
@@ -34,7 +34,7 @@
             <nuxt-link to="precision" class="is-ok button is-text is-pulled-left">
               Remplir plus tard
             </nuxt-link>
-            <nuxt-link to="precision" class="is-ok button is-dark is-pulled-right">
+            <nuxt-link to="precision" class="is-ok button is-default is-pulled-right">
               Continuer
             </nuxt-link>
           </div>
