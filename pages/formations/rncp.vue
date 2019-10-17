@@ -29,7 +29,10 @@
 
       <div class="field">
         <div class="control">
-          <nuxt-link to="formations" class="is-ok button is-dark is-pulled-right">
+          <nuxt-link v-if="displayNextButton" to="formations" class="is-ok button is-dark is-pulled-right">
+            Continuer
+          </nuxt-link>
+          <nuxt-link v-else to="formations" class="is-ok button is-dark is-pulled-right">
             Aucun, continuer
           </nuxt-link>
           <nuxt-link to="formations" class="is-ok button is-text is-pulled-left">
@@ -65,6 +68,10 @@ export default {
     titres () {
       let act = _.cloneDeep(this.$store.state.experiences.titres)
       return act.reverse()
+    },
+    displayNextButton () {
+      if( this.$store.state.experiences.titres.length > 0 )return true;
+      return false;
     },
   },
   mounted() {

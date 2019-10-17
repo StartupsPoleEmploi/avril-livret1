@@ -29,8 +29,11 @@
 
       <div class="field">
         <div class="control">
-          <nuxt-link to="/experiences/fonction" class="is-ok button is-dark is-pulled-right">
-            Aucune, continuer
+          <nuxt-link v-if="displayNextButton" to="/experiences/fonction" class="is-ok button is-dark is-pulled-right">
+            Continuer
+          </nuxt-link>
+          <nuxt-link v-else to="/experiences/fonction" class="is-ok button is-dark is-pulled-right">
+            Aucun, continuer
           </nuxt-link>
           <nuxt-link to="/experiences/fonction" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
@@ -62,6 +65,10 @@ export default {
     formationsContinues () {
       let act = _.cloneDeep(this.$store.state.experiences.formationsContinues)
       return act.reverse()
+    },
+    displayNextButton () {
+      if( this.$store.state.experiences.formationsContinues.length > 0 )return true;
+      return false;
     },
   },
   mounted() {

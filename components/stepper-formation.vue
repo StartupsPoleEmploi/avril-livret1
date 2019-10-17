@@ -34,7 +34,7 @@
        <li :class="slugIndex == 11 ? 'steps-segment is-active' : 'steps-segment'">
          <nuxt-link to="/formations/rncp" :class="slugIndex == 11 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
          <div class="steps-content is-divider-content">
-           <nuxt-link class="is-size-6" to="/formations/rncp">RNCP</nuxt-link>
+           <nuxt-link class="is-size-6" to="/formations/rncp">Titres Pro</nuxt-link>
          </div>
        </li>
        <li :class="slugIndex == 12 ? 'steps-segment is-active' : 'steps-segment'">
@@ -64,7 +64,6 @@ export default {
   watch: {
     $route (to, from) {
       this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
-      console.log(this.slugIndex);
     }
   },
   data: () => ({
