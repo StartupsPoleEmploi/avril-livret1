@@ -20,7 +20,7 @@
       <div class="field">
         <label class="label">Adresse de l'entreprise ou association</label>
         <div class="control">
-          <input class="input" v-on:keyup="next" type="text" placeholder="Exemple : 40 boulevard machin, 56000 Lorient" @input="addEntreprise">
+          <input class="input" v-on:keyup="next" type="text" placeholder="Exemple : 40 boulevard machin, 56000 Lorient" @input="addAdresseEntreprise">
           <!-- <div class="push-enter is-pulled-right">
             Appuyez sur <strong>Entrée</strong>
           </div> -->
@@ -99,6 +99,9 @@ export default {
     },
     addEntreprise (e) {
       this.$store.commit('experiences/addEntreprise', e.target.value)
+    },
+    addAdresseEntreprise (e) {
+      this.$store.commit('experiences/addAdresseEntreprise', e.target.value)
     },
     gotoNext: function() {
       // this.addFonctionEtEntreprise('test')

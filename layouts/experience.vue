@@ -24,7 +24,7 @@
             <div class="progress__bar--suivi" :style="`width:${remplissage}%`"></div>
           </div>
           <div class="">
-            {{remplissage}}% complété
+            {{Math.round(remplissage)}}% complété
           </div>
           <Tabs></Tabs>
         </div>
@@ -70,7 +70,25 @@ import StepperFormation from '~/components/stepper-formation.vue';
         return this.$store.state.experiences.heures
       },
       remplissage () {
-        return this.$store.state.application.remplissage
+        let counter = 0;
+
+        // let sections = _.size(this.$store.state.experiences) + _.size(this.$store.state.experiences.formations);
+        let sections = 6;
+        let valeurs = this.$store.state.experiences;
+
+        if( valeurs.heures > 1607 ) counter++;
+        if( valeurs.titres.length != 0 ) counter++;
+        if( valeurs.formationsContinues.length != 0 ) counter++;
+
+        if( !_.isEmpty( valeurs.formations.classe ) ) counter++;
+        if( !_.isEmpty( valeurs.formations.diplome ) ) counter++;
+        if( !_.isEmpty( valeurs.formations.certification ) ) counter++;
+
+        let sut = ( counter / sections ) * 100;
+        // application/addRemplissage
+        // console.log('nombre de champs remplis', counter, sut)
+        this.$store.commit('application/addRemplissage', sut)
+        return sut
       },
     },
     methods: {
