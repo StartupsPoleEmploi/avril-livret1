@@ -44,6 +44,7 @@ module.exports = {
     '@nuxtjs/moment'
   ],
   moment: {
+    defaultLocale: 'fr',
     locales: ['fr']
   },
   /*

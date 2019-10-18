@@ -19,7 +19,7 @@
           <div v-for="periode in periodes" class="column is-half">
             <div class="box is-equal-height">
               <p class="title is-3">{{ Math.round(periode.totalHeures) }} heures</p>
-              <h3 class="title is-6">Du {{ $moment(periode.de) }}</h3>
+              <h3 class="title is-6">Du {{ $moment(periode.de, 'YYYY', 'fr') }}</h3>
               <h3 class="title is-6">au {{ $moment(periode.a) }}</h3>
             </div>
           </div>
@@ -103,7 +103,6 @@ export default {
     }
   },
   created() {
-    // console.log('accueil created')
   },
 
   mounted() {
@@ -111,11 +110,9 @@ export default {
   },
   methods: {
     keymonitor: function(event) {
-      // console.log(event.key);
       if(event.key == "Enter")
       {
         console.log("enter key was pressed!");
-        // this.$router.push('/name')
         this.$router.push('precision')
       }
     },
@@ -137,18 +134,14 @@ export default {
       };
       let hJour = parseInt(this.heurePeriode)/5; // 35/5
       let weekends = (b.diff(a, 'days') / 7)*2;
-      // console.log(weekends);
 
       let joursTravailles = b.diff(a, 'days') - weekends;
-      console.log('jours travaillés', joursTravailles);
 
       let heuresTravailles = hJour * joursTravailles;
-      console.log('heures travaillés', heuresTravailles);
 
       let totalHeures = heuresTravailles;
 
       periode.totalHeures = totalHeures;
-      console.log(periode);
 
       this.$store.commit('experiences/addPeriodes', periode)
       this.$store.commit('experiences/addHours', periode.totalHeures)
@@ -163,38 +156,6 @@ export default {
     addDuree (e) {
       this.$store.commit('experiences/addDuree', e)
     },
-    // onYearsChange (e) {
-    //
-    //   e.target.parentElement.style.width = (e.target.options[e.target.selectedIndex].text.length * 16)+"px"
-    //   let valeur = e.target.value;
-    //   // particularity management
-    //   this.displaySemaine = false;
-    //   this.displayMonth = false;
-    //   this.displayYear = false;
-    //   if( valeur == 'month' ) this.displaySemaine = true;
-    //   if( valeur == 'months') this.displayMonth = true;
-    //   if( valeur == 'more') this.displayYear = true;
-    //
-    // },
-    // onHoursChange (e) {
-    //
-    //   e.target.parentElement.style.width = (e.target.options[e.target.selectedIndex].text.length * 16)+"px"
-    //   let valeur = e.target.value;
-    //   // particularity management
-    //   this.displayHours = false;
-    //   if( valeur != '35') this.displayHours = true;
-    //
-    // },
-    // onSemaineChange (e) {
-    //
-    //   e.target.parentElement.style.width = (e.target.options[e.target.selectedIndex].text.length * 16)+"px"
-    //   let valeur = e.target.value;
-    //   // particularity management
-    //   this.displaySemaine = false;
-    //   if( valeur == '46-') this.displaySemaine = true;
-    //   if( valeur == '46+') this.displaySemaine = true;
-    //
-    // },
   }
 }
 </script>
