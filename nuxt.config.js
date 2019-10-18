@@ -50,6 +50,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    'nuxt-svg-loader',
   ],
   /*
   ** Build configuration

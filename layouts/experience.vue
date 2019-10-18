@@ -39,26 +39,12 @@
           <div class="field has-addons is-pulled-left">
             <p class="control">
               <a href="#" @click="back" :class="!displayBack ? 'button lefty is-static' : 'button lefty'">
-                <svg viewBox="0 0 24 24">
-                    <defs>
-                        <style>.a{fill:none;stroke:#00163C;stroke-linecap:round;stroke-linejoin:round;}</style>
-                    </defs>
-                    <title>keyboard-arrow-left</title>
-                    <polyline class="a" points="5.5 17.497 0.5 12.497 5.5 7.497"></polyline>
-                    <line class="a" x1="0.5" y1="12.497" x2="23.5" y2="12.497"></line>
-                </svg>
+                <ArrowLeft />
               </a>
             </p>
             <p class="control">
               <a href="#" @click="next" :class="!displayNext ? 'button righty is-static' : 'button righty'">
-                <svg viewBox="0 0 24 24">
-                    <defs>
-                        <style>.a{fill:none;stroke:#00163C;stroke-linecap:round;stroke-linejoin:round;}</style>
-                    </defs>
-                    <title>keyboard-arrow-right</title>
-                    <polyline class="a" points="18.5 7.497 23.5 12.497 18.5 17.497"></polyline>
-                    <line class="a" x1="23.5" y1="12.497" x2="0.5" y2="12.497"></line>
-                </svg>
+                <ArrowRight />
               </a>
             </p>
           </div>
@@ -100,12 +86,17 @@ import Tabs from '~/components/Tabs.vue';
 import StepperExperience from '~/components/stepper-experience.vue';
 import StepperFormation from '~/components/stepper-formation.vue';
 
+import ArrowLeft from '@/assets/svgs/keyboard-arrow-left.svg';
+import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
+
   export default {
     components: {
       Actions,
       Tabs,
       StepperExperience,
       StepperFormation,
+      ArrowLeft,
+      ArrowRight,
     },
     computed: {
       heures () {
