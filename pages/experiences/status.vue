@@ -5,7 +5,10 @@
     <div class="form-fields">
 
         <h3 class="title is-5">Statut au moment où vous avez exercé votre activité</h3>
-
+        
+        <nuxt-link v-on:click.native="addStatus('A')" to="periode" class="box">
+          <input type="radio" name="answer"> &nbsp;Salarié
+        </nuxt-link>
         <nuxt-link v-on:click.native="addStatus('E')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;Bénévole
         </nuxt-link>
@@ -35,9 +38,6 @@
         </nuxt-link>
         <nuxt-link v-on:click.native="addStatus('F')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;Personne ayant exercé des responsabilités syndicales
-        </nuxt-link>
-        <nuxt-link v-on:click.native="addStatus('A')" to="periode" class="box">
-          <input type="radio" name="answer"> &nbsp;Salarié
         </nuxt-link>
         <nuxt-link v-on:click.native="addStatus('D')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;Sportif de haut niveau
