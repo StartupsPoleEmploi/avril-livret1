@@ -5,7 +5,7 @@ export const state = () => ({
   formations: {
     classe: null,
     diplome: null,
-    certification: null,
+    // certification: null,
   },
   heures: 0,
 })
