@@ -25,12 +25,12 @@
            <nuxt-link class="is-size-6" to="/formations/diplome">Diplôme(s)</nuxt-link>
          </div>
        </li>
-       <li :class="slugIndex == 8 ? 'steps-segment is-active' : 'steps-segment'">
+       <!-- <li :class="slugIndex == 8 ? 'steps-segment is-active' : 'steps-segment'">
          <nuxt-link to="/formations/autre" :class="slugIndex == 8 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
          <div class="steps-content is-divider-content">
            <nuxt-link class="is-size-6" to="/formations/autre">Certification</nuxt-link>
          </div>
-       </li>
+       </li> -->
        <li :class="slugIndex == 11 ? 'steps-segment is-active' : 'steps-segment'">
          <nuxt-link to="/formations/rncp" :class="slugIndex == 11 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
          <div class="steps-content is-divider-content">

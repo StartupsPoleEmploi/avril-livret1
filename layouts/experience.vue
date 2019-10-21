@@ -161,7 +161,7 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
     data: () => ({
       current: 0,
       slugIndex: 0,
-      way: [6,7,8,11,12,0,1,2,3,4,5],
+      way: [6,7,11,12,0,1,2,3,4,5],
       displayBack: false,
       displayNext: true,
       cerfa:[{
