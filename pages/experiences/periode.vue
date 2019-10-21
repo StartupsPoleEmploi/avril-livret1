@@ -19,7 +19,7 @@
           <div v-for="periode in periodes" class="column is-half">
             <div class="box is-equal-height">
               <p class="title is-3">{{ Math.round(periode.totalHeures) }} heures</p>
-              <h3 class="title is-6">Du {{ $moment(periode.de, 'YYYY', 'fr') }}</h3>
+              <h3 class="title is-6">Du {{ $moment(periode.de) }}</h3>
               <h3 class="title is-6">au {{ $moment(periode.a) }}</h3>
             </div>
           </div>
