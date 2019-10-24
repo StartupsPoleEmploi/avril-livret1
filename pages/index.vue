@@ -13,7 +13,7 @@
             </div>
             <div class="swiper-slide">
               <p class="title is-4">
-               Si possible, munissez-vous de vos bulletins de salaire
+               Si possible, munissez-vous de votre CV et de vos bulletins de salaire
               </p>
             </div>
             <div class="swiper-slide">
