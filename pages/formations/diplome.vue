@@ -2,7 +2,7 @@
   <div class="form">
 
     <div class="form-fields">
-        <h3 class="title is-5">Titre ou diplôme le plus élevé obtenu en France ?</h3>
+        <h3 class="title is-5">Quel est le diplôme le plus élevé que vous ayez obtenu en France ?</h3>
 
             <nuxt-link v-on:click.native="addDiplome('A')" to="rncp" class="box">
               <input type="radio" name="answer"> &nbsp;Aucun diplôme
