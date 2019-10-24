@@ -4,7 +4,7 @@
     <div class="form-fields">
 
       <div class="field">
-        <label class="label">Si vous avez suivi des formation, effectué des stages ou obtenu des habilitations, indiquez les.
+        <h3 class="title is-5">Si vous avez suivi des formation, effectué des stages ou obtenu des habilitations, indiquez les.</h3>
       </div>
 
       <div class="field">
