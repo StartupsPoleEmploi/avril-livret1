@@ -6,7 +6,7 @@
         <div class="field natural-language">
           <span class="title is-5">
             J'ai travaillé du <date-picker v-model="premierePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> au
-            <date-picker v-model="secondePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> à <input class="input heure" type="number" v-model="heurePeriode" value="35"> heures par semaine.
+            <date-picker v-model="secondePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> à <input class="input heure" type="number" v-model="heurePeriode" value="35"> h par semaine.
           </span>
           <div class="">
             <a class="button is-dark" @click="addPeriodes" style="margin-top:1rem">
@@ -45,7 +45,7 @@
       <div class="form-help">
         <h3 class="title is-4">Besoin d'aide ?</h3>
         <div class="form-help-content">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Nous allons vous aider à calculer le nombre d'heure que vous avez travaillé. sélectionner la date de début et la date de fin de votre contrat ainsi que le nombre d'heures que vous avez travaillé par semaine. Pour rappel, un temps plein corrrespond à 35 ou 39h par semaine. Si il est indiqué 151h par mois sur votre bulletin de salaire, cela veut dire que vous avez travaillé à temps complet c'est à dire 35h par semaine.
         </div>
         <p style="margin-top:1rem">
           <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
