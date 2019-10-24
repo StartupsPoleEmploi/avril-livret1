@@ -4,7 +4,7 @@
     <div class="form-fields">
 
       <div class="field">
-        <label class="label">Avez vous déjà un diplôme ou une partie d'un diplôme en rapport avec celui que vous souhaitez obtenir aujourd'hui ?/s</label>
+        <label class="label">Avez vous déjà un diplôme ou une partie d'un diplôme en rapport avec celui que vous souhaitez obtenir aujourd'hui ?</label>
       </div>
 
       <div class="field">
