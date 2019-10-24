@@ -4,7 +4,7 @@
     <div class="form-fields">
 
       <div class="field">
-        <label class="label">Si vous possédez une certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE), indiquez son ou leur/s intitulé/s exact/s</label>
+        <label class="label">Avez vous déjà un diplôme ou une partie d'un diplôme en rapport avec celui que vous souhaitez obtenir aujourd'hui ?/s</label>
       </div>
 
       <div class="field">
