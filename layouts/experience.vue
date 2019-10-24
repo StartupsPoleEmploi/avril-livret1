@@ -19,7 +19,7 @@
         </div>
         <div class="navigation-tabs">
           <h3 class="navigation-title title is-4">Dossier de recevabilité</h3>
-          <h4 class="navigation-subtitle title is-5">CAP - Boulanger - Patissier</h4>
+          <h4 class="navigation-subtitle title is-5">CAP - Accompagnant éducatif - Petite enfance</h4>
           <div class="navigation-progressbar progress__bar">
             <div class="progress__bar--suivi" :style="`width:${remplissage}%`"></div>
           </div>
