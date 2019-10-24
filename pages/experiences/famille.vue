@@ -3,7 +3,7 @@
 
     <div class="form-fields">
 
-        <h3 class="title is-5">Famille professionnelle de l'emploi</h3>
+        <h3 class="title is-5">A quelle famille professionnelle appartient votre métier ?</h3>
 
         <nuxt-link v-on:click.native="addFamille('H')" to="status" class="box">
           <input type="radio" name="answer"> &nbsp;Administration publique, professions juridiques, armée et police
@@ -87,8 +87,8 @@
       <div class="form-help">
         <h3 class="title is-4">Besoin d'aide ?</h3>
         <div class="form-help-content">
-          Il s'agit de cocher la case de la bonne famille de métier, celle de votre métier. Par exemple, si vous avez été secrétaire, la famille métier sera "gestion, administration des entreprises.
-        </div>
+          Il s'agit de cocher la case de la bonne famille de métier, celle de votre métier. Par exemple, si vous avez été secrétaire, la famille métier sera "gestion, administration des entreprises".
+Les familles professionnelles sont des ensembles de métiers qui ont des points communs comme des activités ou des compétences.        </div>
         <p style="margin-top:1rem">
           <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
         </p>
