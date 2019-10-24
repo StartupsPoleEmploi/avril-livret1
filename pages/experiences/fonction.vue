@@ -13,7 +13,7 @@
       <div class="field">
         <label class="label">Nom de l'entreprise</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Exemple : Nike" @input="addEntreprise">
+          <input class="input" type="text" placeholder="Exemple : Crêche p'tit loup" @input="addEntreprise">
         </div>
       </div>
 
@@ -43,7 +43,7 @@
     <div class="form-help">
       <h3 class="title is-4">Besoin d'aide ?</h3>
       <div class="form-help-content">
-         Préciser votre métier, fonction, poste ou emploi. Celui en lien avec le diplôme que vous souhaitez obtenir. Vous pouvez recopier l'intitulé écrit sur votre fiche de salaire. Vous pourrez ajouter plusieurs fonctions selon les postes que vous avez occupés.
+         Préciser votre métier, fonction, poste ou emploi. Celui en lien avec le diplôme que vous souhaitez obtenir. Vous pouvez recopier l'intitulé écrit sur votre CV ou votre bulletin de salaire. Vous pourrez ajouter plusieurs fonctions selon les postes que vous avez occupés.
       </div>
       <p style="margin-top:1rem">
         <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
