@@ -3,7 +3,7 @@
 
     <div class="form-fields">
 
-        <h3 class="title is-5">Quelle est votre dernière classe suivie ?</h3>
+        <h3 class="title is-5">Quelle classe avez vous suivi en dernier ?</h3>
 
         <nuxt-link v-on:click.native="addClasse('A')" to="formations/diplome" class="box">
           <input type="radio" name="answer"> &nbsp;Primaire, 6ème, 5ème, 4ème, 3ème, 1ère année de CAP ou BEP
