@@ -40,7 +40,7 @@
       <div class="form-help">
         <h3 class="title is-4">Besoin d'aide ?</h3>
         <div class="form-help-content">
-          Pour cette expérience, étiez-vous employé par un patron, à votre compte, en formation une partie du temps ? Peu importe le statut, l'important est de prouvé que vous avez fait cette activité.
+          Pour cette expérience, étiez-vous employé par un patron, à votre compte, en formation une partie du temps ? Peu importe le statut, l'important est de prouver que vous avez fait cette activité.
         </div>
         <p style="margin-top:1rem">
           <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
