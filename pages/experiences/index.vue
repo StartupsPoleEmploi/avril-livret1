@@ -38,7 +38,7 @@
       <div class="form-help">
         <h3 class="title is-4">Besoin d'aide ?</h3>
         <div class="form-help-content">
-          Dans cette partie, le centre certificateur cherche à savoir si votre expérience est bien en relation avec le diplôme que vous souhaitez et si vous avez exercé au moins 1607h ou 1 an à temps plein dans des fonctions en rapport direct avec le diplôme.
+          Trouvez toutes les expériences en lien avec le diplôme que vous souhaitez obtenir. Si nécessaire consultez à nouveau le descriptif d'activités du diplôme (faire un lien?). Dans votre CV selectionnez les expériences utiles et reportez-le ici. Au total on vous demande d'avoir travailler au moins l'équivalent d'un an à temps plein dans des activités en lien avec le diplôme.
         </div>
         <p style="margin-top:1rem">
           <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
