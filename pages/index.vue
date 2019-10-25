@@ -18,7 +18,7 @@
             </div>
             <div class="swiper-slide">
               <p class="title is-4">
-                Vous aurez 2 parties à remplir, celle des expériences professionnelles est celle qui demande le plus d'attentions
+                Vous aurez 2 parties à remplir, celle des expériences professionnelles est celle qui demande le plus d'attention
               </p>
             </div>
           </div>
