@@ -41,14 +41,13 @@
 }
 .navigation{
   &-active{
-    // height: 300px;
     background: avril-color('blue');
-    color: #fff !important;
+    color: avril-color('marine') !important;
     .title{
-      color: #fff !important;
+      color: avril-color('marine') !important;
     }
     &:hover{
-      color: #fff !important;
+      color: avril-color('marine') !important;
       background: darken(avril-color('blue'), 3%);
     }
   }
