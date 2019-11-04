@@ -25,3 +25,14 @@
     height: 5px;
   }
 }
+
+.navigation-tabs{
+  .progress__bar{
+    background: #bfbfbf;
+  }
+  .nuxt-link-active{
+    .progress__bar{
+      background: #20c396;
+    }
+  }
+}
