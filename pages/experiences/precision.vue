@@ -115,6 +115,7 @@ export default {
   mounted() {
     this.$refs.avril__name.focus()
     this.$store.commit('application/disableFormationStepper')
+    this.$store.commit('application/disableIdentiteStepper')
   },
   methods: {
     addPrecision (e) {

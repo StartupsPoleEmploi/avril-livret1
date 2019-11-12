@@ -73,6 +73,7 @@ export default {
   mounted() {
     this.$store.commit('application/enableFormationStepper')
     this.$store.commit('application/disableExperienceStepper')
+    this.$store.commit('application/disableIdentiteStepper')
     this.$store.commit('application/changeTab', 1)
   },
   methods: {

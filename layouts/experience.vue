@@ -51,7 +51,7 @@
 
           <div class="field is-pulled-right">
             <div class="control">
-              <nuxt-link to="/recapitulatif" :class="slugIndex == 5 ? 'is-ok button is-dark' : 'is-ok button is-default'">
+              <nuxt-link to="/recapitulatif" :class="slugIndex == 15 ? 'is-ok button is-dark' : 'is-ok button is-default'">
                 Enregistrer mon livret de recevabilité
               </nuxt-link>
               <!-- <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">
@@ -66,6 +66,7 @@
 
           <StepperExperience/>
           <StepperFormation/>
+          <StepperIdentite/>
           <nuxt />
 
         </div>
@@ -85,6 +86,7 @@ import Actions from '~/components/Actions.vue';
 import Tabs from '~/components/Tabs.vue';
 import StepperExperience from '~/components/stepper-experience.vue';
 import StepperFormation from '~/components/stepper-formation.vue';
+import StepperIdentite from '~/components/stepper-identite.vue';
 
 import ArrowLeft from '@/assets/svgs/keyboard-arrow-left.svg';
 import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
@@ -95,6 +97,7 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
       Tabs,
       StepperExperience,
       StepperFormation,
+      StepperIdentite,
       ArrowLeft,
       ArrowRight,
     },
@@ -161,7 +164,7 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
     data: () => ({
       current: 0,
       slugIndex: 0,
-      way: [6,7,11,12,0,1,2,3,4,5],
+      way: [6,7,11,12,0,1,2,3,4,5, 13, 14, 15],
       displayBack: false,
       displayNext: true,
       cerfa:[{
@@ -214,6 +217,19 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
       },
       {
         slug: 'formations-formations',
+        title: "Mes formations",
+      },
+      // 13
+      {
+        slug: 'identite',
+        title: "Mes formations",
+      },
+      {
+        slug: 'identite-naissance',
+        title: "Mes formations",
+      },
+      {
+        slug: 'identite-identite',
         title: "Mes formations",
       },
     ],

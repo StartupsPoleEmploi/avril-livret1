@@ -33,6 +33,7 @@ export default {
   mounted() {
     this.$store.commit('application/addRemplissage', 95)
     this.$store.commit('application/disableFormationStepper')
+    this.$store.commit('application/disableIdentiteStepper')
     this.$store.commit('application/changeTab', 2)
   },
   methods: {

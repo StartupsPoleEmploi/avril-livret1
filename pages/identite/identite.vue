@@ -1,38 +1,66 @@
 <template>
-  <div class="form">
+  <div class="form is-horizontal">
 
-    <div class="form-fields">
+    <div class="form-fields fields">
 
-        <h1 class="title is-5">Vos expériences professionnelles</h1>
-
-        <nuxt-link to="experiences/fonction" :class="heures<1607 ? 'button is-dark' : 'button'">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <title>add</title>
-              <path d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
-          </svg>&nbsp; Ajouter une expérience
-        </nuxt-link>
-        <span class="avril-ou" v-if="heures >= 1607">&nbsp;ou&nbsp;</span>
-        <nuxt-link v-if="heures >= 1607" :event="heures < 1607 ? '' : 'click'" to="/formations" class="is-ok button is-dark">
-          Avancer vers mes formations
-        </nuxt-link>
-
-        <div class="columns is-multiline">
-          <div v-for="experience in experiences" class="column is-half">
-            <div class="box is-equal-height">
-              <h3 class="title is-4">{{ experience.fonction }}</h3>
-              <h3 class="title is-6">{{ experience.duree }} heures</h3>
-              <p>{{ experience.entreprise }}</p>
-              <span>{{ experience.periode }}</span>
-              <a href="#">éditer</a>
+      <div class="field">
+        <div class="control">
+          <div class="columns">
+            <div class="column">
+              <label class="label">Mon nom</label>
+              <input :value="nom" ref="avril__name" class="input" type="text" placeholder="Votre nom" @input="addNom">
             </div>
-          </div>
-          <div class="column is-one-quarter">
-            <div class="avril__box__experience is-equal-height">
+            <div class="column">
+              <label class="label">Mes prénoms</label>
+              <input class="input" type="text" placeholder="Vos prénoms" @input="addPrenoms">
             </div>
           </div>
         </div>
-
       </div>
+
+      <div class="field">
+        <label class="label">Mon email</label>
+        <div class="control">
+          <input :value="email" class="input" type="email" placeholder="Exemple : avril@pole-emploi.fr" @input="addEmail">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Mon numéro de téléphone à domicile</label>
+        <div class="control">
+          <input :value="telDom" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addTelDom">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Mon numéro de téléphone mobile</label>
+        <div class="control">
+          <input :value="telPortable" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addTelPortable">
+        </div>
+      </div>
+
+      <fieldset>
+        <br/>
+        <div class="field">
+          <label class="label">Mon nom d'usage (optionnel)</label>
+          <p class="control">
+            <input class="input" type="text" placeholder="Votre nom d'usage">
+          </p>
+        </div>
+      </fieldset>
+
+      <!-- <div class="form-field-action field">
+        <div class="control">
+          <nuxt-link to="identite/naissance" class="is-ok button is-text is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+          <nuxt-link to="identite/naissance" class="is-ok button is-dark is-pulled-right">
+            Continuer
+          </nuxt-link>
+        </div>
+      </div> -->
+
+    </div>
 
 
       <div class="form-help">
@@ -67,7 +95,19 @@ export default {
         return 100
       else
         return (this.$store.state.experiences.heures*100)/1607
-    }
+    },
+    nom () {
+      return this.$store.state.identite.nom
+    },
+    email () {
+      return this.$store.state.identite.email
+    },
+    telDom () {
+      return this.$store.state.identite.telDom
+    },
+    telPortable () {
+      return this.$store.state.identite.telPortable
+    },
   },
 
   created() {
@@ -75,11 +115,7 @@ export default {
   },
 
   mounted() {
-    // this.$refs.avril__name.focus()
-    this.$store.commit('application/disableExperienceStepper')
-    this.$store.commit('application/disableFormationStepper')
-    this.$store.commit('application/disableIdentiteStepper')
-    this.$store.commit('application/changeTab', 0)
+    this.$refs.avril__name.focus()
   },
   methods: {
     keymonitor: function(event) {
@@ -87,7 +123,22 @@ export default {
       {
         this.$router.push('name')
       }
-    }
+    },
+    addNom: function(e) {
+      this.$store.commit('identite/addNom', e.target.value)
+    },
+    addPrenoms: function(e) {
+      this.$store.commit('identite/addPrenoms', e.target.value)
+    },
+    addEmail: function(e) {
+      this.$store.commit('identite/addEmail', e.target.value)
+    },
+    addTelDom: function(e) {
+      this.$store.commit('identite/addTelDom', e.target.value)
+    },
+    addTelPortable: function(e) {
+      this.$store.commit('identite/addTelPortable', e.target.value)
+    },
   },
   watch: {
     $route (to, from) {

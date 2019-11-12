@@ -4,6 +4,7 @@ export const state = () => ({
   monDossier: null,
   displayExperienceStepper: false,
   displayFormationStepper: false,
+  displayIdentiteStepper: false,
   tab: 1,
 })
 
@@ -29,6 +30,13 @@ export const mutations = {
   },
   disableFormationStepper(state) {
     state.displayFormationStepper = false;
+  },
+
+  enableIdentiteStepper(state) {
+    state.displayIdentiteStepper = true;
+  },
+  disableIdentiteStepper(state) {
+    state.displayIdentiteStepper = false;
   },
 
   changeTab(state, tab) {

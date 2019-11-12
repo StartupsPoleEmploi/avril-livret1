@@ -3,36 +3,33 @@
 
     <div class="form-fields">
 
-        <h1 class="title is-5">Vos expériences professionnelles</h1>
-
-        <nuxt-link to="experiences/fonction" :class="heures<1607 ? 'button is-dark' : 'button'">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <title>add</title>
-              <path d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
-          </svg>&nbsp; Ajouter une expérience
-        </nuxt-link>
-        <span class="avril-ou" v-if="heures >= 1607">&nbsp;ou&nbsp;</span>
-        <nuxt-link v-if="heures >= 1607" :event="heures < 1607 ? '' : 'click'" to="/formations" class="is-ok button is-dark">
-          Avancer vers mes formations
-        </nuxt-link>
-
-        <div class="columns is-multiline">
-          <div v-for="experience in experiences" class="column is-half">
-            <div class="box is-equal-height">
-              <h3 class="title is-4">{{ experience.fonction }}</h3>
-              <h3 class="title is-6">{{ experience.duree }} heures</h3>
-              <p>{{ experience.entreprise }}</p>
-              <span>{{ experience.periode }}</span>
-              <a href="#">éditer</a>
-            </div>
-          </div>
-          <div class="column is-one-quarter">
-            <div class="avril__box__experience is-equal-height">
-            </div>
-          </div>
+      <div class="field">
+        <label class="label">Lieu de naissance</label>
+        <div class="control">
+          <input :value="lieu" ref="avril__name" class="input" type="text" placeholder="Exemple : Marseille, France" @input="addNaissance">
         </div>
-
       </div>
+
+      <!-- Date de naissance -->
+      <div class="field">
+        <label class="label">Date de naissance</label>
+        <div class="control">
+          <date-picker v-model="premierePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker>
+        </div>
+      </div>
+
+      <div class="form-field-action field">
+        <div class="control">
+          <nuxt-link to="identite" class="is-ok button is-text is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+          <nuxt-link to="identite" class="is-ok button is-dark is-pulled-right">
+            Continuer
+          </nuxt-link>
+        </div>
+      </div>
+
+    </div>
 
 
       <div class="form-help">
@@ -44,23 +41,27 @@
           <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
         </p>
       </div>
+
     </div>
 </template>
 
 <script>
+import DatePicker from 'vue2-datepicker';
+import moment from 'moment';
+
 // import Logo from '~/components/Logo.vue'
 // const ioHook = require('iohook');
 export default {
   layout: 'experience',
   components: {
-    // Logo
+    DatePicker
   },
   computed: {
     experiences () {
       return this.$store.state.experiences.experiences
     },
-    heures () {
-      return this.$store.state.experiences.heures
+    lieu () {
+      return this.$store.state.identite.naissance.commune
     },
     pourcentage () {
       if( (this.$store.state.experiences.heures*100)/1607 > 100 )
@@ -75,13 +76,29 @@ export default {
   },
 
   mounted() {
-    // this.$refs.avril__name.focus()
+    this.$refs.avril__name.focus()
     this.$store.commit('application/disableExperienceStepper')
     this.$store.commit('application/disableFormationStepper')
-    this.$store.commit('application/disableIdentiteStepper')
-    this.$store.commit('application/changeTab', 0)
+    this.$store.commit('application/enableIdentiteStepper')
+    this.$store.commit('application/changeTab', 2)
   },
   methods: {
+    addNaissance: function(){
+      // pareil, splitter le lieu grâce à Google
+      // addDateNaissance (state, value) {
+      //   state.naissance.date = value
+      // },
+      // addDepartementNaissance (state, value) {
+      //   state.naissance.departement = value
+      // },
+      // addCommuneNaissance (state, value) {
+      //   state.naissance.commune = value
+      // },
+      // addNationaliteNaissance (state, value) {
+      //   state.naissance.nationalite = value
+      // },
+      console.log('test')
+    },
     keymonitor: function(event) {
       if(event.key == "Enter")
       {
@@ -95,6 +112,24 @@ export default {
     }
   },
   data: () => ({
+    lang: {
+      days: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+      months: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
+      pickers: ['7 jours suivants', '30 jours suivants', '7 jours précédents', '30 jours précédents'],
+      placeholder: {
+        date: 'Sélectionnez une date',
+        dateRange: 'Sélectionnez une période'
+      }
+    },
+    time3: '',
+    premierePeriode: '',
+    secondePeriode: '',
+    heurePeriode: '',
+    semaine: 46,
+    hours: 35,
+    selectedYear: 46,
+    selectedSemaines: 46,
+    selectedHours: 35,
     current: 0,
     slugIndex: 0,
     cerfa:[{
