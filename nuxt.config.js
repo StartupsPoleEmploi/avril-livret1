@@ -35,7 +35,6 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/nuxt-swiper-plugin.js', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules
