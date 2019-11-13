@@ -49,13 +49,6 @@ export const mutations = {
   addCellPhoneNumber (state, value) {
     state.cellPhoneNumber = value
   },
-
-  // birth: {
-  //   date: null,
-  //   county: null,
-  //   city: null,
-  //   country: 'FR'
-  // },
   addBirthDate (state, value) {
     state.birth.date = value
   },
@@ -68,15 +61,6 @@ export const mutations = {
   addBirthCountry (state, value) {
     state.birth.country = value
   },
-
-  // address: {
-  //   streetType: null,
-  //   streetName: null,
-  //   streetNumber: null,
-  //   city: null,
-  //   postalCode: null,
-  //   country: 'FR'
-  // },
   addAddressStreetType (state, value) {
     state.address.streetType = value
   },
