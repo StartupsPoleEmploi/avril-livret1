@@ -8,11 +8,11 @@
           <div class="columns">
             <div class="column">
               <label class="label">Mon nom</label>
-              <input :value="nom" ref="avril__name" class="input" type="text" placeholder="Votre nom" @input="addNom">
+              <input :value="lastName" ref="avril__focus" class="input" type="text" placeholder="Votre nom" @input="addLastName">
             </div>
             <div class="column">
               <label class="label">Mes prénoms</label>
-              <input class="input" type="text" placeholder="Vos prénoms" @input="addPrenoms">
+              <input class="input" type="text" placeholder="Vos prénoms" @input="addFirstNames">
             </div>
           </div>
         </div>
@@ -28,14 +28,14 @@
       <div class="field">
         <label class="label">Mon numéro de téléphone à domicile</label>
         <div class="control">
-          <input :value="telDom" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addTelDom">
+          <input :value="homePhoneNumber" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addHomePhoneNumber">
         </div>
       </div>
 
       <div class="field">
         <label class="label">Mon numéro de téléphone mobile</label>
         <div class="control">
-          <input :value="telPortable" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addTelPortable">
+          <input :value="cellPhoneNumber" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addCellPhoneNumber">
         </div>
       </div>
 
@@ -44,7 +44,7 @@
         <div class="field">
           <label class="label">Mon nom d'usage (optionnel)</label>
           <p class="control">
-            <input class="input" type="text" placeholder="Votre nom d'usage">
+            <input :value="usageName" class="input" type="text" placeholder="Votre nom d'usage" @input="addUsageName">
           </p>
         </div>
       </fieldset>
@@ -96,17 +96,20 @@ export default {
       else
         return (this.$store.state.experiences.heures*100)/1607
     },
-    nom () {
-      return this.$store.state.identite.nom
+    lastName () {
+      return this.$store.state.identite.lastName
+    },
+    usageName () {
+      return this.$store.state.identite.usageName
     },
     email () {
       return this.$store.state.identite.email
     },
-    telDom () {
-      return this.$store.state.identite.telDom
+    homePhoneNumber () {
+      return this.$store.state.identite.homePhoneNumber
     },
-    telPortable () {
-      return this.$store.state.identite.telPortable
+    cellPhoneNumber () {
+      return this.$store.state.identite.cellPhoneNumber
     },
   },
 
@@ -115,7 +118,7 @@ export default {
   },
 
   mounted() {
-    this.$refs.avril__name.focus()
+    this.$refs.avril__focus.focus()
   },
   methods: {
     keymonitor: function(event) {
@@ -124,20 +127,23 @@ export default {
         this.$router.push('name')
       }
     },
-    addNom: function(e) {
-      this.$store.commit('identite/addNom', e.target.value)
+    addLastName: function(e) {
+      this.$store.commit('identite/addLastName', e.target.value)
     },
-    addPrenoms: function(e) {
-      this.$store.commit('identite/addPrenoms', e.target.value)
+    addFirstNames: function(e) {
+      this.$store.commit('identite/addFirstNames', e.target.value)
+    },
+    addUsageName: function(e) {
+      this.$store.commit('identite/addUsageName', e.target.value)
     },
     addEmail: function(e) {
       this.$store.commit('identite/addEmail', e.target.value)
     },
-    addTelDom: function(e) {
-      this.$store.commit('identite/addTelDom', e.target.value)
+    addHomePhoneNumber: function(e) {
+      this.$store.commit('identite/addHomePhoneNumber', e.target.value)
     },
-    addTelPortable: function(e) {
-      this.$store.commit('identite/addTelPortable', e.target.value)
+    addCellPhoneNumber: function(e) {
+      this.$store.commit('identite/addCellPhoneNumber', e.target.value)
     },
   },
   watch: {

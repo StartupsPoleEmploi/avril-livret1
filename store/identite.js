@@ -1,99 +1,99 @@
 export const state = () => ({
-  nom: null,
+  lastName: null,
   usageName: null,
-  prenoms: [],
-  sexe: null,
+  firstNames: [],
+  sex: null,
   email: null,
-  telDom: null,
-  telPortable: null,
-  naissance: {
+  homePhoneNumber: null,
+  cellPhoneNumber: null,
+  birth: {
     date: null,
-    departement: null,
-    commune: null,
-    nationalite: 'FR'
+    county: null,
+    city: null,
+    country: 'FR'
   },
-  residence: {
-    voieType: null,
-    voieName: null,
-    numero: null,
-    commune: null,
-    cp: null,
-    pays: 'FR',
-    domtom: false,
+  address: {
+    streetType: null,
+    streetName: null,
+    streetNumber: null,
+    city: null,
+    postalCode: null,
+    country: 'FR',
+    isDomTom: false,
   },
 })
 
 export const mutations = {
 
   addName (state, value) {
-    state.nom = value
+    state.lastName = value
   },
   addUsageName (state, value) {
     state.usageName = value
   },
-  addPrenoms (state, value) {
-    state.prenoms.push(value)
+  addFirstNames (state, value) {
+    state.firstNames.push(value)
   },
-  addSexe (state, value) {
-    state.sexe = value
+  addSex (state, value) {
+    state.sex = value
   },
   addDomTom (state, value) {
-    state.domtom = value; // true or false
+    state.isDomTom = value; // true or false
   },
   addEmail (state, value) {
     state.email = value
   },
-  addTelDom (state, value) {
-    state.telDom = value
+  addHomePhoneNumber (state, value) {
+    state.homePhoneNumber = value
   },
-  addTelPortable (state, value) {
-    state.telPortable = value
+  addCellPhoneNumber (state, value) {
+    state.cellPhoneNumber = value
   },
 
-  // naissance: {
+  // birth: {
   //   date: null,
-  //   departement: null,
-  //   commune: null,
-  //   nationalite: 'FR'
+  //   county: null,
+  //   city: null,
+  //   country: 'FR'
   // },
-  addDateNaissance (state, value) {
-    state.naissance.date = value
+  addBirthDate (state, value) {
+    state.birth.date = value
   },
-  addDepartementNaissance (state, value) {
-    state.naissance.departement = value
+  addBirthCounty (state, value) {
+    state.birth.county = value
   },
-  addCommuneNaissance (state, value) {
-    state.naissance.commune = value
+  addBirthCity (state, value) {
+    state.birth.city = value
   },
-  addNationaliteNaissance (state, value) {
-    state.naissance.nationalite = value
+  addBirthCountry (state, value) {
+    state.birth.country = value
   },
 
-  // residence: {
-  //   voieType: null,
-  //   voieName: null,
-  //   numero: null,
-  //   commune: null,
-  //   cp: null,
-  //   pays: 'FR'
+  // address: {
+  //   streetType: null,
+  //   streetName: null,
+  //   streetNumber: null,
+  //   city: null,
+  //   postalCode: null,
+  //   country: 'FR'
   // },
-  addVoieTypeResidence (state, value) {
-    state.residence.voieType = value
+  addAddressStreetType (state, value) {
+    state.address.streetType = value
   },
-  addVoieNameResidence (state, value) {
-    state.residence.voieName = value
+  addAddressStreetName (state, value) {
+    state.address.streetName = value
   },
-  addNumeroResidence (state, value) {
-    state.residence.numero = value
+  addAddressStreetNumber (state, value) {
+    state.address.streetNumber = value
   },
-  addCommuneResidence (state, value) {
-    state.residence.commune = value
+  addAddressCity (state, value) {
+    state.address.city = value
   },
-  addCPResidence (state, value) {
-    state.residence.cp = value
+  addAddressPostalCode (state, value) {
+    state.address.postalCode = value
   },
-  addPaysResidence (state, value) {
-    state.residence.pays = value
+  addAddressCountry (state, value) {
+    state.address.country = value
   },
 
 }

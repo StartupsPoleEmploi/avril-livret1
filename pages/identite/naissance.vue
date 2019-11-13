@@ -6,7 +6,7 @@
       <div class="field">
         <label class="label">Lieu de naissance</label>
         <div class="control">
-          <input :value="lieu" ref="avril__name" class="input" type="text" placeholder="Exemple : Marseille, France" @input="addNaissance">
+          <input :value="lieu" ref="avril__focus" class="input" type="text" placeholder="Exemple : Marseille, France" @input="addBirth">
         </div>
       </div>
 
@@ -61,7 +61,7 @@ export default {
       return this.$store.state.experiences.experiences
     },
     lieu () {
-      return this.$store.state.identite.naissance.commune
+      return this.$store.state.identite.birth.city
     },
     pourcentage () {
       if( (this.$store.state.experiences.heures*100)/1607 > 100 )
@@ -76,26 +76,26 @@ export default {
   },
 
   mounted() {
-    this.$refs.avril__name.focus()
+    this.$refs.avril__focus.focus()
     this.$store.commit('application/disableExperienceStepper')
     this.$store.commit('application/disableFormationStepper')
     this.$store.commit('application/enableIdentiteStepper')
     this.$store.commit('application/changeTab', 2)
   },
   methods: {
-    addNaissance: function(){
+    addBirth: function(){
       // pareil, splitter le lieu grâce à Google
       // addDateNaissance (state, value) {
-      //   state.naissance.date = value
+      //   state.birth.date = value
       // },
       // addDepartementNaissance (state, value) {
-      //   state.naissance.departement = value
+      //   state.birth.departement = value
       // },
       // addCommuneNaissance (state, value) {
-      //   state.naissance.commune = value
+      //   state.birth.city = value
       // },
       // addNationaliteNaissance (state, value) {
-      //   state.naissance.nationalite = value
+      //   state.birth.nationalite = value
       // },
       console.log('test')
     },
