@@ -1,4 +1,5 @@
 export const state = () => ({
+  hash: null,
   avrilHost: 'http://localhost:4000',
   heures: 0,
   remplissage: 0,
@@ -43,5 +44,7 @@ export const mutations = {
   changeTab(state, tab) {
     state.tab = tab;
   },
-
+  setHash(state, hash) {
+    state.hash = state.hash || hash;
+  },
 }

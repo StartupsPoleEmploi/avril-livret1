@@ -11,25 +11,26 @@ export const state = () => ({
 
 export const mutations = {
   setHash(state, hash) {
-    state.hash = hash;
+    state.hash = state.hash || hash;
   }
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit, dispatch }, { req, res }) {
-    const hash = req.query.hash
-    if (hash) {
-      const result = await fetch(`${QUERY_APP_HOST}/api/booklet?hash=${hash}`)
-      const data = await result.json()
+  async nuxtServerInit ({ commit, dispatch }, { req, res, store }) {
+    console.log('nuxtServerInit called')
+    const queryHash = req.query.hash;
+     if (queryHash) {
+      const result = await fetch(`${QUERY_APP_HOST}/api/booklet?hash=${queryHash}`)
       if (result.ok) {
-        commit('setHash', hash)
+        const data = await result.json()
+        console.log('fetched data')
+        commit('setHash', queryHash)
         commit('identity/initState', data.identity)
-        return true;
       } else {
-        return false;
+        console.log('Request failed');
       }
     } else {
-      return false;
+      console.log('No hash no request');
     }
   }
 }

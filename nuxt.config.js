@@ -20,10 +20,13 @@ module.exports = {
       }
     ]
   },
+  router: {
+    middleware: ['inspector']
+  },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: 'green' },
+  loading: '~/components/loading.vue',
   /*
   ** Global CSS
   */
