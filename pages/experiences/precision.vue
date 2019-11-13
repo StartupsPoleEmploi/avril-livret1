@@ -41,6 +41,18 @@
           </nuxt-link>
         </div>
       </div>
+
+      <div class="field" v-else>
+        <div class="control">
+          <nuxt-link to="/identite" class="is-ok button is-text is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+          <nuxt-link to="/identite" class="is-ok button is-dark is-pulled-right">
+            Continuer
+          </nuxt-link>
+        </div>
+      </div>
+
     </div>
 
       <div class="form-help">
@@ -100,6 +112,7 @@ export default {
       return act.reverse()
     },
     heures () {
+      console.log(this.$store.state)
       return this.$store.state.experiences.heures
     },
     pourcentage () {
@@ -116,6 +129,8 @@ export default {
     this.$refs.avril__name.focus()
     this.$store.commit('application/disableFormationStepper')
     this.$store.commit('application/disableIdentiteStepper')
+    this.$store.commit('application/enableExperienceStepper')
+    this.$store.commit('application/changeTab', 0)
   },
   methods: {
     addPrecision (e) {
