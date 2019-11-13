@@ -24,7 +24,9 @@ export const state = () => ({
 })
 
 export const mutations = {
-
+  initState (state, serverState) {
+    Object.assign(state, serverState)
+  },
   addLastName (state, value) {
     state.lastName = value
   },
