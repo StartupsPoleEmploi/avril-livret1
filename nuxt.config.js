@@ -53,6 +53,12 @@ module.exports = {
   modules: [
     'nuxt-svg-loader',
   ],
+  router: {
+    middleware: 'connect'
+  },
+  serverMiddleware: [
+    { path: '/', handler: '~/server/connect.js' },
+  ],
   /*
   ** Build configuration
   */
