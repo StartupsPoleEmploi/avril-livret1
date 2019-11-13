@@ -8,13 +8,14 @@ const redirectToApp = (req, res, next) => {
 }
 
 export default function (req, res, next) {
-  fetch(`${QUERY_APP_HOST}/api/booklet?hash=${req.query.hash}`)
-    .then(data => {
-      if (data.ok) {
-        next();
-      } else {
-        redirectToApp(req, res, next);
-      }
-    })
-    .catch(error => redirectToApp(req, res, next));
+  next()
+  // fetch(`${QUERY_APP_HOST}/api/booklet?hash=${req.query.hash}`)
+  //   .then(data => {
+  //     if (data.ok) {
+  //       next();
+  //     } else {
+  //       redirectToApp(req, res, next);
+  //     }
+  //   })
+  //   .catch(error => redirectToApp(req, res, next));
 }

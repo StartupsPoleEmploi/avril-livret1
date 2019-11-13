@@ -9,7 +9,7 @@
       <div class="avril-navigation">
         <div class="navigation-header">
           <div class="avril-back">
-            <a href="https://mon-diplome-v3.herokuapp.com/">
+            <a :href=avrilPath>
               <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24">
                 <title>arrow-left-1</title>
                 <path d="M4.5,12a2.3,2.3,0,0,1,.78-1.729L16.432.46a1.847,1.847,0,0,1,2.439,2.773L9.119,11.812a.25.25,0,0,0,0,.376l9.752,8.579a1.847,1.847,0,1,1-2.439,2.773L5.284,13.732A2.31,2.31,0,0,1,4.5,12Z"></path>
@@ -102,6 +102,9 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
       ArrowRight,
     },
     computed: {
+      avrilPath() {
+        return this.$store.state.application.avrilPath;
+      },
       heures () {
         return this.$store.state.experiences.heures
       },

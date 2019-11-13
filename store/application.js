@@ -1,4 +1,5 @@
 export const state = () => ({
+  avrilHost: 'http://localhost:4000',
   heures: 0,
   remplissage: 0,
   monDossier: null,
