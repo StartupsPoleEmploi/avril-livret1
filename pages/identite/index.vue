@@ -5,7 +5,7 @@
       <div class="field">
         <label class="label">L'adresse de votre lieu de résidence</label>
         <div class="control">
-          <input :value="residence" ref="avril__name" class="input" type="text" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" @input="addResidence">
+          <input :value="addressStreetName" ref="avril__focus" class="input" type="text" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" @input="addAddress">
         </div>
       </div>
 
@@ -44,6 +44,9 @@ export default {
     // Logo
   },
   computed: {
+    addressStreetName () {
+      return this.$store.state.identity.addressStreetName
+    },
     experiences () {
       return this.$store.state.experiences.experiences
     },
@@ -51,16 +54,7 @@ export default {
       return this.$store.state.experiences.heures
     },
     residence () {
-      // residence: {
-      //   voieType: null,
-      //   voieName: null,
-      //   numero: null,
-      //   commune: null,
-      //   cp: null,
-      //   pays: 'FR',
-      //   domtom: false,
-      // },
-      return this.$store.state.identite.residence.numero + ' ' + this.$store.state.identite.residence.voieType + ' ' + this.$store.state.identite.residence.voieName + ', ' + this.$store.state.identite.residence.cp + ' ' + this.$store.state.identite.residence.commune
+      return this.$store.state.identity.address.streetNumber + ' ' + this.$store.state.identity.address.streetType + ' ' + this.$store.state.identity.address.streetName + ', ' + this.$store.state.identity.address.postalCode + ' ' + this.$store.state.identity.address.city
     },
     pourcentage () {
       if( (this.$store.state.experiences.heures*100)/1607 > 100 )
@@ -75,7 +69,7 @@ export default {
   },
 
   mounted() {
-    this.$refs.avril__name.focus()
+    this.$refs.avril__focus.focus()
     this.$store.commit('application/disableExperienceStepper')
     this.$store.commit('application/disableFormationStepper')
     this.$store.commit('application/enableIdentiteStepper')
@@ -88,14 +82,14 @@ export default {
         this.$router.push('name')
       }
     },
-    addResidence: function(e) {
+    addAddress: function(e) {
       // ici il faut splitter l'adresse Google :
-      this.$store.commit('identite/addVoieTypeResidence', 'Avenue')
-      this.$store.commit('identite/addVoieNameResidence', 'Dupont')
-      this.$store.commit('identite/addNumeroResidence', '45')
-      this.$store.commit('identite/addCommuneResidence', 'Marseille')
-      this.$store.commit('identite/addCPResidence', '13000')
-      this.$store.commit('identite/addPaysResidence', 'France')
+      this.$store.commit('identity/addAddressStreetType', 'Avenue')
+      this.$store.commit('identity/addAddressStreetName', 'Dupont')
+      this.$store.commit('identity/addAddressStreetNumber', '45')
+      this.$store.commit('identity/addAddressCity', 'Marseille')
+      this.$store.commit('identity/addAddressPostalCode', '13000')
+      this.$store.commit('identity/addAddressCountry', 'France')
     },
   },
   watch: {
