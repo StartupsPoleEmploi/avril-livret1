@@ -23,13 +23,6 @@
           </div>
         </div>
       </div>
-      <div class="field" v-if="heures >= 1607">
-        <div class="control">
-          <nuxt-link to="/formations" class="is-ok button is-text is-pulled-left">
-            Remplir plus tard
-          </nuxt-link>
-        </div>
-      </div>
 
       <div class="field" v-if="heures < 1607">
         <div class="control">
@@ -121,9 +114,6 @@ export default {
       else
         return (this.$store.state.experiences.heures*100)/1607
     }
-  },
-  created() {
-    this.$store.commit('experiences/addHours')
   },
   mounted() {
     this.$refs.avril__name.focus()

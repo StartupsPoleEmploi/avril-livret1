@@ -23,7 +23,6 @@
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    // background-color: avril-color('gray');
     margin-right: 5rem;
     border-radius: 6px;
     margin-bottom: 4rem;
@@ -31,5 +30,10 @@
     &-content{
       // padding: 5rem;
     }
+    &-ativites{
+      background-color: avril-color('gray');
+      border-radius: 6px;
+    }
+
   }
 }

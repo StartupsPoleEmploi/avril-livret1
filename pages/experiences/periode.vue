@@ -117,6 +117,7 @@ export default {
       }
     },
     addPeriodes () {
+      console.log('add periodes')
       // TODO: supprimer les weekends du calcul des heures totales
 
       // par mois, le coeficcient de gain de congé est de 14 :
@@ -144,7 +145,9 @@ export default {
       periode.totalHeures = totalHeures;
 
       this.$store.commit('experiences/addPeriodes', periode)
+      console.log('je tente d\'ajouter', periode.totalHeures, 'heures')
       this.$store.commit('experiences/addHours', periode.totalHeures)
+      console.log(this.$store.state.experiences.heures, 'heures dans le store')
 
       this.premierePeriode = '';
       this.secondePeriode = '';
