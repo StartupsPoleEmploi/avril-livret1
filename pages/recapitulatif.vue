@@ -2,13 +2,16 @@
   <div class="avril-recapitulatif">
 
       <div class="recap-content">
+
+        <h1 class="title is-1">Récapitulatif</h1>
+
         <div class="notification is-avril">
           <button class="delete"></button>
           <p>Vérifiez que toutes ces informations soient correctes. Si besoin corrigez-les.</p>
           <p>Si tout vous semble correcte, enregistrez votre livret 1 dans votre dossier VAE Avril.</p>
         </div>
 
-        <h1 class="title is-1">Ma formation</h1>
+        <h1 class="title is-3">Ma formation</h1>
 
         <section class="section-formation">
 

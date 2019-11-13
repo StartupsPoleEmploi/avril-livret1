@@ -4,7 +4,7 @@
 
     J'ai une formation de
     <span v-for="formation, index in experiences.formationsContinues">
-      <span>{{ formation }} <span v-if="index < experiences.formationsContinues.length-1">&amp; de</span></span>
+      <span><strong>{{ formation }}</strong> <span v-if="index < experiences.formationsContinues.length-1">et de </span></span>
     </span>
 
   </div>
