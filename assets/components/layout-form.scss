@@ -3,8 +3,9 @@
   flex-direction: row;
   &-header {
     z-index: 99;
-    padding: 1rem;
-    padding-bottom: 7vh;
+    padding: 5rem;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
     .title{
       padding: 0 4rem;
     }
@@ -22,11 +23,11 @@
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    background-color: avril-color('gray');
+    // background-color: avril-color('gray');
     margin-right: 5rem;
     border-radius: 6px;
     margin-bottom: 4rem;
-    padding: 2rem;
+    // padding: 2rem;
     &-content{
       // padding: 5rem;
     }

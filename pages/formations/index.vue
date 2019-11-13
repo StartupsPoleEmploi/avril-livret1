@@ -31,7 +31,7 @@
       </div>
 
       <div class="form-help">
-        <h3 class="title is-4">Besoin d'aide ?</h3>
+        <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
 Sélectionnez la bonne case. Dites nous simplement quelle a été la dernière classe que vous avez fréquentée. Ne vous inquiétez pas, il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.
 Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.        </div>

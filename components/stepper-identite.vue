@@ -2,9 +2,8 @@
 
   <div class="form-header" v-if="displayIdentiteStepper == true">
 
-    <h3 class="title is-6">Définir mon identité</h3>
     <div class="avril-stepper-container">
-
+      <NavBack/>
       <div class="avril-stepper">
         <ul class="steps is-small is-centered has-content-centered">
           <li :class="slugIndex == 13 ? 'steps-segment is-active' : 'steps-segment'">
@@ -34,8 +33,12 @@
 </template>
 <script>
 import _ from 'lodash';
+import NavBack from '~/components/NavBack.vue';
 
 export default {
+  components: {
+    NavBack
+  },
   computed: {
     displayIdentiteStepper () {
       return this.$store.state.application.displayIdentiteStepper

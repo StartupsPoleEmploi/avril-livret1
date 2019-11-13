@@ -38,7 +38,7 @@
 
 
       <div class="form-help">
-        <h3 class="title is-4">Besoin d'aide ?</h3>
+        <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
           Pour cette expérience, étiez-vous employé par un patron, à votre compte, en formation une partie du temps ? Peu importe le statut, l'important est de prouver que vous avez fait cette activité.
         </div>

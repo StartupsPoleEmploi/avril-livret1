@@ -45,7 +45,7 @@
 
 
     <div class="form-help">
-      <h3 class="title is-4">Besoin d'aide ?</h3>
+      <h3 class="title is-5">Besoin d'aide ?</h3>
       <div class="form-help-content">
 Indiquez nous ici les diplômes ou les parties de diplômes que vous avez déjà obtenus.
 Par exemple : Diplôme "CAP petite enfance" obtenu ou bloc de compétences "Conduite d'un projet RH" obtenu.

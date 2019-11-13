@@ -64,7 +64,7 @@
 
 
       <div class="form-help">
-        <h3 class="title is-4">Besoin d'aide ?</h3>
+        <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
           Trouvez toutes les expériences en lien avec le diplôme que vous souhaitez obtenir. Si nécessaire consultez à nouveau le descriptif d'activités du diplôme (faire un lien?). Dans votre CV selectionnez les expériences utiles et reportez-les une par une. Au total il faut avoir travailler au moins l'équivalent d'un an à temps plein dans des activités en lien avec le diplôme.
         </div>

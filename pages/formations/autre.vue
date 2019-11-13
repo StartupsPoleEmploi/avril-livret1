@@ -28,7 +28,7 @@
 
 
     <div class="form-help">
-      <h3 class="title is-4">Besoin d'aide ?</h3>
+      <h3 class="title is-5">Besoin d'aide ?</h3>
       <div class="form-help-content">
 Dites nous si vous avez déjà chercher à obtenir un diplôme mais que vous n'en avez validé qu'une partie.
 Si l'organisme, l'école ou le centre de formation qui vous suivait pour ce diplôme , vous a donné une attestation ou un justificatif pour les parties de diplôme obtenue, cochez "oui".

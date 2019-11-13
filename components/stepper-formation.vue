@@ -2,6 +2,7 @@
   <div class="form-header" v-if="displayFormationStepper == true">
 
     <div class="avril-stepper-container">
+      <NavBack/>
       <div class="avril-stepper">
         <ul class="steps is-small is-centered has-content-centered">
           <li :class="slugIndex == '' || slugIndex == 6 ? 'steps-segment is-active' : 'steps-segment'">
@@ -36,8 +37,12 @@
 </template>
 <script>
 import _ from 'lodash';
+import NavBack from '~/components/NavBack.vue';
 
 export default {
+  components: {
+    NavBack
+  },
   computed: {
     heures () {
       return this.$store.state.experiences.heures

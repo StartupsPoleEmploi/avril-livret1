@@ -4,7 +4,6 @@
 
     <div class="avril-layout">
 
-
       <!-- Tabs -->
       <div class="avril-navigation">
         <div class="navigation-header">
@@ -26,7 +25,17 @@
           <div class="">
             {{Math.round(remplissage)}}% complété
           </div>
+
           <Tabs></Tabs>
+
+          <div class="avril--actions">
+            <div class="control">
+              <nuxt-link to="/recapitulatif" :class="slugIndex == 15 ? 'is-ok button is-dark' : 'is-ok button is-default'">
+                Enregistrer mon livret de recevabilité
+              </nuxt-link>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -34,33 +43,10 @@
       <!-- Fake form + aide -->
       <div class="avril-content">
 
-        <div class="experiences-header">
+        <!-- <div class="experiences-header">
 
-          <div class="field has-addons is-pulled-left">
-            <p class="control">
-              <a href="#" @click="back" :class="!displayBack ? 'button lefty is-static' : 'button lefty'">
-                <ArrowLeft />
-              </a>
-            </p>
-            <p class="control">
-              <a href="#" @click="next" :class="!displayNext ? 'button righty is-static' : 'button righty'">
-                <ArrowRight />
-              </a>
-            </p>
-          </div>
 
-          <div class="field is-pulled-right">
-            <div class="control">
-              <nuxt-link to="/recapitulatif" :class="slugIndex == 15 ? 'is-ok button is-dark' : 'is-ok button is-default'">
-                Enregistrer mon livret de recevabilité
-              </nuxt-link>
-              <!-- <nuxt-link to="/experiences/fonction" class="is-ok button is-default is-pulled-right" style="margin-right:1rem">
-                Ajouter une nouvelle expérience
-              </nuxt-link> -->
-            </div>
-          </div>
-
-        </div>
+        </div> -->
 
         <div class="avril-form-help-container">
 
@@ -125,28 +111,7 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
       },
     },
     methods: {
-      back: function (e) {
-        if(this.slugIndex == this.way[0]){
-          this.displayBack = false;
-          return false;
-        }
-        let previous = this.way[(_.indexOf(this.way, this.slugIndex)-1)];
-        let url = this.cerfa[previous].slug.replace('-', '/');
-        this.$router.push({
-            path: '/' + url
-        });
-      },
-      next: function (e) {
-        if(_.indexOf(this.way, this.slugIndex) == this.way.length - 1){
-          this.displayNext = false;
-          return false;
-        }
-        let next = this.way[(_.indexOf(this.way, this.slugIndex)+1)];
-        let url = this.cerfa[next].slug.replace('-', '/');
-        this.$router.push({
-            path: '/' + url
-        });
-      }
+
     },
     mounted() {
       this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
