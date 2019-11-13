@@ -1,34 +1,60 @@
 <template>
-  <div class="avril__page">
-    <div class="avril__page__form">
-      <div class="avril__page__form--select">
+  <div class="avril-recapitulatif">
 
-        <h3 class="title is-2">Récapitulatif de votre dossier :</h3>
-
-        <div class="field">
-          <p>Est-ce exact ?</p>
-          <div class="control">
-            <nuxt-link to="/" class="is-ok button is-dark">
-              Oui
-            </nuxt-link>
-          </div>
+      <div class="recap-content">
+        <div class="notification is-avril">
+          <button class="delete"></button>
+          <p>Vérifiez que toutes ces informations soient correctes. Si besoin corrigez-les.</p>
+          <p>Si tout vous semble correcte, enregistrez votre livret 1 dans votre dossier VAE Avril.</p>
         </div>
 
+        <h1 class="title is-1">Ma formation</h1>
+
+        <section class="section-formation">
+
+          <RecapClasse/>
+          <RecapDiplome/>
+          <RecapTitres/>
+          <RecapFormations/>
+
+        </section>
+
       </div>
-    </div>
-    <div class="avril__page__help">
-      Félicitations
-    </div>
+
+
+      <div class="field">
+        <h3 class="title is-3">Est-ce que toutes ces informations sont exactes ?</h3>
+        <div class="control">
+          <nuxt-link to="/" class="is-ok button is-dark">
+            Oui
+          </nuxt-link>
+        </div>
+      </div>
+
   </div>
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
-// const ioHook = require('iohook');
+import RecapClasse from '~/components/recapitulatif/RecapClasse.vue';
+import RecapDiplome from '~/components/recapitulatif/RecapDiplome.vue';
+import RecapTitres from '~/components/recapitulatif/RecapTitres.vue';
+import RecapFormations from '~/components/recapitulatif/RecapFormations.vue';
+
 export default {
+  components:{
+    RecapClasse,
+    RecapDiplome,
+    RecapTitres,
+    RecapFormations,
+  },
+  layout: 'recapitulatif',
+  computed: {
+    experiences () {
+      return this.$store.state.experiences
+    },
+  },
   mounted() {
-    // this.$store.commit('application/addRemplissage', 100)
-    console.log(this.$store.state.experiences)
+    // console.log(this.$store.state.experiences)
   },
   methods: {
   }
@@ -36,17 +62,4 @@ export default {
 </script>
 
 <style>
-.avril__page{
-  width: 100%;
-  text-align: center;
-  padding-top: 20vh;
-}
-.avril__ajouter__experience {
-  display: block
-}
-.is-equal-height {
-   display: flex;
-   flex-direction: column;
-   height: 100%;
-}
 </style>
