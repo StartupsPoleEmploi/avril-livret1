@@ -43,7 +43,7 @@
     <div class="form-help">
       <h3 class="title is-4">Besoin d'aide ?</h3>
       <div class="form-help-content">
-         Préciser votre métier, fonction, poste ou emploi. Celui en lien avec le diplôme que vous souhaitez obtenir. Vous pouvez recopier l'intitulé écrit sur votre CV ou votre bulletin de salaire. Vous pourrez ajouter plusieurs fonctions selon les postes que vous avez occupés.
+         Précisez les métiers ou fonctions que vous avez occupés. Nous parlons des métiers ou fonctions qui ont un lien avec le diplôme que vous souhaitez obtenir. Vous pouvez reprendre ce qui est noté dans votre CV ou votre bulletin de salaire. Vous devez aussi indiquer les coordonnées des entreprises telles qu'elles apparaissent sur les justificatifs que vous fournirez (certificats de travail, fiche de paye, etc)..
       </div>
       <p style="margin-top:1rem">
         <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
@@ -83,6 +83,7 @@ export default {
 
   mounted() {
     this.$store.commit('application/disableFormationStepper')
+    this.$store.commit('application/disableIdentiteStepper')
     this.$store.commit('application/changeTab', 0)
 
     this.$store.commit('experiences/new')

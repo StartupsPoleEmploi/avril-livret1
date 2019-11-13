@@ -2,15 +2,15 @@
   &.is-dark{
     background: avril-color('blue');
     transition: all .2s ease-in-out;
-    color: #fff !important;
+    color: avril-color('marine') !important;
     &:hover{
       background: lighten(avril-color('blue'), 5%);
-      color: #fff !important;
+      color: avril-color('marine') !important;
     }
     svg{
       width: 16px;
       margin-left: -6px;
-      fill: #fff;
+      fill: avril-color('marine');
     }
   }
 }

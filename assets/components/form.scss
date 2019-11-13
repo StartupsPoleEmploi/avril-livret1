@@ -17,7 +17,7 @@
   padding-top: calc(1.5em - 1px) !important;
   position: relative;
   vertical-align: top;
-  color: avril-color('blue') !important;
+  color: avril-color('marine') !important;
   font-size: 22px !important;
   &:focus{
     box-shadow: 0 0 0 2px avril-color('blue') !important;
@@ -35,7 +35,7 @@
     border-radius: 0;
     font-size: 18px;
     font-weight: 600;
-    color: avril-color('blue');
+    color: avril-color('marine');
     &::placeholder{
       font-size: 16px;
       font-weight: 400;

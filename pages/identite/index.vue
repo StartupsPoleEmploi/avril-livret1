@@ -2,43 +2,31 @@
   <div class="form">
 
     <div class="form-fields">
-
-        <h1 class="title is-5">Vos expériences professionnelles</h1>
-
-        <nuxt-link to="experiences/fonction" :class="heures<1607 ? 'button is-dark' : 'button'">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <title>add</title>
-              <path d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
-          </svg>&nbsp; Ajouter une expérience
-        </nuxt-link>
-        <span class="avril-ou" v-if="heures >= 1607">&nbsp;ou&nbsp;</span>
-        <nuxt-link v-if="heures >= 1607" :event="heures < 1607 ? '' : 'click'" to="/formations" class="is-ok button is-dark">
-          Avancer vers mes formations
-        </nuxt-link>
-
-        <div class="columns is-multiline">
-          <div v-for="experience in experiences" class="column is-half">
-            <div class="box is-equal-height">
-              <h3 class="title is-4">{{ experience.fonction }}</h3>
-              <h3 class="title is-6">{{ experience.duree }} heures</h3>
-              <p>{{ experience.entreprise }}</p>
-              <span>{{ experience.periode }}</span>
-              <a href="#">éditer</a>
-            </div>
-          </div>
-          <div class="column is-one-quarter">
-            <div class="avril__box__experience is-equal-height">
-            </div>
-          </div>
+      <div class="field">
+        <label class="label">L'adresse de votre lieu de résidence</label>
+        <div class="control">
+          <input :value="residence" ref="avril__name" class="input" type="text" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" @input="addResidence">
         </div>
-
       </div>
+
+      <div class="form-field-action field">
+        <div class="control">
+          <nuxt-link to="identite/naissance" class="is-ok button is-text is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+          <nuxt-link to="identite/naissance" class="is-ok button is-dark is-pulled-right">
+            Continuer
+          </nuxt-link>
+        </div>
+      </div>
+
+    </div>
 
 
       <div class="form-help">
         <h3 class="title is-4">Besoin d'aide ?</h3>
         <div class="form-help-content">
-          Dans cette rubrique, vous devez nous indiquer vos expériences. Nous avons besoins de connaitre les expériences qui ont un rapport avec le diplôme que vous souhaitez obtenir. Si vous n'êtes pas sûr(e) de vous, notez toutes vos expériences, nous ferons le tri ! Retenez que ce qui est important c'est de totaliser au moins l'équivalent d'un an à temps plein dans des activités en lien avec le diplôme.
+          Trouvez toutes les expériences en lien avec le diplôme que vous souhaitez obtenir. Si nécessaire consultez à nouveau le descriptif d'activités du diplôme (faire un lien?). Dans votre CV selectionnez les expériences utiles et reportez-les une par une. Au total il faut avoir travailler au moins l'équivalent d'un an à temps plein dans des activités en lien avec le diplôme.
         </div>
         <p style="margin-top:1rem">
           <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
@@ -62,6 +50,18 @@ export default {
     heures () {
       return this.$store.state.experiences.heures
     },
+    residence () {
+      // residence: {
+      //   voieType: null,
+      //   voieName: null,
+      //   numero: null,
+      //   commune: null,
+      //   cp: null,
+      //   pays: 'FR',
+      //   domtom: false,
+      // },
+      return this.$store.state.identite.residence.numero + ' ' + this.$store.state.identite.residence.voieType + ' ' + this.$store.state.identite.residence.voieName + ', ' + this.$store.state.identite.residence.cp + ' ' + this.$store.state.identite.residence.commune
+    },
     pourcentage () {
       if( (this.$store.state.experiences.heures*100)/1607 > 100 )
         return 100
@@ -75,11 +75,11 @@ export default {
   },
 
   mounted() {
-    // this.$refs.avril__name.focus()
+    this.$refs.avril__name.focus()
     this.$store.commit('application/disableExperienceStepper')
     this.$store.commit('application/disableFormationStepper')
-    this.$store.commit('application/disableIdentiteStepper')
-    this.$store.commit('application/changeTab', 0)
+    this.$store.commit('application/enableIdentiteStepper')
+    this.$store.commit('application/changeTab', 2)
   },
   methods: {
     keymonitor: function(event) {
@@ -87,7 +87,16 @@ export default {
       {
         this.$router.push('name')
       }
-    }
+    },
+    addResidence: function(e) {
+      // ici il faut splitter l'adresse Google :
+      this.$store.commit('identite/addVoieTypeResidence', 'Avenue')
+      this.$store.commit('identite/addVoieNameResidence', 'Dupont')
+      this.$store.commit('identite/addNumeroResidence', '45')
+      this.$store.commit('identite/addCommuneResidence', 'Marseille')
+      this.$store.commit('identite/addCPResidence', '13000')
+      this.$store.commit('identite/addPaysResidence', 'France')
+    },
   },
   watch: {
     $route (to, from) {

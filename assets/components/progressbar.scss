@@ -1,7 +1,7 @@
 // progress bar du footer
 .progress__{
   &bar{
-    background: #d0d2d8;
+    background: #20c396;
     height: 6px;
     width: 100%;
     display: block;
@@ -20,7 +20,19 @@
 .navigation-progressbar{
   height: 5px;
   width: 90%;
+  background: #dee2e1;
   .progress__bar--suivi{
     height: 5px;
+  }
+}
+
+.navigation-tabs{
+  .progress__bar{
+    background: #bfbfbf;
+  }
+  .nuxt-link-active{
+    .progress__bar{
+      background: #20c396;
+    }
   }
 }
