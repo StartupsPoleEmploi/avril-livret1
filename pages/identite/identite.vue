@@ -97,19 +97,19 @@ export default {
         return (this.$store.state.experiences.heures*100)/1607
     },
     lastName () {
-      return this.$store.state.identite.lastName
+      return this.$store.state.identity.lastName
     },
     usageName () {
-      return this.$store.state.identite.usageName
+      return this.$store.state.identity.usageName
     },
     email () {
-      return this.$store.state.identite.email
+      return this.$store.state.identity.email
     },
     homePhoneNumber () {
-      return this.$store.state.identite.homePhoneNumber
+      return this.$store.state.identity.homePhoneNumber
     },
     cellPhoneNumber () {
-      return this.$store.state.identite.cellPhoneNumber
+      return this.$store.state.identity.cellPhoneNumber
     },
   },
 
@@ -128,22 +128,22 @@ export default {
       }
     },
     addLastName: function(e) {
-      this.$store.commit('identite/addLastName', e.target.value)
+      this.$store.commit('identity/addLastName', e.target.value)
     },
     addFirstNames: function(e) {
-      this.$store.commit('identite/addFirstNames', e.target.value)
+      this.$store.commit('identity/addFirstNames', e.target.value)
     },
     addUsageName: function(e) {
-      this.$store.commit('identite/addUsageName', e.target.value)
+      this.$store.commit('identity/addUsageName', e.target.value)
     },
     addEmail: function(e) {
-      this.$store.commit('identite/addEmail', e.target.value)
+      this.$store.commit('identity/addEmail', e.target.value)
     },
     addHomePhoneNumber: function(e) {
-      this.$store.commit('identite/addHomePhoneNumber', e.target.value)
+      this.$store.commit('identity/addHomePhoneNumber', e.target.value)
     },
     addCellPhoneNumber: function(e) {
-      this.$store.commit('identite/addCellPhoneNumber', e.target.value)
+      this.$store.commit('identity/addCellPhoneNumber', e.target.value)
     },
   },
   watch: {

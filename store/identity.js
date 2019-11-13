@@ -25,7 +25,7 @@ export const state = () => ({
 
 export const mutations = {
 
-  addName (state, value) {
+  addLastName (state, value) {
     state.lastName = value
   },
   addUsageName (state, value) {

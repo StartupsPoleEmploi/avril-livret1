@@ -61,7 +61,7 @@ export default {
       return this.$store.state.experiences.experiences
     },
     lieu () {
-      return this.$store.state.identite.birth.city
+      return this.$store.state.identity.birth.city
     },
     pourcentage () {
       if( (this.$store.state.experiences.heures*100)/1607 > 100 )

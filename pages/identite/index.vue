@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     addressStreetName () {
-      return this.$store.state.identite.addressStreetName
+      return this.$store.state.identity.addressStreetName
     },
     experiences () {
       return this.$store.state.experiences.experiences
@@ -54,7 +54,7 @@ export default {
       return this.$store.state.experiences.heures
     },
     residence () {
-      return this.$store.state.identite.address.streetNumber + ' ' + this.$store.state.identite.address.streetType + ' ' + this.$store.state.identite.address.streetName + ', ' + this.$store.state.identite.address.postalCode + ' ' + this.$store.state.identite.address.city
+      return this.$store.state.identity.address.streetNumber + ' ' + this.$store.state.identity.address.streetType + ' ' + this.$store.state.identity.address.streetName + ', ' + this.$store.state.identity.address.postalCode + ' ' + this.$store.state.identity.address.city
     },
     pourcentage () {
       if( (this.$store.state.experiences.heures*100)/1607 > 100 )
@@ -84,12 +84,12 @@ export default {
     },
     addAddress: function(e) {
       // ici il faut splitter l'adresse Google :
-      this.$store.commit('identite/addAddressStreetType', 'Avenue')
-      this.$store.commit('identite/addAddressStreetName', 'Dupont')
-      this.$store.commit('identite/addAddressStreetNumber', '45')
-      this.$store.commit('identite/addAddressCity', 'Marseille')
-      this.$store.commit('identite/addAddressPostalCode', '13000')
-      this.$store.commit('identite/addAddressCountry', 'France')
+      this.$store.commit('identity/addAddressStreetType', 'Avenue')
+      this.$store.commit('identity/addAddressStreetName', 'Dupont')
+      this.$store.commit('identity/addAddressStreetNumber', '45')
+      this.$store.commit('identity/addAddressCity', 'Marseille')
+      this.$store.commit('identity/addAddressPostalCode', '13000')
+      this.$store.commit('identity/addAddressCountry', 'France')
     },
   },
   watch: {
