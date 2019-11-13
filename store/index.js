@@ -6,14 +6,10 @@ const REDIRECT_APP_HOST = 'http://localhost:4000';
 
 
 export const state = () => ({
-  status: 'ko',
   hash: null,
 })
 
 export const mutations = {
-  updateStatus(state, newStatus) {
-    state.status = newStatus;
-  },
   setHash(state, hash) {
     state.hash = hash;
   }
@@ -27,7 +23,6 @@ export const actions = {
       const data = await result.json()
       if (result.ok) {
         commit('setHash', hash)
-        commit('updateStatus', data.status)
         commit('identity/initState', data.identity)
         return true;
       } else {
