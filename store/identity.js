@@ -25,8 +25,6 @@ export const state = () => ({
 
 export const mutations = {
   initState (state, serverState) {
-    console.log('mutation initState called')
-    console.log(serverState)
     // state = Object.assign(state, serverState)
     state.lastName = serverState.lastName
     state.firstNames = serverState.firstNames

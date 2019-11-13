@@ -11,6 +11,7 @@ export const state = () => ({
 
 export const mutations = {
   setHash(state, hash) {
+    console.log('mutation setHash called', state.hash, hash);
     state.hash = state.hash || hash;
   }
 }

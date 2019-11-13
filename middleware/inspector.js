@@ -25,9 +25,8 @@ const fetchData = async function(store, queryHash) {
 }
 
 export default async function ({ store, req } = context) {
-  // This is a good place for actions that have to be executed before every page/route change, both server and client-side
   console.log("(Global Middleware) SSR: " + process.server);
-  // console.log(store.state.identity)
+  console.log(store.state.hash)
 
   // if (store.state.hash) {
   //   console.log('Hash already set');
