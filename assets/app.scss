@@ -16,6 +16,8 @@
 @import 'components/transition';
 @import 'components/progressbar';
 
+@import 'pages/recapitulatif';
+
 html,body{
   background: avril-color('gray');
 }
@@ -38,4 +40,7 @@ hr {
 }
 a:hover{
   color: avril-color('marine') !important;
+}
+.title{
+  line-height: 1.45;
 }

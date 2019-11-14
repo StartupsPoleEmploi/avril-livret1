@@ -54,7 +54,7 @@ export const mutations = {
   //   state.experiences[state.experiences.length - 1].precision = precision
   // },
   addHours (state, heure) {
-    state.heures = state.heures + heure
+    state.heures+= heure
   },
   // -------------
   // FORMATIONS

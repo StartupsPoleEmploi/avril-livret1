@@ -1,9 +1,9 @@
 <template>
-  <div class="form">
+  <div class="form experience-index">
 
     <div class="form-fields">
 
-        <h1 class="title is-5">Vos expériences professionnelles</h1>
+        <h1 class="title is-3">Mes expériences professionnelles</h1>
 
         <nuxt-link to="experiences/fonction" :class="heures<1607 ? 'button is-dark' : 'button'">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -36,7 +36,7 @@
 
 
       <div class="form-help">
-        <h3 class="title is-4">Besoin d'aide ?</h3>
+        <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
           Dans cette rubrique, vous devez nous indiquer vos expériences. Nous avons besoins de connaitre les expériences qui ont un rapport avec le diplôme que vous souhaitez obtenir. Si vous n'êtes pas sûr(e) de vous, notez toutes vos expériences, nous ferons le tri ! Retenez que ce qui est important c'est de totaliser au moins l'équivalent d'un an à temps plein dans des activités en lien avec le diplôme.
         </div>
@@ -155,6 +155,9 @@ export default {
 </script>
 
 <style>
+.experience-index{
+  padding-top: 5rem;
+}
 .avril-ou{
   margin-top: 8px;
   display: inline-block;

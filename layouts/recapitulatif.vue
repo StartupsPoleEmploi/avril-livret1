@@ -2,63 +2,24 @@
 
   <div class="container">
 
-    <div class="avril-layout">
+    <div class="columns">
+      <div class="column is-8 is-offset-2">
 
-      <!-- Tabs -->
-      <div class="avril-navigation">
-        <div class="navigation-header">
-          <div class="avril-back">
-            <a href="https://mon-diplome-v3.herokuapp.com/">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24">
-                <title>arrow-left-1</title>
-                <path d="M4.5,12a2.3,2.3,0,0,1,.78-1.729L16.432.46a1.847,1.847,0,0,1,2.439,2.773L9.119,11.812a.25.25,0,0,0,0,.376l9.752,8.579a1.847,1.847,0,1,1-2.439,2.773L5.284,13.732A2.31,2.31,0,0,1,4.5,12Z"></path>
-              </svg> retour
-            </a>
-          </div>
-        </div>
-        <div class="navigation-tabs">
-          <h3 class="navigation-title title is-4">Dossier de recevabilité</h3>
-          <h4 class="navigation-subtitle title is-5">CAP - Accompagnant éducatif - Petite enfance</h4>
-          <div class="navigation-progressbar progress__bar">
-            <div class="progress__bar--suivi" :style="`width:${remplissage}%`"></div>
-          </div>
-          <div class="">
-            {{Math.round(remplissage)}}% complété
-          </div>
+        <div class="avril-layout">
 
-          <Tabs></Tabs>
+          <div class="avril-content">
 
-          <div class="avril--actions">
-            <div class="control">
-              <nuxt-link to="/recapitulatif" :class="slugIndex == 15 ? 'is-ok button is-dark' : 'is-ok button is-default'">
-                Enregistrer mon livret de recevabilité
-              </nuxt-link>
+            <div class="avril-form-help-container">
+
+              <nuxt />
+
             </div>
+
           </div>
 
         </div>
-      </div>
-
-
-      <!-- Fake form + aide -->
-      <div class="avril-content">
-
-        <!-- <div class="experiences-header">
-
-
-        </div> -->
-
-        <div class="avril-form-help-container">
-
-          <StepperExperience/>
-          <StepperFormation/>
-          <StepperIdentite/>
-          <nuxt />
-
-        </div>
 
       </div>
-
     </div>
 
   </div>

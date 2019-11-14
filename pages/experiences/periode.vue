@@ -43,7 +43,7 @@
       </div>
 
       <div class="form-help">
-        <h3 class="title is-4">Besoin d'aide ?</h3>
+        <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
           Nous allons vous aider à calculer le nombre d'heures travaillés. Sélectionnez la date de début et la date de fin de votre contrat ainsi que le nombre d'heures travaillées par semaine. Pour rappel, un temps plein corrrespond à 35 ou 39h par semaine. Si il est indiqué 151h par mois sur votre bulletin de salaire, cela veut dire que vous avez travaillé à temps complet c'est à dire 35h par semaine.
         </div>
@@ -117,6 +117,7 @@ export default {
       }
     },
     addPeriodes () {
+      console.log('add periodes')
       // TODO: supprimer les weekends du calcul des heures totales
 
       // par mois, le coeficcient de gain de congé est de 14 :
@@ -144,7 +145,9 @@ export default {
       periode.totalHeures = totalHeures;
 
       this.$store.commit('experiences/addPeriodes', periode)
+      console.log('je tente d\'ajouter', periode.totalHeures, 'heures')
       this.$store.commit('experiences/addHours', periode.totalHeures)
+      console.log(this.$store.state.experiences.heures, 'heures dans le store')
 
       this.premierePeriode = '';
       this.secondePeriode = '';

@@ -2,10 +2,13 @@
 
   <div class="form-header" v-if="displayExperienceStepper == true">
 
-    <h3 class="title is-6">Ajouter une expérience professionnelle</h3>
     <div class="avril-stepper-container">
 
+      <NavBack/>
+
       <div class="avril-stepper">
+
+
         <ul class="steps is-small is-centered has-content-centered">
           <li :class="slugIndex == 1 || slugIndex == 0 ? 'steps-segment is-active' : 'steps-segment'">
              <nuxt-link to="/experiences/fonction" :class="slugIndex == 1 || slugIndex == 0 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
@@ -46,8 +49,12 @@
 </template>
 <script>
 import _ from 'lodash';
+import NavBack from '~/components/NavBack.vue';
 
 export default {
+  components: {
+    NavBack
+  },
   computed: {
     heures () {
       return this.$store.state.experiences.heures

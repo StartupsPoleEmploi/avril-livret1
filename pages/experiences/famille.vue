@@ -85,7 +85,7 @@
 
 
       <div class="form-help">
-        <h3 class="title is-4">Besoin d'aide ?</h3>
+        <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
           Il s'agit de cocher la case de la bonne famille de métier, celle de votre métier. Par exemple, si vous avez été secrétaire, la famille métier sera "gestion, administration des entreprises".
 Les familles professionnelles sont des ensembles de métiers qui ont des points communs comme des activités ou des compétences.        </div>
