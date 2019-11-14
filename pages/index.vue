@@ -1,9 +1,9 @@
 <script type="text/javascript">
 export default {
-  created() {
+  render() {
     this.$router.push({
         path: '/formations'
     })
-  },
+  }
 }
 </script>

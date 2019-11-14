@@ -16,8 +16,12 @@ export const mutations = {
   }
 }
 
+const redirectToAvril = (redirect, msg) => {
+  // redirect(`${QUERY_APP_HOST}/candidatures/actuelle?msg=${msg}`)
+}
+
 export const actions = {
-  async nuxtServerInit ({ commit, dispatch }, { req, res, store }) {
+  async nuxtServerInit ({ commit, dispatch }, { req, res, store, redirect }) {
     console.log('nuxtServerInit called')
     const queryHash = req.query.hash;
      if (queryHash) {
@@ -29,9 +33,11 @@ export const actions = {
         commit('identity/initState', data.identity)
       } else {
         console.log('Request failed');
+        redirectToAvril(redirect, 'request_failed');
       }
     } else {
       console.log('No hash no request');
+      redirectToAvril(redirect, 'not_allowed');
     }
   }
 }
