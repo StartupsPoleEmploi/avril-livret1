@@ -49,10 +49,7 @@
         </div> -->
 
         <div class="avril-form-help-container">
-
-          <StepperExperience/>
-          <StepperFormation/>
-          <StepperIdentite/>
+          <component :is="currentStepper" />
           <nuxt />
 
         </div>
@@ -70,8 +67,8 @@
 import _ from 'lodash';
 import Actions from '~/components/Actions.vue';
 import Tabs from '~/components/Tabs.vue';
-import StepperExperience from '~/components/stepper-experience.vue';
-import StepperFormation from '~/components/stepper-formation.vue';
+import StepperExperiences from '~/components/stepper-experiences.vue';
+import StepperFormations from '~/components/stepper-formations.vue';
 import StepperIdentite from '~/components/stepper-identite.vue';
 
 import ArrowLeft from '@/assets/svgs/keyboard-arrow-left.svg';
@@ -81,8 +78,8 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
     components: {
       Actions,
       Tabs,
-      StepperExperience,
-      StepperFormation,
+      StepperExperiences,
+      StepperFormations,
       StepperIdentite,
       ArrowLeft,
       ArrowRight,
@@ -90,6 +87,10 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
     computed: {
       phoenixUrl() {
         return `${process.env.phoenixUrl}/candidatures/actuelle`;
+      },
+      currentStepper () {
+        const currentTab = this.$store.state.currentTab;
+        return `Stepper${currentTab.charAt(0).toUpperCase() + currentTab.slice(1)}`;
       },
       heures () {
         return this.$store.state.experiences.heures

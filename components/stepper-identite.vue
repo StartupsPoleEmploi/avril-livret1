@@ -1,6 +1,6 @@
 <template>
 
-  <div class="form-header" v-if="currentTab == 'identite'">
+  <div class="form-header">
 
     <div class="avril-stepper-container">
       <NavBack/>

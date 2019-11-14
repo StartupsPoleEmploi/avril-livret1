@@ -31,8 +31,8 @@
 import _ from 'lodash';
 import Actions from '~/components/Actions.vue';
 import Tabs from '~/components/Tabs.vue';
-import StepperExperience from '~/components/stepper-experience.vue';
-import StepperFormation from '~/components/stepper-formation.vue';
+import StepperExperiences from '~/components/stepper-experiences.vue';
+import StepperFormations from '~/components/stepper-formations.vue';
 import StepperIdentite from '~/components/stepper-identite.vue';
 
 import ArrowLeft from '@/assets/svgs/keyboard-arrow-left.svg';
@@ -42,8 +42,8 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
     components: {
       Actions,
       Tabs,
-      StepperExperience,
-      StepperFormation,
+      StepperExperiences,
+      StepperFormations,
       StepperIdentite,
       ArrowLeft,
       ArrowRight,

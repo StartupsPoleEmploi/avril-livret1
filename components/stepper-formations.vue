@@ -1,48 +1,35 @@
 <template>
-
-  <div class="form-header" v-if="currentTab == 'experiences'">
-
+  <div class="form-header">
     <div class="avril-stepper-container">
-
       <NavBack/>
-
       <div class="avril-stepper">
-
-
         <ul class="steps is-small is-centered has-content-centered">
-          <li :class="slugIndex == 1 || slugIndex == 0 ? 'steps-segment is-active' : 'steps-segment'">
-             <nuxt-link to="/experiences/fonction" :class="slugIndex == 1 || slugIndex == 0 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
+          <li :class="slugIndex == '' || slugIndex == 6 ? 'steps-segment is-active' : 'steps-segment'">
+             <nuxt-link to="/formations" :class="slugIndex == '' || slugIndex == 6 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/experiences/fonction">Mon expérience</nuxt-link>
+               <nuxt-link class="is-size-6" to="/formations">Classe</nuxt-link>
              </div>
            </li>
-           <li :class="slugIndex == 2 ? 'steps-segment is-active' : 'steps-segment'">
-             <nuxt-link to="/experiences/famille"  :class="slugIndex == 2 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
+           <li :class="slugIndex == 7 ? 'steps-segment is-active' : 'steps-segment'">
+             <nuxt-link to="/formations/diplome" :class="slugIndex == 7 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/experiences/famille">Famille</nuxt-link>
+               <nuxt-link class="is-size-6" to="/formations/diplome">Diplôme(s)</nuxt-link>
              </div>
            </li>
-           <li :class="slugIndex == 3 ? 'steps-segment is-active' : 'steps-segment'">
-             <nuxt-link to="/experiences/status"  :class="slugIndex == 3 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
+           <li :class="slugIndex == 11 ? 'steps-segment is-active' : 'steps-segment'">
+             <nuxt-link to="/formations/rncp" :class="slugIndex == 11 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/experiences/status">Statut</nuxt-link>
+               <nuxt-link class="is-size-6" to="/formations/rncp">Autres diplômes</nuxt-link>
              </div>
            </li>
-           <li :class="slugIndex == 4 ? 'steps-segment is-active' : 'steps-segment'">
-             <nuxt-link to="/experiences/periode"  :class="slugIndex == 4 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
+           <li :class="slugIndex == 12 ? 'steps-segment is-active' : 'steps-segment'">
+             <nuxt-link to="/formations/formations" :class="slugIndex == 12 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/experiences/periode">Période</nuxt-link>
-             </div>
-           </li>
-           <li :class="slugIndex == 5 ? 'steps-segment is-active' : 'steps-segment'">
-             <nuxt-link to="/experiences/precision"  :class="slugIndex == 5 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
-             <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/experiences/precision">Activités</nuxt-link>
+               <nuxt-link class="is-size-6" to="/formations/formations">Formations</nuxt-link>
              </div>
            </li>
          </ul>
       </div>
-
     </div>
   </div>
 
@@ -59,8 +46,8 @@ export default {
     heures () {
       return this.$store.state.experiences.heures
     },
-    displayExperienceStepper () {
-      return this.$store.state.application.displayExperienceStepper
+    displayFormationStepper () {
+      return this.$store.state.application.displayFormationStepper
     },
     currentTab () {
       return this.$store.state.currentTab;
