@@ -38,7 +38,7 @@
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
-          Dans cette rubrique, vous devez nous indiquer vos expériences. Nous avons besoins de connaitre les expériences qui ont un rapport avec le diplôme que vous souhaitez obtenir. Si vous n'êtes pas sûr(e) de vous, notez toutes vos expériences, nous ferons le tri ! Retenez que ce qui est important c'est de totaliser au moins l'équivalent d'un an à temps plein dans des activités en lien avec le diplôme.
+          Dans cette rubrique, vous allez nous indiquer vos expériences.<br/> Nous parlons là des expériences qui ont un rapport avec le diplôme que vous souhaitez obtenir.<br/> Si vous n'êtes pas sûr(e) de vous, notez toutes vos expériences, nous ferons le tri !<br/> Retenez que ce qui est important c'est de totaliser au moins 1 an d'expérience à temps plein en lien avec le diplôme souhaité.
         </div>
         <p style="margin-top:1rem">
           <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
