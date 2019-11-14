@@ -1,6 +1,6 @@
 <template>
 <div class="">
-  <div class="recap-cell cell-classe" v-if="experiences.formationsContinues.length != 0">
+  <div class="recap-cell cell-formations" v-if="experiences.formationsContinues.length != 0">
 
     J'ai une formation de
     <span v-for="formation, index in experiences.formationsContinues">

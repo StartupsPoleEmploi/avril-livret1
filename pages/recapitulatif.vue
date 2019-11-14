@@ -39,9 +39,10 @@
 
         <section class="section section-identite">
           <h3 class="title is-3">Mon identité</h3>
-          <p>
-            
-          </p>
+          <RecapName/>
+          <RecapContact/>
+          <RecapBirthday/>
+          <RecapResidence/>
         </section>
 
       </div>
@@ -64,12 +65,21 @@ import RecapDiplome from '~/components/recapitulatif/RecapDiplome.vue';
 import RecapTitres from '~/components/recapitulatif/RecapTitres.vue';
 import RecapFormations from '~/components/recapitulatif/RecapFormations.vue';
 
+import RecapName from '~/components/recapitulatif/RecapName.vue';
+import RecapContact from '~/components/recapitulatif/RecapContact.vue';
+import RecapBirthday from '~/components/recapitulatif/RecapBirthday.vue';
+import RecapResidence from '~/components/recapitulatif/RecapResidence.vue';
+
 export default {
   components:{
     RecapClasse,
     RecapDiplome,
     RecapTitres,
     RecapFormations,
+    RecapName,
+    RecapContact,
+    RecapBirthday,
+    RecapResidence,
   },
   layout: 'recapitulatif',
   computed: {
