@@ -9,7 +9,7 @@ export const mutations = {
   initState (state, serverState) {
     state = Object.assign(state, serverState)
   },
-  addLastCourseLevel (state, latestCourseLevel) {
+  addLatestCourseLevel (state, latestCourseLevel) {
     state.latestCourseLevel = latestCourseLevel
   },
   addLatestDegree (state, latestDegree) {

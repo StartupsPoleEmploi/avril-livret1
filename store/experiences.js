@@ -12,7 +12,8 @@ export const mutations = {
       category: null,
       contractType: null,
       activities: [],
-      periods: []
+      periods: [],
+      hours: 0
     })
   },
   // TODO: manipulate IDs instead of state.length -1
@@ -36,6 +37,9 @@ export const mutations = {
   },
   addPeriods (state, val) {
     state[state.length - 1].periods.push(val)
+  },
+  addHours (state, hours) {
+    state[state.length - 1].hours = hours
   },
   remove (state, { todo }) {
     state.splice(state.indexOf(todo), 1)

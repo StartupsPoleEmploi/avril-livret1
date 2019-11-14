@@ -101,7 +101,8 @@ export default {
   components: {},
   computed: {
     activites () {
-      let act = _.cloneDeep(this.$store.state.experiences.experiences[this.$store.state.experiences.experiences.length - 1].activities)
+      console.log(this.$store.state)
+      let act = _.cloneDeep(this.$store.state.experiences[this.$store.state.experiences.length - 1].activities)
       return act.reverse()
     },
     heures () {
@@ -109,10 +110,10 @@ export default {
       return this.$store.state.experiences.heures
     },
     pourcentage () {
-      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
+      if( (this.$store.state.experiences.hours*100)/1607 > 100 )
         return 100
       else
-        return (this.$store.state.experiences.heures*100)/1607
+        return (this.$store.state.experiences.hours*100)/1607
     }
   },
   mounted() {
