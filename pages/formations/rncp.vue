@@ -21,8 +21,8 @@
 
       <div class="field">
         <div class="titres">
-          <div v-for="titre in titres">
-            <span class="box">{{titre}}</span>
+          <div v-for="relatedDegree in relatedDegrees">
+            <span class="box">{{relatedDegree}}</span>
           </div>
         </div>
       </div>
@@ -69,27 +69,23 @@ export default {
     // Logo
   },
   computed: {
-    titres () {
-      let act = _.cloneDeep(this.$store.state.experiences.titres)
+    relatedDegrees () {
+      let act = _.cloneDeep(this.$store.state.education.relatedDegrees)
       return act.reverse()
     },
     displayNextButton () {
-      if( this.$store.state.experiences.titres.length > 0 )return true;
-      return false;
+      return this.$store.state.education.relatedDegrees.length;
     },
   },
   mounted() {
     // this.$store.commit('updateProgress', 80)
   },
   methods: {
-    addRNCP (e) {
-      this.$store.commit('experiences/addRNCP', e.target.value)
-    },
     addRelatedDegree (e) {
       if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
         return false;
       }
-      this.$store.commit('experiences/addRelatedDegree', this.$refs.avril__name.value)
+      this.$store.commit('education/addRelatedDegree', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''
     },
   }

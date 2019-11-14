@@ -9,8 +9,8 @@
 
       <div class="field">
         <div class="control">
-          <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, BTS MUC" @keyup.enter="addFormationsContinues">
-          <a class="button is-dark is-pulled-right" @click="addFormationsContinues" style="margin-top:4px">
+          <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, BTS MUC" @keyup.enter="addTraining">
+          <a class="button is-dark is-pulled-right" @click="addTraining" style="margin-top:4px">
             + Ajouter
           </a>
           <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
@@ -21,8 +21,8 @@
 
       <div class="field">
         <div class="formations">
-          <div v-for="formationsContinue in formationsContinues">
-            <span class="box">{{formationsContinue}}</span>
+          <div v-for="training in trainings">
+            <span class="box">{{training}}</span>
           </div>
         </div>
       </div>
@@ -47,7 +47,8 @@
     <div class="form-help">
       <h3 class="title is-5">Besoin d'aide ?</h3>
       <div class="form-help-content">
-Il faut indiquer les stages ou les formations qui ont un lien avec votre projet de diplôme actuel. Si vous n'êtes pas sûr de vous, remplissez cette rubrique au maximum, nous ferons le tri ! Rappelez-vous, ce n'est pas une condition pour valider votre demande, ces renseignements nous aident simplement à mieux vous connaitre. La seule condition requise pour démarrer votre projet reste d'avoir 1 an d'expérience.      </div>
+        Il faut indiquer les stages ou les formations qui ont un lien avec votre projet de diplôme actuel. Si vous n'êtes pas sûr de vous, remplissez cette rubrique au maximum, nous ferons le tri ! Rappelez-vous, ce n'est pas une condition pour valider votre demande, ces renseignements nous aident simplement à mieux vous connaitre. La seule condition requise pour démarrer votre projet reste d'avoir 1 an d'expérience.
+      </div>
       <p style="margin-top:1rem">
         <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
       </p>
@@ -61,25 +62,20 @@ import _ from 'lodash';
 export default {
   layout: 'experience',
   computed: {
-    formationsContinues () {
-      let act = _.cloneDeep(this.$store.state.experiences.formationsContinues)
+    trainings () {
+      let act = _.cloneDeep(this.$store.state.education.trainings)
       return act.reverse()
     },
     displayNextButton () {
-      if( this.$store.state.experiences.formationsContinues.length > 0 )return true;
-      return false;
+      return this.$store.state.education.trainings.length;
     },
   },
   methods: {
-    addFormations (e) {
-      this.$store.commit('experiences/addFormations', e.target.value)
-    },
-    addFormationsContinues (e) {
+    addTraining (e) {
       if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
         return false;
       }
-      this.$store.commit('application/enableMonDossier')
-      this.$store.commit('experiences/addTraining', this.$refs.avril__name.value)
+      this.$store.commit('education/addTraining', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''
     },
   }
@@ -87,7 +83,4 @@ export default {
 </script>
 
 <style>
-.formations {
-    /* margin-top: 4rem; */
-}
 </style>
