@@ -3,27 +3,48 @@
 
       <div class="recap-content">
 
-        <h1 class="title is-1">Récapitulatif</h1>
+        <div class="section">
+          <h1 class="title is-1">Récapitulatif</h1>
 
-        <div class="notification is-avril">
-          <button class="delete"></button>
-          <p>Vérifiez que toutes ces informations soient correctes. Si besoin corrigez-les.</p>
-          <p>Si tout vous semble correcte, enregistrez votre livret 1 dans votre dossier VAE Avril.</p>
+          <div class="notification is-avril">
+            <p>Vérifiez que toutes ces informations soient correctes. Si besoin corrigez-les.</p>
+            <p>Si tout vous semble correcte, enregistrez votre livret 1 dans votre dossier VAE Avril.</p>
+          </div>
         </div>
 
-        <h1 class="title is-3">Ma formation</h1>
 
-        <section class="section-formation">
-
+        <section class="section section-formation">
+          <h1 class="title is-3">Ma formation</h1>
           <RecapClasse/>
           <RecapDiplome/>
           <RecapTitres/>
           <RecapFormations/>
+        </section>
 
+        <section class="section section-formation">
+          <h3 class="title is-3">Mes expériences professionnelles</h3>
+          <p v-if="heures >= 1607">J'ai plus de 1607 heures d'expériences professionnelles</p>
+          <div class="columns is-multiline">
+            <div v-for="experience in experiences.experiences" class="column is-4">
+              <div class="box is-equal-height">
+                <h3 class="title is-4">{{ experience.fonction }}</h3>
+                <h3 class="title is-6">{{ experience.duree }} heures</h3>
+                <p>{{ experience.entreprise }}</p>
+                <span>{{ experience.periode }}</span>
+                <a href="#">éditer</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-identite">
+          <h3 class="title is-3">Mon identité</h3>
+          <p>
+            
+          </p>
         </section>
 
       </div>
-
 
       <div class="field">
         <h3 class="title is-3">Est-ce que toutes ces informations sont exactes ?</h3>
@@ -55,14 +76,18 @@ export default {
     experiences () {
       return this.$store.state.experiences
     },
-  },
-  mounted() {
-    // console.log(this.$store.state.experiences)
+    heures(){
+      return this.$store.state.experiences.heures
+    }
   },
   methods: {
   }
 }
 </script>
 
-<style>
+<style scoped>
+.avril-recapitulatif{
+  padding: 4rem;
+  padding-top: 2rem;
+}
 </style>
