@@ -2,7 +2,7 @@
   <span class="recap-cell cell-classe">
 
     <p v-if="experiences.formations.classe == 'A'">Je n'ai aucun diplôme</p>
-    <p v-if="experiences.formations.classe == 'B'">J'ai un certificat d’étude primaire</p>
+    <p v-if="experiences.formations.classe == 'B'">J'ai un certificat d’études primaires</p>
     <p v-if="experiences.formations.classe == 'C'">J'ai un Brevet des collèges (BEPC, DNB), Certificat de Formation Générale (niveau V bis)</p>
     <p v-if="experiences.formations.classe == 'D'">J'ai un CAP, BEP ou autre certification de niveau V (niveau CEC3 : 3)</p>
     <p v-if="experiences.formations.classe == 'E'">J'ai un Baccalauréat général, technologique, professionnel, ESEU, DAEU, ou autre certification de niveau IV (niveau CEC : 4)</p>
