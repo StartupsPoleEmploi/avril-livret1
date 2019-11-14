@@ -49,7 +49,7 @@ export default {
   layout: 'experience',
   methods: {
     addLatestCourseLevel (e) {
-      this.$store.commit('experiences/addLatestCourseLevel', e)
+      this.$store.commit('education/addLatestCourseLevel', e)
     },
   }
 }

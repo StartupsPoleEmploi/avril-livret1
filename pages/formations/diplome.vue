@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     addLatestDegree (e) {
-      this.$store.commit('experiences/addLatestDegree', e)
+      this.$store.commit('education/addLatestDegree', e)
     },
   }
 }

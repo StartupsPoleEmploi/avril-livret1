@@ -87,7 +87,7 @@ export default {
     heures () {
       return 0;
     },
-    periodes () {
+    periods () {
       return this.$store.state.experiences[this.$store.state.experiences.length - 1].periods
     },
     pourcentage () {
@@ -148,7 +148,7 @@ export default {
       this.$store.commit('experiences/addPeriods', periode)
       console.log('je tente d\'ajouter', periode.totalHeures, 'heures')
       this.$store.commit('experiences/addHours', periode.totalHeures)
-      console.log(this.$store.state.experiences.heures, 'heures dans le store')
+      console.log(this.$store.state.experiences.hours, 'heures dans le store')
 
       this.premierePeriode = '';
       this.secondePeriode = '';
