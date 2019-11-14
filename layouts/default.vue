@@ -7,100 +7,100 @@
 </template>
 
 <script>
-import _ from 'lodash';
+// import _ from 'lodash';
 
-  export default {
-    components: {
-    },
-    computed: {
-      heures () {
-        return this.$store.state.experiences.heures
-      },
-      remplissage () {
-        return this.$store.state.experiences.remplissage
-      },
-    },
-    methods: {
-      back: function (event) {
-        console.log('back')
-      },
-      next: function (event) {
-        console.log('next')
-      }
-    },
-    mounted() {
+//   export default {
+//     components: {
+//     },
+//     computed: {
+//       heures () {
+//         return this.$store.state.experiences.heures
+//       },
+//       remplissage () {
+//         return this.$store.state.experiences.remplissage
+//       },
+//     },
+//     methods: {
+//       back: function (event) {
+//         console.log('back')
+//       },
+//       next: function (event) {
+//         console.log('next')
+//       }
+//     },
+//     mounted() {
 
-    },
-    watch: {
-      $route (to, from) {
-        this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
-      }
-    },
-    afterCreated() {
+//     },
+//     watch: {
+//       $route (to, from) {
+//         this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
+//       }
+//     },
+//     afterCreated() {
 
-    },
-    data: () => ({
-      current: 0,
-      slugIndex: 0,
-      cerfa:[{
-        slug: 'experiences',
-        title: "Mes expériences",
-      },
-      {
-        slug: 'experiences-fonction',
-        title: "Mes formations",
-      },
-      {
-        slug: 'experiences-famille',
-        title: "Mes formations",
-      },
-      {
-        slug: 'experiences-status',
-        title: "Mes formations",
-      },
-      {
-        slug: 'experiences-periode',
-        title: "Mes formations",
-      },
-      {
-        slug: 'experiences-precision',
-        title: "Mes formations",
-      },
-      {
-        slug: 'formations',
-        title: "Mes formations",
-      },
-      {
-        slug: 'formations-diplome',
-        title: "Mes formations",
-      },
-      {
-        slug: 'formations-autre',
-        title: "Mes formations",
-      },
-      {
-        slug: 'formations-comparatibilite',
-        title: "Mes formations",
-      },
-      {
-        slug: 'formations-certification',
-        title: "Mes formations",
-      },
-      {
-        slug: 'formations-rncp',
-        title: "Mes formations",
-      },
-      {
-        slug: 'formations-formations',
-        title: "Mes formations",
-      },
-    ],
-    })
-  }
+//     },
+//     data: () => ({
+//       current: 0,
+//       slugIndex: 0,
+//       cerfa:[{
+//         slug: 'experiences',
+//         title: "Mes expériences",
+//       },
+//       {
+//         slug: 'experiences-fonction',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'experiences-famille',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'experiences-status',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'experiences-periode',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'experiences-precision',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'formations',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'formations-diplome',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'formations-autre',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'formations-comparatibilite',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'formations-certification',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'formations-rncp',
+//         title: "Mes formations",
+//       },
+//       {
+//         slug: 'formations-formations',
+//         title: "Mes formations",
+//       },
+//     ],
+//     })
+//   }
 </script>
 
 <style>
-html {
+/*html {
   font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
@@ -146,5 +146,5 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
-}
+}*/
 </style>

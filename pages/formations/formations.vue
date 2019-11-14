@@ -70,12 +70,6 @@ export default {
       return false;
     },
   },
-  mounted() {
-    this.$store.commit('application/enableFormationStepper')
-    this.$store.commit('application/disableExperienceStepper')
-    this.$store.commit('application/disableIdentiteStepper')
-    this.$store.commit('application/changeTab', 1)
-  },
   methods: {
     addFormations (e) {
       this.$store.commit('experiences/addFormations', e.target.value)
@@ -85,7 +79,7 @@ export default {
         return false;
       }
       this.$store.commit('application/enableMonDossier')
-      this.$store.commit('experiences/addFormationContinue', this.$refs.avril__name.value)
+      this.$store.commit('experiences/addTraining', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''
     },
   }

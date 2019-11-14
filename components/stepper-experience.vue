@@ -1,6 +1,6 @@
 <template>
 
-  <div class="form-header" v-if="displayExperienceStepper == true">
+  <div class="form-header" v-if="currentTab == 'experiences'">
 
     <div class="avril-stepper-container">
 
@@ -61,6 +61,9 @@ export default {
     },
     displayExperienceStepper () {
       return this.$store.state.application.displayExperienceStepper
+    },
+    currentTab () {
+      return this.$store.state.currentTab;
     },
   },
   watch: {

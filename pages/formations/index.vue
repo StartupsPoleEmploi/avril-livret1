@@ -5,26 +5,26 @@
 
         <h3 class="title is-5">Quelle classe avez vous suivi en dernier ?</h3>
 
-        <nuxt-link v-on:click.native="addClasse('A')" to="formations/diplome" class="box">
+        <nuxt-link v-on:click.native="addLatestCourseLevel('A')" to="formations/diplome" class="box">
           <input type="radio" name="answer"> &nbsp;Primaire, 6ème, 5ème, 4ème, 3ème, 1ère année de CAP ou BEP
         </nuxt-link>
-        <nuxt-link v-on:click.native="addClasse('B')" to="formations/diplome" class="box">
+        <nuxt-link v-on:click.native="addLatestCourseLevel('B')" to="formations/diplome" class="box">
           <input type="radio" name="answer"> &nbsp;2ème, 1ère, 2ème année de CAP ou BEP
         </nuxt-link>
-        <nuxt-link v-on:click.native="addClasse('C')" to="formations/diplome" class="box">
+        <nuxt-link v-on:click.native="addLatestCourseLevel('C')" to="formations/diplome" class="box">
           <input type="radio" name="answer"> &nbsp;Terminal
         </nuxt-link>
-        <nuxt-link v-on:click.native="addClasse('D')" to="formations/diplome" class="box">
+        <nuxt-link v-on:click.native="addLatestCourseLevel('D')" to="formations/diplome" class="box">
           <input type="radio" name="answer"> &nbsp;1ère ou 2ème année de l'enseignement supérieur
         </nuxt-link>
 
-        <nuxt-link v-on:click.native="addClasse('E')" to="formations/diplome" class="box">
+        <nuxt-link v-on:click.native="addLatestCourseLevel('E')" to="formations/diplome" class="box">
           <input type="radio" name="answer"> &nbsp;3ème année de l'enseignement supérieur
         </nuxt-link>
-        <nuxt-link v-on:click.native="addClasse('F')" to="formations/diplome" class="box">
+        <nuxt-link v-on:click.native="addLatestCourseLevel('F')" to="formations/diplome" class="box">
           <input type="radio" name="answer"> &nbsp;4ème ou 5ème année de l'enseignement supérieur
         </nuxt-link>
-        <nuxt-link v-on:click.native="addClasse('G')" to="formations/diplome" class="box">
+        <nuxt-link v-on:click.native="addLatestCourseLevel('G')" to="formations/diplome" class="box">
           <input type="radio" name="answer"> &nbsp;6ème année de l'enseignement supérieur
         </nuxt-link>
 
@@ -47,16 +47,9 @@ Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de jus
 // const ioHook = require('iohook');
 export default {
   layout: 'experience',
-  mounted() {
-    // this.$store.commit('application/addRemplissage', 40)
-    this.$store.commit('application/enableFormationStepper')
-    this.$store.commit('application/disableExperienceStepper')
-    this.$store.commit('application/disableIdentiteStepper')
-    this.$store.commit('application/changeTab', 1)
-  },
   methods: {
-    addClasse (e) {
-      this.$store.commit('experiences/addClasse', e)
+    addLatestCourseLevel (e) {
+      this.$store.commit('experiences/addLatestCourseLevel', e)
     },
   }
 }

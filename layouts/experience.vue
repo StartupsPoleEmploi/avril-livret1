@@ -20,10 +20,10 @@
           <h3 class="navigation-title title is-4">Dossier de recevabilité</h3>
           <h4 class="navigation-subtitle title is-5">CAP - Accompagnant éducatif - Petite enfance</h4>
           <div class="navigation-progressbar progress__bar">
-            <div class="progress__bar--suivi" :style="`width:${remplissage}%`"></div>
+            <div class="progress__bar--suivi" :style="`width:${progress}%`"></div>
           </div>
           <div class="">
-            {{Math.round(remplissage)}}% complété
+            {{Math.round(progress)}}% complété
           </div>
 
           <Tabs></Tabs>
@@ -94,23 +94,25 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
       heures () {
         return this.$store.state.experiences.heures
       },
-      remplissage () {
-        let counter = 0;
+      progress () {
+        // let counter = 0;
 
-        let sections = 6;
-        let valeurs = this.$store.state.experiences;
+        // let sections = 6;
+        // let totalHours = this.$store.state.experiences.reduce(0, (total, experience) => {
+        //   return total + (experience.hours || 0);
+        // });
 
-        if( valeurs.heures > 1607 ) counter++;
-        if( valeurs.titres.length != 0 ) counter++;
-        if( valeurs.formationsContinues.length != 0 ) counter++;
+        // if( valeurs.heures > 1607 ) counter++;
+        // if( valeurs.titres.length != 0 ) counter++;
+        // if( valeurs.formationsContinues.length != 0 ) counter++;
 
-        if( !_.isEmpty( valeurs.formations.classe ) ) counter++;
-        if( !_.isEmpty( valeurs.formations.diplome ) ) counter++;
-        if( !_.isEmpty( valeurs.formations.certification ) ) counter++;
+        // if( !_.isEmpty( valeurs.formations.classe ) ) counter++;
+        // if( !_.isEmpty( valeurs.formations.diplome ) ) counter++;
+        // if( !_.isEmpty( valeurs.formations.certification ) ) counter++;
 
-        let sut = ( counter / sections ) * 100;
-        this.$store.commit('application/addRemplissage', sut);
-        return sut;
+        // let sut = ( counter / sections ) * 100;
+        // this.$store.commit('updateProgress', sut);
+        return 0;
       },
     },
     methods: {

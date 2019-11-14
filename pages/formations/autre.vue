@@ -48,7 +48,7 @@ Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de jus
 export default {
   layout: 'experience',
   mounted() {
-    // this.$store.commit('application/addRemplissage', 60)
+    // this.$store.commit('updateProgress', 60)
   },
   methods: {
     addCertification (e) {

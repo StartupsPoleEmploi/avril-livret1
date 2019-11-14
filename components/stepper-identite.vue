@@ -1,6 +1,6 @@
 <template>
 
-  <div class="form-header" v-if="displayIdentiteStepper == true">
+  <div class="form-header" v-if="currentTab == 'identite'">
 
     <div class="avril-stepper-container">
       <NavBack/>
@@ -42,6 +42,9 @@ export default {
   computed: {
     displayIdentiteStepper () {
       return this.$store.state.application.displayIdentiteStepper
+    },
+    currentTab () {
+      return this.$store.state.currentTab;
     },
   },
   watch: {

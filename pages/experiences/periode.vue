@@ -9,7 +9,7 @@
             <date-picker v-model="secondePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> à <input class="input heure" type="number" v-model="heurePeriode" value="35"> h par semaine.
           </span>
           <div class="">
-            <a class="button is-dark" @click="addPeriodes" style="margin-top:1rem">
+            <a class="button is-dark" @click="addPeriods" style="margin-top:1rem">
               + Ajouter cette période
             </a>
           </div>
@@ -116,7 +116,7 @@ export default {
         this.$router.push('precision')
       }
     },
-    addPeriodes () {
+    addPeriods () {
       console.log('add periodes')
       // TODO: supprimer les weekends du calcul des heures totales
 
@@ -144,7 +144,7 @@ export default {
 
       periode.totalHeures = totalHeures;
 
-      this.$store.commit('experiences/addPeriodes', periode)
+      this.$store.commit('experiences/addPeriods', periode)
       console.log('je tente d\'ajouter', periode.totalHeures, 'heures')
       this.$store.commit('experiences/addHours', periode.totalHeures)
       console.log(this.$store.state.experiences.heures, 'heures dans le store')

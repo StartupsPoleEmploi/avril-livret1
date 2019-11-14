@@ -6,21 +6,21 @@
       <div class="field">
         <label class="label">Emploi ou fonction occupée</label>
         <div class="control">
-          <input :value="fonction" ref="avril__emploi" class="input" type="text" placeholder="Exemple : Boulanger Pâtissier" @input="addFonction">
+          <input :value="fonction" ref="avril__emploi" class="input" type="text" placeholder="Exemple : Boulanger Pâtissier" @input="addRole">
         </div>
       </div>
 
       <div class="field">
         <label class="label">Nom de l'entreprise</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Exemple : Crêche p'tit loup" @input="addEntreprise">
+          <input class="input" type="text" placeholder="Exemple : Crêche p'tit loup" @input="addCompanyName">
         </div>
       </div>
 
       <div class="field">
         <label class="label">Adresse de l'entreprise ou association</label>
         <div class="control">
-          <input class="input" v-on:keyup="next" type="text" placeholder="Exemple : 40 boulevard machin, 56000 Lorient" @input="addAdresseEntreprise">
+          <input class="input" v-on:keyup="next" type="text" placeholder="Exemple : 40 boulevard machin, 56000 Lorient" @input="addCompanyAddress">
           <!-- <div class="push-enter is-pulled-right">
             Appuyez sur <strong>Entrée</strong>
           </div> -->
@@ -82,30 +82,23 @@ export default {
   },
 
   mounted() {
-    this.$store.commit('application/disableFormationStepper')
-    this.$store.commit('application/disableIdentiteStepper')
-    this.$store.commit('application/changeTab', 0)
-
     this.$store.commit('experiences/new')
-    this.$store.commit('application/enableExperienceStepper')
-
     this.$refs.avril__emploi.focus()
   },
   methods: {
     // ...mapActions([
     //   'setNewExperience',
     // ]),
-    addFonction (e) {
-      this.$store.commit('experiences/addFonction', e.target.value)
+    addRole (e) {
+      this.$store.commit('experiences/addRole', e.target.value)
     },
-    addEntreprise (e) {
-      this.$store.commit('experiences/addEntreprise', e.target.value)
+    addCompanyName (e) {
+      this.$store.commit('experiences/addCompanyName', e.target.value)
     },
-    addAdresseEntreprise (e) {
-      this.$store.commit('experiences/addAdresseEntreprise', e.target.value)
+    addCompanyAddress (e) {
+      this.$store.commit('experiences/addCompanyAddress', e.target.value)
     },
     gotoNext: function() {
-      // this.addFonctionEtEntreprise('test')
       console.log('goto')
     },
     next: function(event) {

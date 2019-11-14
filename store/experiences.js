@@ -1,112 +1,44 @@
-export const state = () => ({
-  experiences: [],
-  titres: [],
-  formationsContinues: [],
-  formations: {
-    classe: null,
-    diplome: null,
-  },
-  heures: 0,
-})
+import {uuid} from '../utils/string';
 
-// - experiences
-// - duree
-// - periode
+export const state = () => ([])
 
 export const mutations = {
   new (state) {
-    state.experiences.push({
-      fonction: null,
-      entreprise: null,
-      adresseEntreprise: null,
-      famille: null,
-      status: null,
+    state.push({
+      uuid: uuid(),
+      role: null,
+      companyName: null,
+      companyAddress: null,
+      category: null,
+      contractType: null,
       activities: [],
-      periodes: []
+      periods: []
     })
   },
-  addFonction (state, fonction) {
-    state.experiences[state.experiences.length - 1].fonction = fonction
+  // TODO: manipulate IDs instead of state.length -1
+  addRole (state, role) {
+    state[state.length - 1].role = role
   },
-  addEntreprise (state, entreprise) {
-    state.experiences[state.experiences.length - 1].entreprise = entreprise
+  addCompanyName (state, companyName) {
+    state[state.length - 1].companyName = companyName
   },
-  addAdresseEntreprise (state, adresse) {
-    state.experiences[state.experiences.length - 1].adresseEntreprise = adresse
+  addCompanyAddress (state, adress) {
+    state[state.length - 1].companyAddress = adress
   },
-  addFamille (state, famille) {
-    state.experiences[state.experiences.length - 1].famille = famille
+  addCategory (state, category) {
+    state[state.length - 1].category = category
   },
-  addStatus (state, status) {
-    state.experiences[state.experiences.length - 1].status = status
+  addContractType (state, contractType) {
+    state[state.length - 1].contractType = contractType
   },
-  addPeriode (state, periode) {
-    state.experiences[state.experiences.length - 1].periode = periode
+  addActivity (state, val) {
+    state[state.length - 1].activities.push(val)
   },
-  addDuree (state, duree) {
-    state.experiences[state.experiences.length - 1].duree = duree
+  addPeriods (state, val) {
+    state[state.length - 1].periods.push(val)
   },
-  addTemps (state, temps) {
-    state.experiences[state.experiences.length - 1].temps = temps
-  },
-  // addPrecision (state, precision) {
-  //   state.experiences[state.experiences.length - 1].precision = precision
-  // },
-  addHours (state, heure) {
-    state.heures+= heure
-  },
-  // -------------
-  // FORMATIONS
-  // -------------
-  addClasse (state, classe) {
-    state.formations.classe = classe
-  },
-  addDiplome (state, diplome) {
-    state.formations.diplome = diplome
-  },
-  addAutre (state, autre) {
-    state.formations.autre = autre
-  },
-  addComparatibilite (state, comparatibilite) {
-    state.formations.comparatibilite = comparatibilite
-  },
-  addPartie (state, val) {
-    state.formations.partie = val
-  },
-  addCertification (state, val) {
-    state.formations.certification = val
-  },
-  addRNCP (state, val) {
-    state.formations.rncp = val
-  },
-  addFormations (state, val) {
-    state.formations.formations = val
-  },
-
-  // Certifications
-  chooseType (state, val) {
-    state.certification = val
-  },
-
-  addActivite (state, val) {
-    state.experiences[state.experiences.length - 1].activities.push(val)
-  },
-
-  addTitre (state, val) {
-    state.titres.push(val)
-  },
-
-  addPeriodes (state, val) {
-    state.experiences[state.experiences.length - 1].periodes.push(val)
-  },
-
-  addFormationContinue (state, val) {
-    state.formationsContinues.push(val)
-  },
-
-
   remove (state, { todo }) {
-    state.experiences.splice(state.experiences.indexOf(todo), 1)
+    state.splice(state.indexOf(todo), 1)
   },
 
 }

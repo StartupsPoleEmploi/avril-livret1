@@ -6,8 +6,8 @@
       <div class="field">
         <div class="control">
           <label class="label">Qu'avez-vous fait dans votre métier ?</label>
-          <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivite">
-          <a class="button is-default is-pulled-right" @click="addActivite" style="margin-top:4px">
+          <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivity">
+          <a class="button is-default is-pulled-right" @click="addActivity" style="margin-top:4px">
             + Ajouter
           </a>
           <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
@@ -117,25 +117,21 @@ export default {
   },
   mounted() {
     this.$refs.avril__name.focus()
-    this.$store.commit('application/disableFormationStepper')
-    this.$store.commit('application/disableIdentiteStepper')
-    this.$store.commit('application/enableExperienceStepper')
-    this.$store.commit('application/changeTab', 0)
   },
   methods: {
     addPrecision (e) {
       this.$store.commit('experiences/addPrecision', e.target.value)
     },
-    addActivite (e) {
+    addActivity (e) {
       if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
         return false;
       }
-      this.$store.commit('experiences/addActivite', this.$refs.avril__name.value)
+      this.$store.commit('experiences/addActivity', this.$refs.avril__name.value)
       this.$refs.avril__name.value = '';
       return false;
     },
     addExp (e) {
-      this.$store.commit('experiences/addActivite', e.target.outerText.trim());
+      this.$store.commit('experiences/addActivity', e.target.outerText.trim());
       e.target.remove()
       e.preventDefault();
       e.stopPropagation();

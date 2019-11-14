@@ -1,13 +1,24 @@
-// import fetch from 'node-fetch';
-
 export const state = () => ({
   hash: null,
+  totalWorkedHours: 0,
+  progress: 0,
+  applicationStatus: null,
+  currentTab: null,
 })
 
 export const mutations = {
+  setCurrentTab(state, currentTab) {
+    state.currentTab = currentTab
+  },
   setHash(state, hash) {
     state.hash = state.hash || hash;
-  }
+  },
+  updateProgress (state, progress) {
+    state.progress = progress
+  },
+  setApplicationStatus(state, applicationStatus) {
+    state.applicationStatus = applicationStatus
+  },
 }
 
 const redirectToPhoenix = ({redirect, env}, msg) => {

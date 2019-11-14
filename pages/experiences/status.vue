@@ -6,29 +6,29 @@
 
         <h3 class="title is-5">Statut au moment où vous avez exercé votre activité</h3>
 
-        <nuxt-link v-on:click.native="addStatus('A')" to="periode" class="box">
+        <nuxt-link v-on:click.native="addContractType('A')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;Salarié
         </nuxt-link>
-        <nuxt-link v-on:click.native="addStatus('B')" to="periode" class="box">
+        <nuxt-link v-on:click.native="addContractType('B')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;En contrat de professionnalisation
         </nuxt-link>
-        <nuxt-link v-on:click.native="addStatus('C')" to="periode" class="box">
+        <nuxt-link v-on:click.native="addContractType('C')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;En contrat d’apprentissage
         </nuxt-link>
-        <nuxt-link v-on:click.native="addStatus('D')" to="periode" class="box">
+        <nuxt-link v-on:click.native="addContractType('D')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;Travailleur indépendant, artisan, profession libérale
         </nuxt-link>
-        <nuxt-link v-on:click.native="addStatus('E')" to="periode" class="box">
+        <nuxt-link v-on:click.native="addContractType('E')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;Volontaire
         </nuxt-link>
-        <nuxt-link v-on:click.native="addStatus('F')" to="periode" class="box">
+        <nuxt-link v-on:click.native="addContractType('F')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;Autre
         </nuxt-link>
 
 
           <div class="form-field-action field" style="margin-top: 20px">
             <div class="control">
-              <nuxt-link v-on:click.native="addStatus('H')" to="periode" class="is-ok button is-text is-pulled-left">
+              <nuxt-link v-on:click.native="addContractType('H')" to="periode" class="is-ok button is-text is-pulled-left">
                 Remplir plus tard
               </nuxt-link>
             </div>
@@ -86,8 +86,8 @@ export default {
         this.$router.push('name')
       }
     },
-    addStatus (e) {
-      this.$store.commit('experiences/addStatus', e)
+    addContractType (e) {
+      this.$store.commit('experiences/addContractType', e)
     },
   }
 }

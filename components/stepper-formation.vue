@@ -1,5 +1,5 @@
 <template>
-  <div class="form-header" v-if="displayFormationStepper == true">
+  <div class="form-header" v-if="currentTab == 'formations'">
 
     <div class="avril-stepper-container">
       <NavBack/>
@@ -49,6 +49,9 @@ export default {
     },
     displayFormationStepper () {
       return this.$store.state.application.displayFormationStepper
+    },
+    currentTab () {
+      return this.$store.state.currentTab;
     },
   },
   watch: {

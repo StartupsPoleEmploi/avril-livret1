@@ -77,10 +77,6 @@ export default {
 
   mounted() {
     this.$refs.avril__focus.focus()
-    this.$store.commit('application/disableExperienceStepper')
-    this.$store.commit('application/disableFormationStepper')
-    this.$store.commit('application/enableIdentiteStepper')
-    this.$store.commit('application/changeTab', 2)
   },
   methods: {
     addBirth: function(){

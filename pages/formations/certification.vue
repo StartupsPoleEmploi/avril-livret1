@@ -35,7 +35,7 @@
 export default {
   layout: 'experience',
   mounted() {
-    // this.$store.commit('application/addRemplissage', 70)
+    // this.$store.commit('updateProgress', 70)
   },
   methods: {
     addCertification (e) {

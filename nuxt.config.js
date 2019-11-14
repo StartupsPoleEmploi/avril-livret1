@@ -47,6 +47,9 @@ module.exports = {
   },
   plugins: [],
   router: {
-    middleware: ['autosave']
+    middleware: [
+      'autosave',
+      'commit-tab',
+    ]
   },
 }

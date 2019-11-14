@@ -5,13 +5,13 @@
       <h3 class="title is-5">Cette certification est ?</h3>
       <div class="columns">
         <div class="column">
-          <nuxt-link v-on:click.native="chooseType('A')" to="/recapitulatif" class="box">
+          <nuxt-link v-on:click.native="setApplicationStatus('A')" to="/recapitulatif" class="box">
             <input type="radio" name="answer"> &nbsp;Une première demande
           </nuxt-link>
-          <nuxt-link v-on:click.native="chooseType('B')" to="/recapitulatif" class="box">
+          <nuxt-link v-on:click.native="setApplicationStatus('B')" to="/recapitulatif" class="box">
             <input type="radio" name="answer"> &nbsp;Un renouvellement
           </nuxt-link>
-          <nuxt-link v-on:click.native="chooseType('C')" to="/recapitulatif" class="box">
+          <nuxt-link v-on:click.native="setApplicationStatus('C')" to="/recapitulatif" class="box">
             <input type="radio" name="answer"> &nbsp;Une prolongation
           </nuxt-link>
         </div>
@@ -31,14 +31,11 @@
 export default {
   layout: 'experience',
   mounted() {
-    this.$store.commit('application/addRemplissage', 95)
-    this.$store.commit('application/disableFormationStepper')
-    this.$store.commit('application/disableIdentiteStepper')
-    this.$store.commit('application/changeTab', 2)
+    this.$store.commit('updateProgress', 95)
   },
   methods: {
-    chooseType (e) {
-      this.$store.commit('experiences/chooseType', e)
+    setApplicationStatus (e) {
+      this.$store.commit('setApplicationStatus', e)
     },
   }
 }

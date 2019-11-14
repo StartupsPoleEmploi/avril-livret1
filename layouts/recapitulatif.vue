@@ -67,7 +67,7 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
         if( !_.isEmpty( valeurs.formations.certification ) ) counter++;
 
         let sut = ( counter / sections ) * 100;
-        this.$store.commit('application/addRemplissage', sut);
+        this.$store.commit('updateProgress', sut);
         return sut;
       },
     },

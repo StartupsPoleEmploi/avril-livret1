@@ -70,17 +70,6 @@ export default {
     }
   },
 
-  created() {
-    // console.log('accueil created')
-  },
-
-  mounted() {
-    // this.$refs.avril__name.focus()
-    this.$store.commit('application/disableExperienceStepper')
-    this.$store.commit('application/disableFormationStepper')
-    this.$store.commit('application/disableIdentiteStepper')
-    this.$store.commit('application/changeTab', 0)
-  },
   methods: {
     keymonitor: function(event) {
       if(event.key == "Enter")

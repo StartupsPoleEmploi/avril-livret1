@@ -9,8 +9,8 @@
 
       <div class="field">
         <div class="control">
-          <input class="input" ref="avril__name" type="text" placeholder="Exemple : Bac pro commerce" @keyup.enter="addTitre">
-          <a class="button is-dark is-pulled-right" @click="addTitre" style="margin-top:4px">
+          <input class="input" ref="avril__name" type="text" placeholder="Exemple : Bac pro commerce" @keyup.enter="addRelatedDegree">
+          <a class="button is-dark is-pulled-right" @click="addRelatedDegree" style="margin-top:4px">
             + Ajouter
           </a>
           <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
@@ -79,17 +79,17 @@ export default {
     },
   },
   mounted() {
-    // this.$store.commit('application/addRemplissage', 80)
+    // this.$store.commit('updateProgress', 80)
   },
   methods: {
     addRNCP (e) {
       this.$store.commit('experiences/addRNCP', e.target.value)
     },
-    addTitre (e) {
+    addRelatedDegree (e) {
       if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
         return false;
       }
-      this.$store.commit('experiences/addTitre', this.$refs.avril__name.value)
+      this.$store.commit('experiences/addRelatedDegree', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''
     },
   }
