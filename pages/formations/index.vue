@@ -12,7 +12,7 @@
           <input type="radio" name="answer"> &nbsp;2nde ou 1ère générale, 2ème année de CAP/BEP
         </nuxt-link>
         <nuxt-link v-on:click.native="addClasse('C')" to="formations/diplome" class="box">
-          <input type="radio" name="answer"> &nbsp;Terminal
+          <input type="radio" name="answer"> &nbsp;Terminale
         </nuxt-link>
         <nuxt-link v-on:click.native="addClasse('D')" to="formations/diplome" class="box">
           <input type="radio" name="answer"> &nbsp;1ère ou 2ème année de l'enseignement supérieur
