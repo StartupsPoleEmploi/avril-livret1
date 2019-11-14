@@ -24,7 +24,9 @@ export const state = () => ({
 })
 
 export const mutations = {
-
+  initState (state, serverState) {
+    state = Object.assign(state, serverState)
+  },
   addLastName (state, value) {
     state.lastName = value
   },
@@ -78,6 +80,17 @@ export const mutations = {
   },
   addAddressCountry (state, value) {
     state.address.country = value
+  },
+
+}
+
+export const actions = {
+  initState ({commit}, serverState) {
+    console.log('action initState called')
+    console.log(serverState)
+    // state = Object.assign(state, serverState)
+    commit('addLastName', serverState.lastName)
+    commit('addEmail', serverState.email)
   },
 
 }
