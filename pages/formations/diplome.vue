@@ -47,8 +47,8 @@
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
-          Dites nous simplement quel est le dernier diplôme que vous avez obtenu. Ne vous inquiétez pas, il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.
-Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
+          Indiquez le diplôme qui le plus haut niveau dans l'ensemble de vos diplômes.<br/>Il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.
+<br/>Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
 Et oui, que vous ayez déjà ou non un diplôme, vous pouvez vous lancer dans une démarche de VAE !
         </div>
         <p style="margin-top:1rem">
