@@ -43,7 +43,6 @@ import _ from 'lodash';
 export default {
   computed: {
     heures () {
-      console.log(this.$store.state.experiences.heures)
       return this.$store.state.experiences.heures
     },
     formationIsOk(){
