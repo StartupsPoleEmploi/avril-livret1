@@ -47,8 +47,8 @@
     <div class="form-help">
       <h3 class="title is-5">Besoin d'aide ?</h3>
       <div class="form-help-content">
-Indiquez nous ici les diplômes ou les parties de diplômes que vous avez déjà obtenus.<br/>
-Par exemple : Diplôme "CAP petite enfance" obtenu ou bloc de compétences "Conduite d'un projet RH" obtenu.<br/>
+Indiquez nous ici les diplômes ou les parties de diplômes que vous avez déjà obtenus ET qui ont un rapport avec le diplôme que vous visez.<br/>
+Par exemple : Diplôme "CAP coiffure" obtenu si vous cherchez à obtenir un BP coiffure.<br/>
 Ces informations serviront aux certificateurs et aux accompagnateurs de votre projet de diplôme en VAE à mieux vous conseiller.
 Cela ne sert pas à évaluer votre candidature à la VAE.
 Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
