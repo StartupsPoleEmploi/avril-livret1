@@ -19,10 +19,10 @@
         <div class="columns is-multiline">
           <div v-for="experience in experiences" class="column is-half">
             <div class="box is-equal-height">
-              <h3 class="title is-4">{{ experience.fonction }}</h3>
-              <h3 class="title is-6">{{ experience.duree }} heures</h3>
-              <p>{{ experience.entreprise }}</p>
-              <span>{{ experience.periode }}</span>
+              <h3 class="title is-4">{{ experience.role }}</h3>
+              <h3 class="title is-6">{{ experience.duration }} heures</h3>
+              <p>{{ experience.companyName }}</p>
+              <span>{{ experience.period }}</span>
               <a href="#">éditer</a>
             </div>
           </div>
@@ -57,16 +57,18 @@ export default {
   },
   computed: {
     experiences () {
-      return this.$store.state.experiences.experiences
+      return this.$store.state.experiences
     },
     heures () {
-      return this.$store.state.experiences.heures
+      return 0;
+      // return this.$store.state.experiences
     },
     pourcentage () {
-      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
-        return 100
-      else
-        return (this.$store.state.experiences.heures*100)/1607
+      return 0;
+      // if( (this.$store.state.experiences*100)/1607 > 100 )
+      //   return 100
+      // else
+      //   return (this.$store.state.experiences.heures*100)/1607
     }
   },
 

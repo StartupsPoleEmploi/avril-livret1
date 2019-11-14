@@ -16,11 +16,11 @@
         </div>
 
         <div class="columns is-multiline">
-          <div v-for="periode in periodes" class="column is-half">
+          <div v-for="period in periods" class="column is-half">
             <div class="box is-equal-height">
-              <p class="title is-3">{{ Math.round(periode.totalHeures) }} heures</p>
-              <h3 class="title is-6">Du {{ $moment(periode.de) }}</h3>
-              <h3 class="title is-6">au {{ $moment(periode.a) }}</h3>
+              <p class="title is-3">{{ Math.round(period.totalHeures) }} heures</p>
+              <h3 class="title is-6">Du {{ $moment(period.de) }}</h3>
+              <h3 class="title is-6">au {{ $moment(period.a) }}</h3>
             </div>
           </div>
           <div class="column is-one-quarter">
@@ -85,21 +85,22 @@ export default {
   },
   computed: {
     heures () {
-      return this.$store.state.experiences.heures
+      return 0;
     },
     periodes () {
-      return this.$store.state.experiences.experiences[this.$store.state.experiences.experiences.length - 1].periodes
+      return this.$store.state.experiences[this.$store.state.experiences.length - 1].periods
     },
     pourcentage () {
-      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
-        return 100
-      else
-        return (this.$store.state.experiences.heures*100)/1607
+      return 0;
+      // if( (this.$store.state.experiences.heures*100)/1607 > 100 )
+      //   return 100
+      // else
+      //   return (this.$store.state.experiences.heures*100)/1607
     },
   },
   watch: {
     time3(e) {
-      this.addPeriode(e)
+      this.addPeriod(e)
     }
   },
   created() {
@@ -153,11 +154,8 @@ export default {
       this.secondePeriode = '';
       this.heurePeriode = '';
     },
-    addPeriode (e) {
-      this.$store.commit('experiences/addPeriode', e)
-    },
-    addDuree (e) {
-      this.$store.commit('experiences/addDuree', e)
+    addPeriod (e) {
+      this.$store.commit('experiences/addPeriod', e)
     },
   }
 }

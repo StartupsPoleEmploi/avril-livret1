@@ -6,7 +6,7 @@
       <div class="field">
         <label class="label">Emploi ou fonction occupée</label>
         <div class="control">
-          <input :value="fonction" ref="avril__emploi" class="input" type="text" placeholder="Exemple : Boulanger Pâtissier" @input="addRole">
+          <input :value="role" ref="avril__emploi" class="input" type="text" placeholder="Exemple : Boulanger Pâtissier" @input="addRole">
         </div>
       </div>
 
@@ -62,10 +62,10 @@ export default {
   components: {
   },
   computed: {
-    fonction () {
+    role () {
       let size = this.$store.state.experiences.length - 1
       if(this.$store.state.experiences.length)
-        return this.$store.state.experiences[ size ].experiences.fonction
+        return this.$store.state.experiences[ size ].role
     },
     heures () {
       return this.$store.state.experiences.heures
