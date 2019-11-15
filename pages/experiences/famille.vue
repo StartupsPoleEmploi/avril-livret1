@@ -3,7 +3,7 @@
 
     <div class="form-fields">
 
-        <h3 class="title is-5">A quelle famille professionnelle appartient votre métier ?</h3>
+        <h3 class="title is-5">Quelle est la famille professionnelle de votre métier ?</h3>
 
         <nuxt-link v-on:click.native="addCategory('H')" to="status" class="box">
           <input type="radio" name="answer"> &nbsp;Administration publique, professions juridiques, armée et police
@@ -87,8 +87,8 @@
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
-Par exemple, si vous avez été secrétaire, la famille métier sera "gestion, administration des entreprises".
-Les familles professionnelles sont des ensembles de métiers qui ont des points communs comme des activités ou des compétences.        </div>
+Les familles professionnelles sont des ensembles de métiers qui ont des points communs comme des activités ou des compétences.<br/>Par exemple, si vous avez été secrétaire, la famille métier sera "gestion, administration des entreprises".<br/>Renseigne cette rubrique selon ce qui vous parait juste, il s'agit simplement d'une information pour nous mais pas d'un élément clé pour valider votre demande.
+        </div>
         <p style="margin-top:1rem">
           <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
         </p>
