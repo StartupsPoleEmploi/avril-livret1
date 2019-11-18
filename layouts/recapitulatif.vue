@@ -50,24 +50,6 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
       heures () {
         return this.$store.state.experiences.heures
       },
-      remplissage () {
-        let counter = 0;
-
-        let sections = 6;
-        let valeurs = this.$store.state.experiences;
-
-        if( valeurs.heures > 1607 ) counter++;
-        if( valeurs.titres.length != 0 ) counter++;
-        if( valeurs.formationsContinues.length != 0 ) counter++;
-
-        if( !_.isEmpty( valeurs.formations.classe ) ) counter++;
-        if( !_.isEmpty( valeurs.formations.diplome ) ) counter++;
-        if( !_.isEmpty( valeurs.formations.certification ) ) counter++;
-
-        let sut = ( counter / sections ) * 100;
-        this.$store.commit('updateProgress', sut);
-        return sut;
-      },
     },
     methods: {
 

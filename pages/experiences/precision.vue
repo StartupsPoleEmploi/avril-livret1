@@ -5,8 +5,9 @@
 
       <div class="field">
         <div class="control">
-          <label class="label">Qu'avez-vous fait dans votre métier ?</label>
-          <input class="input" ref="avril__name" type="text" placeholder="Exemple : Pétrissage du pain" @keyup.enter="addActivity">
+          <label class="label" v-if="role != ''">Quelles activités avez-vous fait dans votre emploi de {{ role }} au sein de {{companyName}} ?</label>
+          <label class="label" v-else>Quelles activités avez-vous fait dans votre emploi ?</label>
+          <input class="input" ref="avril__name" type="text" placeholder="Exemple : Je pétris de la pâte à pain" @keyup.enter="addActivity">
           <a class="button is-default is-pulled-right" @click="addActivity" style="margin-top:4px">
             + Ajouter
           </a>
@@ -50,13 +51,18 @@
 
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
-        <p>
-          Pour aider le certificateur à bien comprendre quel a été votre rôle au sein de [entreprise], vous devez indiquer une liste de tâche que vous avez
-          effectué au quotidien.
-        </p>
-        <p>Voici une liste d'activité pour vous aider. Vous pouvez les ajouter ou en créer une nouvelle.</p>
-        <br/>
-        <div class="form-help-ativites">
+        <div class="form-help-content content">
+          <p>
+            Pour aider le certificateur à bien comprendre quel a été votre rôle <span v-if="companyName != ''">au sein de {{companyName}}</span>, vous devez indiquer une liste de tâches que vous avez
+            effectuées au quotidien.
+          </p>
+          <p>Voici un lien vers la fiche du métier pour trouver des exemples d'activités :
+            <a href="https://rome.fr" target="_blank">ROME</a>
+          </p>
+          <p>Exemples: "J'utilise des tableaux croisés dynamiques dans le logiciel Excel" ou "J'aide des adultes et des personnes handicapées à prendre leurs repas"</p>
+
+        </div>
+        <!-- <div class="form-help-ativites">
           <a class="box" v-on:click="addExp">
             <input type="radio" name="answer"> &nbsp;Déterminer les mesures d’hygiène, de santé et de mise en sécurité
           </a>
@@ -84,9 +90,9 @@
           <a class="box" v-on:click="addExp">
             <input type="radio" name="answer"> &nbsp;Réceptionner, stocker
           </a>
-        </div>
+        </div> -->
         <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
         </p>
       </div>
 
@@ -99,6 +105,12 @@ import _ from 'lodash';
 export default {
   components: {},
   computed: {
+    role () {
+      return this.$store.state.experiences[this.$store.state.experiences.length - 1].role
+    },
+    companyName () {
+      return this.$store.state.experiences[this.$store.state.experiences.length - 1].companyName
+    },
     activites () {
       console.log(this.$store.state)
       let act = _.cloneDeep(this.$store.state.experiences[this.$store.state.experiences.length - 1].activities)

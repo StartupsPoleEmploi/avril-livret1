@@ -4,6 +4,7 @@ export const state = () => ({
   progress: 0,
   applicationStatus: null,
   currentTab: null,
+  currentDegree: 'CAP - Accompagnement éducatif - petite enfance',
 })
 
 export const mutations = {

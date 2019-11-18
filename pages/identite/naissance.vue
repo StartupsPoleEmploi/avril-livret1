@@ -34,11 +34,19 @@
 
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content">
-          Ces informations vont permettre aux différents intervenants VAE de vous contacter. <br/>Elles vont aussi servir à vous inscrire au diplôme. Il faut donc nous donner les informations telles qu'elles apparaissent sur vos justificatifs d'identité.<br/>Pour l'adresse, il faut indiquer votre adesse actuelle.
+        <div class="form-help-content content">
+          <p>
+            Ces informations vont permettre aux différents intervenants VAE de vous contacter.
+          </p>
+          <p>
+            Elles vont aussi servir à vous inscrire au diplôme. Il faut donc nous donner les informations telles qu'elles apparaissent sur vos justificatifs d'identité.
+          </p>
+          <p>
+            Pour l'adresse, il faut indiquer votre adesse actuelle.
+          </p>
         </div>
         <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
         </p>
       </div>
 

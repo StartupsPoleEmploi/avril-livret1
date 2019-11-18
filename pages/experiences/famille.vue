@@ -86,11 +86,19 @@
 
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content">
-Les familles professionnelles sont des ensembles de métiers qui ont des points communs comme des activités ou des compétences.<br/>Par exemple, si vous avez été secrétaire, la famille métier sera "gestion, administration des entreprises".<br/>Renseigne cette rubrique selon ce qui vous parait juste, il s'agit simplement d'une information pour nous mais pas d'un élément clé pour valider votre demande.
+        <div class="form-help-content content">
+          <p>
+            Les familles professionnelles sont des ensembles de métiers qui ont des points communs comme des activités ou des compétences.
+          </p>
+          <p>
+            Par exemple, si vous avez été secrétaire, la famille métier sera "gestion, administration des entreprises".
+          </p>
+          <p>
+            Renseignez cette rubrique selon ce qui vous parait juste, il s'agit simplement d'une information pour nous mais pas d'un élément clé pour valider votre demande.
+          </p>
         </div>
         <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
         </p>
       </div>
     </div>

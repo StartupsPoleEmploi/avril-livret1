@@ -26,16 +26,16 @@
       </div>
 
       <div class="field">
-        <label class="label">Mon numéro de téléphone à domicile</label>
+        <label class="label">Mon numéro de téléphone mobile</label>
         <div class="control">
-          <input :value="homePhoneNumber" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addHomePhoneNumber">
+          <input :value="cellPhoneNumber" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addCellPhoneNumber">
         </div>
       </div>
 
       <div class="field">
-        <label class="label">Mon numéro de téléphone mobile</label>
+        <label class="label">Mon numéro de téléphone à domicile</label>
         <div class="control">
-          <input :value="cellPhoneNumber" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addCellPhoneNumber">
+          <input :value="homePhoneNumber" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addHomePhoneNumber">
         </div>
       </div>
 
@@ -65,11 +65,19 @@
 
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content">
-          Ces informations vont permettre aux différents intervenants VAE de vous contacter. <br/>Elles vont aussi servir à vous inscrire au diplôme. Il faut donc nous donner les informations telles qu'elles apparaissent sur vos justificatifs d'identité.<br/>Pour l'adresse, il faut indiquer votre adesse actuelle.
+        <div class="form-help-content content">
+          <p>
+            Ces informations vont permettre aux différents intervenants VAE de vous contacter.
+          </p>
+          <p>
+            Elles vont aussi servir à vous inscrire au diplôme. Il faut donc nous donner les informations telles qu'elles apparaissent sur vos justificatifs d'identité.
+          </p>
+          <p>
+            Pour l'adresse, il faut indiquer votre adresse actuelle.
+          </p>
         </div>
         <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
         </p>
       </div>
     </div>

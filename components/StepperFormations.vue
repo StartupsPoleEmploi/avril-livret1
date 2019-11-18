@@ -7,25 +7,25 @@
           <li :class="slugIndex == '' || slugIndex == 6 ? 'steps-segment is-active' : 'steps-segment'">
              <nuxt-link to="/formations" :class="slugIndex == '' || slugIndex == 6 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/formations">Classe</nuxt-link>
+               <nuxt-link class="is-size-6" to="/formations">Dernière classe</nuxt-link>
              </div>
            </li>
            <li :class="slugIndex == 7 ? 'steps-segment is-active' : 'steps-segment'">
              <nuxt-link to="/formations/diplome" :class="slugIndex == 7 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/formations/diplome">Diplôme(s)</nuxt-link>
+               <nuxt-link class="is-size-6" to="/formations/diplome">Niveau</nuxt-link>
              </div>
            </li>
            <li :class="slugIndex == 11 ? 'steps-segment is-active' : 'steps-segment'">
              <nuxt-link to="/formations/rncp" :class="slugIndex == 11 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/formations/rncp">Autres diplômes</nuxt-link>
+               <nuxt-link class="is-size-6" to="/formations/rncp">Diplôme(s)</nuxt-link>
              </div>
            </li>
            <li :class="slugIndex == 12 ? 'steps-segment is-active' : 'steps-segment'">
              <nuxt-link to="/formations/formations" :class="slugIndex == 12 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/formations/formations">Formations</nuxt-link>
+               <nuxt-link class="is-size-6" to="/formations/formations">Formation(s)</nuxt-link>
              </div>
            </li>
          </ul>

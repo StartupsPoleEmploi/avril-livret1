@@ -9,19 +9,19 @@
           <li :class="slugIndex == 13 ? 'steps-segment is-active' : 'steps-segment'">
              <nuxt-link to="/identite/residence" :class="slugIndex == 13 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/identite/residence">Mon lieu de résidence</nuxt-link>
+               <nuxt-link class="is-size-6" to="/identite/residence">Lieu de résidence</nuxt-link>
              </div>
            </li>
            <li :class="slugIndex == 14 ? 'steps-segment is-active' : 'steps-segment'">
              <nuxt-link to="/identite/naissance"  :class="slugIndex == 14 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/identite/naissance">Ma naissance</nuxt-link>
+               <nuxt-link class="is-size-6" to="/identite/naissance">Naissance</nuxt-link>
              </div>
            </li>
            <li :class="slugIndex == 15 ? 'steps-segment is-active' : 'steps-segment'">
              <nuxt-link to="/identite/identite"  :class="slugIndex == 15 ? 'steps-marker is-hollow' : 'steps-marker'"></nuxt-link>
              <div class="steps-content is-divider-content">
-               <nuxt-link class="is-size-6" to="/identite/identite">Mon identité</nuxt-link>
+               <nuxt-link class="is-size-6" to="/identite/identite">Identité</nuxt-link>
              </div>
            </li>
          </ul>

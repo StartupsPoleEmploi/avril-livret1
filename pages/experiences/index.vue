@@ -37,11 +37,22 @@
 
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content">
-          Dans cette rubrique, vous allez nous indiquer vos expériences.<br/> Nous parlons là des expériences qui ont un rapport avec le diplôme que vous souhaitez obtenir.<br/> Si vous n'êtes pas sûr(e) de vous, notez toutes vos expériences, nous ferons le tri !<br/> Retenez que ce qui est important c'est de totaliser au moins 1 an d'expérience à temps plein en lien avec le diplôme souhaité.
+        <div class="form-help-content content">
+          <p>
+            Dans cette rubrique, vous allez nous indiquer vos expériences.
+          </p>
+          <p>
+            Nous parlons là des expériences qui ont un rapport avec le diplôme que vous souhaitez obtenir.
+          </p>
+          <p>
+            Si vous n'êtes pas sûr(e) de vous, ajouter toutes vos expériences, nous ferons le tri !
+          </p>
+          <p>
+            Nous avons affiché ci-contre les expériences partagées par Pôle emploi; vous pouvez les modifier, supprimer ou en ajouter.
+          </p>
         </div>
         <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
         </p>
       </div>
     </div>
