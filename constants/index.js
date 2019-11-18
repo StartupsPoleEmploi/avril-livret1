@@ -1,0 +1,1 @@
+export const BOOKLET_MIN_HOURS = 1607;

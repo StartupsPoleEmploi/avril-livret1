@@ -1,10 +1,23 @@
 import {uuid} from '../utils/string';
+import {percent} from '../utils/number';
+import {BOOKLET_MIN_HOURS} from '../constants/index';
 
 export const state = () => ([])
 
+export const getters = {
+  totalHours: state => {
+    return state.reduce((accumulatedHours, experience) => {
+      return accumulatedHours + experience.hours;
+    }, 0);
+  },
+  progress: (state, getters) => {
+    return percent(getters.totalHours / BOOKLET_MIN_HOURS);
+  }
+}
+
 export const mutations = {
   initState (state, serverState) {
-    state = state.contact(serverState);
+    state = state.concat(serverState);
   },
   new (state) {
     state.push({

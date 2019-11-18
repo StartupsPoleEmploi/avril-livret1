@@ -45,7 +45,7 @@ module.exports = {
     defaultLocale: 'fr',
     locales: ['fr']
   },
-  plugins: [],
+  plugins: ['~/plugins/filters.js'],
   router: {
     middleware: [
       'autosave',
