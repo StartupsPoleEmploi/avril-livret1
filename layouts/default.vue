@@ -30,7 +30,7 @@
 
           <div class="avril--actions">
             <div class="control">
-              <nuxt-link to="/recapitulatif" :class="slugIndex == 15 ? 'is-ok button is-dark' : 'is-ok button is-default'">
+              <nuxt-link to="/recapitulatif" class="is-ok button" :class="slugIndex == 15 ? 'is-dark' : 'is-default'">
                 Enregistrer mon livret de recevabilité
               </nuxt-link>
             </div>
@@ -40,26 +40,14 @@
       </div>
 
 
-      <!-- Fake form + aide -->
       <div class="avril-content">
-
-        <!-- <div class="experiences-header">
-
-
-        </div> -->
-
         <div class="avril-form-help-container">
           <component :is="currentStepper" />
           <nuxt />
-
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>
 </template>
 
@@ -67,9 +55,9 @@
 import _ from 'lodash';
 import Actions from '~/components/Actions.vue';
 import Tabs from '~/components/Tabs.vue';
-import StepperExperiences from '~/components/stepper-experiences.vue';
-import StepperFormations from '~/components/stepper-formations.vue';
-import StepperIdentite from '~/components/stepper-identite.vue';
+import StepperExperiences from '~/components/StepperExperiences.vue';
+import StepperFormations from '~/components/StepperFormations.vue';
+import StepperIdentite from '~/components/StepperIdentite.vue';
 
 import ArrowLeft from '@/assets/svgs/keyboard-arrow-left.svg';
 import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';

@@ -36,7 +36,7 @@ module.exports = {
       }
     ]
   },
-  loading: '~/components/loading.vue',
+  loading: '~/components/Loading.vue',
   mode: 'universal',
   modules: [
     'nuxt-svg-loader',
