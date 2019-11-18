@@ -39,7 +39,7 @@ export const mutations = {
     state[state.length - 1].periods.push(val)
   },
   addHours (state, hours) {
-    state[state.length - 1].hours = hours
+    state[state.length - 1].totalWorkedHours = hours
   },
   remove (state, { todo }) {
     state.splice(state.indexOf(todo), 1)
