@@ -1,16 +1,18 @@
+import {percent} from '../utils/number';
+
 export const state = () => ({
   certificationLabel: null,
   currentTab: null,
   hash: null,
   totalWorkedHours: 0,
-  progress: 0,
-
 })
 
 export const getters = {
-  progress: state => {
-    console.log('coucou', state);
-    return 0;
+  progress: (state, getters) => {
+    const result =  ['education', 'experiences', 'identity'].reduce((val, key, index, keys) => {
+      return val + getters[`${key}/progress`] / keys.length;
+    }, 0);
+    return percent(result / 100);
   }
 }
 
@@ -21,9 +23,6 @@ export const mutations = {
   },
   setCurrentTab(state, currentTab) {
     state.currentTab = currentTab
-  },
-  updateProgress (state, progress) {
-    state.progress = progress
   },
 }
 
@@ -41,9 +40,9 @@ export const actions = {
      if (env.apiUrl && queryHash) {
       const result = await fetch(`${env.apiUrl}/api/booklet?hash=${queryHash}`)
       if (result.ok) {
-        const data = await result.json();
-        console.log('fetched data');
-        dispatch('initState', queryHash, data);
+        const dataWithStatus = await result.json();
+        console.log('fetched data', dataWithStatus.data);
+        dispatch('initState', Object.assign({hash: queryHash}, dataWithStatus.data));
       } else {
         console.log('Request failed');
         redirectToPhoenix({redirect, env}, 'request_failed');
@@ -53,8 +52,8 @@ export const actions = {
       redirectToPhoenix({redirect, env}, 'not_allowed');
     }
   },
-  initState({commit}, hash, {certificationLabel, identity, experiences, education} = data) {
-    commit('initState', queryHash, data.certificationLabel);
+  initState({commit}, {hash, certificationLabel, identity, experiences, education}) {
+    commit('initState', hash, certificationLabel);
     commit('identity/initState', identity);
     commit('experiences/initState', experiences);
     commit('education/initState', education);

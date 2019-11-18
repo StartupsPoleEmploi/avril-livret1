@@ -1,9 +1,24 @@
+import {isBlank} from '../utils/boolean';
+import {percent} from '../utils/number';
+
 export const state = () => ({
   relatedDegrees: [],
   trainings: [],
   latestCourseLevel: null,
   latestDegree: null,
 })
+
+export const getters = {
+  totalFields: state => {
+    return Object.values(state).length;
+  },
+  filledFields: state => {
+    return Object.values(state).filter(v => !isBlank(v)).length;
+  },
+  progress: (state, {filledFields, totalFields}) => {
+    return percent(filledFields/totalFields);
+  },
+}
 
 export const mutations = {
   initState (state, serverState) {

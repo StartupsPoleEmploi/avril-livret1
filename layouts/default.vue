@@ -23,7 +23,7 @@
             <div class="progress__bar--suivi" :style="`width:${progress}%`"></div>
           </div>
           <div class="">
-            {{Math.round(progress)}}% complété
+            {{progress}}% complété
           </div>
 
           <Tabs></Tabs>
@@ -78,33 +78,12 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
         const currentTab = this.$store.state.currentTab;
         return `Stepper${currentTab.charAt(0).toUpperCase() + currentTab.slice(1)}`;
       },
-      heures () {
-        return this.$store.state.experiences.heures
-      },
       progress () {
-        return this.$store.state.progress;
-        // let counter = 0;
-
-        // let sections = 6;
-        // let totalHours = this.$store.state.experiences.reduce(0, (total, experience) => {
-        //   return total + (experience.hours || 0);
-        // });
-
-        // if( valeurs.heures > 1607 ) counter++;
-        // if( valeurs.titres.length != 0 ) counter++;
-        // if( valeurs.formationsContinues.length != 0 ) counter++;
-
-        // if( !_.isEmpty( valeurs.formations.classe ) ) counter++;
-        // if( !_.isEmpty( valeurs.formations.diplome ) ) counter++;
-        // if( !_.isEmpty( valeurs.formations.certification ) ) counter++;
-
-        // let sut = ( counter / sections ) * 100;
-        // this.$store.commit('updateProgress', sut);
-        return 0;
+        console.log(this.$store.getters.progress)
+        return this.$store.getters.progress;
       },
     },
     methods: {
-
     },
     mounted() {
       this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
@@ -117,7 +96,6 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
       }
     },
     afterCreated() {
-
     },
     data: () => ({
       current: 0,
