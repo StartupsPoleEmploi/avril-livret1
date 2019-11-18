@@ -82,6 +82,7 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
         return this.$store.state.experiences.heures
       },
       progress () {
+        return this.$store.state.progress;
         // let counter = 0;
 
         // let sections = 6;

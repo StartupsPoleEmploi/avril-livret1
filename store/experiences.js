@@ -3,6 +3,9 @@ import {uuid} from '../utils/string';
 export const state = () => ([])
 
 export const mutations = {
+  initState (state, serverState) {
+    state = state.contact(serverState);
+  },
   new (state) {
     state.push({
       uuid: uuid(),
