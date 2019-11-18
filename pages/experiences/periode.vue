@@ -59,7 +59,6 @@ import DatePicker from 'vue2-datepicker';
 import moment from 'moment';
 
 export default {
-  layout: 'experience',
   components: { DatePicker },
   data() {
     return {

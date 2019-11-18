@@ -97,7 +97,6 @@
 import _ from 'lodash';
 
 export default {
-  layout: 'experience',
   components: {},
   computed: {
     activites () {

@@ -100,7 +100,6 @@ Les familles professionnelles sont des ensembles de métiers qui ont des points 
 // import Logo from '~/components/Logo.vue'
 // const ioHook = require('iohook');
 export default {
-  layout: 'experience',
   components: {
     // Logo
   },

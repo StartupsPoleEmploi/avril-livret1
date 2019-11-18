@@ -64,7 +64,6 @@ Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de jus
 import _ from 'lodash';
 
 export default {
-  layout: 'experience',
   components: {
     // Logo
   },

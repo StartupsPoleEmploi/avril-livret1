@@ -61,7 +61,6 @@
 import _ from 'lodash';
 
 export default {
-  layout: 'experience',
   computed: {
     trainings () {
       let act = _.cloneDeep(this.$store.state.education.trainings)

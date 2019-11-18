@@ -33,7 +33,6 @@
 
 <script>
 export default {
-  layout: 'experience',
   mounted() {
     // this.$store.commit('updateProgress', 70)
   },

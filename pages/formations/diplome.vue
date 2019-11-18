@@ -62,7 +62,6 @@ Et oui, que vous ayez déjà ou non un diplôme, vous pouvez vous lancer dans un
 // import Logo from '~/components/Logo.vue'
 // const ioHook = require('iohook');
 export default {
-  layout: 'experience',
   mounted() {
     // this.$store.commit('updateProgress', 50)
   },

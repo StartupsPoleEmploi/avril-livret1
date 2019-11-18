@@ -51,7 +51,6 @@
 // import Logo from '~/components/Logo.vue'
 // const ioHook = require('iohook');
 export default {
-  layout: 'experience',
   components: {
     // Logo
   },

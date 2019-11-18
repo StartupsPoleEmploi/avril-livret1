@@ -46,7 +46,6 @@ Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de jus
 // import Logo from '~/components/Logo.vue'
 // const ioHook = require('iohook');
 export default {
-  layout: 'experience',
   mounted() {
     // this.$store.commit('updateProgress', 60)
   },
