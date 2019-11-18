@@ -43,8 +43,6 @@ Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de jus
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
-// const ioHook = require('iohook');
 export default {
   methods: {
     addLatestCourseLevel (e) {
@@ -53,7 +51,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

@@ -65,7 +65,6 @@ import _ from 'lodash';
 
 export default {
   components: {
-    // Logo
   },
   computed: {
     relatedDegrees () {

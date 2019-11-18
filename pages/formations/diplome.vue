@@ -59,8 +59,6 @@ Et oui, que vous ayez déjà ou non un diplôme, vous pouvez vous lancer dans un
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
-// const ioHook = require('iohook');
 export default {
   mounted() {
     // this.$store.commit('updateProgress', 50)

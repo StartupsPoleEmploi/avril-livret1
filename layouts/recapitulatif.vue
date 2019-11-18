@@ -29,7 +29,6 @@
 
 <script>
 import _ from 'lodash';
-import Actions from '~/components/Actions.vue';
 import Tabs from '~/components/Tabs.vue';
 import StepperExperiences from '~/components/StepperExperiences.vue';
 import StepperFormations from '~/components/StepperFormations.vue';
@@ -40,7 +39,6 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
 
   export default {
     components: {
-      Actions,
       Tabs,
       StepperExperiences,
       StepperFormations,

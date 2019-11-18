@@ -76,11 +76,8 @@
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
-// const ioHook = require('iohook');
 export default {
   components: {
-    // Logo
   },
   computed: {
     experiences () {

@@ -49,8 +49,6 @@
 import DatePicker from 'vue2-datepicker';
 import moment from 'moment';
 
-// import Logo from '~/components/Logo.vue'
-// const ioHook = require('iohook');
 export default {
   components: {
     DatePicker
