@@ -1,8 +1,8 @@
 <template>
   <div class="recap-cell cell-titres">
     J'ai un diplôme de
-    <span v-for="titre, index in experiences.titres">
-      <span><strong>{{ titre }}</strong> <span v-if="index < experiences.titres.length-1">et de </span></span>
+    <span v-for="titre, index in education.relatedDegrees">
+      <span><strong>{{ titre }}</strong> <span v-if="index < education.relatedDegrees.length-1">et de </span></span>
     </span>
 
   </div>
@@ -11,8 +11,8 @@
 <script>
 export default {
   computed: {
-    experiences () {
-      return this.$store.state.experiences
+    education () {
+      return this.$store.state.education
     },
   },
 }
