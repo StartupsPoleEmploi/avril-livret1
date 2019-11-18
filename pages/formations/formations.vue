@@ -4,12 +4,12 @@
     <div class="form-fields">
 
       <div class="field">
-        <h3 class="title is-5">Si vous avez suivi des formation, effectué des stages ou obtenu des habilitations, indiquez les.</h3>
+        <h3 class="title is-5">Si vous avez suivi des formations courtes, effectué des stages ou obtenu des habilitations, indiquez les.</h3>
       </div>
 
       <div class="field">
         <div class="control">
-          <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, BTS MUC" @keyup.enter="addTraining">
+          <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, 1er secours, permis B, Fimo" @keyup.enter="addTraining">
           <a class="button is-dark is-pulled-right" @click="addTraining" style="margin-top:4px">
             + Ajouter
           </a>
@@ -29,13 +29,13 @@
 
       <div class="field">
         <div class="control">
-          <nuxt-link v-if="displayNextButton" to="/experiences/fonction" class="is-ok button is-default is-pulled-right">
+          <nuxt-link v-if="displayNextButton" to="/experiences" class="is-ok button is-default is-pulled-right">
             Continuer
           </nuxt-link>
-          <nuxt-link v-else to="/experiences/fonction" class="is-ok button is-default is-pulled-right">
+          <nuxt-link v-else to="/experiences" class="is-ok button is-default is-pulled-right">
             Aucun, continuer
           </nuxt-link>
-          <nuxt-link to="/experiences/fonction" class="is-ok button is-text is-pulled-left">
+          <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
         </div>
@@ -46,11 +46,19 @@
 
     <div class="form-help">
       <h3 class="title is-5">Besoin d'aide ?</h3>
-      <div class="form-help-content">
-        Il faut indiquer les stages ou les formations qui ont un lien avec votre projet de diplôme actuel.<br/> Si vous n'êtes pas sûr de vous, remplissez cette rubrique au maximum, nous ferons le tri !<br/> Rappelez-vous, ce n'est pas une condition pour valider votre demande, ces renseignements nous aident simplement à mieux vous connaitre. La seule condition requise pour démarrer votre projet reste d'avoir 1 an d'expérience.
+      <div class="form-help-content content">
+        <p>
+          Il faut indiquer les stages ou les formations qui ont un lien avec votre projet de diplôme actuel.
+        </p>
+        <p>
+          Si vous n'êtes pas sûr de vous, remplissez cette rubrique au maximum, nous ferons le tri !
+        </p>
+        <p>
+          Rappelez-vous, ce n'est pas une condition pour valider votre demande, ces renseignements nous aident simplement à mieux vous connaitre. La seule condition requise pour démarrer votre projet reste d'avoir 1 an d'expérience.
+        </p>
       </div>
       <p style="margin-top:1rem">
-        <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+        <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
       </p>
     </div>
 

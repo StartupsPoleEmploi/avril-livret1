@@ -2,7 +2,6 @@
   <div class="form">
     <div class="form-fields">
       <h3 class="title is-5">Quelle classe avez vous suivi en dernier ?</h3>
-
       <div v-for="{label, value} in possibleAnswers">
         <nuxt-link v-on:click.native="addLatestCourseLevel(value)" to="/formations/diplome" class="box" :class="latestCourseLevel == value ? 'active' : ''">
           <input type="radio" name="answer" :checked="latestCourseLevel == value ? 'active' : ''"> &nbsp;{{label}}
@@ -10,12 +9,22 @@
       </div>
     </div>
 
-    <div class="form-help">
-      <h3 class="title is-5">Besoin d'aide ?</h3>
-      <div class="form-help-content">
-        Dites nous simplement quelle a été la dernière classe que vous avez fréquentée.<br/>
-        Ne vous inquiétez pas, il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.<br/>
-        Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
+      <div class="form-help">
+        <h3 class="title is-5">Besoin d'aide ?</h3>
+        <div class="form-help-content content">
+          <p>
+            Dites nous simplement quelle a été la dernière classe que vous avez fréquentée.
+          </p>
+          <p>
+            Ne vous inquiétez pas, il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.
+          </p>
+          <p>
+            Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
+          </p>
+        </div>
+        <p style="margin-top:1rem">
+          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
+        </p>
       </div>
       <p style="margin-top:1rem">
         <a href="#" class="is-text">J'ai besoin de plus d'aide</a>

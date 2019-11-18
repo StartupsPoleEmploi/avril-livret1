@@ -44,11 +44,19 @@
 
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content">
-          Nous allons vous aider à calculer le nombre d'heures travaillés. Sélectionnez la date de début et la date de fin de votre contrat ainsi que le nombre d'heures travaillées par semaine. Pour rappel, un temps plein corrrespond à 35 ou 39h par semaine. Si il est indiqué 151h par mois sur votre bulletin de salaire, cela veut dire que vous avez travaillé à temps complet c'est à dire 35h par semaine.
+        <div class="form-help-content content">
+          <p>
+            Nous allons vous aider à calculer le nombre d'heures travaillées. Sélectionnez la date de début et la date de fin de votre contrat ainsi que le nombre d'heures travaillées par semaine.
+          </p>
+          <p>
+            Pour rappel, un temps plein correspond à 35 par semaine.
+          </p>
+          <p>
+            Si vous avez travaillé à temps plein et à temps partiel pour le même emploi, ajoutez plusieurs périodes.
+          </p>
         </div>
         <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
         </p>
       </div>
     </div>

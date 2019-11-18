@@ -7,7 +7,7 @@
           <h1 class="title is-1">Récapitulatif</h1>
 
           <div class="notification is-avril">
-            <p>Vérifiez que toutes ces informations soient correctes. Si besoin corrigez-les.</p>
+            <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les.</p>
             <p>Si tout vous semble correcte, enregistrez votre livret 1 dans votre dossier VAE Avril.</p>
           </div>
         </div>
@@ -25,12 +25,12 @@
           <h3 class="title is-3">Mes expériences professionnelles</h3>
           <p v-if="heures >= 1607">J'ai plus de 1607 heures d'expériences professionnelles</p>
           <div class="columns is-multiline">
-            <div v-for="experience in experiences.experiences" class="column is-4">
+            <div v-for="experience in experiences" class="column is-4">
               <div class="box is-equal-height">
-                <h3 class="title is-4">{{ experience.fonction }}</h3>
-                <h3 class="title is-6">{{ experience.duree }} heures</h3>
-                <p>{{ experience.entreprise }}</p>
-                <span>{{ experience.periode }}</span>
+                <h3 class="title is-4">{{ experience.role }}</h3>
+                <h3 class="title is-6">{{ experience.hours }} heures</h3>
+                <p>{{ experience.companyName }}</p>
+                <span>{{ experience.periods }}</span>
                 <a href="#">éditer</a>
               </div>
             </div>

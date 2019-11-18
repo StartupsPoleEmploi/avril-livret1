@@ -1,10 +1,10 @@
 <template>
 <div class="">
-  <div class="recap-cell cell-formations" v-if="experiences.formationsContinues.length != 0">
+  <div class="recap-cell cell-formations" v-if="education.trainings.length != 0">
 
     J'ai une formation de
-    <span v-for="formation, index in experiences.formationsContinues">
-      <span><strong>{{ formation }}</strong> <span v-if="index < experiences.formationsContinues.length-1">et de </span></span>
+    <span v-for="formation, index in education.trainings">
+      <span><strong>{{ formation }}</strong> <span v-if="index < education.trainings.length-1">et de </span></span>
     </span>
 
   </div>
@@ -17,8 +17,8 @@
 <script>
 export default {
   computed: {
-    experiences () {
-      return this.$store.state.experiences
+    education () {
+      return this.$store.state.education
     },
   },
 }

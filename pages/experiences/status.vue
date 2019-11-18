@@ -4,10 +4,16 @@
 
     <div class="form-fields">
 
-        <h3 class="title is-5">Statut au moment où vous avez exercé votre activité</h3>
+        <h3 class="title is-5">Quel était votre statut au moment où vous avez exercé ce métier ?</h3>
 
         <nuxt-link v-on:click.native="addContractType('A')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;Salarié
+        </nuxt-link>
+        <nuxt-link v-on:click.native="addContractType('E')" to="periode" class="box">
+          <input type="radio" name="answer"> &nbsp;Contrat Unique d'Insertion (CUI, CAE...)
+        </nuxt-link>
+        <nuxt-link v-on:click.native="addContractType('D')" to="periode" class="box">
+          <input type="radio" name="answer"> &nbsp;Travailleur indépendant, artisan, profession libérale
         </nuxt-link>
         <nuxt-link v-on:click.native="addContractType('B')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;En contrat de professionnalisation
@@ -15,15 +21,17 @@
         <nuxt-link v-on:click.native="addContractType('C')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;En contrat d’apprentissage
         </nuxt-link>
-        <nuxt-link v-on:click.native="addContractType('D')" to="periode" class="box">
-          <input type="radio" name="answer"> &nbsp;Travailleur indépendant, artisan, profession libérale
-        </nuxt-link>
-        <nuxt-link v-on:click.native="addContractType('E')" to="periode" class="box">
-          <input type="radio" name="answer"> &nbsp;Volontaire
-        </nuxt-link>
-        <nuxt-link v-on:click.native="addContractType('F')" to="periode" class="box">
+        <!-- <nuxt-link v-on:click.native="addContractType('F')" to="periode" class="box">
           <input type="radio" name="answer"> &nbsp;Autre
-        </nuxt-link>
+        </nuxt-link> -->
+        <div class="select">
+          <input type="radio" name="answer"> &nbsp;
+          <select>
+            <option>Autres</option>
+            <option>Contrat aidé</option>
+            <option>Volontaire</option>
+          </select>
+        </div>
 
 
           <div class="form-field-action field" style="margin-top: 20px">
@@ -39,11 +47,16 @@
 
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content">
-          Pour cette expérience, étiez-vous employé par un patron, à votre compte, en formation une partie du temps ? Peu importe le statut, l'important est de prouver que vous avez fait cette activité.
+        <div class="form-help-content content">
+          <p>
+            Pour cette expérience, dites-nous quel était votre statut.
+          </p>
+          <p>
+            Cette information nous servira à vous demander les justificatifs appropriés (fiche de paye, bilan comptable, contrat de travail...)
+          </p>
         </div>
         <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
         </p>
       </div>
     </div>

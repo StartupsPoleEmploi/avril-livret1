@@ -17,14 +17,22 @@
     </div>
     <div class="form-help">
       <h3 class="title is-5">Besoin d'aide ?</h3>
-      <div class="form-help-content">
-        Indiquez le diplôme qui le plus haut niveau dans l'ensemble de vos diplômes.<br/>
-        Il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.<br/>
-        Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
-        Et oui, que vous ayez déjà ou non un diplôme, vous pouvez vous lancer dans une démarche de VAE !
+      <div class="form-help-content content">
+        <p>
+          Indiquez le diplôme qui a le plus haut niveau dans l'ensemble de vos diplômes.
+        </p>
+        <p>
+          Il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.
+        </p>
+        <p>
+          Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
+        </p>
+        <p>
+          Et oui, que vous ayez déjà ou non un diplôme, vous pouvez vous lancer dans une démarche de VAE !
+        </p>
       </div>
       <p style="margin-top:1rem">
-        <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
+        <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
       </p>
     </div>
   </div>
