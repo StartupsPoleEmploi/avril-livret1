@@ -40,39 +40,20 @@
           </nuxt-link>
         </div>
       </div>
-
     </div>
-
-
-    <div class="form-help">
-      <h3 class="title is-5">Besoin d'aide ?</h3>
-      <div class="form-help-content content">
-        <p>
-          Il faut indiquer les stages ou les formations qui ont un lien avec votre projet de diplôme actuel.
-        </p>
-        <p>
-          Si vous n'êtes pas sûr de vous, remplissez cette rubrique au maximum, nous ferons le tri !
-        </p>
-        <p>
-          Rappelez-vous, ce n'est pas une condition pour valider votre demande, ces renseignements nous aident simplement à mieux vous connaitre. La seule condition requise pour démarrer votre projet reste d'avoir 1 an d'expérience.
-        </p>
-      </div>
-      <p style="margin-top:1rem">
-        <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
-      </p>
-    </div>
-
+    <Help :content="help" />
   </div>
 </template>
 
 <script>
-import _ from 'lodash';
+import helpLoaderMixin from '~/mixins/helpLoader.js';
 
 export default {
+  mixins: [helpLoaderMixin],
   computed: {
     trainings () {
-      let act = _.cloneDeep(this.$store.state.education.trainings)
-      return act.reverse()
+      // let act = _.cloneDeep(this.$store.state.education.trainings)
+      // return act.reverse()
     },
     displayNextButton () {
       return this.$store.state.education.trainings.length;

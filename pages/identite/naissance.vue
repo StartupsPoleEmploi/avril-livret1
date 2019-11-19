@@ -1,6 +1,5 @@
 <template>
   <div class="form">
-
     <div class="form-fields">
 
       <div class="field">
@@ -10,7 +9,6 @@
         </div>
       </div>
 
-      <!-- Date de naissance -->
       <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
@@ -30,34 +28,18 @@
       </div>
 
     </div>
-
-
-      <div class="form-help">
-        <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content content">
-          <p>
-            Ces informations vont permettre aux différents intervenants VAE de vous contacter.
-          </p>
-          <p>
-            Elles vont aussi servir à vous inscrire au diplôme. Il faut donc nous donner les informations telles qu'elles apparaissent sur vos justificatifs d'identité.
-          </p>
-          <p>
-            Pour l'adresse, il faut indiquer votre adesse actuelle.
-          </p>
-        </div>
-        <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
-        </p>
-      </div>
-
-    </div>
+    <Help :content="help" />
+  </div>
 </template>
 
 <script>
 import DatePicker from 'vue2-datepicker';
 import moment from 'moment';
 
+import helpLoaderMixin from '~/mixins/helpLoader.js';
+
 export default {
+  mixins: [helpLoaderMixin],
   components: {
     DatePicker
   },
@@ -95,11 +77,6 @@ export default {
       }
     }
   },
-  watch: {
-    $route (to, from) {
-      this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
-    }
-  },
   data: () => ({
     lang: {
       days: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
@@ -110,70 +87,6 @@ export default {
         dateRange: 'Sélectionnez une période'
       }
     },
-    time3: '',
-    premierePeriode: '',
-    secondePeriode: '',
-    heurePeriode: '',
-    semaine: 46,
-    hours: 35,
-    selectedYear: 46,
-    selectedSemaines: 46,
-    selectedHours: 35,
-    current: 0,
-    slugIndex: 0,
-    cerfa:[{
-      slug: 'experiences',
-      title: "Mes expériences",
-    },
-    {
-      slug: 'experiences-fonction',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-famille',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-status',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-periode',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-precision',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-diplome',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-autre',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-comparatibilite',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-certification',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-rncp',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-formations',
-      title: "Mes formations",
-    },
-  ],
   })
 }
 </script>

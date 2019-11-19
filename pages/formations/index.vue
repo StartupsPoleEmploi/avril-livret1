@@ -8,36 +8,23 @@
         </nuxt-link>
       </div>
     </div>
-
-      <div class="form-help">
-        <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content content">
-          <p>
-            Dites nous simplement quelle a été la dernière classe que vous avez fréquentée.
-          </p>
-          <p>
-            Ne vous inquiétez pas, il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.
-          </p>
-          <p>
-            Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
-          </p>
-        </div>
-        <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
-        </p>
-      </div>
-    </div>
+    <Help :content="help" />
   </div>
 </template>
 
 <script>
+import helpLoaderMixin from '~/mixins/helpLoader.js';
+
 export default {
+  mixins: [helpLoaderMixin],
   computed: {
     latestCourseLevel() {
       return this.$store.state.education.latestCourseLevel;
     },
-    possibleAnswers() {
-      return [{
+  },
+  data() {
+    return {
+      possibleAnswers: [{
         label: 'Primaire, 6ème, 5ème, 4ème, 3ème, 1ère année de CAP/BEP',
         value: 'A',
       }, {
@@ -58,13 +45,20 @@ export default {
       }, {
         label: '6ème année de l\'enseignement supérieur',
         value: 'G',
-      }]
+      }],
+      help: `
+Dites nous simplement quelle a été la dernière classe que vous avez fréquentée.
+
+Ne vous inquiétez pas, il s'agit d'une simple information, cela ne sert pas à évaluer votre candidature à la VAE.
+
+Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
+      `,
     }
   },
   methods: {
     addLatestCourseLevel (e) {
       this.$store.commit('education/addLatestCourseLevel', e)
     },
-  }
+  },
 }
 </script>

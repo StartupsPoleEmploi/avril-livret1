@@ -1,68 +1,47 @@
 <template>
   <div class="form experience-index">
-
     <div class="form-fields">
 
-        <h1 class="title is-3">Mes expériences professionnelles</h1>
+      <h1 class="title is-3">Mes expériences professionnelles</h1>
 
-        <nuxt-link to="experiences/fonction" class="button" :class="experiencesProgress < 100 ? 'is-dark' : ''">
-          &nbsp;
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <title>add</title>
-              <path d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
-          </svg>&nbsp; Ajouter une expérience
-        </nuxt-link>
-        <span class="avril-ou" v-if="experiencesProgress == 100">&nbsp;ou&nbsp;</span>
-        <nuxt-link v-if="experiencesProgress == 100" :event="experiencesProgress < 100 ? '' : 'click'" to="/formations" class="is-ok button is-dark">
-          Avancer vers mes formations
-        </nuxt-link>
+      <nuxt-link to="experiences/fonction" class="button" :class="experiencesProgress < 100 ? 'is-dark' : ''">
+        &nbsp;
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <title>add</title>
+            <path d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
+        </svg>&nbsp; Ajouter une expérience
+      </nuxt-link>
+      <span class="avril-ou" v-if="experiencesProgress == 100">&nbsp;ou&nbsp;</span>
+      <nuxt-link v-if="experiencesProgress == 100" :event="experiencesProgress < 100 ? '' : 'click'" to="/formations" class="is-ok button is-dark">
+        Avancer vers mes formations
+      </nuxt-link>
 
-        <div class="columns is-multiline">
-          <div v-for="experience in experiences" class="column is-half">
-            <div class="box is-equal-height">
-              <h3 class="title is-4">{{ experience.role }}</h3>
-              <h3 class="title is-6">{{ experience.duration }} heures</h3>
-              <p>{{ experience.companyName }}</p>
-              <span>{{ experience.period }}</span>
-              <a href="#">éditer</a>
-            </div>
-          </div>
-          <div class="column is-one-quarter">
-            <div class="avril__box__experience is-equal-height">
-            </div>
+      <div class="columns is-multiline">
+        <div v-for="experience in experiences" class="column is-half">
+          <div class="box is-equal-height">
+            <h3 class="title is-4">{{ experience.role }}</h3>
+            <h3 class="title is-6">{{ experience.duration }} heures</h3>
+            <p>{{ experience.companyName }}</p>
+            <span>{{ experience.period }}</span>
+            <a href="#">éditer</a>
           </div>
         </div>
-
-      </div>
-
-
-      <div class="form-help">
-        <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content content">
-          <p>
-            Dans cette rubrique, vous allez nous indiquer vos expériences.
-          </p>
-          <p>
-            Nous parlons là des expériences qui ont un rapport avec le diplôme que vous souhaitez obtenir.
-          </p>
-          <p>
-            Si vous n'êtes pas sûr(e) de vous, ajouter toutes vos expériences, nous ferons le tri !
-          </p>
-          <p>
-            Nous avons affiché ci-contre les expériences partagées par Pôle emploi; vous pouvez les modifier, supprimer ou en ajouter.
-          </p>
+        <div class="column is-one-quarter">
+          <div class="avril__box__experience is-equal-height">
+          </div>
         </div>
-        <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
-        </p>
       </div>
+
     </div>
+    <Help :content="help" />
+  </div>
 </template>
 
 <script>
+import helpLoaderMixin from '~/mixins/helpLoader.js';
+
 export default {
-  components: {
-  },
+  mixins: [helpLoaderMixin],
   computed: {
     experiences () {
       return this.$store.state.experiences
@@ -71,7 +50,6 @@ export default {
       return this.$store.getters['experiences/progress'];
     },
   },
-
   methods: {
     keymonitor: function(event) {
       if(event.key == "Enter")
@@ -80,68 +58,6 @@ export default {
       }
     }
   },
-  watch: {
-    $route (to, from) {
-      this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
-    }
-  },
-  data: () => ({
-    current: 0,
-    slugIndex: 0,
-    cerfa:[{
-      slug: 'experiences',
-      title: "Mes expériences",
-    },
-    {
-      slug: 'experiences-fonction',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-famille',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-status',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-periode',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-precision',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-diplome',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-autre',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-comparatibilite',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-certification',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-rncp',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-formations',
-      title: "Mes formations",
-    },
-  ],
-  })
 }
 </script>
 

@@ -34,7 +34,6 @@
 <script>
 export default {
   mounted() {
-    // this.$store.commit('updateProgress', 70)
   },
   methods: {
     addCertification (e) {

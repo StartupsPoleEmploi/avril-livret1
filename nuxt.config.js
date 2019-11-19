@@ -40,16 +40,22 @@ module.exports = {
   mode: 'universal',
   modules: [
     'nuxt-svg-loader',
+    '@nuxtjs/markdownit',
   ],
   moment: {
     defaultLocale: 'fr',
     locales: ['fr']
   },
-  plugins: ['~/plugins/filters.js'],
+  plugins: [
+    '~/plugins/filters.js',
+  ],
   router: {
     middleware: [
       'autosave',
-      'commit-tab',
+      'store-current-path',
     ]
+  },
+  markdownit: {
+    injected: true
   },
 }

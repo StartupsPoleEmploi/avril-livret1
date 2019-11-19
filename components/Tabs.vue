@@ -64,7 +64,7 @@ export default {
       return BOOKLET_MIN_HOURS;
     },
     currentTab () {
-      return this.$store.state.currentTab;
+      return this.$store.getters.currentTab;
     }
   },
 }

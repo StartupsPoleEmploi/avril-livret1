@@ -1,7 +1,6 @@
 <template>
 
   <div class="form">
-
     <div class="form-fields">
       <div class="field">
         <label class="label">Emploi ou fonction occupée</label>
@@ -39,44 +38,23 @@
       </div>
 
     </div>
-
-    <div class="form-help">
-      <h3 class="title is-5">Besoin d'aide ?</h3>
-      <div class="form-help-content content">
-        <p>
-          Précisez les métiers ou fonctions que vous avez occupés (salariés, bénévoles...).
-        </p>
-        <p>
-          Nous parlons des métiers ou fonctions qui ont un lien avec le diplôme que vous souhaitez obtenir.
-        </p>
-        <p>
-          Vous pouvez reprendre ce qui est noté dans votre CV ou votre bulletin de salaire.
-        </p>
-        <p>
-          Vous devez renseigner les coordonnées des entreprises telles qu'elles apparaissent sur les justificatifs que vous fournirez (certificats de travail, fiche de paye, etc)..
-        </p>
-      </div>
-      <p style="margin-top:1rem">
-        <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
-      </p>
-    </div>
+    <Help :content="help" />
   </div>
 
 
 </template>
 
 <script>
+import helpLoaderMixin from '~/mixins/helpLoader.js';
+
 export default {
-  components: {
-  },
+  mixins: [helpLoaderMixin],
   computed: {
     role () {
       let size = this.$store.state.experiences.length - 1
       if(this.$store.state.experiences.length)
         return this.$store.state.experiences[ size ].role
     },
-  },
-  created() {
   },
   mounted() {
     this.$store.commit('experiences/new')

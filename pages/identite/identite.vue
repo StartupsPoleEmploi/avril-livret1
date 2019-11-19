@@ -1,8 +1,6 @@
 <template>
   <div class="form is-horizontal">
-
     <div class="form-fields fields">
-
       <div class="field">
         <div class="control">
           <div class="columns">
@@ -48,45 +46,16 @@
           </p>
         </div>
       </fieldset>
-
-      <!-- <div class="form-field-action field">
-        <div class="control">
-          <nuxt-link to="identite/naissance" class="is-ok button is-text is-pulled-left">
-            Remplir plus tard
-          </nuxt-link>
-          <nuxt-link to="identite/naissance" class="is-ok button is-dark is-pulled-right">
-            Continuer
-          </nuxt-link>
-        </div>
-      </div> -->
-
     </div>
-
-
-      <div class="form-help">
-        <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content content">
-          <p>
-            Ces informations vont permettre aux différents intervenants VAE de vous contacter.
-          </p>
-          <p>
-            Elles vont aussi servir à vous inscrire au diplôme. Il faut donc nous donner les informations telles qu'elles apparaissent sur vos justificatifs d'identité.
-          </p>
-          <p>
-            Pour l'adresse, il faut indiquer votre adresse actuelle.
-          </p>
-        </div>
-        <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
-        </p>
-      </div>
-    </div>
+    <Help :content="help" />
+  </div>
 </template>
 
 <script>
+import helpLoaderMixin from '~/mixins/helpLoader.js';
+
 export default {
-  components: {
-  },
+  mixins: [helpLoaderMixin],
   computed: {
     lastName () {
       return this.$store.state.identity.lastName
@@ -135,68 +104,6 @@ export default {
       this.$store.commit('identity/addCellPhoneNumber', e.target.value)
     },
   },
-  watch: {
-    $route (to, from) {
-      this.slugIndex = _.findIndex(this.cerfa, ['slug', this.$route.name])
-    }
-  },
-  data: () => ({
-    current: 0,
-    slugIndex: 0,
-    cerfa:[{
-      slug: 'experiences',
-      title: "Mes expériences",
-    },
-    {
-      slug: 'experiences-fonction',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-famille',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-status',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-periode',
-      title: "Mes formations",
-    },
-    {
-      slug: 'experiences-precision',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-diplome',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-autre',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-comparatibilite',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-certification',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-rncp',
-      title: "Mes formations",
-    },
-    {
-      slug: 'formations-formations',
-      title: "Mes formations",
-    },
-  ],
-  })
 }
 </script>
 

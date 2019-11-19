@@ -1,73 +1,60 @@
 <template>
   <div class="form">
-
     <div class="form-fields">
 
-        <div class="field natural-language">
-          <span class="title is-5">
-            J'ai travaillé du <date-picker v-model="premierePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> au
-            <date-picker v-model="secondePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> à <input class="input heure" type="number" v-model="heurePeriode" value="35"> h par semaine.
-          </span>
-          <div class="">
-            <a class="button is-dark" @click="addPeriods" style="margin-top:1rem">
-              + Ajouter cette période
-            </a>
-          </div>
+      <div class="field natural-language">
+        <span class="title is-5">
+          J'ai travaillé du <date-picker v-model="premierePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> au
+          <date-picker v-model="secondePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> à <input class="input heure" type="number" v-model="heurePeriode" value="35"> h par semaine.
+        </span>
+        <div class="">
+          <a class="button is-dark" @click="addPeriods" style="margin-top:1rem">
+            + Ajouter cette période
+          </a>
         </div>
-
-        <div class="columns is-multiline">
-          <div v-for="period in periods" class="column is-half">
-            <div class="box is-equal-height">
-              <p class="title is-3">{{ Math.round(period.totalHeures) }} heures</p>
-              <h3 class="title is-6">Du {{ $moment(period.de) }}</h3>
-              <h3 class="title is-6">au {{ $moment(period.a) }}</h3>
-            </div>
-          </div>
-          <div class="column is-one-quarter">
-            <div class="avril__box__experience is-equal-height">
-            </div>
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control">
-            <nuxt-link to="precision" class="is-ok button is-text is-pulled-left">
-              Remplir plus tard
-            </nuxt-link>
-            <nuxt-link to="precision" class="is-ok button is-default is-pulled-right">
-              Continuer
-            </nuxt-link>
-          </div>
-        </div>
-
       </div>
 
-      <div class="form-help">
-        <h3 class="title is-5">Besoin d'aide ?</h3>
-        <div class="form-help-content content">
-          <p>
-            Nous allons vous aider à calculer le nombre d'heures travaillées. Sélectionnez la date de début et la date de fin de votre contrat ainsi que le nombre d'heures travaillées par semaine.
-          </p>
-          <p>
-            Pour rappel, un temps plein correspond à 35 par semaine.
-          </p>
-          <p>
-            Si vous avez travaillé à temps plein et à temps partiel pour le même emploi, ajoutez plusieurs périodes.
-          </p>
+      <div class="columns is-multiline">
+        <div v-for="period in periods" class="column is-half">
+          <div class="box is-equal-height">
+            <p class="title is-3">{{ Math.round(period.totalHeures) }} heures</p>
+            <h3 class="title is-6">Du {{ $moment(period.de) }}</h3>
+            <h3 class="title is-6">au {{ $moment(period.a) }}</h3>
+          </div>
         </div>
-        <p style="margin-top:1rem">
-          <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
-        </p>
+        <div class="column is-one-quarter">
+          <div class="avril__box__experience is-equal-height">
+          </div>
+        </div>
       </div>
+
+      <div class="field">
+        <div class="control">
+          <nuxt-link to="precision" class="is-ok button is-text is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+          <nuxt-link to="precision" class="is-ok button is-default is-pulled-right">
+            Continuer
+          </nuxt-link>
+        </div>
+      </div>
+
     </div>
+    <Help :content="help" />
+  </div>
 </template>
 
 <script>
 import DatePicker from 'vue2-datepicker';
 import moment from 'moment';
 
+import helpLoaderMixin from '~/mixins/helpLoader.js';
+
 export default {
-  components: { DatePicker },
+  mixins: [helpLoaderMixin],
+  components: {
+    DatePicker
+  },
   data() {
     return {
       lang: {

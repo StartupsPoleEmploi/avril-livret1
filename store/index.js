@@ -1,19 +1,89 @@
 import {percent} from '../utils/number';
+import {first, last} from '../utils/array';
+import {fraToEng} from '../utils/translate';
 
 export const state = () => ({
   certificationLabel: null,
-  currentTab: null,
+  currentPath: null,
   hash: null,
-  totalWorkedHours: 0,
+  helpContent: null,
+  steps: [{
+    store: 'education',
+    path: 'formations',
+    steps: [{
+      label: "Dernière formation",
+      to: '/formations',
+    },{
+      label: "Niveau",
+      to: '/formations/diplome',
+    }, {
+      label: "Diplôme(s)",
+      to: '/formations/rncp',
+    }, {
+      label: "Formations",
+      to: '/formations/formations',
+    }],
+  }, {
+    store: 'experiences',
+    path: 'experiences',
+    steps: [{
+      label: "Expérience",
+      to: '/experiences',
+    }, {
+      label: "Fonction",
+      to: '/experiences/fonction',
+    }, {
+      label: "Famille pro",
+      to: '/experiences/famille',
+    }, {
+      label: "Statut",
+      to: '/experiences/statut',
+    }, {
+      label: "Période",
+      to: '/experiences/periode',
+    }, {
+      label: "Activités",
+      to: '/experiences/precision',
+    }],
+  }, {
+    store: 'identity',
+    path: 'identite',
+    steps: [{
+      label: 'Lieu de résidence',
+      to: '/identite',
+    }, {
+      label: 'Naissance',
+      to: '/identite/naissance',
+    }, {
+      label: 'Identité',
+      to: '/identite/identite',
+    }],
+  }]
 })
 
 export const getters = {
+  currentTab: state => {
+    return state.currentPath && state.currentPath.split('/')[1];
+  },
   progress: (state, getters) => {
-    const result =  ['education', 'experiences', 'identity'].reduce((val, key, index, keys) => {
+    const result =  state.steps.map(s => s.store).reduce((val, key, index, keys) => {
       return val + getters[`${key}/progress`] / keys.length;
     }, 0);
     return percent(result / 100);
-  }
+  },
+  flatPaths: state => {
+    return state.steps.reduce((flatArray, step) => {
+      return flatArray.concat(step.steps)
+    }, []).map(s => s.to);
+  },
+  isTheBeginning: (state, getters) => {
+    return state.currentPath === first(getters.flatPaths);
+  },
+  isTheEnd: (state, getters) => {
+    console.log(state.currentPath)
+    console.log(last(getters.flatPaths))
+    return state.currentPath === last(getters.flatPaths);
+  },
 }
 
 export const mutations = {
@@ -21,8 +91,11 @@ export const mutations = {
     state.hash = hash;
     state.certificationLabel = certificationLabel;
   },
-  setCurrentTab(state, currentTab) {
-    state.currentTab = currentTab
+  setCurrentPath(state, currentPath) {
+    state.currentPath = currentPath;
+  },
+  setHelpContent(state, helpContent) {
+    state.helpContent = helpContent;
   },
 }
 

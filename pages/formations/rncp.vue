@@ -4,7 +4,6 @@
     <div class="form-fields">
 
       <div class="field">
-        <!-- <h3 class="title is-5">Avez vous déjà un diplôme ou une partie d'un diplôme en rapport avec celui que vous souhaitez obtenir aujourd'hui ?</h3> -->
         <h3 class="title is-5">Quels diplômes avez-vous obtenu en rapport avec {{currentDegree}} ?</h3>
       </div>
 
@@ -43,54 +42,28 @@
       </div>
 
     </div>
-
-
-    <div class="form-help">
-      <h3 class="title is-5">Besoin d'aide ?</h3>
-      <div class="form-help-content content">
-        <p>
-          Indiquez nous ici les diplômes ou les parties de diplômes que vous avez déjà obtenus ET qui ont un rapport avec le diplôme que vous visez.
-        </p>
-        <p>
-          Par exemple : Diplôme "CAP coiffure" obtenu si vous cherchez à obtenir un BP coiffure.
-        </p>
-        <p>
-          Ces informations serviront aux certificateurs et aux accompagnateurs de votre projet de diplôme en VAE à mieux vous conseiller.
-        </p>
-        <p>
-          Cela ne sert pas à évaluer votre candidature à la VAE.
-        </p>
-        <p>
-          Rappelez-vous, la seule condition pour demander votre diplôme en VAE est de justifier d'un an d'expérience.
-        </p>
-      </div>
-      <p style="margin-top:1rem">
-        <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
-      </p>
-    </div>
+    <Help :content="help" />
   </div>
 </template>
 
 <script>
-import _ from 'lodash';
+import helpLoaderMixin from '~/mixins/helpLoader.js';
 
 export default {
-  components: {
-  },
+  mixins: [helpLoaderMixin],
   computed: {
-    relatedDegrees () {
-      let act = _.cloneDeep(this.$store.state.education.relatedDegrees)
-      return act.reverse()
+    relatedDegrees() {
+      // let act = _.cloneDeep(this.$store.state.education.relatedDegrees)
+      // return act.reverse()
     },
-    currentDegree () {
-      return this.$store.state.currentDegree
+    currentDegree() {
+      return this.$store.state.currentDegree;
     },
-    displayNextButton () {
+    displayNextButton() {
       return this.$store.state.education.relatedDegrees.length;
     },
   },
   mounted() {
-    // this.$store.commit('updateProgress', 80)
   },
   methods: {
     addRelatedDegree (e) {
