@@ -62,24 +62,12 @@ export default {
     DatePicker
   },
   computed: {
-    experiences () {
-      return this.$store.state.experiences.experiences
-    },
     lieu () {
       return this.$store.state.identity.birth.city
     },
-    pourcentage () {
-      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
-        return 100
-      else
-        return (this.$store.state.experiences.heures*100)/1607
-    }
   },
-
   created() {
-    // console.log('accueil created')
   },
-
   mounted() {
     this.$refs.avril__focus.focus()
   },

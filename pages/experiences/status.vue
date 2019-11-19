@@ -67,15 +67,9 @@ export default {
   components: {
   },
   computed: {
-    heures () {
-      return this.$store.state.experiences.heures
+    experiencesProgress () {
+      return this.$store.getters['experiences/progress'];
     },
-    pourcentage () {
-      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
-        return 100
-      else
-        return (this.$store.state.experiences.heures*100)/1607
-    }
   },
 
   created() {

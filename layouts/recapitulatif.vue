@@ -47,9 +47,6 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
       ArrowRight,
     },
     computed: {
-      heures () {
-        return this.$store.state.experiences.heures
-      },
     },
     methods: {
 

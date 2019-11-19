@@ -88,18 +88,6 @@ export default {
   components: {
   },
   computed: {
-    experiences () {
-      return this.$store.state.experiences.experiences
-    },
-    heures () {
-      return this.$store.state.experiences.heures
-    },
-    pourcentage () {
-      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
-        return 100
-      else
-        return (this.$store.state.experiences.heures*100)/1607
-    },
     lastName () {
       return this.$store.state.identity.lastName
     },
@@ -116,11 +104,8 @@ export default {
       return this.$store.state.identity.cellPhoneNumber
     },
   },
-
   created() {
-    // console.log('accueil created')
   },
-
   mounted() {
     this.$refs.avril__focus.focus()
   },

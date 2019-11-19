@@ -43,15 +43,6 @@ export default {
     NavBack
   },
   computed: {
-    heures () {
-      return this.$store.state.experiences.heures
-    },
-    displayFormationStepper () {
-      return this.$store.state.application.displayFormationStepper
-    },
-    currentTab () {
-      return this.$store.state.currentTab;
-    },
   },
   watch: {
     $route (to, from) {

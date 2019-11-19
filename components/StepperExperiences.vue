@@ -52,15 +52,6 @@ export default {
     NavBack
   },
   computed: {
-    heures () {
-      return this.$store.state.experiences.heures
-    },
-    displayExperienceStepper () {
-      return this.$store.state.application.displayExperienceStepper
-    },
-    currentTab () {
-      return this.$store.state.currentTab;
-    },
   },
   watch: {
     $route (to, from) {

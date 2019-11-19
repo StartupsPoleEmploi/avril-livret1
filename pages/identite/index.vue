@@ -54,18 +54,9 @@ export default {
     experiences () {
       return this.$store.state.experiences.experiences
     },
-    heures () {
-      return this.$store.state.experiences.heures
-    },
     residence () {
       return this.$store.state.identity.address.streetNumber + ' ' + this.$store.state.identity.address.streetType + ' ' + this.$store.state.identity.address.streetName + ', ' + this.$store.state.identity.address.postalCode + ' ' + this.$store.state.identity.address.city
     },
-    pourcentage () {
-      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
-        return 100
-      else
-        return (this.$store.state.experiences.heures*100)/1607
-    }
   },
 
   created() {

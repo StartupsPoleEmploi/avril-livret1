@@ -23,7 +23,7 @@
 
         <section class="section section-formation">
           <h3 class="title is-3">Mes expériences professionnelles</h3>
-          <p v-if="heures >= 1607">J'ai plus de 1607 heures d'expériences professionnelles</p>
+          <p v-if="experiencesProgress == 100">J'ai plus de 1607 heures d'expériences professionnelles</p>
           <div class="columns is-multiline">
             <div v-for="experience in experiences" class="column is-4">
               <div class="box is-equal-height">
@@ -86,9 +86,9 @@ export default {
     experiences () {
       return this.$store.state.experiences
     },
-    heures(){
-      return this.$store.state.experiences.heures
-    }
+    experiencesProgress () {
+      return this.$store.getters['experiences/progress'];
+    },
   },
   methods: {
   }

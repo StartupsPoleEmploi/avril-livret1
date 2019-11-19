@@ -26,9 +26,6 @@
           <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
         </p>
       </div>
-      <p style="margin-top:1rem">
-        <a href="#" class="is-text">J'ai besoin de plus d'aide</a>
-      </p>
     </div>
   </div>
 </template>

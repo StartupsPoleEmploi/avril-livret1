@@ -66,8 +66,6 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
-
 export default {
   components: {
   },
@@ -77,28 +75,14 @@ export default {
       if(this.$store.state.experiences.length)
         return this.$store.state.experiences[ size ].role
     },
-    heures () {
-      return this.$store.state.experiences.heures
-    },
-    pourcentage () {
-      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
-        return 100
-      else
-        return (this.$store.state.experiences.heures*100)/1607
-    }
   },
-
   created() {
   },
-
   mounted() {
     this.$store.commit('experiences/new')
     this.$refs.avril__emploi.focus()
   },
   methods: {
-    // ...mapActions([
-    //   'setNewExperience',
-    // ]),
     addRole (e) {
       this.$store.commit('experiences/addRole', e.target.value)
     },

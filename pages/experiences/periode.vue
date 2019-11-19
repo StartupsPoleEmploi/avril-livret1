@@ -91,18 +91,8 @@ export default {
     }
   },
   computed: {
-    heures () {
-      return 0;
-    },
     periods () {
       return this.$store.state.experiences[this.$store.state.experiences.length - 1].periods
-    },
-    pourcentage () {
-      return 0;
-      // if( (this.$store.state.experiences.heures*100)/1607 > 100 )
-      //   return 100
-      // else
-      //   return (this.$store.state.experiences.heures*100)/1607
     },
   },
   watch: {

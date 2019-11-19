@@ -109,23 +109,10 @@ export default {
   components: {
   },
   computed: {
-    heures () {
-      return this.$store.state.experiences.heures
-    },
-    pourcentage () {
-      if( (this.$store.state.experiences.heures*100)/1607 > 100 )
-        return 100
-      else
-        return (this.$store.state.experiences.heures*100)/1607
-    }
   },
-
   created() {
-    // console.log('accueil created')
   },
-
   mounted() {
-
   },
   methods: {
     addCategory (e) {

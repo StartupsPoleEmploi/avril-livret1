@@ -5,14 +5,15 @@
 
         <h1 class="title is-3">Mes expériences professionnelles</h1>
 
-        <nuxt-link to="experiences/fonction" :class="heures<1607 ? 'button is-dark' : 'button'">
+        <nuxt-link to="experiences/fonction" class="button" :class="experiencesProgress < 100 ? 'is-dark' : ''">
+          &nbsp;
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>add</title>
               <path d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
           </svg>&nbsp; Ajouter une expérience
         </nuxt-link>
-        <span class="avril-ou" v-if="heures >= 1607">&nbsp;ou&nbsp;</span>
-        <nuxt-link v-if="heures >= 1607" :event="heures < 1607 ? '' : 'click'" to="/formations" class="is-ok button is-dark">
+        <span class="avril-ou" v-if="experiencesProgress == 100">&nbsp;ou&nbsp;</span>
+        <nuxt-link v-if="experiencesProgress == 100" :event="experiencesProgress < 100 ? '' : 'click'" to="/formations" class="is-ok button is-dark">
           Avancer vers mes formations
         </nuxt-link>
 
@@ -66,17 +67,9 @@ export default {
     experiences () {
       return this.$store.state.experiences
     },
-    heures () {
-      return 0;
-      // return this.$store.state.experiences
+    experiencesProgress () {
+      return this.$store.getters['experiences/progress'];
     },
-    pourcentage () {
-      return 0;
-      // if( (this.$store.state.experiences*100)/1607 > 100 )
-      //   return 100
-      // else
-      //   return (this.$store.state.experiences.heures*100)/1607
-    }
   },
 
   methods: {

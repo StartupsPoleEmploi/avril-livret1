@@ -18,7 +18,7 @@
         </div>
         <div class="navigation-tabs">
           <h3 class="navigation-title title is-4">Dossier de recevabilité</h3>
-          <h4 class="navigation-subtitle title is-5">CAP - Accompagnant éducatif - Petite enfance</h4>
+          <h4 class="navigation-subtitle title is-5">{{certificationLabel}}</h4>
           <div class="navigation-progressbar progress__bar">
             <div class="progress__bar--suivi" :style="`width:${progress}%`"></div>
           </div>
@@ -42,7 +42,7 @@
 
       <div class="avril-content">
         <div class="avril-form-help-container">
-          <component :is="currentStepper" />
+          <component v-if="currentStepper" :is="currentStepper" />
           <nuxt />
         </div>
       </div>
@@ -53,6 +53,7 @@
 
 <script>
 import _ from 'lodash';
+import {capitalize} from '../utils/string';
 import Tabs from '~/components/Tabs.vue';
 import StepperExperiences from '~/components/StepperExperiences.vue';
 import StepperFormations from '~/components/StepperFormations.vue';
@@ -74,13 +75,16 @@ import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
       phoenixUrl() {
         return `${process.env.phoenixUrl}/candidatures/actuelle`;
       },
-      currentStepper () {
+      currentStepper() {
         const currentTab = this.$store.state.currentTab;
-        return `Stepper${currentTab.charAt(0).toUpperCase() + currentTab.slice(1)}`;
+        return currentTab && `Stepper${capitalize(currentTab)}`;
       },
-      progress () {
-        console.log(this.$store.getters.progress)
+      progress() {
         return this.$store.getters.progress;
+      },
+      certificationLabel() {
+        console.log(this.$store.state)
+        return this.$store.state.certificationLabel;
       },
     },
     methods: {

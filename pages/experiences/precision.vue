@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <div class="field" v-if="heures < 1607">
+      <div class="field" v-if="experiencesProgress < 100">
         <div class="control">
           <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
@@ -116,16 +116,9 @@ export default {
       let act = _.cloneDeep(this.$store.state.experiences[this.$store.state.experiences.length - 1].activities)
       return act.reverse()
     },
-    heures () {
-      console.log(this.$store.state)
-      return this.$store.state.experiences.heures
+    experiencesProgress () {
+      return this.$store.getters['experiences/progress'];
     },
-    pourcentage () {
-      if( (this.$store.state.experiences.hours*100)/1607 > 100 )
-        return 100
-      else
-        return (this.$store.state.experiences.hours*100)/1607
-    }
   },
   mounted() {
     this.$refs.avril__name.focus()
