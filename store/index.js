@@ -11,38 +11,38 @@ export const state = () => ({
     store: 'education',
     path: 'formations',
     steps: [{
-      label: "Dernière formation",
+      label: 'Dernière formation',
       to: '/formations',
     },{
-      label: "Niveau",
+      label: 'Niveau',
       to: '/formations/diplome',
     }, {
-      label: "Diplôme(s)",
+      label: 'Diplôme(s)',
       to: '/formations/rncp',
     }, {
-      label: "Formations",
+      label: 'Formations',
       to: '/formations/formations',
     }],
   }, {
     store: 'experiences',
     path: 'experiences',
     steps: [{
-      label: "Expérience",
+      label: 'Expérience',
       to: '/experiences',
     }, {
-      label: "Fonction",
+      label: 'Fonction',
       to: '/experiences/fonction',
     }, {
-      label: "Famille pro",
+      label: 'Famille pro',
       to: '/experiences/famille',
     }, {
-      label: "Statut",
+      label: 'Statut',
       to: '/experiences/statut',
     }, {
-      label: "Période",
+      label: 'Période',
       to: '/experiences/periode',
     }, {
-      label: "Activités",
+      label: 'Activités',
       to: '/experiences/precision',
     }],
   }, {
@@ -65,6 +65,15 @@ export const getters = {
   currentTab: state => {
     return state.currentPath && state.currentPath.split('/')[1];
   },
+  currentSteps: (state, getters) => {
+    return state.steps.find(step => step.path == getters.currentTab);
+  },
+  pageTitle: (state, getters) => {
+    if (getters.currentSteps) {
+      const step = getters.currentSteps.steps.find(s => s.to === state.currentPath);
+      if (step) return step.label;
+    }
+  },
   progress: (state, getters) => {
     const result =  state.steps.map(s => s.store).reduce((val, key, index, keys) => {
       return val + getters[`${key}/progress`] / keys.length;
@@ -80,8 +89,6 @@ export const getters = {
     return state.currentPath === first(getters.flatPaths);
   },
   isTheEnd: (state, getters) => {
-    console.log(state.currentPath)
-    console.log(last(getters.flatPaths))
     return state.currentPath === last(getters.flatPaths);
   },
 }

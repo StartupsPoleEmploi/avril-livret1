@@ -91,7 +91,14 @@ import Tabs from '~/components/Tabs.vue';
     },
     data: () => ({
       phoenixUrl: `${process.env.phoenixUrl}/candidatures/actuelle`,
-    })
+    }),
+    head () {
+      if (this.$store.getters.pageTitle) {
+        return {
+          titleTemplate: `${this.$store.getters.pageTitle} - %s`,
+        }
+      }
+    },
   }
 </script>
 

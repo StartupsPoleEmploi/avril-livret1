@@ -56,6 +56,5 @@ module.exports = {
     ]
   },
   markdownit: {
-    injected: true
   },
 }

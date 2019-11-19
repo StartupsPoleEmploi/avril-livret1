@@ -1,14 +1,14 @@
 <template>
   <div class="field has-addons is-pulled-left">
     <p class="control">
-      <a href="#" @click="back" class="button lefty" :class="!displayBack ? 'is-static' : ''">
+      <button @click="back" class="button lefty" :class="!displayBack ? 'is-static' : ''">
         <ArrowLeft />
-      </a>
+      </button>
     </p>
     <p class="control">
-      <a href="#" @click="next" class="button righty" :class="!displayNext ? 'is-static' : ''">
+      <button @click="next" class="button righty" :class="!displayNext ? 'is-static' : ''">
         <ArrowRight />
-      </a>
+      </button>
     </p>
   </div>
 </template>
