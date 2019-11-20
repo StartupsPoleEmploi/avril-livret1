@@ -4,7 +4,7 @@
 
       <h1 class="title is-3">Mes expériences professionnelles</h1>
 
-      <nuxt-link to="experiences/fonction" class="button" :class="experiencesProgress < 100 ? 'is-dark' : ''">
+      <nuxt-link to="/experiences/fonction" class="button" :class="experiencesProgress < 100 ? 'is-dark' : ''">
         &nbsp;
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>add</title>
@@ -23,7 +23,8 @@
             <h3 class="title is-6">{{ experience.duration }} heures</h3>
             <p>{{ experience.companyName }}</p>
             <span>{{ experience.period }}</span>
-            <a href="#">éditer</a>
+            <nuxt-link v-on:click.native="setCurrentExperience(experience.uuid)" class="button is-text" to="/experiences/fonction">Editer</nuxt-link>
+            <button @click="removeExperience(experience.uuid)" class="button is-text">Supprimer</button>
           </div>
         </div>
         <div class="column is-one-quarter">
@@ -56,6 +57,12 @@ export default {
       {
         this.$router.push('name')
       }
+    },
+    setCurrentExperience(uuid) {
+      this.$store.commit('experiences/setCurrent', uuid);
+    },
+    removeExperience(uuid) {
+      this.$store.commit('experiences/remove', uuid);
     }
   },
 }

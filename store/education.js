@@ -22,18 +22,24 @@ export const getters = {
 
 export const mutations = {
   initState (state, serverState) {
-    state = Object.assign(state, serverState)
+    state = Object.assign(state, serverState);
   },
   addLatestCourseLevel (state, latestCourseLevel) {
-    state.latestCourseLevel = latestCourseLevel
+    state.latestCourseLevel = latestCourseLevel;
   },
   addLatestDegree (state, latestDegree) {
-    state.latestDegree = latestDegree
+    state.latestDegree = latestDegree;
   },
   addRelatedDegree (state, val) {
-    state.relatedDegrees.push(val)
+    state.relatedDegrees.push(val);
+  },
+  removeRelatedDegree (state, val) {
+    state.relatedDegrees.splice(state.relatedDegrees.findIndex(rd => rd === val), 1);
   },
   addTraining (state, val) {
-    state.trainings.push(val)
+    state.trainings.push(val);
+  },
+  removeTraining (state, val) {
+    state.trainings.splice(state.trainings.findIndex(rd => rd === val), 1);
   },
 }

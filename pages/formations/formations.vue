@@ -21,19 +21,19 @@
 
       <div class="field">
         <div class="formations">
-          <div v-for="training in trainings">
-            <span class="box">{{training}}</span>
-          </div>
+          <ul v-for="training in trainings">
+            <li class="box">
+              {{training}}
+              <button @click="removeTraining(training)" class="delete is-pulled-right"></button>
+            </li>
+          </ul>
         </div>
       </div>
 
       <div class="field">
         <div class="control">
-          <nuxt-link v-if="displayNextButton" to="/experiences" class="is-ok button is-default is-pulled-right">
-            Continuer
-          </nuxt-link>
-          <nuxt-link v-else to="/experiences" class="is-ok button is-default is-pulled-right">
-            Aucun, continuer
+          <nuxt-link to="/experiences" class="is-ok button is-default is-pulled-right">
+            {{trainings.length ? 'Continuer' : 'Aucun, continuer'}}
           </nuxt-link>
           <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
@@ -52,21 +52,20 @@ export default {
   mixins: [helpLoaderMixin],
   computed: {
     trainings () {
-      // let act = _.cloneDeep(this.$store.state.education.trainings)
-      // return act.reverse()
-    },
-    displayNextButton () {
-      return this.$store.state.education.trainings.length;
+      return this.$store.state.education.trainings;
     },
   },
   methods: {
-    addTraining (e) {
+    addTraining(e) {
       if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
         return false;
       }
       this.$store.commit('education/addTraining', this.$refs.avril__name.value)
       this.$refs.avril__name.value = ''
     },
+    removeTraining(value) {
+      this.$store.commit('education/removeTraining', value)
+    }
   }
 }
 </script>

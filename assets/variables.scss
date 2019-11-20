@@ -12,3 +12,12 @@ $avril-header: (
 $avril-help: (
   'width': 24rem
 );
+
+@function avril-color($key: 'gray') {
+  @return map-get($avril-colors, $key);
+}
+
+$link: avril-color('marine');
+$link-hover: lighten(avril-color('blue'), 5%);
+$family-sans-serif: 'Nunito Sans', BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$background: avril-color('gray');

@@ -1,6 +1,5 @@
 <template>
   <div class="form">
-
     <div class="form-fields">
 
       <div class="field">
@@ -9,31 +8,31 @@
 
       <div class="field">
         <div class="control">
-          <input class="input" ref="avril__name" type="text" placeholder="Exemple : Bac pro commerce" @keyup.enter="addRelatedDegree">
-          <a class="button is-dark is-pulled-right" @click="addRelatedDegree" style="margin-top:4px">
+          <input class="input" ref="relatedDegree" type="text" placeholder="Exemple : Bac pro commerce" @keyup.enter="addRelatedDegree">
+          <button class="button is-dark is-pulled-right" @click="addRelatedDegree" style="margin-top:4px">
             + Ajouter
-          </a>
+          </button>
           <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
-            Pour ajouter, appuyez sur <strong>Entrée</strong> ou
+            Pour ajouter, appuyez sur <strong>Entrée</strong> ou&nbsp;
           </div>
         </div>
       </div>
 
       <div class="field">
         <div class="titres">
-          <div v-for="relatedDegree in relatedDegrees">
-            <span class="box">{{relatedDegree}}</span>
-          </div>
+          <ul v-for="relatedDegree in relatedDegrees">
+            <li class="box">
+              {{relatedDegree}}
+              <button @click="removeRelatedDegree(relatedDegree)" class="delete is-pulled-right"></button>
+            </li>
+          </ul>
         </div>
       </div>
 
       <div class="field">
         <div class="control">
-          <nuxt-link v-if="displayNextButton" to="formations" class="is-ok button is-default is-pulled-right">
-            Continuer
-          </nuxt-link>
-          <nuxt-link v-else to="formations" class="is-ok button is-default is-pulled-right">
-            Aucun, continuer
+          <nuxt-link to="formations" class="is-ok button is-default is-pulled-right">
+            {{relatedDegrees.length ? 'Continuer' : 'Aucun, continuer'}}
           </nuxt-link>
           <nuxt-link to="formations" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
@@ -52,33 +51,25 @@ import helpLoaderMixin from '~/mixins/helpLoader.js';
 export default {
   mixins: [helpLoaderMixin],
   computed: {
-    relatedDegrees() {
-      // let act = _.cloneDeep(this.$store.state.education.relatedDegrees)
-      // return act.reverse()
-    },
     currentDegree() {
-      return this.$store.state.currentDegree;
+      return this.$store.state.education.currentDegree;
     },
-    displayNextButton() {
-      return this.$store.state.education.relatedDegrees.length;
+    relatedDegrees() {
+      return this.$store.state.education.relatedDegrees;
     },
-  },
-  mounted() {
   },
   methods: {
-    addRelatedDegree (e) {
-      if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
+    addRelatedDegree(e) {
+      if( this.$refs.relatedDegree.value == '' || this.$refs.relatedDegree.value == ' ' ){
         return false;
       }
-      this.$store.commit('education/addRelatedDegree', this.$refs.avril__name.value)
-      this.$refs.avril__name.value = ''
+      this.$store.commit('education/addRelatedDegree', this.$refs.relatedDegree.value)
+      this.$refs.relatedDegree.value = ''
     },
+    removeRelatedDegree(value) {
+      this.$store.commit('education/removeRelatedDegree', value)
+    }
   }
 }
 </script>
 
-<style>
-.titres {
-    /* margin-top: 4rem; */
-}
-</style>
