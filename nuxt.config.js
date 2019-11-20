@@ -48,6 +48,7 @@ module.exports = {
   },
   plugins: [
     '~/plugins/filters.js',
+    { src: '~/plugins/datepicker', ssr: false }
   ],
   router: {
     middleware: [

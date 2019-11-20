@@ -3,12 +3,14 @@
     <div class="form-fields">
 
       <div class="field natural-language">
-        <span class="title is-5">
-          J'ai travaillé du <date-picker v-model="premierePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> au
-          <date-picker v-model="secondePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker> à <input class="input heure" type="number" v-model="heurePeriode" value="35"> h par semaine.
-        </span>
+        <client-only placeholder="Chargement ...">
+          <span class="title is-5">
+            J'ai travaillé du <date-picker v-model="periodStart" lang="fr" :format="dateFormat"></date-picker> au
+            <date-picker v-model="periodEnd" lang="fr" format="DD/MM/YYYY"></date-picker> à <input class="input heure" type="number" v-model="periodWeekHours" placeholder="35"> heures par semaine.
+          </span>
+        </client-only>
         <div class="">
-          <a class="button is-dark" @click="addPeriods" style="margin-top:1rem">
+          <a class="button is-dark" @click="addPeriod" style="margin-top:1rem">
             + Ajouter cette période
           </a>
         </div>
@@ -17,9 +19,10 @@
       <div class="columns is-multiline">
         <div v-for="period in periods" class="column is-half">
           <div class="box is-equal-height">
-            <p class="title is-3">{{ Math.round(period.totalHeures) }} heures</p>
-            <h3 class="title is-6">Du {{ $moment(period.de) }}</h3>
-            <h3 class="title is-6">au {{ $moment(period.a) }}</h3>
+            <button @click="removePeriod(period.uuid)" class="delete is-pulled-right"></button>
+            <p class="title is-3">{{ Math.round(period.totalHours) }} heures</p>
+            <h3 class="title is-6">Du {{ formatDate(period.start) }}</h3>
+            <h3 class="title is-6">au {{ formatDate(period.end) }}</h3>
           </div>
         </div>
         <div class="column is-one-quarter">
@@ -52,11 +55,17 @@ import helpLoaderMixin from '~/mixins/helpLoader.js';
 
 export default {
   mixins: [helpLoaderMixin],
+  beforeCreate() {
+    if (!this.$store.getters['experiences/current']) {
+      this.$store.dispatch('experiences/newExperience');
+    }
+  },
   components: {
     DatePicker
   },
   data() {
     return {
+      dateFormat: 'DD/MM/YYYY',
       lang: {
         days: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
         months: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -66,81 +75,49 @@ export default {
           dateRange: 'Sélectionnez une période'
         }
       },
-      time3: '',
-      premierePeriode: '',
-      secondePeriode: '',
-      heurePeriode: '',
-      semaine: 46,
-      hours: 35,
-      selectedYear: 46,
-      selectedSemaines: 46,
-      selectedHours: 35,
+      periodStart: '',
+      periodEnd: '',
+      periodWeekHours: '',
     }
   },
   computed: {
     periods () {
-      return this.$store.state.experiences[this.$store.state.experiences.length - 1].periods
+      return this.$store.getters['experiences/current'].periods;
     },
-  },
-  watch: {
-    time3(e) {
-      this.addPeriod(e)
-    }
-  },
-  created() {
-  },
-
-  mounted() {
-    // this.$refs.avril__name.focus()
   },
   methods: {
-    keymonitor: function(event) {
-      if(event.key == "Enter")
-      {
-        console.log("enter key was pressed!");
-        this.$router.push('precision')
-      }
-    },
-    addPeriods () {
-      console.log('add periodes')
+    addPeriod () {
       // TODO: supprimer les weekends du calcul des heures totales
 
       // par mois, le coeficcient de gain de congé est de 14 :
       // exemple, à 35h / 14 = 2,5 jours par mois de congé
       // exemple, à 10h / 14 = 0,71 jours par mois
 
-      let a = moment(this.premierePeriode);
-      let b = moment(this.secondePeriode);
-      let periode = {
-        de: this.premierePeriode,
-        a: this.secondePeriode,
-        heures: parseInt(this.heurePeriode),
-        jours: b.diff(a, 'days'),
-        semaines: b.diff(a, 'week')
+      const start = moment(this.periodStart);
+      const end = moment(this.periodEnd);
+      const dailyHours = parseInt(this.periodWeekHours)/5;
+      const weekends = (end.diff(start, 'days') / 7)*2;
+      const workedDays = end.diff(start, 'days') - weekends;
+      const period = {
+        start: this.periodStart,
+        end: this.periodEnd,
+        weekHours: parseInt(this.periodWeekHours),
+        totalHours: dailyHours * workedDays,
+        days: end.diff(start, 'days'),
+        weeks: end.diff(start, 'week'),
       };
-      let hJour = parseInt(this.heurePeriode)/5; // 35/5
-      let weekends = (b.diff(a, 'days') / 7)*2;
+      this.$store.dispatch('experiences/addPeriod', period);
 
-      let joursTravailles = b.diff(a, 'days') - weekends;
-
-      let heuresTravailles = hJour * joursTravailles;
-
-      let totalHeures = heuresTravailles;
-
-      periode.totalHeures = totalHeures;
-
-      this.$store.commit('experiences/addPeriods', periode)
-      console.log('je tente d\'ajouter', periode.totalHeures, 'heures')
-      this.$store.commit('experiences/addHours', periode.totalHeures)
-      console.log(this.$store.state.experiences.hours, 'heures dans le store')
-
-      this.premierePeriode = '';
-      this.secondePeriode = '';
-      this.heurePeriode = '';
+      this.periodStart = '';
+      this.periodEnd = '';
+      this.periodWeekHours = '';
     },
-    addPeriod (e) {
-      this.$store.commit('experiences/addPeriod', e)
+    formatDate(date) {
+      return moment(date).format(this.dateFormat);
     },
+    removePeriod(periodId) {
+      this.$store.dispatch('experiences/removePeriod', periodId);
+    }
   }
 }
 </script>

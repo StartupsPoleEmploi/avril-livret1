@@ -103,6 +103,11 @@
 import _ from 'lodash';
 
 export default {
+  beforeCreate() {
+    if (!this.$store.getters['experiences/current']) {
+      this.$store.dispatch('experiences/newExperience');
+    }
+  },
   components: {},
   computed: {
     role () {

@@ -2,11 +2,7 @@
   <div class="form">
     <div class="form-fields">
       <h3 class="title is-5">Quel est le diplôme le plus élevé que vous ayez obtenu en France ?</h3>
-      <div v-for="{label, value} in possibleAnswers">
-        <nuxt-link v-on:click.native="addLatestDegree(value)" to="rncp" class="box" :class="latestDegree == value ? 'active' : ''">
-          <input type="radio" name="answer" :checked="latestDegree == value ? 'active' : ''"> &nbsp;{{label}}
-        </nuxt-link>
-      </div>
+      <RadioList :value="latestDegree" :options="possibleAnswers" to="/formations/rncp" :click="addLatestDegree" />
       <div class="form-field-action field" style="margin-top: 20px">
         <div class="control">
           <nuxt-link v-on:click.native="addLatestDegree()" to="rncp" class="is-ok button is-text is-pulled-left">
@@ -20,16 +16,22 @@
 </template>
 
 <script>
+import RadioList from '~/components/RadioList.vue';
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 
 export default {
   mixins: [helpLoaderMixin],
+  components: {
+    RadioList,
+  },
   computed: {
     latestDegree() {
       return this.$store.state.education.latestDegree;
     },
-    possibleAnswers() {
-      return [{
+  },
+  data() {
+    return {
+      possibleAnswers: [{
         label: 'Aucun diplôme',
         value: 'A',
       }, {

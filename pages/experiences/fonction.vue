@@ -49,6 +49,11 @@ import helpLoaderMixin from '~/mixins/helpLoader.js';
 
 export default {
   mixins: [helpLoaderMixin],
+  beforeCreate() {
+    if (!this.$store.getters['experiences/current']) {
+      this.$store.dispatch('experiences/newExperience');
+    }
+  },
   computed: {
     role() {
       return this.$store.getters['experiences/current'].role;
@@ -60,21 +65,12 @@ export default {
       return this.$store.getters['experiences/current'].companyAddress;
     },
   },
-  created() {
-    if (!this.$store.getters['experiences/current']) {
-      this.$store.dispatch('experiences/newExperience');
-    }
-  },
   mounted() {
     this.$refs.role.focus()
   },
   methods: {
     addRole(e) {
-      this.$store.commit(
-        'experiences/mutateExperience',
-        this.$store.getters['experiences/current'],
-        {role: e.target.value}
-      )
+      this.$store.dispatch('experiences/addRole', e.target.value)
     },
     addCompanyName(e) {
       this.$store.dispatch('experiences/addCompanyName', e.target.value)
