@@ -5,6 +5,7 @@ export default {
     DatePicker,
   },
   data: () => ({
+    dateFormat: 'DD/MM/YYYY',
     lang: {
       days: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
       months: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
