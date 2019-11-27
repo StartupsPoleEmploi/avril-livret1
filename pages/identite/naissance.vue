@@ -5,14 +5,14 @@
       <div class="field">
         <label class="label">Lieu de naissance</label>
         <div class="control">
-          <input :value="lieu" ref="avril__focus" class="input" type="text" placeholder="Exemple : Marseille, France" @input="addBirth">
+          <input :value="birthCity" ref="avril__focus" class="input" type="text" placeholder="Exemple : Marseille, France" @input="addBirth"/>
         </div>
       </div>
 
       <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
-          <date-picker v-model="premierePeriode" lang="fr" format="DD/MM/YYYY" confirm></date-picker>
+          <date-picker v-model="birthDate" @input="addBirthDate" lang="fr" format="DD/MM/YYYY"></date-picker>
         </div>
       </div>
 
@@ -34,27 +34,30 @@
 
 <script>
 import DatePicker from 'vue2-datepicker';
-import moment from 'moment';
 
 import helpLoaderMixin from '~/mixins/helpLoader.js';
+import withDatePickerMixin from '~/mixins/withDatePicker.js';
 
 export default {
-  mixins: [helpLoaderMixin],
-  components: {
-    DatePicker
-  },
+  mixins: [
+    helpLoaderMixin,
+    withDatePickerMixin,
+  ],
   computed: {
-    lieu () {
+    birthCity() {
       return this.$store.state.identity.birth.city
     },
-  },
-  created() {
+    birthDate() {
+      return this.$store.state.identity.birth.date
+    }
   },
   mounted() {
     this.$refs.avril__focus.focus()
   },
   methods: {
-    addBirth: function(){
+    addBirth: function(e) {
+      this.$store.commit('identity/addBirthCity', e.target.value)
+
       // pareil, splitter le lieu grâce à Google
       // addDateNaissance (state, value) {
       //   state.birth.date = value
@@ -68,26 +71,17 @@ export default {
       // addNationaliteNaissance (state, value) {
       //   state.birth.nationalite = value
       // },
-      console.log('test')
+    },
+    addBirthDate: function(date) {
+      this.$store.commit('identity/addBirthDate', date);
     },
     keymonitor: function(event) {
       if(event.key == "Enter")
       {
         this.$router.push('name')
       }
-    }
-  },
-  data: () => ({
-    lang: {
-      days: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-      months: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
-      pickers: ['7 jours suivants', '30 jours suivants', '7 jours précédents', '30 jours précédents'],
-      placeholder: {
-        date: 'Sélectionnez une date',
-        dateRange: 'Sélectionnez une période'
-      }
     },
-  })
+  },
 }
 </script>
 

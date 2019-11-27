@@ -101,7 +101,7 @@ export const actions = {
   removePeriod({commit, getters}, periodId) {
     commit('mutateExperience', {
       id: getters.current.uuid,
-      periods: getters.current.periods.filter(p => p.uuid === periodId)
+      periods: getters.current.periods.filter(p => p.uuid !== periodId)
     })
   },
   addActivity({commit, getters}, activity) {
@@ -113,7 +113,7 @@ export const actions = {
   removeActivity({commit, getters}, activityId) {
     commit('mutateExperience', {
       id: getters.current.uuid,
-      periods: getters.current.activities.filter(a => a.uuid === activityId)
+      activities: getters.current.activities.filter(a => a.uuid !== activityId)
     })
   },
 }

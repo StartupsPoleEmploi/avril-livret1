@@ -19,10 +19,9 @@
       <div class="columns is-multiline">
         <div v-for="period in periods" class="column is-half">
           <div class="box is-equal-height">
-            <button @click="removePeriod(period.uuid)" class="delete is-pulled-right"></button>
+            <button @click="removePeriod(period.uuid)" class="delete" style="margin-left: auto; margin-bottom: 0.5rem;"></button>
             <p class="title is-3">{{ Math.round(period.totalHours) }} heures</p>
-            <h3 class="title is-6">Du {{ formatDate(period.start) }}</h3>
-            <h3 class="title is-6">au {{ formatDate(period.end) }}</h3>
+            <h3 class="title is-6">Du {{ formatDate(period.start) }}<br /> au {{ formatDate(period.end) }}</h3>
           </div>
         </div>
         <div class="column is-one-quarter">
@@ -48,33 +47,24 @@
 </template>
 
 <script>
-import DatePicker from 'vue2-datepicker';
+// import DatePicker from 'vue2-datepicker';
 import moment from 'moment';
 
 import helpLoaderMixin from '~/mixins/helpLoader.js';
+import withDatePickerMixin from '~/mixins/withDatePicker.js';
 
 export default {
-  mixins: [helpLoaderMixin],
+  mixins: [
+    helpLoaderMixin,
+    withDatePickerMixin,
+  ],
   beforeCreate() {
     if (!this.$store.getters['experiences/current']) {
       this.$store.dispatch('experiences/newExperience');
     }
   },
-  components: {
-    DatePicker
-  },
   data() {
     return {
-      dateFormat: 'DD/MM/YYYY',
-      lang: {
-        days: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-        months: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
-        pickers: ['7 jours suivants', '30 jours suivants', '7 jours précédents', '30 jours précédents'],
-        placeholder: {
-          date: 'Sélectionnez une date',
-          dateRange: 'Sélectionnez une période'
-        }
-      },
       periodStart: '',
       periodEnd: '',
       periodWeekHours: '',

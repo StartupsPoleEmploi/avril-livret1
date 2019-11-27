@@ -32,13 +32,7 @@ export default {
   mixins: [helpLoaderMixin],
   computed: {
     addressStreetName () {
-      return this.$store.state.identity.addressStreetName
-    },
-    experiences () {
-      return this.$store.state.experiences.experiences
-    },
-    residence () {
-      return this.$store.state.identity.address.streetNumber + ' ' + this.$store.state.identity.address.streetType + ' ' + this.$store.state.identity.address.streetName + ', ' + this.$store.state.identity.address.postalCode + ' ' + this.$store.state.identity.address.city
+      return this.$store.state.identity.address.streetName
     },
   },
   mounted() {
@@ -52,13 +46,13 @@ export default {
       }
     },
     addAddress: function(e) {
+      this.$store.commit('identity/addAddressStreetName', e.target.value)
       // ici il faut splitter l'adresse Google :
-      this.$store.commit('identity/addAddressStreetType', 'Avenue')
-      this.$store.commit('identity/addAddressStreetName', 'Dupont')
-      this.$store.commit('identity/addAddressStreetNumber', '45')
-      this.$store.commit('identity/addAddressCity', 'Marseille')
-      this.$store.commit('identity/addAddressPostalCode', '13000')
-      this.$store.commit('identity/addAddressCountry', 'France')
+      // this.$store.commit('identity/addAddressStreetType', 'Avenue')
+      // this.$store.commit('identity/addAddressStreetNumber', '45')
+      // this.$store.commit('identity/addAddressCity', 'Marseille')
+      // this.$store.commit('identity/addAddressPostalCode', '13000')
+      // this.$store.commit('identity/addAddressCountry', 'France')
     },
   },
 }

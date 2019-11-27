@@ -125,6 +125,7 @@ export const actions = {
         dispatch('initState', Object.assign({hash: queryHash}, dataWithStatus.data));
       } else {
         console.log('Request failed');
+        console.log(result);
         redirectToPhoenix({redirect, env}, 'request_failed');
       }
     } else {
