@@ -42,7 +42,7 @@ export default {
     keymonitor: function(event) {
       if(event.key == "Enter")
       {
-        this.$router.push('name')
+        this.$router.push('/identite/naissance')
       }
     },
     addAddress: function(e) {

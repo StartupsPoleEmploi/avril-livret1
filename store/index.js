@@ -27,9 +27,6 @@ export const state = () => ({
     store: 'experiences',
     path: 'experiences',
     steps: [{
-      label: 'Expérience',
-      to: '/experiences',
-    }, {
       label: 'Fonction',
       to: '/experiences/fonction',
     }, {

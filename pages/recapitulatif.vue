@@ -50,12 +50,12 @@
       <div class="field">
         <h3 class="title is-3">Est-ce que toutes ces informations sont exactes ?</h3>
         <div class="control">
-          <nuxt-link to="/" class="is-ok button is-dark">
-            Oui
+          <a class="is-ok button is-dark" :href="phoenixUrl">Oui, retour sur Avril</a>
+          <nuxt-link to="/" class="button is-default">
+            Pas encore, poursuivre l'édition
           </nuxt-link>
         </div>
       </div>
-
   </div>
 </template>
 
@@ -81,6 +81,9 @@ export default {
     RecapBirthday,
     RecapResidence,
   },
+  data: () => ({
+    phoenixUrl: `${process.env.phoenixUrl}/candidatures/actuelle`,
+  }),
   layout: 'recapitulatif',
   computed: {
     experiences () {

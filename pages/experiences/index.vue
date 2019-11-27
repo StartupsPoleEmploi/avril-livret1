@@ -52,12 +52,6 @@ export default {
     },
   },
   methods: {
-    keymonitor: function(event) {
-      if(event.key == "Enter")
-      {
-        this.$router.push('name')
-      }
-    },
     setCurrentExperience(uuid) {
       this.$store.commit('experiences/setCurrent', uuid);
     },

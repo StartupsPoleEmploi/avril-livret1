@@ -12,7 +12,7 @@
       <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
-          <date-picker v-model="birthDate" @input="addBirthDate" lang="fr" format="DD/MM/YYYY"></date-picker>
+          <date-picker :value="birthDate" @input="addBirthDate" lang="fr" format="DD/MM/YYYY"></date-picker>
         </div>
       </div>
 

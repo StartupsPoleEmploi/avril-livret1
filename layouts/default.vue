@@ -9,10 +9,8 @@
         <div class="navigation-header">
           <div class="avril-back">
             <a :href="phoenixUrl">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24">
-                <title>arrow-left-1</title>
-                <path d="M4.5,12a2.3,2.3,0,0,1,.78-1.729L16.432.46a1.847,1.847,0,0,1,2.439,2.773L9.119,11.812a.25.25,0,0,0,0,.376l9.752,8.579a1.847,1.847,0,1,1-2.439,2.773L5.284,13.732A2.31,2.31,0,0,1,4.5,12Z"></path>
-              </svg> retour
+              <Back />
+              retour
             </a>
           </div>
         </div>
@@ -42,8 +40,7 @@
 
       <div class="avril-content">
         <div class="avril-form-help-container">
-          <Stepper />
-          <!-- <component v-if="currentStepper" :is="currentStepper" /> -->
+          <Stepper v-if="!withoutStepper" />
           <div class="form">
             <nuxt />
           </div>
@@ -57,28 +54,17 @@
 <script>
 import {capitalize} from '../utils/string';
 
-import ArrowLeft from '~/assets/svgs/keyboard-arrow-left.svg';
-import ArrowRight from '~/assets/svgs/keyboard-arrow-right.svg';
-import Help from '~/components/Help.vue';
+import Back from '../components/svg/Back';
 import Stepper from '~/components/Stepper.vue';
 import Tabs from '~/components/Tabs.vue';
 
   export default {
     components: {
-      ArrowLeft,
-      ArrowRight,
-      Help,
+      Back,
       Stepper,
       Tabs,
     },
     computed: {
-      currentStepper() {
-        const currentTab = this.$store.getters.currentTab;
-        return currentTab && `Stepper${capitalize(currentTab)}`;
-      },
-      helpContent(){
-        return this.$store.state.helpContent;
-      },
       isTheEnd() {
         return this.$store.getters.isTheEnd;
       },
@@ -87,6 +73,10 @@ import Tabs from '~/components/Tabs.vue';
       },
       certificationLabel() {
         return this.$store.state.certificationLabel;
+      },
+      withoutStepper() {
+        return this.$store.getters.currentTab === 'experiences'
+          && !this.$store.getters['experiences/current'];
       },
     },
     data: () => ({
