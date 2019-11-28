@@ -9,21 +9,18 @@ export const state = () => ({
   email: null,
   homePhoneNumber: null,
   cellPhoneNumber: null,
-  birth: {
-    date: null,
-    county: null,
-    city: null,
-    country: null,
-  },
-  address: {
-    streetType: null,
-    streetName: null,
-    streetNumber: null,
-    city: null,
-    postalCode: null,
-    country: null,
-    isDomTom: false,
-  },
+  birthday: null,
+  birthPlace: null,
+  address: null,
+  // address: {
+  //   streetType: null,
+  //   streetName: null,
+  //   streetNumber: null,
+  //   city: null,
+  //   postalCode: null,
+  //   country: null,
+  //   isDomTom: false,
+  // },
 })
 
 const OPTIONAL_FIELDS = [
@@ -48,63 +45,60 @@ export const getters = {
 }
 
 export const mutations = {
-  initState (state, serverState) {
+  initState(state, serverState) {
     state = Object.assign(state, serverState)
   },
-  addLastName (state, value) {
+  addLastName(state, value) {
     state.lastName = value
   },
-  addUsageName (state, value) {
+  addUsageName(state, value) {
     state.usageName = value
   },
-  addFirstNames (state, value) {
+  addFirstNames(state, value) {
     state.firstNames = value
   },
-  addSex (state, value) {
+  addSex(state, value) {
     state.sex = value
   },
-  addDomTom (state, value) {
+  addDomTom(state, value) {
     state.isDomTom = value; // true or false
   },
-  addEmail (state, value) {
+  addEmail(state, value) {
     state.email = value
   },
-  addHomePhoneNumber (state, value) {
+  addHomePhoneNumber(state, value) {
     state.homePhoneNumber = value
   },
-  addCellPhoneNumber (state, value) {
+  addCellPhoneNumber(state, value) {
     state.cellPhoneNumber = value
   },
-  addBirthDate (state, value) {
-    state.birth.date = value
+  addBirthday(state, value) {
+    state.birthday = value
   },
-  addBirthCounty (state, value) {
-    state.birth.county = value
+  addBirthPlace(state, value) {
+    state.birthPlace = value
   },
-  addBirthCity (state, value) {
-    state.birth.city = value
+  addAddress(state, value) {
+    state.address = value
   },
-  addBirthCountry (state, value) {
-    state.birth.country = value
-  },
-  addAddressStreetType (state, value) {
-    state.address.streetType = value
-  },
-  addAddressStreetName (state, value) {
-    state.address.streetName = value
-  },
-  addAddressStreetNumber (state, value) {
-    state.address.streetNumber = value
-  },
-  addAddressCity (state, value) {
-    state.address.city = value
-  },
-  addAddressPostalCode (state, value) {
-    state.address.postalCode = value
-  },
-  addAddressCountry (state, value) {
-    state.address.country = value
-  },
+  // addAddressStreetType(state, value) {
+  //   state.address.streetType = value
+  // },
+  // addAddressStreetName(state, value) {
+  //   state.address.streetName = value
+  // },
+  // addAddressStreetNumber(state, value) {
+  //   state.address.streetNumber = value
+  // },
+  // addAddressCity(state, value) {
+  //   state.address.city = value
+  // },
+  // addAddressPostalCode(state, value) {
+  //   state.address.postalCode = value
+  // },
+  // addAddressCountry(state, value) {
+  //   state.address.country = value
+  // },
 
 }
 

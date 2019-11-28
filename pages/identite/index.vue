@@ -4,7 +4,7 @@
       <div class="field">
         <label class="label">L'adresse de votre lieu de résidence</label>
         <div class="control">
-          <input :value="addressStreetName" ref="avril__focus" class="input" type="text" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" @input="addAddress">
+          <input :value="address" ref="avril__focus" class="input" type="text" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" @input="addAddress">
         </div>
       </div>
 
@@ -31,8 +31,8 @@ import helpLoaderMixin from '~/mixins/helpLoader.js';
 export default {
   mixins: [helpLoaderMixin],
   computed: {
-    addressStreetName () {
-      return this.$store.state.identity.address.streetName
+    address () {
+      return this.$store.state.identity.address
     },
   },
   mounted() {
@@ -46,7 +46,7 @@ export default {
       }
     },
     addAddress: function(e) {
-      this.$store.commit('identity/addAddressStreetName', e.target.value)
+      this.$store.commit('identity/addAddress', e.target.value)
       // ici il faut splitter l'adresse Google :
       // this.$store.commit('identity/addAddressStreetType', 'Avenue')
       // this.$store.commit('identity/addAddressStreetNumber', '45')

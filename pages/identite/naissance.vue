@@ -5,14 +5,14 @@
       <div class="field">
         <label class="label">Lieu de naissance</label>
         <div class="control">
-          <input :value="birthCity" ref="avril__focus" class="input" type="text" placeholder="Exemple : Marseille, France" @input="addBirth"/>
+          <input :value="birthPlace" ref="avril__focus" class="input" type="text" placeholder="Exemple : Marseille, France" @input="addBirthPlace"/>
         </div>
       </div>
 
       <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
-          <date-picker :value="birthDate" @input="addBirthDate" lang="fr" format="DD/MM/YYYY"></date-picker>
+          <date-picker :value="birthday" @input="addBirthday" lang="fr" format="DD/MM/YYYY"></date-picker>
         </div>
       </div>
 
@@ -44,19 +44,19 @@ export default {
     withDatePickerMixin,
   ],
   computed: {
-    birthCity() {
-      return this.$store.state.identity.birth.city
+    birthPlace() {
+      return this.$store.state.identity.birthPlace
     },
-    birthDate() {
-      return this.$store.state.identity.birth.date
+    birthday() {
+      return this.$store.state.identity.birthday
     }
   },
   mounted() {
     this.$refs.avril__focus.focus()
   },
   methods: {
-    addBirth: function(e) {
-      this.$store.commit('identity/addBirthCity', e.target.value)
+    addBirthPlace: function(e) {
+      this.$store.commit('identity/addBirthPlace', e.target.value)
 
       // pareil, splitter le lieu grâce à Google
       // addDateNaissance (state, value) {
@@ -72,8 +72,8 @@ export default {
       //   state.birth.nationalite = value
       // },
     },
-    addBirthDate: function(date) {
-      this.$store.commit('identity/addBirthDate', date);
+    addBirthday: function(date) {
+      this.$store.commit('identity/addBirthday', date);
     },
     keymonitor: function(event) {
       if(event.key == "Enter")
