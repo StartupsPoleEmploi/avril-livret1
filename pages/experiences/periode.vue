@@ -22,6 +22,7 @@
             <button @click="removePeriod(period.uuid)" class="delete" style="margin-left: auto; margin-bottom: 0.5rem;"></button>
             <p class="title is-3">{{ Math.round(period.totalHours) }} heures</p>
             <h3 class="title is-6">Du {{ formatDate(period.start) }}<br /> au {{ formatDate(period.end) }}</h3>
+            <button @click="editPeriod(period.uuid)" class="button is-text">Modifier</button>
           </div>
         </div>
         <div class="column is-one-quarter">
@@ -88,11 +89,12 @@ export default {
       // exemple, à 35h / 14 = 2,5 jours par mois de congé
       // exemple, à 10h / 14 = 0,71 jours par mois
 
-      const start = moment(this.periodStart);
-      const end = moment(this.periodEnd);
+      const startMoment = moment(this.periodStart);
+      const endMoment = moment(this.periodEnd);
       const dailyHours = parseInt(this.periodWeekHours)/5;
-      const weekends = (end.diff(start, 'days') / 7)*2;
-      const workedDays = end.diff(start, 'days') - weekends;
+      const weekends = (endMoment.diff(startMoment, 'days') / 7)*2;
+      const workedDays = endMoment.diff(startMoment, 'days') - weekends;
+
       const period = {
         start: this.periodStart,
         end: this.periodEnd,
@@ -104,6 +106,13 @@ export default {
       this.periodStart = '';
       this.periodEnd = '';
       this.periodWeekHours = '';
+    },
+    editPeriod(periodId) {
+      const period = this.$store.getters['experiences/current'].periods.find(p => p.uuid == periodId)
+      this.periodStart = period.start;
+      this.periodEnd = period.end;
+      this.periodWeekHours = period.weekHours;
+      this.$store.dispatch('experiences/removePeriod', periodId);
     },
     removePeriod(periodId) {
       this.$store.dispatch('experiences/removePeriod', periodId);

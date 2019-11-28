@@ -46,6 +46,10 @@
           </p>
         </div>
       </fieldset>
+
+      <nuxt-link to="/recapitulatif" class="is-ok button is-dark">
+        Enregistrer mon dossier de recevabilité
+      </nuxt-link>
     </div>
     <Help :content="help" />
   </div>

@@ -27,11 +27,9 @@
           <Tabs></Tabs>
 
           <div class="avril--actions">
-            <div class="control">
-              <nuxt-link to="/recapitulatif" class="is-ok button" :class="isTheEnd ? 'is-dark' : 'is-default'">
-                Enregistrer mon dossier de recevabilité
-              </nuxt-link>
-            </div>
+            <nuxt-link v-if="!isTheEnd" to="/recapitulatif" class="is-ok button is-default is-fullwidth">
+              Enregistrer mon dossier de recevabilité
+            </nuxt-link>
           </div>
 
         </div>
