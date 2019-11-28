@@ -1,19 +1,27 @@
 <template>
   <div class="form">
-
     <div class="form-fields">
-
-      <h3 class="title is-5">Quelle est la famille professionnelle de votre métier ?</h3>
-      <RadioList :value="category" :options="possibleAnswers" to="/experiences/statut" :click="addCategory" />
+      <h3 class="title is-5">
+        Quelle est la famille professionnelle de votre métier ?
+      </h3>
+      <RadioList
+        :value="category"
+        :options="possibleAnswers"
+        to="/experiences/statut"
+        :click="addCategory"
+      />
 
       <div class="form-field-action field" style="margin-top: 20px">
         <div class="control">
-          <nuxt-link v-on:click.native="addCategory('H')" to="statut" class="is-ok button is-text is-pulled-left">
+          <nuxt-link
+            v-on:click.native="addCategory('H')"
+            to="statut"
+            class="is-ok button is-text is-pulled-left"
+          >
             Remplir plus tard
           </nuxt-link>
         </div>
       </div>
-
     </div>
 
     <Help :content="help" />
@@ -21,99 +29,123 @@
 </template>
 
 <script>
-import RadioList from '~/components/RadioList.vue';
-import helpLoaderMixin from '~/mixins/helpLoader.js';
+import RadioList from "~/components/RadioList.vue";
+import helpLoaderMixin from "~/mixins/helpLoader.js";
 
 export default {
   mixins: [helpLoaderMixin],
   beforeCreate() {
-    if (!this.$store.getters['experiences/current']) {
-      this.$router.push('/experiences');
+    if (!this.$store.getters["experiences/current"]) {
+      this.$router.push("/experiences");
     }
   },
   components: {
-    RadioList,
+    RadioList
   },
   computed: {
     category() {
-      return this.$store.getters['experiences/current'].category
+      return this.$store.getters["experiences/current"].category;
     }
   },
   data() {
     return {
-      possibleAnswers: [{
-        label: 'Administration publique, professions juridiques, armée et police',
-        value: 'administration',
-      },{
-        label: 'Agriculture, marine, pêche',
-        value: 'agriculture',
-      },{
-        label: 'Artisanat',
-        value: 'artisanat',
-      },{
-        label: 'Banque et assurance',
-        value: 'banque',
-      },{
-        label: 'Bâtiment, travaux publics',
-        value: 'batiment',
-      },{
-        label: 'Commerce',
-        value: 'commerce',
-      },{
-        label: 'Communication, information, art et spectacle',
-        value: 'communication',
-      },{
-        label: 'Electricité, électronique',
-        value: 'electricite',
-      },{
-        label: 'Enseignement, formation',
-        value: 'enseignement',
-      },{
-        label: 'Études et recherche',
-        value: 'etudes',
-      },{
-        label: 'Gestion, administration des entreprises',
-        value: 'gestion',
-      },{
-        label: 'Industries de process',
-        value: 'industries',
-      },{
-        label: 'Informatique et télécommunications',
-        value: 'informatique',
-      },{
-        label: 'Ingénieurs et cadres de l\'industrie',
-        value: 'ingenieurs',
-      },{
-        label: 'Hôtellerie, restauration, alimentation',
-        value: 'hotellerie',
-      },{
-        label: 'Maintenance',
-        value: 'maintenance',
-      },{
-        label: 'Matériaux souples, bois, industries graphiques',
-        value: 'materiaux',
-      },{
-        label: 'Mécanique, travail des métaux',
-        value: 'mecanique',
-      },{
-        label: 'Politique, religion',
-        value: 'politique',
-      },{
-        label: 'Santé, action sociale, culturelle et sportive',
-        value: 'sante',
-      },{
-        label: 'Services aux particuliers et aux collectivités',
-        value: 'services',
-      },{
-        label: 'Transports, logistique et tourisme',
-        value: 'transports',
-      }]
-    }
+      possibleAnswers: [
+        {
+          label:
+            "Administration publique, professions juridiques, armée et police",
+          value: "P"
+        },
+        {
+          label: "Agriculture, marine, pêche",
+          value: "A"
+        },
+        {
+          label: "Artisanat",
+          value: "K"
+        },
+        {
+          label: "Banque et assurance",
+          value: "Q"
+        },
+        {
+          label: "Bâtiment, travaux publics",
+          value: "B"
+        },
+        {
+          label: "Commerce",
+          value: "R"
+        },
+        {
+          label: "Communication, information, art et spectacle",
+          value: "U"
+        },
+        {
+          label: "Electricité, électronique",
+          value: "C"
+        },
+        {
+          label: "Enseignement, formation",
+          value: "W"
+        },
+        {
+          label: "Études et recherche",
+          value: "N"
+        },
+        {
+          label: "Gestion, administration des entreprises",
+          value: "L"
+        },
+        {
+          label: "Industries de process",
+          value: "E"
+        },
+        {
+          label: "Informatique et télécommunications",
+          value: "M"
+        },
+        {
+          label: "Ingénieurs et cadres de l'industrie",
+          value: "H"
+        },
+        {
+          label: "Hôtellerie, restauration, alimentation",
+          value: "S"
+        },
+        {
+          label: "Maintenance",
+          value: "G"
+        },
+        {
+          label: "Matériaux souples, bois, industries graphiques",
+          value: "F"
+        },
+        {
+          label: "Mécanique, travail des métaux",
+          value: "D"
+        },
+        {
+          label: "Politique, religion",
+          value: "X"
+        },
+        {
+          label: "Santé, action sociale, culturelle et sportive",
+          value: "V"
+        },
+        {
+          label: "Services aux particuliers et aux collectivités",
+          value: "T"
+        },
+        {
+          label: "Transports, logistique et tourisme",
+          value: "J"
+        }
+      ]
+    };
   },
   methods: {
     addCategory(category) {
-      this.$store.dispatch('experiences/addCategory', category)
-    },
+      this.$store.dispatch("experiences/addCategory", category);
+    }
   }
-}
+};
 </script>
