@@ -9,7 +9,7 @@
 
   </div>
   <div class="recap-cell cell-classe" v-else>
-    Je n'ai pas de formations
+    Je n'ai pas de formations supplémentaire.
   </div>
 </div>
 </template>

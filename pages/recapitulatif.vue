@@ -25,13 +25,20 @@
           <h3 class="title is-3">Mes expériences professionnelles</h3>
           <p v-if="experiencesProgress == 100">J'ai plus de 1607 heures d'expériences professionnelles</p>
           <div class="columns is-multiline">
-            <div v-for="experience in experiences" class="column is-4">
+            <div v-for="experience in experiences" class="column">
               <div class="box is-equal-height">
-                <h3 class="title is-4">{{ experience.role }}</h3>
-                <h3 class="title is-6">{{ experience.hours }} heures</h3>
-                <p>{{ experience.companyName }}</p>
-                <span>{{ experience.periods }}</span>
-                <a href="#">éditer</a>
+                <h3 class="title is-4">{{ experience.role }} chez {{ experience.companyName }}</h3>
+                <h4 class="title is-5">Périodes</h4>
+                <ul>
+                  <li v-for="period in experience.periods">
+                    <strong>{{period.totalHours}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
+                  </li>
+                </ul>
+                <h4 class="title is-5" style="margin-top: 1rem;">Compétences</h4>
+                <ul class="list">
+                  <li class="list-item" v-for="activity in experience.activities">{{activity}}</li>
+                </ul>
+                <p v-if="experience.activities.length === 0">Pas de compétence renseignées.</p>
               </div>
             </div>
           </div>
@@ -60,6 +67,8 @@
 </template>
 
 <script>
+import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
+
 import RecapClasse from '~/components/recapitulatif/RecapClasse.vue';
 import RecapDiplome from '~/components/recapitulatif/RecapDiplome.vue';
 import RecapTitres from '~/components/recapitulatif/RecapTitres.vue';
@@ -71,7 +80,10 @@ import RecapBirthday from '~/components/recapitulatif/RecapBirthday.vue';
 import RecapResidence from '~/components/recapitulatif/RecapResidence.vue';
 
 export default {
-  components:{
+  mixins: [
+    withDateDisplayMixin,
+  ],
+  components: {
     RecapClasse,
     RecapDiplome,
     RecapTitres,
@@ -93,8 +105,6 @@ export default {
       return this.$store.getters['experiences/progress'];
     },
   },
-  methods: {
-  }
 }
 </script>
 

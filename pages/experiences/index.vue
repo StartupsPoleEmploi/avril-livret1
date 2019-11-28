@@ -43,21 +43,18 @@
 </template>
 
 <script>
-import moment from 'moment';
 import helpLoaderMixin from '~/mixins/helpLoader.js';
+import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
 
 export default {
-  beforeCreate() {
-  },
+  mixins: [
+    helpLoaderMixin,
+    withDateDisplayMixin
+  ],
   mounted() {
     this.$store.commit('experiences/removeNotFilled');
     this.$store.commit('experiences/removeCurrent');
-    console.log(this.$store.getters['experiences/current']);
   },
-  data: () => ({
-    dateFormat: 'DD/MM/YYYY',
-  }),
-  mixins: [helpLoaderMixin],
   computed: {
     experiences () {
       return this.$store.state.experiences
@@ -75,9 +72,6 @@ export default {
     },
     removeExperience(uuid) {
       this.$store.commit('experiences/remove', uuid);
-    },
-    formatDate(date) {
-      return moment(date).format(this.dateFormat);
     },
   },
 }

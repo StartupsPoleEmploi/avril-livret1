@@ -1,9 +1,8 @@
 <template>
   <span class="recap-cell cell-name">
 
-    <p>Je me nomme <strong>{{identite.lastName}}</strong>
-      <span v-for="firstName, index in identite.firstNames"><strong>{{firstName}}</strong>
-        <span v-if="index < identite.firstNames.length-1">, </span></span> (c'est <span v-if="identite.sex=='m'">masculin</span><span v-else>féminin</span>) (Nom d'usage : {{identite.usageName}})</p>
+    <p>
+      Je me nomme <strong>{{identite.lastName}} {{identite.firstNames}}</strong> (c'est {{identite.sex=='m' ? 'masculin' : 'féminin'}}) <span v-if="identite.usageName">(Nom d'usage : {{identite.usageName}})</span></p>
 
   </span>
 </template>
@@ -16,9 +15,4 @@ export default {
     },
   },
 }
-
 </script>
-
-<style>
-
-</style>

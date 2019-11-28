@@ -2,9 +2,9 @@
   <span class="recap-cell cell-contact">
 
     <p>Mon email : {{identite.email}}</p>
-    <p v-if="identite.homePhoneNumber">{{identite.homePhoneNumber}}</p>
+    <p v-if="identite.homePhoneNumber">Numéro de téléphone fixe : {{identite.homePhoneNumber}}</p>
     <p v-else>Je n'ai pas renseigné mon numéro de téléphone fixe</p>
-    <p v-if="identite.cellPhoneNumber">{{identite.cellPhoneNumber}}</p>
+    <p v-if="identite.cellPhoneNumber">Numéro de téléphone portable : {{identite.cellPhoneNumber}}</p>
     <p v-else>Je n'ai pas renseigné mon numéro de téléphone mobile</p>
 
   </span>

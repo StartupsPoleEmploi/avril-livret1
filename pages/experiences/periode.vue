@@ -50,11 +50,13 @@
 import moment from 'moment';
 
 import helpLoaderMixin from '~/mixins/helpLoader.js';
+import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
 import withDatePickerMixin from '~/mixins/withDatePicker.js';
 
 export default {
   mixins: [
     helpLoaderMixin,
+    withDateDisplayMixin,
     withDatePickerMixin,
   ],
   beforeCreate() {
@@ -100,9 +102,6 @@ export default {
       this.periodStart = '';
       this.periodEnd = '';
       this.periodWeekHours = '';
-    },
-    formatDate(date) {
-      return moment(date).format(this.dateFormat);
     },
     removePeriod(periodId) {
       this.$store.dispatch('experiences/removePeriod', periodId);
