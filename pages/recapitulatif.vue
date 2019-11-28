@@ -23,7 +23,7 @@
 
         <section class="section section-formation">
           <h3 class="title is-3">Mes expériences professionnelles</h3>
-          <p v-if="experiencesProgress == 100">J'ai plus de 1607 heures d'expériences professionnelles</p>
+          <p v-if="experiencesProgress == 100">J'ai plus de {{bookletMinHours}} heures d'expériences professionnelles</p>
           <div class="columns is-multiline">
             <div v-for="experience in experiences" class="column">
               <div class="box is-equal-height">
@@ -57,7 +57,7 @@
       <div class="field">
         <h3 class="title is-3">Est-ce que toutes ces informations sont exactes ?</h3>
         <div class="control">
-          <a class="is-ok button is-dark" :href="phoenixUrl">Oui, retour sur Avril</a>
+          <a class="is-ok button is-dark" :href="phoenixUrl">{{progress < 100 ? 'Je termine plus tard' : 'Oui, retour sur Avril'}}</a>
           <nuxt-link to="/" class="button is-default">
             Pas encore, poursuivre l'édition
           </nuxt-link>
@@ -68,6 +68,8 @@
 
 <script>
 import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
+
+import {BOOKLET_MIN_HOURS} from '../constants/index';
 
 import RecapClasse from '~/components/recapitulatif/RecapClasse.vue';
 import RecapDiplome from '~/components/recapitulatif/RecapDiplome.vue';
@@ -95,14 +97,18 @@ export default {
   },
   data: () => ({
     phoenixUrl: `${process.env.phoenixUrl}/candidatures/actuelle`,
+    bookletMinHours: BOOKLET_MIN_HOURS,
   }),
   layout: 'recapitulatif',
   computed: {
-    experiences () {
+    experiences() {
       return this.$store.state.experiences
     },
-    experiencesProgress () {
+    experiencesProgress() {
       return this.$store.getters['experiences/progress'];
+    },
+    progress() {
+      return this.$store.getters.progress;
     },
   },
 }

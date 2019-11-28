@@ -6,7 +6,7 @@
         <client-only placeholder="Chargement ...">
           <span class="title is-5">
             J'ai travaillé du <date-picker ref="periodStart" v-model="periodStart" :disabled-date="maxDate" :format="dateFormat" :placeholder="placeholder" :default-value="periodEnd || new Date()"></date-picker> au
-            <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="dateFormat" :placeholder="placeholder" :default-value="periodStart || new Date()"></date-picker> à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35"> heures par semaine.
+            <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="dateFormat" :placeholder="placeholder" :default-value="periodStart || new Date()"></date-picker> à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
           </span>
         </client-only>
         <div class="">
@@ -118,10 +118,10 @@ export default {
       this.$store.dispatch('experiences/removePeriod', periodId);
     },
     maxDate(date) {
-      return this.periodEnd && date > this.periodEnd;
+      return date > new Date() || (this.periodEnd && (date > this.periodEnd));
     },
     minDate(date) {
-      return this.periodStart && date < this.periodStart;
+      return date > new Date() || (this.periodStart && (date < this.periodStart));
     },
   }
 }

@@ -2,7 +2,8 @@
   <span class="recap-cell cell-name">
 
     <p>
-      Je me nomme <strong>{{identite.lastName}} {{identite.firstNames}}</strong> (c'est {{identite.sex=='m' ? 'masculin' : 'féminin'}}) <span v-if="identite.usageName">(Nom d'usage : {{identite.usageName}})</span></p>
+      Je me nomme <strong>{{identite.lastName}} {{identite.firstNames}}</strong> <span v-if="identite.usageName">(Nom d'usage : {{identite.usageName}})</span></p>
+    <p>Je suis de sexe {{identite.sex=='m' ? 'masculin' : 'féminin'}}</p>
 
   </span>
 </template>

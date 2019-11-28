@@ -24,6 +24,23 @@
       </div>
 
       <div class="field">
+        <label class="label">Genre</label>
+        <div class="control">
+          <div class="columns">
+            <div class="column">
+              <a @click="addSex('m')" class="box" :class="sex === 'm' ? 'active' : ''">
+                <input type="radio" name="answer" :checked="sex === 'm' ? 'active' : ''"> &nbsp;Masculin
+              </a>
+            </div>
+            <div class="column">
+              <a @click="addSex('f')" class="box" :class="sex === 'f' ? 'active' : ''">
+                <input type="radio" name="answer" :checked="sex === 'f' ? 'active' : ''"> &nbsp;Féminin
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
         <label class="label">Mon numéro de téléphone mobile</label>
         <div class="control">
           <input :value="cellPhoneNumber" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addCellPhoneNumber">
@@ -65,19 +82,22 @@ const formatPhoneNumber = value => {
 export default {
   mixins: [helpLoaderMixin],
   computed: {
-    lastName () {
+    lastName() {
       return this.$store.state.identity.lastName
     },
-    usageName () {
+    usageName() {
       return this.$store.state.identity.usageName
     },
-    email () {
+    email() {
       return this.$store.state.identity.email
     },
-    homePhoneNumber () {
+    sex() {
+      return this.$store.state.identity.sex
+    },
+    homePhoneNumber() {
       return formatPhoneNumber(this.$store.state.identity.homePhoneNumber)
     },
-    cellPhoneNumber () {
+    cellPhoneNumber() {
       return formatPhoneNumber(this.$store.state.identity.cellPhoneNumber)
     },
   },
@@ -98,6 +118,9 @@ export default {
     },
     addFirstNames: function(e) {
       this.$store.commit('identity/addFirstNames', e.target.value)
+    },
+    addSex: function(value) {
+      this.$store.commit('identity/addSex', value)
     },
     addUsageName: function(e) {
       this.$store.commit('identity/addUsageName', e.target.value)

@@ -11,13 +11,6 @@
             <path d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
         </svg>&nbsp; Ajouter une {{experiences.length ? 'nouvelle ' : ''}}expérience
       </nuxt-link>
-      <div v-if="experiencesProgress === 100" style="margin-top: 1rem;">
-        <span class="avril-ou">&nbsp;ou&nbsp;</span>
-        <nuxt-link :event="experiencesProgress < 100 ? '' : 'click'" to="/identite" class="button is-dark">
-          Avancer vers mon identité
-        </nuxt-link>
-      </div>
-
       <div class="columns is-multiline">
         <div v-for="experience in experiences" class="column">
           <div class="box is-equal-height">
@@ -42,7 +35,12 @@
           </div>
         </div>
       </div>
-
+      <div v-if="experiencesProgress === 100" style="margin-top: 1rem;">
+        <div class="title is-5">Pas d'autre expérience professionnelle à ajouter ?</div>
+        <nuxt-link :event="experiencesProgress < 100 ? '' : 'click'" to="/identite" class="button is-dark">
+          Avancer vers mon identité
+        </nuxt-link>
+      </div>
     </div>
     <Help :content="help" />
   </div>

@@ -9,7 +9,7 @@
 
   </div>
   <div class="recap-cell cell-classe" v-else>
-    Je n'ai pas de formations supplémentaire.
+    Je n'ai pas de formation supplémentaire.
   </div>
 </div>
 </template>
@@ -17,7 +17,7 @@
 <script>
 export default {
   computed: {
-    education () {
+    education() {
       return this.$store.state.education
     },
   },

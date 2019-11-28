@@ -8,11 +8,11 @@
           <label class="label" v-if="role != ''">Quelles activités avez-vous pratiqué dans votre emploi {{ role ? `de ${role}`: ''}} {{companyName ? `au sein de ${companyName}` : ''}} ?</label>
           <label class="label" v-else>Quelles activités avez-vous fait dans votre emploi ?</label>
           <input class="input" ref="activity_input" type="text" placeholder="Exemple : Je pétris de la pâte à pain" @keyup.enter="addActivity">
-          <a class="button is-default is-pulled-right" @click="addActivity" style="margin-top:4px">
-            + Ajouter
-          </a>
-          <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
+          <div class="push-enter" style="margin-top:5px; margin-left:6px;">
             Appuyez sur <strong>Entrée</strong> pour ajouter cette activité ou
+            <a class="button is-pulled-right" :class="activities.length ? 'is-default' : 'is-dark'" @click="addActivity" style="margin-top:4px">
+              + Ajouter
+            </a>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
           <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
-          <nuxt-link to="/experiences" class="is-ok button is-dark is-pulled-right">
+          <nuxt-link to="/experiences" class="is-ok button is-pulled-right" :class="activities.length ? 'is-dark' : 'is-default'">
             Continuer
           </nuxt-link>
         </div>
