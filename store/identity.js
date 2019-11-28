@@ -4,7 +4,7 @@ import {percent} from '../utils/number';
 export const state = () => ({
   lastName: null,
   usageName: null,
-  firstNames: [],
+  firstNames: null,
   sex: null,
   email: null,
   homePhoneNumber: null,
@@ -13,7 +13,7 @@ export const state = () => ({
     date: null,
     county: null,
     city: null,
-    country: 'FR'
+    country: null,
   },
   address: {
     streetType: null,
@@ -21,17 +21,26 @@ export const state = () => ({
     streetNumber: null,
     city: null,
     postalCode: null,
-    country: 'FR',
+    country: null,
     isDomTom: false,
   },
 })
 
+const OPTIONAL_FIELDS = [
+  'usageName',
+];
+
 export const getters = {
-  totalFields: state => {
-    return Object.values(state).length;
+  mandatoryState: state => {
+    return Object.keys(state).filter(k => !OPTIONAL_FIELDS.includes(k)).reduce((subState, k) => {
+      return Object.assign(subState, {[k]: state[k]})
+    }, {});
   },
-  filledFields: state => {
-    return Object.values(state).filter(v => !isBlank(v)).length;
+  totalFields: (state, {mandatoryState}) => {
+    return Object.values(mandatoryState).length;
+  },
+  filledFields: (state, {mandatoryState}) => {
+    return Object.values(mandatoryState).filter(v => !isBlank(v)).length;
   },
   progress: (state, {filledFields, totalFields}) => {
     return percent(filledFields/totalFields);
@@ -49,7 +58,7 @@ export const mutations = {
     state.usageName = value
   },
   addFirstNames (state, value) {
-    state.firstNames.push(value)
+    state.firstNames = value
   },
   addSex (state, value) {
     state.sex = value

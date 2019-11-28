@@ -3,6 +3,7 @@ export const isBlank = value => {
     (value === null) ||
     (value === undefined) ||
     (value === 0) ||
-    (value === '') ||
-    (Array.isArray(value) && value.length === 0);
+    (typeof value === 'string' && value.trim() === '') ||
+    (Array.isArray(value) && value.every(isBlank)) ||
+    (typeof value === 'object') && Object.values(value).every(isBlank)
 }

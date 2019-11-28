@@ -8,12 +8,22 @@ export const state = () => ({
   latestDegree: null,
 })
 
+const OPTIONAL_FIELDS = [
+  'relatedDegrees',
+  'trainings'
+];
+
 export const getters = {
-  totalFields: state => {
-    return Object.values(state).length;
+  mandatoryState: state => {
+    return Object.keys(state).filter(k => !OPTIONAL_FIELDS.includes(k)).reduce((subState, k) => {
+      return Object.assign(subState, {[k]: state[k]})
+    }, {});
   },
-  filledFields: state => {
-    return Object.values(state).filter(v => !isBlank(v)).length;
+  totalFields: (state, {mandatoryState}) => {
+    return Object.values(mandatoryState).length;
+  },
+  filledFields: (state, {mandatoryState}) => {
+    return Object.values(mandatoryState).filter(v => !isBlank(v)).length;
   },
   progress: (state, {filledFields, totalFields}) => {
     return percent(filledFields/totalFields);

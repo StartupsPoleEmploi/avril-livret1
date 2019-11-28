@@ -36,7 +36,6 @@ export const mutations = {
       contractType: null,
       activities: [],
       periods: [],
-      hours: 0
     })
   },
   setCurrent(state, id) {
@@ -94,12 +93,6 @@ export const actions = {
     commit('mutateExperience', {
       id: getters.current.uuid,
       contractType
-    })
-  },
-  addHours({commit, getters}, hours) {
-    commit('mutateExperience', {
-      id: getters.current.uuid,
-      hours
     })
   },
   addPeriod({commit, getters}, period) {
