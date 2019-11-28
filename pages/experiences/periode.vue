@@ -5,8 +5,8 @@
       <div class="field natural-language">
         <client-only placeholder="Chargement ...">
           <span class="title is-5">
-            J'ai travaillé du <date-picker v-model="periodStart" lang="fr" :format="dateFormat"></date-picker> au
-            <date-picker v-model="periodEnd" lang="fr" format="DD/MM/YYYY"></date-picker> à <input class="input heure" type="number" v-model="periodWeekHours" placeholder="35"> heures par semaine.
+            J'ai travaillé du <date-picker v-model="periodStart" :disabled-date="maxDate" :format="dateFormat" :placeholder="placeholder"></date-picker :default-value="periodEnd || new Date()"> au
+            <date-picker v-model="periodEnd" :disabled-date="minDate" :format="dateFormat" :placeholder="placeholder" :default-value="periodStart || new Date()"></date-picker> à <input class="input heure" type="number" v-model="periodWeekHours" placeholder="35"> heures par semaine.
           </span>
         </client-only>
         <div class="">
@@ -47,7 +47,6 @@
 </template>
 
 <script>
-// import DatePicker from 'vue2-datepicker';
 import moment from 'moment';
 
 import helpLoaderMixin from '~/mixins/helpLoader.js';
@@ -60,7 +59,7 @@ export default {
   ],
   beforeCreate() {
     if (!this.$store.getters['experiences/current']) {
-      this.$store.dispatch('experiences/newExperience');
+      this.$router.push('/experiences');
     }
   },
   data() {
@@ -76,7 +75,7 @@ export default {
     },
   },
   methods: {
-    addPeriod () {
+    addPeriod() {
       // TODO: supprimer les weekends du calcul des heures totales
 
       // par mois, le coeficcient de gain de congé est de 14 :
@@ -107,7 +106,13 @@ export default {
     },
     removePeriod(periodId) {
       this.$store.dispatch('experiences/removePeriod', periodId);
-    }
+    },
+    maxDate(date) {
+      return this.periodEnd && date > this.periodEnd;
+    },
+    minDate(date) {
+      return this.periodStart && date < this.periodStart;
+    },
   }
 }
 </script>

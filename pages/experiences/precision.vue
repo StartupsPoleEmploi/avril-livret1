@@ -50,7 +50,7 @@ export default {
   mixins: [helpLoaderMixin],
   beforeCreate() {
     if (!this.$store.getters['experiences/current']) {
-      this.$store.dispatch('experiences/newExperience');
+      this.$router.push('/experiences');
     }
   },
   computed: {

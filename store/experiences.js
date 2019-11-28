@@ -42,6 +42,9 @@ export const mutations = {
   setCurrent(state, id) {
     state.map(e => Object.assign(e, {isCurrent: e.uuid === id}))
   },
+  removeCurrent(state) {
+    state.map(e => Object.assign(e, {isCurrent: false}))
+  },
   mutateExperience (state, fields) {
     state.map(e => (e.uuid === fields.id ? Object.assign(e, fields) : e))
   },
