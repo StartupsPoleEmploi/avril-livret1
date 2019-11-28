@@ -3,17 +3,17 @@
     <div class="form-fields">
 
       <div class="field">
-        <h3 class="title is-5">Quels diplômes avez-vous obtenu en rapport avec {{currentDegree}} ?</h3>
+        <h3 class="title is-5">Quels diplômes avez-vous obtenu en rapport avec {{currentDegree || 'le diplôme que vous souhaitez obtenir'}} ?</h3>
       </div>
 
       <div class="field">
         <div class="control">
           <input class="input" ref="relatedDegree" type="text" placeholder="Exemple : Bac pro commerce" @keyup.enter="addRelatedDegree">
-          <button class="button is-dark is-pulled-right" @click="addRelatedDegree" style="margin-top:4px">
-            + Ajouter
-          </button>
-          <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
-            Pour ajouter, appuyez sur <strong>Entrée</strong> ou&nbsp;
+          <div class="has-text-right" style="margin-top:5px;">
+            Pour ajouter, appuyez sur <strong>Entrée</strong> ou
+            <button class="button" :class="relatedDegrees.length ? 'is-default' : 'is-dark'" @click="addRelatedDegree" style="margin-top:4px">
+              + Ajouter
+            </button>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
 
       <div class="field">
         <div class="control">
-          <nuxt-link to="formations" class="is-ok button is-default is-pulled-right">
+          <nuxt-link to="formations" class="is-ok button is-pulled-right" :class="relatedDegrees.length ? 'is-dark' : 'is-default'">
             {{relatedDegrees.length ? 'Continuer' : 'Aucun, continuer'}}
           </nuxt-link>
           <nuxt-link to="formations" class="is-ok button is-text is-pulled-left">
@@ -72,4 +72,3 @@ export default {
   }
 }
 </script>
-

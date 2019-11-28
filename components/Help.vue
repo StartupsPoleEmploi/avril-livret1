@@ -4,9 +4,6 @@
     <div class="form-help-content content">
       <div v-html="content"></div>
     </div>
-    <p style="margin-top:1rem">
-      <a href="#" class="is-text">J'ai besoin de plus d'aide pour répondre à cette question</a>
-    </p>
   </div>
 </template>
 <script type="text/javascript">

@@ -9,12 +9,12 @@
 
       <div class="field">
         <div class="control">
-          <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, 1er secours, permis B, Fimo" @keyup.enter="addTraining">
-          <a class="button is-dark is-pulled-right" @click="addTraining" style="margin-top:4px">
-            + Ajouter
-          </a>
-          <div class="push-enter is-pulled-right" style="margin-top:5px; margin-left:6px;">
+          <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, 1er secours, permis B, FIMO" @keyup.enter="addTraining">
+          <div class="has-text-right" style="margin-top:5px;">
             Pour ajouter, appuyez sur <strong>Entrée</strong> ou
+            <button class="button" :class="trainings.length ? 'is-default' : 'is-dark'" @click="addTraining" style="margin-top:4px">
+              + Ajouter
+            </button>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
 
       <div class="field">
         <div class="control">
-          <nuxt-link to="/experiences" class="is-ok button is-default is-pulled-right">
+          <nuxt-link to="/experiences" class="is-ok button is-pulled-right" :class="trainings.length ? 'is-dark' : 'is-default'">
             {{trainings.length ? 'Continuer' : 'Aucun, continuer'}}
           </nuxt-link>
           <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
