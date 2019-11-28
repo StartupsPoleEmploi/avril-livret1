@@ -10,7 +10,7 @@
             </div>
             <div class="column">
               <label class="label">Mes prénoms</label>
-              <input class="input" type="text" placeholder="Vos prénoms" @input="addFirstNames">
+              <input :value="firstNames" class="input" type="text" placeholder="Vos prénoms" @input="addFirstNames">
             </div>
           </div>
         </div>
@@ -84,6 +84,9 @@ export default {
   computed: {
     lastName() {
       return this.$store.state.identity.lastName
+    },
+    firstNames() {
+      return this.$store.state.identity.firstNames
     },
     usageName() {
       return this.$store.state.identity.usageName

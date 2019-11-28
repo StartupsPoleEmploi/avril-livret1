@@ -6,6 +6,7 @@ import {backendToStore} from '../mappers/toBackend';
 
 export const state = () => ({
   certificationLabel: null,
+  certifierLabel: null,
   currentPath: null,
   hash: null,
   helpContent: null,

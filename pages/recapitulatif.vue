@@ -34,7 +34,7 @@
                     <strong>{{period.totalHours}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
                   </li>
                 </ul>
-                <h4 class="title is-5" style="margin-top: 1rem;">Compétences</h4>
+                <h4 class="title is-5" style="margin-top: 1rem;">Mes activités</h4>
                 <ul class="list">
                   <li class="list-item" v-for="activity in experience.activities">{{activity}}</li>
                 </ul>
@@ -60,6 +60,9 @@
           <a class="is-ok button is-dark" :href="phoenixUrl">{{progress < 100 ? 'Je termine plus tard' : 'Oui, retour sur Avril'}}</a>
           <nuxt-link to="/" class="button is-default">
             Pas encore, poursuivre l'édition
+          </nuxt-link>
+          <nuxt-link to="/cerfa" class="button is-default">
+            Voir le formulaire officiel
           </nuxt-link>
         </div>
       </div>
