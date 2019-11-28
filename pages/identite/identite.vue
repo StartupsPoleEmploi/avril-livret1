@@ -54,6 +54,10 @@
 <script>
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 
+const formatPhoneNumber = value => {
+  return ((value || '').replace(/[^0-9]/g, '').match(/.{1,2}/g) || []).join(' ');
+};
+
 export default {
   mixins: [helpLoaderMixin],
   computed: {
@@ -67,10 +71,10 @@ export default {
       return this.$store.state.identity.email
     },
     homePhoneNumber () {
-      return this.$store.state.identity.homePhoneNumber
+      return formatPhoneNumber(this.$store.state.identity.homePhoneNumber)
     },
     cellPhoneNumber () {
-      return this.$store.state.identity.cellPhoneNumber
+      return formatPhoneNumber(this.$store.state.identity.cellPhoneNumber)
     },
   },
   created() {

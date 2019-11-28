@@ -29,7 +29,7 @@
           <div class="avril--actions">
             <div class="control">
               <nuxt-link to="/recapitulatif" class="is-ok button" :class="isTheEnd ? 'is-dark' : 'is-default'">
-                Enregistrer mon livret de recevabilité
+                Enregistrer mon dossier de recevabilité
               </nuxt-link>
             </div>
           </div>

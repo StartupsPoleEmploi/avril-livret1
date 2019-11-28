@@ -2,7 +2,7 @@
 <div class="">
   <div class="recap-cell cell-formations" v-if="education.trainings.length != 0">
 
-    J'ai une formation de
+    J'ai suivi une formation de
     <span v-for="formation, index in education.trainings">
       <span><strong>{{ formation }}</strong> <span v-if="index < education.trainings.length-1">et de </span></span>
     </span>

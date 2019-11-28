@@ -5,7 +5,7 @@
 
       <div class="field">
         <div class="control">
-          <label class="label" v-if="role != ''">Quelles activités avez-vous fait dans votre emploi de {{ role }} au sein de {{companyName}} ?</label>
+          <label class="label" v-if="role != ''">Quelles activités avez-vous pratiqué dans votre emploi {{ role ? `de ${role}`: ''}} {{companyName ? `au sein de ${companyName}` : ''}} ?</label>
           <label class="label" v-else>Quelles activités avez-vous fait dans votre emploi ?</label>
           <input class="input" ref="activity_input" type="text" placeholder="Exemple : Je pétris de la pâte à pain" @keyup.enter="addActivity">
           <a class="button is-default is-pulled-right" @click="addActivity" style="margin-top:4px">

@@ -53,6 +53,11 @@
     border-bottom: 2px solid avril-color('blue') !important;
     border-radius: 0 !important;
     font-weight: 600 !important;
+
+    &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder {
+      opacity: 0.5;
+      color: green;
+    }
   }
   .title{
     line-height: 47px !important;

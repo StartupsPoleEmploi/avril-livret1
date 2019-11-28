@@ -9,7 +9,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>add</title>
             <path d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
-        </svg>&nbsp; Ajouter une expérience
+        </svg>&nbsp; Ajouter une {{experiences.length ? 'nouvelle ' : ''}}expérience
       </nuxt-link>
       <div v-if="experiencesProgress === 100" style="margin-top: 1rem;">
         <span class="avril-ou">&nbsp;ou&nbsp;</span>
@@ -22,13 +22,19 @@
         <div v-for="experience in experiences" class="column">
           <div class="box is-equal-height">
             <h3 class="title is-4">{{ experience.role }} chez {{experience.companyName}}</h3>
-            <ul>
+            <ul style="margin-bottom: 1rem;">
               <li v-for="period in experience.periods">
                 <strong>{{period.totalHours}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
               </li>
             </ul>
-            <nuxt-link v-on:click.native="setCurrentExperience(experience.uuid)" class="button is-text" to="/experiences/fonction">Modifier</nuxt-link>
-            <button @click="removeExperience(experience.uuid)" class="button is-text">Supprimer</button>
+            <div class="columns">
+              <div class="column">
+                <nuxt-link v-on:click.native="setCurrentExperience(experience.uuid)" class="button is-text" to="/experiences/fonction">Modifier</nuxt-link>
+              </div>
+              <div class="column">
+                <button @click="removeExperience(experience.uuid)" class="button is-text">Supprimer</button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="column is-one-quarter">

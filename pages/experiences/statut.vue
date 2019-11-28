@@ -5,8 +5,11 @@
       <RadioList :value="contractType" :options="possibleAnswers" :extras="otherAnswers" to="/experiences/periode" :click="addContractType" />
       <div class="form-field-action field" style="margin-top: 20px">
         <div class="control">
-          <nuxt-link v-on:click.native="addContractType('H')" to="periode" class="is-ok button is-text is-pulled-left">
+          <nuxt-link to="periode" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
+          </nuxt-link>
+          <nuxt-link v-if="contractType" to="periode" class="is-ok button is-dark is-pulled-right">
+            Continuer
           </nuxt-link>
         </div>
       </div>

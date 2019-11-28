@@ -7,8 +7,8 @@
           <h1 class="title is-1">Récapitulatif</h1>
 
           <div class="notification is-avril">
-            <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les.</p>
-            <p>Si tout vous semble correcte, enregistrez votre livret 1 dans votre dossier VAE Avril.</p>
+            <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les en cliquant sur le bouton "Pas encore, poursuivre l'édition" en bas de page.</p>
+            <p>Si tout vous semble correct, enregistrez votre livret 1 dans votre dossier VAE Avril.</p>
           </div>
         </div>
 

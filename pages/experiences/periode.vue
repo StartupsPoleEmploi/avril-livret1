@@ -5,8 +5,8 @@
       <div class="field natural-language">
         <client-only placeholder="Chargement ...">
           <span class="title is-5">
-            J'ai travaillé du <date-picker v-model="periodStart" :disabled-date="maxDate" :format="dateFormat" :placeholder="placeholder"></date-picker :default-value="periodEnd || new Date()"> au
-            <date-picker v-model="periodEnd" :disabled-date="minDate" :format="dateFormat" :placeholder="placeholder" :default-value="periodStart || new Date()"></date-picker> à <input class="input heure" type="number" v-model="periodWeekHours" placeholder="35"> heures par semaine.
+            J'ai travaillé du <date-picker ref="periodStart" v-model="periodStart" :disabled-date="maxDate" :format="dateFormat" :placeholder="placeholder" :default-value="periodEnd || new Date()"></date-picker> au
+            <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="dateFormat" :placeholder="placeholder" :default-value="periodStart || new Date()"></date-picker> à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35"> heures par semaine.
           </span>
         </client-only>
         <div class="">
@@ -73,13 +73,17 @@ export default {
   },
   computed: {
     periods () {
-      return this.$store.getters['experiences/current'].periods;
+      const currentExperience = this.$store.getters['experiences/current'];
+      return currentExperience && currentExperience.periods;
     },
   },
   methods: {
     addPeriod() {
-      // TODO: supprimer les weekends du calcul des heures totales
+      if (!this.$refs.periodStart.value) return this.$refs.periodStart.focus();
+      if (!this.$refs.periodEnd.value) return this.$refs.periodEnd.focus();
+      if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.focus();
 
+      // TODO: supprimer les weekends du calcul des heures totales
       // par mois, le coeficcient de gain de congé est de 14 :
       // exemple, à 35h / 14 = 2,5 jours par mois de congé
       // exemple, à 10h / 14 = 0,71 jours par mois
@@ -93,9 +97,7 @@ export default {
         start: this.periodStart,
         end: this.periodEnd,
         weekHours: parseInt(this.periodWeekHours),
-        totalHours: dailyHours * workedDays,
-        days: end.diff(start, 'days'),
-        weeks: end.diff(start, 'week'),
+        totalHours: parseInt(dailyHours * workedDays),
       };
       this.$store.dispatch('experiences/addPeriod', period);
 

@@ -8,8 +8,11 @@
 
       <div class="form-field-action field" style="margin-top: 20px">
         <div class="control">
-          <nuxt-link v-on:click.native="addCategory('H')" to="statut" class="is-ok button is-text is-pulled-left">
+          <nuxt-link to="statut" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
+          </nuxt-link>
+          <nuxt-link v-if="category" to="statut" class="is-ok button is-dark is-pulled-right">
+            Continuer
           </nuxt-link>
         </div>
       </div>
