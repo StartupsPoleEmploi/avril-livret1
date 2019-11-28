@@ -2,6 +2,8 @@ import {percent} from '../utils/number';
 import {first, last} from '../utils/array';
 import {fraToEng} from '../utils/translate';
 
+import {backendToStore} from '../mappers/toBackend';
+
 export const state = () => ({
   certificationLabel: null,
   currentPath: null,
@@ -136,8 +138,8 @@ export const actions = {
   },
   initState({commit}, {hash, certificationLabel, identity, experiences, education}) {
     commit('initState', hash, certificationLabel);
-    commit('identity/initState', identity);
-    commit('experiences/initState', experiences);
-    commit('education/initState', education);
+    commit('identity/initState', backendToStore.identity(identity));
+    commit('experiences/initState', backendToStore.experiences(experiences));
+    commit('education/initState', backendToStore.education(education));
   }
 }

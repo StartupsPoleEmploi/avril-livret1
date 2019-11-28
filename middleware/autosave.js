@@ -1,3 +1,5 @@
+import {storeToBackend} from '../mappers/toBackend';
+
 export default async function ({ store, req, env } = context) {
   if (process.client && store.state.hash) {
     const response = await fetch(`${env.apiUrl}/api/booklet?hash=${store.state.hash}`, {
@@ -8,8 +10,9 @@ export default async function ({ store, req, env } = context) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        identity: store.state.identity,
-        experiences: store.state.experiences,
+        identity: storeToBackend.identity(store.state.identity),
+        experiences: storeToBackend.experiences(store.state.experiences),
+        education: storeToBackend.education(store.state.education),
       })
     });
     if (response.ok) {
