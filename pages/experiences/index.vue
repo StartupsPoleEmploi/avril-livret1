@@ -13,8 +13,8 @@
       </nuxt-link>
       <div v-if="experiencesProgress === 100" style="margin-top: 1rem;">
         <span class="avril-ou">&nbsp;ou&nbsp;</span>
-        <nuxt-link :event="experiencesProgress < 100 ? '' : 'click'" to="/formations" class="button is-dark">
-          Avancer vers mes formations
+        <nuxt-link :event="experiencesProgress < 100 ? '' : 'click'" to="/identite" class="button is-dark">
+          Avancer vers mon identité
         </nuxt-link>
       </div>
 
@@ -48,7 +48,11 @@ import helpLoaderMixin from '~/mixins/helpLoader.js';
 
 export default {
   beforeCreate() {
-    this.$store.dispatch('experiences/removeCurrent');
+  },
+  mounted() {
+    this.$store.commit('experiences/removeNotFilled');
+    this.$store.commit('experiences/removeCurrent');
+    console.log(this.$store.getters['experiences/current']);
   },
   data: () => ({
     dateFormat: 'DD/MM/YYYY',

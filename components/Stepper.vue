@@ -29,7 +29,7 @@ export default {
     },
     steps() {
       const stepObject = this.$store.state.steps.find(s => s.path === this.$store.getters.currentTab);
-      if (stepObject) return stepObject.steps;
+      if (stepObject) return stepObject.steps.filter(s => !s.hidden);
     },
   },
 }

@@ -30,10 +30,10 @@
 
       <div class="field">
         <div class="control">
-          <nuxt-link :to="experiencesProgress < 100 ? '/experience' : '/identite'" class="is-ok button is-text is-pulled-left">
+          <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
-          <nuxt-link :to="experiencesProgress < 100 ? '/experience' : '/identite'" class="is-ok button is-dark is-pulled-right">
+          <nuxt-link to="/experiences" class="is-ok button is-dark is-pulled-right">
             Continuer
           </nuxt-link>
         </div>

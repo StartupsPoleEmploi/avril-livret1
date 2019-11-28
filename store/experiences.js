@@ -45,6 +45,13 @@ export const mutations = {
   removeCurrent(state) {
     state.map(e => Object.assign(e, {isCurrent: false}))
   },
+  removeNotFilled(state) {
+    state.forEach((exp, i) => {
+      if (!(exp.companyName && exp.role)) {
+        state.splice(state.findIndex(e => e.uuid === exp.uuid))
+      }
+    });
+  },
   mutateExperience (state, fields) {
     state.map(e => (e.uuid === fields.id ? Object.assign(e, fields) : e))
   },
