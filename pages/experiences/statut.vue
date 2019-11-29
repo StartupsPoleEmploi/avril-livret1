@@ -16,7 +16,11 @@
           <nuxt-link to="periode" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
-          <nuxt-link v-if="contractType" to="periode" class="is-ok button is-dark is-pulled-right">
+          <nuxt-link
+            v-if="contractType"
+            to="periode"
+            class="is-ok button is-dark is-pulled-right"
+          >
             Continuer
           </nuxt-link>
         </div>
