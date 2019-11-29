@@ -246,12 +246,14 @@
             <div class="columns">
               <div class="column">
                 <div class="atome">
-                  <p><label>Certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE), :</label> {{education.trainings.join(', ')}}</p>
+                  <label>Certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE) :</label>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.trainings.join(', ')}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
-                  <p><label>Formations courtes suivies dans le cadre de la formation continue :</label> {{education.relatedDegrees.join(', ')}}</p>
+                  <label>Formations courtes suivies dans le cadre de la formation continue :</label>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.relatedDegrees.join(', ')}}</p>
                 </div>
               </div>
             </div>
