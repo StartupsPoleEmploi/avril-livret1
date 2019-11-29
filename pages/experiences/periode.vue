@@ -5,8 +5,8 @@
       <div class="field natural-language">
         <client-only placeholder="Chargement ...">
           <span class="title is-5">
-            J'ai travaillé du <date-picker ref="periodStart" v-model="periodStart" :disabled-date="maxDate" :format="dateFormat" :placeholder="placeholder" :default-value="periodEnd || new Date()"></date-picker> au
-            <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="dateFormat" :placeholder="placeholder" :default-value="periodStart || new Date()"></date-picker> à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
+            J'ai travaillé du <date-picker ref="periodStart" v-model="periodStart" :disabled-date="maxDate" :format="dateFormat" :placeholder="placeholder"></date-picker> au
+            <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="dateFormat" :placeholder="placeholder"></date-picker> à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
           </span>
         </client-only>
         <div class="">
@@ -20,13 +20,9 @@
         <div v-for="period in periods" class="column is-half">
           <div class="box is-equal-height">
             <button @click="removePeriod(period.uuid)" class="delete" style="margin-left: auto; margin-bottom: 0.5rem;"></button>
-            <p class="title is-3">{{ Math.round(period.totalHours) }} heures</p>
+            <p class="title is-3">{{ periodTotalHours(period) }} heures</p>
             <h3 class="title is-6">Du {{ formatDate(period.start) }}<br /> au {{ formatDate(period.end) }}</h3>
             <button @click="editPeriod(period.uuid)" class="button is-text">Modifier</button>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="avril__box__experience is-equal-height">
           </div>
         </div>
       </div>
@@ -49,6 +45,8 @@
 
 <script>
 import moment from 'moment';
+
+import {periodTotalHours} from '../../utils/time.js';
 
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
@@ -84,22 +82,10 @@ export default {
       if (!this.$refs.periodEnd.value) return this.$refs.periodEnd.focus();
       if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.focus();
 
-      // TODO: supprimer les weekends du calcul des heures totales
-      // par mois, le coeficcient de gain de congé est de 14 :
-      // exemple, à 35h / 14 = 2,5 jours par mois de congé
-      // exemple, à 10h / 14 = 0,71 jours par mois
-
-      const startMoment = moment(this.periodStart);
-      const endMoment = moment(this.periodEnd);
-      const dailyHours = parseInt(this.periodWeekHours)/5;
-      const weekends = (endMoment.diff(startMoment, 'days') / 7)*2;
-      const workedDays = endMoment.diff(startMoment, 'days') - weekends;
-
       const period = {
         start: this.periodStart,
         end: this.periodEnd,
         weekHours: parseInt(this.periodWeekHours),
-        totalHours: parseInt(dailyHours * workedDays),
       };
       this.$store.dispatch('experiences/addPeriod', period);
 
@@ -122,6 +108,9 @@ export default {
     },
     minDate(date) {
       return date > new Date() || (this.periodStart && (date < this.periodStart));
+    },
+    periodTotalHours(period) {
+      return periodTotalHours(period);
     },
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <div class="avril-recapitulatif">
+    <button @click="pdfDownload" class="button is-dark is-pulled-right">Télécharger le PDF</button>
     <div class="recap-content">
 
       <div class="section has-text-centered">
@@ -90,6 +91,14 @@ export default {
       return this.$store.state.experiences
     },
   },
+  methods: {
+    pdfDownload() {
+      fetch('/cerfa.pdf', {
+        method: 'POST',
+        body: document.documentElement.outerHTML,
+      })
+    }
+  }
 }
 </script>
 

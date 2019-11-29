@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import {uuid} from '../utils/string';
+import {periodTotalHours} from '../utils/time';
 import {percent} from '../utils/number';
 import {BOOKLET_MIN_HOURS} from '../constants/index';
 
@@ -9,7 +10,7 @@ export const getters = {
   totalHours: state => {
     return state.reduce((accumulatedHours, experience) => {
       return experience.periods.reduce((accumulatedHours2, period) => {
-        return accumulatedHours2 + period.totalHours;
+        return accumulatedHours2 + periodTotalHours(period);
       }, accumulatedHours);
     }, 0);
   },

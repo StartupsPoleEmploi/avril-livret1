@@ -8,7 +8,7 @@ const pdfGenerator = require('./pdf');
 const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
 
-app.get('*.pdf', pdfGenerator);
+app.post('/cerfa.pdf', pdfGenerator);
 
 async function start () {
   // Init Nuxt.js

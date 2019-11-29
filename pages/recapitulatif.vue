@@ -7,8 +7,8 @@
           <h1 class="title is-1">Récapitulatif</h1>
 
           <div class="notification is-avril">
-            <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les en cliquant sur le bouton "Pas encore, poursuivre l'édition" en bas de page.</p>
-            <p>Si tout vous semble correct, enregistrez votre livret 1 dans votre dossier VAE Avril.</p>
+            <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les en cliquant sur le bouton "Je dois modifier certaines informations" en bas de page.</p>
+            <p>Si tout vous semble correct, votre dossier est enregistré et vous pouvez continuer.</p>
           </div>
         </div>
 
@@ -31,16 +31,21 @@
                 <h4 class="title is-5">Périodes</h4>
                 <ul>
                   <li v-for="period in experience.periods">
-                    <strong>{{period.totalHours}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
+                    <strong>{{periodTotalHours(period)}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
                   </li>
                 </ul>
                 <h4 class="title is-5" style="margin-top: 1rem;">Mes activités</h4>
-                <ul class="list">
-                  <li class="list-item" v-for="activity in experience.activities">{{activity}}</li>
-                </ul>
+                <div class="content">
+                  <ul>
+                    <li v-for="activity in experience.activities">{{activity}}</li>
+                  </ul>
+                </div>
                 <p v-if="experience.activities.length === 0">Pas de compétence renseignées.</p>
               </div>
             </div>
+          </div>
+          <div v-if="experiences.length === 0">
+            <p><strong>Je n'ai pas encore renseigné d'expérience professionnelle.</strong></p>
           </div>
         </section>
 
@@ -55,15 +60,21 @@
       </div>
 
       <div class="field">
-        <h3 class="title is-3">Est-ce que toutes ces informations sont exactes ?</h3>
+        <h3 class="title is-3">Est-ce que ces informations sont exactes et complètes ?</h3>
         <div class="control">
-          <a class="is-ok button is-dark" :href="phoenixUrl">{{progress < 100 ? 'Je termine plus tard' : 'Oui, retour sur Avril'}}</a>
-          <nuxt-link to="/" class="button is-default">
-            Pas encore, poursuivre l'édition
-          </nuxt-link>
-          <nuxt-link to="/cerfa" class="button is-default">
-            Voir le formulaire officiel
-          </nuxt-link>
+          <div class="columns">
+            <div class="column">
+              <a class="is-ok button is-default is-fullwidth has-text-centered" :href="phoenixUrl">Oui</a>
+            </div>
+            <div class="column">
+              <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
+                Je dois modifier certaines informations
+              </nuxt-link>
+            </div>
+            <div class="column">
+              <a class="is-ok button is-default is-fullwidth has-text-centered" :href="phoenixUrl">Je complèterai plus tard</a>
+            </div>
+          </div>
         </div>
       </div>
   </div>
@@ -71,6 +82,7 @@
 
 <script>
 import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
+import {periodTotalHours} from '~/utils/time.js';
 
 import {BOOKLET_MIN_HOURS} from '../constants/index';
 
@@ -114,6 +126,9 @@ export default {
       return this.$store.getters.progress;
     },
   },
+  methods: {
+    periodTotalHours
+  }
 }
 </script>
 

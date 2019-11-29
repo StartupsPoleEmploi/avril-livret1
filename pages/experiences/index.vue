@@ -17,7 +17,7 @@
             <h3 class="title is-4">{{ experience.role }} chez {{experience.companyName}}</h3>
             <ul style="margin-bottom: 1rem;">
               <li v-for="period in experience.periods">
-                <strong>{{period.totalHours}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
+                <strong>{{periodTotalHours(period)}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
               </li>
             </ul>
             <div class="columns">
@@ -49,6 +49,7 @@
 <script>
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
+import {periodTotalHours} from '~/utils/time.js';
 
 export default {
   mixins: [
@@ -77,6 +78,7 @@ export default {
     removeExperience(uuid) {
       this.$store.commit('experiences/remove', uuid);
     },
+    periodTotalHours,
   },
 }
 </script>

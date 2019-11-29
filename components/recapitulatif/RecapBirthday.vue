@@ -1,6 +1,7 @@
 <template>
   <span class="recap-cell cell-birthday">
-    <p>Je suis né<span v-if="identite.sex!='m'">e</span> le {{formatDate(identite.birthday)}} à {{identite.birthPlace}}</p>
+    <p v-if="identite.birthday">Je suis né<span v-if="identite.sex!='m'">e</span> le {{formatDate(identite.birthday)}} à {{identite.birthPlace}}</p>
+    <p v-else>Je n'ai pas encore renseigné ma date de naissance.</p>
   </span>
 </template>
 
