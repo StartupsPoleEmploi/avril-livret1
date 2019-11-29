@@ -64,7 +64,8 @@
         <div class="control">
           <div class="columns">
             <div class="column">
-              <a class="is-ok button is-default is-fullwidth has-text-centered" :href="phoenixUrl">Oui</a>
+              <a v-if="backUrl" class="is-ok button is-default is-fullwidth" :href="backUrl">Oui</a>
+              <nuxt-link v-else class="is-ok button is-default is-fullwidth" to="/cerfa">Oui</nuxt-link>
             </div>
             <div class="column">
               <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
@@ -72,7 +73,7 @@
               </nuxt-link>
             </div>
             <div class="column">
-              <a class="is-ok button is-default is-fullwidth has-text-centered" :href="phoenixUrl">Je complèterai plus tard</a>
+              <a class="is-ok button is-default is-fullwidth has-text-centered" :href="backUrl">Je complèterai plus tard</a>
             </div>
           </div>
         </div>
@@ -111,7 +112,7 @@ export default {
     RecapResidence,
   },
   data: () => ({
-    phoenixUrl: `${process.env.phoenixUrl}/candidatures/actuelle`,
+    backUrl: process.env.phoenixUrl && `${process.env.phoenixUrl}/candidatures/actuelle`,
     bookletMinHours: BOOKLET_MIN_HOURS,
   }),
   layout: 'recapitulatif',

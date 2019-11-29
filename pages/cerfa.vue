@@ -1,7 +1,10 @@
 <template>
   <div class="avril-recapitulatif">
-    <button @click="pdfDownload" class="button is-dark is-pulled-right">Télécharger le PDF</button>
-    <div class="recap-content">
+    <form @submit="addBody" method="POST" action="/cerfa.pdf" target="_blank">
+      <input type="hidden" name="body" :value="htmlBody">
+      <button type="submit" class="button is-dark is-pulled-right">Télécharger le PDF</button>
+    </form>
+    <div id="pdf-content" class="recap-content">
 
       <div class="section has-text-centered">
         <h1 class="title is-2 is-uppercase">Demande de recevabilité à la validation des acquis de l'expérience</h1>
@@ -91,12 +94,21 @@ export default {
       return this.$store.state.experiences
     },
   },
+  data() {
+    return {
+      htmlBody: null,
+    }
+  },
   methods: {
-    pdfDownload() {
-      fetch('/cerfa.pdf', {
+    addBody(e) {
+      this.htmlBody = document.documentElement.outerHTML;
+    },
+    async pdfDownload() {
+      const result = await fetch('/cerfa.pdf', {
         method: 'POST',
         body: document.documentElement.outerHTML,
       })
+      console.log(result)
     }
   }
 }
