@@ -274,13 +274,13 @@
         <h3 class="title is-3">Déclaration sur l'honneur</h3>
       </section>
 
-      <!-- <section class="section section-sworn">
-        <article class="message is-dark">
+      <section class="section section-sworn">
+        <article class="message is-danger">
           <div class="message-body">
             <h2 class="title is-4 has-text-weight-light">Rubrique 7 : Réservé à l'organisme certificateur (ne pas remplir)</h2>
           </div>
         </article>
-      </section> -->
+      </section>
 
     </div>
   </div>
