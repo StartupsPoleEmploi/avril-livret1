@@ -2,22 +2,22 @@
   <div class="avril-recapitulatif">
     <div class="recap-content">
 
-      <section class="section header">
-        <article class="message is-dark is-large">
-          <div class="message-body">
+      <div class="header">
+        <!-- <article class="message is-dark is-large">
+          <div class="message-body"> -->
             <div class="section">
               <h1 class="title is-3">Demande de recevabilité à la validation des acquis de l'expérience</h1>
               <p class="subtitle">Code de l'éducation art. R335-5 à R335-11</p>
             </div>
-          </div>
-        </article>
-      </section>
+          <!-- </div>
+        </article> -->
+      </div>
 
 
       <section class="section section-nature">
-        <h1 class="title is-4 has-text-weight-light">Rubrique 1 : Nature de la demande</h1>
         <article class="message is-dark">
           <div class="message-body">
+            <h2 class="title is-4 has-text-weight-light">Rubrique 1 : Nature de la demande</h2>
             <div class="columns">
           <div class="column">
             <div class="control">
@@ -49,9 +49,9 @@
       </section>
 
       <section class="section section-certification">
-        <h1 class="title is-4 has-text-weight-light">Rubrique 2 : Certification professionnelle que vous souhaitez obtenir</h1>
         <article class="message is-dark">
           <div class="message-body">
+            <h2 class="title is-4 has-text-weight-light">Rubrique 2 : Certification professionnelle que vous souhaitez obtenir</h2>
             <div class="columns">
           <div class="column">
             <div class="atome">
@@ -71,10 +71,10 @@
       </section>
 
       <section class="section section-identity">
-        <h1 class="title is-4 has-text-weight-light">Rubrique 3 : Etat civil/Situation du candidat</h1>
 
         <article class="message is-dark">
           <div class="message-body">
+            <h2 class="title is-4 has-text-weight-light">Rubrique 3 : Etat civil/Situation du candidat</h2>
             <div class="columns">
               <div class="column">
                 <div class="atome">
@@ -177,17 +177,17 @@
 
         <div class="columns">
           <div class="column">
-            <h3 class="title is-5 has-text-weight-light">Vous êtes actuellement :</h3>
             <article class="message is-dark">
               <div class="message-body">
+                <h3 class="title is-5 has-text-weight-light">Vous êtes actuellement :</h3>
                 <p class="title is-6 is-uppercase is-spaced">A RAJOUTER</p>
               </div>
             </article>
           </div>
           <div class="column">
-            <h3 class="title is-5 has-text-weight-light">Êtes-vous reconnu travailleur handicapé :</h3>
             <article class="message is-dark">
               <div class="message-body">
+                <h3 class="title is-5 has-text-weight-light">Êtes-vous reconnu travailleur handicapé :</h3>
                 <p class="title is-6 is-uppercase is-spaced">A RAJOUTER</p>
               </div>
             </article>
@@ -198,20 +198,44 @@
       </section>
 
       <section class="section section-level">
-        <h1 class="title is-4 has-text-weight-light">Rubrique 4 : Niveau de formation/Certification(s) obtenue(s) à la date de votre demande</h1>
 
         <article class="message is-dark">
           <div class="message-body">
+            <h2 class="title is-4 has-text-weight-light">Rubrique 4 : Niveau de formation/Certification(s) obtenue(s) à la date de votre demande</h2>
             <div class="columns">
               <div class="column">
+
                 <div class="atome">
-                  <p><label>Dernière classe suivie :</label> {{education.latestCourseLevel}}</p>
-                  <p><label>Titre ou diplôme le plus élevé obtenu en France :</label> {{education.latestDegree}}</p>
-                  <p><label>Autre certification obtenue en France :</label> A BRANCHER</p>
-                  <p><label>Attestation de comparabilité d'un diplôme délivré dans un pays étranger :</label> PAS BRANCHE</p>
-                  <p><label>Attestation de reconnaissance d'études/et ou de formation/s suivie/s à l'étranger :</label> PAS BRANCHE</p>
-                  <p><label>Partie(s) de certification professionnelle obtenue/s :</label> {{education.trainings.length ? 'Oui' : 'Non'}}</p>
+                  <label>Dernière classe suivie :</label>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.latestCourseLevel}}</p>
                 </div>
+
+                <div class="atome">
+                  <label>Titre ou diplôme le plus élevé obtenu en France :</label>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.latestDegree}}</p>
+                </div>
+
+                <div class="atome">
+                  <label>Autre certification obtenue en France :</label>
+                  <p class="title is-6 is-uppercase is-spaced">A BRANCHER</p>
+                </div>
+
+              </div>
+              <div class="column">
+
+                <div class="atome">
+                  <label>Attestation de comparabilité d'un diplôme délivré dans un pays étranger :</label>
+                  <p class="title is-6 is-uppercase is-spaced">PAS BRANCHE</p>
+                </div>
+                <div class="atome">
+                  <label>Attestation de reconnaissance d'études/et ou de formation/s suivie/s à l'étranger :</label>
+                  <p class="title is-6 is-uppercase is-spaced">PAS BRANCHE</p>
+                </div>
+                <div class="atome">
+                  <label>Partie(s) de certification professionnelle obtenue/s :</label>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.trainings.length ? 'Oui' : 'Non'}}</p>
+                </div>
+
               </div>
             </div>
           </div>
@@ -237,16 +261,24 @@
       </section>
 
       <section class="section section-experiences">
-        <h1 class="title is-4 has-text-weight-light">Rubrique 5 : Information concernant votre expérience en rapport direct avec la certification viséee</h1>
+        <article class="message is-dark">
+          <div class="message-body">
+            <h2 class="title is-4 has-text-weight-light">Rubrique 5 : Information concernant votre expérience en rapport direct avec la certification viséee</h2>
+          </div>
+        </article>
       </section>
 
       <section class="section section-sworn">
-        <h1 class="title is-4 has-text-weight-light">Rubrique 6 : Déclaration sur l'honneur</h1>
+        <h3 class="title is-3">Déclaration sur l'honneur</h3>
       </section>
 
-      <section class="section section-sworn">
-        <h1 class="title is-4 has-text-weight-light">Rubrique 7 : Réservé à l'organisme certificateur (ne pas remplir)</h1>
-      </section>
+      <!-- <section class="section section-sworn">
+        <article class="message is-dark">
+          <div class="message-body">
+            <h2 class="title is-4 has-text-weight-light">Rubrique 7 : Réservé à l'organisme certificateur (ne pas remplir)</h2>
+          </div>
+        </article>
+      </section> -->
 
     </div>
   </div>
