@@ -1,0 +1,21 @@
+@page {
+    // size: 21 cm 29.7 cm;
+  margin: 1cm 0;
+}
+
+@media print {
+  html {
+    font-size: 10px !important;
+  }
+
+  .is-print-fullwidth {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  form.download {
+    display: none;
+  }
+  .message-group, .message {
+    page-break-inside: avoid;
+  }
+}

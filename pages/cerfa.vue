@@ -1,6 +1,6 @@
 <template>
   <div class="avril-recapitulatif">
-    <form @submit="addBody" method="POST" action="/cerfa.pdf" target="_blank">
+    <form @submit="addBody" method="POST" action="/cerfa.pdf" class="download">
       <input type="hidden" name="body" :value="htmlBody">
       <button type="submit" class="button is-dark is-pulled-right">Télécharger le PDF</button>
     </form>
@@ -26,7 +26,7 @@
           <div class="column">
             <div class="control">
               <label class="radio box is-block">
-                <input type="radio" name="nature" checked>
+                <input type="radio" checked>
                 1ère demande
               </label>
             </div>
@@ -34,7 +34,7 @@
           <div class="column">
             <div class="control">
               <label class="radio box is-block">
-                <input type="radio" name="nature">
+                <input type="radio" disabled>
                 Renouvellement
               </label>
             </div>
@@ -42,7 +42,7 @@
           <div class="column">
             <div class="control">
               <label class="radio box is-block">
-                <input type="radio" name="nature">
+                <input type="radio" disabled>
                 Prolongation
               </label>
             </div>
@@ -179,7 +179,7 @@
         <!-- <p><label>Tel portable :</label> {{identity.cellPhoneNumber}}</p> -->
         <!-- <p><label>Courriel :</label> {{identity.email}}</p> -->
 
-        <div class="columns">
+        <div class="columns message-group">
           <div class="column">
             <article class="message is-dark">
               <div class="message-body">
