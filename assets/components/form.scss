@@ -96,3 +96,7 @@
     }
   }
 }
+
+.autocomplete-input {
+  @extend .input;
+}

@@ -9,3 +9,7 @@ export const pluralize = (first, second) => {
 export const capitalize = word => {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
+
+export const removeTags = str => {
+  return str.replace(/\<.*?\>/g, '').replace(/\<\/.*?\>/g, '')
+}

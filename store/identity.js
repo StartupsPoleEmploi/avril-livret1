@@ -11,16 +11,15 @@ export const state = () => ({
   cellPhoneNumber: null,
   birthday: null,
   birthPlace: null,
-  address: null,
-  // address: {
-  //   streetType: null,
-  //   streetName: null,
-  //   streetNumber: null,
-  //   city: null,
-  //   postalCode: null,
-  //   country: null,
-  //   isDomTom: false,
-  // },
+  address: {
+    streetType: null,
+    streetName: null,
+    streetNumber: null,
+    city: null,
+    postalCode: null,
+    country: null,
+    isDomTom: false,
+  },
 })
 
 const OPTIONAL_FIELDS = [
@@ -81,25 +80,6 @@ export const mutations = {
   addAddress(state, value) {
     state.address = value
   },
-  // addAddressStreetType(state, value) {
-  //   state.address.streetType = value
-  // },
-  // addAddressStreetName(state, value) {
-  //   state.address.streetName = value
-  // },
-  // addAddressStreetNumber(state, value) {
-  //   state.address.streetNumber = value
-  // },
-  // addAddressCity(state, value) {
-  //   state.address.city = value
-  // },
-  // addAddressPostalCode(state, value) {
-  //   state.address.postalCode = value
-  // },
-  // addAddressCountry(state, value) {
-  //   state.address.country = value
-  // },
-
 }
 
 export const actions = {
