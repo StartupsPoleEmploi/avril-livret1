@@ -23,9 +23,9 @@ export const storeToBackend = {
       email: state.email,
       gender: state.sex,
       mobile_phone: state.cellPhoneNumber,
-      birthday: state.birth.date,
-      birth_place: state.birth.city,
-      full_address: state.address.street
+      birthday: state.birthday,
+      birth_place: state.birthPlace,
+      full_address: state.address
     }
   }),
   education: state => ({

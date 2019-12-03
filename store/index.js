@@ -159,7 +159,9 @@ export const actions = {
   ) {
     console.log("nuxtServerInit called");
     if (env.apiUrl && queryHash) {
-      const result = await fetch(`${env.apiUrl}/api/booklet?hash=${queryHash}`);
+      const apiUrl = `${env.apiUrl}/api/booklet?hash=${queryHash}`;
+      console.log(apiUrl);
+      const result = await fetch(apiUrl);
       if (result.ok) {
         const dataWithStatus = await result.json();
         console.log("fetched data", dataWithStatus.data);
@@ -184,7 +186,7 @@ export const actions = {
     commit("initState", hash, certification_label);
     commit(
       "identity/initState",
-      civility ? backendToStore.identity(civility) : {}
+      civility ? console.log(backendToStore.identity(civility)) : {}
     );
     commit("experiences/initState", backendToStore.experiences(experiences));
     commit(
