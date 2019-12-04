@@ -30,10 +30,10 @@
 
       <div class="field">
         <div class="control">
-          <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
+          <nuxt-link to="/experiences/periode" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
-          <nuxt-link to="/experiences" class="is-ok button is-pulled-right" :class="activities.length ? 'is-dark' : 'is-default'">
+          <nuxt-link to="/experiences/periode" class="is-ok button is-pulled-right" :class="activities.length ? 'is-dark' : 'is-default'">
             Continuer
           </nuxt-link>
         </div>

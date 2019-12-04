@@ -36,7 +36,8 @@
     font-size: 18px;
     font-weight: 600;
     color: avril-color('marine');
-    &::placeholder{
+
+    @include placeholder {
       font-size: 16px;
       font-weight: 400;
     }
@@ -54,9 +55,8 @@
     border-radius: 0 !important;
     font-weight: 600 !important;
 
-    &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder {
-      opacity: 0.5;
-      color: green;
+    @include placeholder {
+      opacity: 0.6;
     }
   }
   .title{

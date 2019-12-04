@@ -7,7 +7,7 @@ export const periodTotalHours = period => {
   // exemple, à 10h / 14 = 0,71 jours par mois
 
   const startMoment = moment(period.start);
-  const endMoment = moment(period.end);
+  const endMoment = period.end ? moment(period.end) : moment();
   const dailyHours = parseInt(period.weekHours)/5;
   const weekends = (endMoment.diff(startMoment, 'days') / 7)*2;
   const workedDays = endMoment.diff(startMoment, 'days') - weekends;

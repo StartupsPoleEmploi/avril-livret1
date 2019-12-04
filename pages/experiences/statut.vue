@@ -8,17 +8,17 @@
         :value="contractType"
         :options="possibleAnswers"
         :extras="otherAnswers"
-        to="/experiences/periode"
+        to="/experiences/precision"
         :click="addContractType"
       />
       <div class="form-field-action field" style="margin-top: 20px">
         <div class="control">
-          <nuxt-link to="periode" class="is-ok button is-text is-pulled-left">
+          <nuxt-link to="/experiences/precision" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
           <nuxt-link
             v-if="contractType"
-            to="periode"
+            to="/experiences/precision"
             class="is-ok button is-dark is-pulled-right"
           >
             Continuer

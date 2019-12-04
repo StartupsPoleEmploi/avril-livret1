@@ -6,7 +6,7 @@ export default {
   }),
   methods: {
     formatDate(date) {
-      return moment(date).format(this.dateFormat);
+      return (date ? moment(date) : moment()).format(this.dateFormat);
     },
   }
 }

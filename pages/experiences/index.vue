@@ -27,7 +27,9 @@
             <ul style="margin-bottom: 1rem;">
               <li v-for="period in experience.periods">
                 <strong>{{ periodTotalHours(period) }} heures</strong> du
-                {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
+                {{ formatDate(period.start) }}
+                <span v-if="period.end">au {{ formatDate(period.end) }}</span>
+                <span v-else>à aujourd'hui</span>
               </li>
             </ul>
             <div class="columns">
@@ -49,9 +51,6 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="avril__box__experience is-equal-height"></div>
         </div>
       </div>
       <div v-if="experiencesProgress === 100" style="margin-top: 1rem;">

@@ -55,13 +55,13 @@ export const state = () => ({
           to: "/experiences/statut"
         },
         {
+          label: "Activités",
+          to: "/experiences/precision"
+        },
+        {
           label: "Période",
           to: "/experiences/periode"
         },
-        {
-          label: "Activités",
-          to: "/experiences/precision"
-        }
       ]
     },
     {
