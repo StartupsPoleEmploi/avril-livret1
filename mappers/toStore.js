@@ -1,12 +1,20 @@
 import { uuid } from "../utils/string";
 
+const mapClassification = data => data.label;
+
 const mapExperience = experience => {
   const map = {
     uuid: experience.uuid || uuid(),
-    isCurrent: false,
     role: experience.title,
     companyName: experience.company_name,
-    companyAddress: experience.full_address,
+    companyAddress: {
+      street: null,
+      city: null,
+      postalCode: null,
+      country: null,
+      lat: null,
+      lng: null,
+    },
     category: experience.job_industry,
     contractType: experience.employment_type,
     activities: experience.skills.map(mapClassification),
@@ -21,20 +29,29 @@ const mapExperience = experience => {
   return map;
 };
 
-const mapClassification = data => data.label;
-
 export const backendToStore = {
+  index: backendData =>({
+    hash: backendData.hash,
+    certificationLabel: backendData.certification_label,
+    certifierLabel: backendData.certifier_label,
+  }),
   identity: backendData => ({
     firstNames: backendData.first_name,
     lastName: backendData.last_name,
     email: backendData.email,
     sex: backendData.gender,
     cellPhoneNumber: backendData.mobile_phone,
-    birth: {
-      date: backendData.birthday,
-      city: backendData.birth_place
+    birthday: backendData.birthday,
+    birthPlace: {
+      city: backendData.birth_place,
+      country: null,
     },
-    address: backendData.full_address
+    address: {
+      street: backendData.street_address,
+      city: backendData.city,
+      postalCode: backendData.postal_code,
+      country: backendData.country,
+    }
   }),
   education: backendData => ({
     relatedDegrees: backendData.diplomas.map(mapClassification),

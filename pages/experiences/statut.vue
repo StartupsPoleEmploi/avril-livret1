@@ -61,13 +61,17 @@ export default {
           value: "2"
         },
         {
-          label: "En contrat de professionnalisation",
-          value: "9"
+          label: "Bénévolat",
+          value: "5",
         },
         {
           label: "En contrat d’apprentissage",
           value: "8"
-        }
+        },
+        {
+          label: "En contrat de professionnalisation",
+          value: "9"
+        },
       ],
       otherAnswers: [
         {

@@ -2,6 +2,8 @@ import { percent } from "../utils/number";
 import { first, last } from "../utils/array";
 import { fraToEng } from "../utils/translate";
 
+import steps from '~/contents/data/steps';
+
 import { backendToStore } from "../mappers/toStore";
 
 export const state = () => ({
@@ -10,79 +12,7 @@ export const state = () => ({
   currentPath: null,
   hash: null,
   helpContent: null,
-  steps: [
-    {
-      store: "education",
-      path: "formations",
-      steps: [
-        {
-          label: "Dernière formation",
-          to: "/formations"
-        },
-        {
-          label: "Niveau",
-          to: "/formations/diplome"
-        },
-        {
-          label: "Diplôme(s)",
-          to: "/formations/rncp"
-        },
-        {
-          label: "Formations",
-          to: "/formations/formations"
-        }
-      ]
-    },
-    {
-      store: "experiences",
-      path: "experiences",
-      steps: [
-        {
-          label: "Mes expériences professionnelles",
-          to: "/experiences",
-          hidden: true
-        },
-        {
-          label: "Fonction",
-          to: "/experiences/fonction"
-        },
-        {
-          label: "Famille pro",
-          to: "/experiences/famille"
-        },
-        {
-          label: "Statut",
-          to: "/experiences/statut"
-        },
-        {
-          label: "Activités",
-          to: "/experiences/precision"
-        },
-        {
-          label: "Période",
-          to: "/experiences/periode"
-        },
-      ]
-    },
-    {
-      store: "identity",
-      path: "identite",
-      steps: [
-        {
-          label: "Lieu de résidence",
-          to: "/identite"
-        },
-        {
-          label: "Naissance",
-          to: "/identite/naissance"
-        },
-        {
-          label: "Identité",
-          to: "/identite/identite"
-        }
-      ]
-    }
-  ]
+  steps,
 });
 
 export const getters = {
@@ -124,9 +54,8 @@ export const getters = {
 };
 
 export const mutations = {
-  initState(state, hash, certificationLabel) {
-    state.hash = hash;
-    state.certificationLabel = certificationLabel;
+  initState(state, serverState) {
+    state = Object.assign(state, serverState)
   },
   setCurrentPath(state, currentPath) {
     state.currentPath = currentPath;
@@ -181,17 +110,23 @@ export const actions = {
   },
   initState(
     { commit },
-    { hash, certification_label, civility, experiences, education }
+    { civility, experiences, education, ...rest }
   ) {
-    commit("initState", hash, certification_label);
+    commit(
+      "initState",
+      backendToStore.index(rest)
+    );
     commit(
       "identity/initState",
-      civility ? console.log(backendToStore.identity(civility)) : {}
+      backendToStore.identity(civility)
     );
-    commit("experiences/initState", backendToStore.experiences(experiences));
+    commit(
+      "experiences/initState",
+      backendToStore.experiences(experiences)
+    );
     commit(
       "education/initState",
-      education ? backendToStore.education(education) : {}
+      backendToStore.education(education)
     );
   }
 };
