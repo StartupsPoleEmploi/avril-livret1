@@ -17,24 +17,20 @@ const mapClassification = classification => ({
 
 export const storeToBackend = {
   identity: state => ({
-    civility: {
-      first_name: state.firstNames,
-      last_name: state.lastName,
-      email: state.email,
-      gender: state.sex,
-      mobile_phone: state.cellPhoneNumber,
-      birthday: state.birthday,
-      birth_place: state.birthPlace,
-      full_address: state.address
-    }
+    first_name: state.firstNames,
+    last_name: state.lastName,
+    email: state.email,
+    gender: state.sex,
+    mobile_phone: state.cellPhoneNumber,
+    birthday: state.birthday,
+    birth_place: state.birthPlace,
+    full_address: state.address
   }),
   education: state => ({
-    education: {
-      grade: state.latestCourseLevel,
-      degree: state.latestDegree,
-      diplomas: state.relatedDegrees.map(mapClassification),
-      courses: state.trainings.map(mapClassification)
-    }
+    grade: state.latestCourseLevel,
+    degree: state.latestDegree,
+    diplomas: state.relatedDegrees.map(mapClassification),
+    courses: state.trainings.map(mapClassification)
   }),
   experiences: state => state.map(mapExperience)
 };
