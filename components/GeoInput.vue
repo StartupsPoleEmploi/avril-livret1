@@ -1,12 +1,25 @@
 <template>
   <autocomplete
-  auto-select
-    placeholder="Entrez une adresse"
-    aria-label="Entrez une adresse"
+    auto-select
+    :placeholder="placeholder"
+    :aria-label="placeholder"
     :get-result-value="getResultValue"
     :search="search"
-    @submit="input"
-  ></autocomplete>
+    @submit="submit"
+    :default-value="addressLabelify(value)"
+  >
+    <template v-slot:result="{ result, props }">
+      <li v-bind="props" class="autocomplete-result">
+        <div v-if="type == 'city'">
+          {{`${result.locale_names[0]}, ${result.country}`}}
+        </div>
+        <div v-else>
+          <strong>{{result.locale_names[0]}}</strong><br />
+          {{`${result.postcode} ${result.city}, ${result.country}`}}
+        </div>
+      </li>
+    </template>
+  </autocomplete>
 </template>
 
 <script type="text/javascript">
@@ -15,6 +28,7 @@
   import Autocomplete from '@trevoreyre/autocomplete-vue';
   import '@trevoreyre/autocomplete-vue/dist/style.css';
   import {removeTags} from '~/utils/string';
+  import {addressLabelify, algoliaToAddress} from '~/utils/geo';
 
   const places = algoliasearch.initPlaces(
     process.env.NUXT_ALGOLIA_PLACES_APP_ID,
@@ -26,12 +40,13 @@
       Autocomplete,
     },
     methods: {
-      search: input => {
-        if (input && input.length >= 3) {
+      search: function(input) {
+        if (input && input.replace(/[0-9/s]/g, '').length >= 3) {
           return new Promise((resolve, reject) => {
             places.search({
               language: 'fr',
               query: input,
+              type: this.type,
             }, function(err, res) {
               if (err) {
                 reject(err);
@@ -43,11 +58,36 @@
           return Promise.resolve([]);
         }
       },
-      getResultValue: result => `${result.locale_names[0]}, ${result.postcode} ${result.city}, ${result.country}`
+      addressLabelify,
+      getResultValue: function(result) {
+        return addressLabelify(algoliaToAddress(this.type, result));
+      },
+      submit: function(result) {
+        this.input(algoliaToAddress(this.type, result));
+      },
     },
-    props: [
-      'input',
-
-    ],
+    props: {
+      input: {
+        type: Function,
+        required: true,
+      },
+      value: {
+        type: Object,
+      },
+      placeholder: {
+        type: String,
+        default: 'Entrez une adresse',
+      },
+      type: {
+        type: String,
+        default: 'address',
+      }
+    },
   }
 </script>
+
+<style type="text/css">
+  .autocomplete-result {
+    cursor: pointer;
+  }
+</style>

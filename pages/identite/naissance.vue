@@ -5,7 +5,7 @@
       <div class="field">
         <label class="label">Lieu de naissance</label>
         <div class="control">
-          <input :value="birthPlace" ref="avril__focus" class="input" type="text" placeholder="Exemple : Marseille, France" @input="addBirthPlace"/>
+        <GeoInput :input="addBirthPlace" ref="avril__focus" :value="birthPlace" type="city" placeholder="Exemple : Marseille, France" />
         </div>
       </div>
 
@@ -34,6 +34,7 @@
 
 <script>
 import DatePicker from 'vue2-datepicker';
+import GeoInput from '~/components/GeoInput';
 
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 import withDatePickerMixin from '~/mixins/withDatePicker.js';
@@ -43,6 +44,9 @@ export default {
     helpLoaderMixin,
     withDatePickerMixin,
   ],
+  components: {
+    GeoInput,
+  },
   computed: {
     birthPlace() {
       return this.$store.state.identity.birthPlace
@@ -52,25 +56,13 @@ export default {
     }
   },
   mounted() {
-    this.$refs.avril__focus.focus()
+    if (!this.birthPlace) {
+      this.$refs.avril__focus.$el.getElementsByTagName('input')[0].focus()
+    }
   },
   methods: {
-    addBirthPlace: function(e) {
-      this.$store.commit('identity/addBirthPlace', e.target.value)
-
-      // pareil, splitter le lieu grâce à Google
-      // addDateNaissance (state, value) {
-      //   state.birth.date = value
-      // },
-      // addDepartementNaissance (state, value) {
-      //   state.birth.departement = value
-      // },
-      // addCommuneNaissance (state, value) {
-      //   state.birth.city = value
-      // },
-      // addNationaliteNaissance (state, value) {
-      //   state.birth.nationalite = value
-      // },
+    addBirthPlace: function(result) {
+      this.$store.commit('identity/addBirthPlace', result)
     },
     addBirthday: function(date) {
       this.$store.commit('identity/addBirthday', date);

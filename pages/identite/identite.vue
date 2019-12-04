@@ -76,7 +76,7 @@
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 
 const formatPhoneNumber = value => {
-  return ((value || '').replace(/[^0-9]/g, '').match(/.{1,2}/g) || []).join(' ');
+  return ((value || '').replace(/[^0-9]/g, '').substring(0,10).match(/.{1,2}/g) || []).join(' ');
 };
 
 export default {

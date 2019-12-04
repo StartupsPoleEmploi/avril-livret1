@@ -1,5 +1,6 @@
 import {isBlank} from '../utils/boolean';
 import {percent} from '../utils/number';
+import {algoliaResultToAddress, isDomTom} from '../utils/geo';
 
 export const state = () => ({
   lastName: null,
@@ -10,11 +11,12 @@ export const state = () => ({
   homePhoneNumber: null,
   cellPhoneNumber: null,
   birthday: null,
-  birthPlace: null,
+  birthPlace: {
+    city: null,
+    country: null,
+  },
   address: {
-    streetType: null,
-    streetName: null,
-    streetNumber: null,
+    street: null,
     city: null,
     postalCode: null,
     country: null,
@@ -77,8 +79,8 @@ export const mutations = {
   addBirthPlace(state, value) {
     state.birthPlace = value
   },
-  addAddress(state, value) {
-    state.address = value
+  addAddress(state, result) {
+    state.address = result
   },
 }
 

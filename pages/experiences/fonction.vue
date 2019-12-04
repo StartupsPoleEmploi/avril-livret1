@@ -31,17 +31,11 @@
       <div class="field">
         <label class="label">Adresse de l'entreprise ou association</label>
         <div class="control">
-          <input
+          <GeoInput
+            :input="addCompanyAddress"
             :value="companyAddress"
-            class="input"
-            v-on:keyup="next"
-            type="text"
-            placeholder="Exemple : 40 boulevard machin, 56000 Lorient"
-            @input="addCompanyAddress"
+            placeholder="Exemple : 44 rue de dupont, 13000 Marseille"
           />
-          <!-- <div class="push-enter is-pulled-right">
-            Appuyez sur <strong>Entrée</strong>
-          </div> -->
         </div>
       </div>
 
@@ -62,9 +56,13 @@
 
 <script>
 import helpLoaderMixin from "~/mixins/helpLoader.js";
+import GeoInput from '~/components/GeoInput';
 
 export default {
   mixins: [helpLoaderMixin],
+  components: {
+    GeoInput,
+  },
   beforeCreate() {
     if (!this.$store.getters["experiences/current"]) {
       this.$router.push("/experiences");
@@ -91,14 +89,9 @@ export default {
     addCompanyName(e) {
       this.$store.dispatch("experiences/addCompanyName", e.target.value);
     },
-    addCompanyAddress(e) {
-      this.$store.dispatch("experiences/addCompanyAddress", e.target.value);
+    addCompanyAddress(result) {
+      this.$store.dispatch("experiences/addCompanyAddress", result);
     },
-    next: function(event) {
-      if (event.key == "Enter") {
-        this.$router.push("famille");
-      }
-    }
   }
 };
 </script>
