@@ -16,7 +16,7 @@ export const state = () => ({
     country: null,
     lat: null,
     lng: null,
-    isDomTom: null,
+    domTom: null,
   },
   address: {
     street: null,
