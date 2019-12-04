@@ -10,13 +10,7 @@
   >
     <template v-slot:result="{ result, props }">
       <li v-bind="props" class="autocomplete-result">
-        <div v-if="type == 'city'">
-          {{`${result.locale_names[0]}, ${result.country}`}}
-        </div>
-        <div v-else>
-          <strong>{{result.locale_names[0]}}</strong><br />
-          {{`${result.postcode} ${result.city}, ${result.country}`}}
-        </div>
+        <span v-html="getHtmlResultValue(result)"></span>
       </li>
     </template>
   </autocomplete>
@@ -61,6 +55,9 @@
       addressLabelify,
       getResultValue: function(result) {
         return addressLabelify(algoliaToAddress(this.type, result));
+      },
+      getHtmlResultValue: function(result) {
+        return this.getResultValue(result).replace('\n', '<br />');
       },
       submit: function(result) {
         this.input(algoliaToAddress(this.type, result));

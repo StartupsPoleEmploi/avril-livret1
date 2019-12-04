@@ -67,12 +67,6 @@ export default {
     addBirthday: function(date) {
       this.$store.commit('identity/addBirthday', date);
     },
-    keymonitor: function(event) {
-      if(event.key == "Enter")
-      {
-        this.$router.push('name')
-      }
-    },
   },
 }
 </script>

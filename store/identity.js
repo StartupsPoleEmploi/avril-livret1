@@ -14,13 +14,17 @@ export const state = () => ({
   birthPlace: {
     city: null,
     country: null,
+    lat: null,
+    lng: null,
+    isDomTom: null,
   },
   address: {
     street: null,
     city: null,
     postalCode: null,
     country: null,
-    isDomTom: false,
+    lat: null,
+    lng: null,
   },
 })
 
