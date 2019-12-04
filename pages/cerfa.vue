@@ -113,21 +113,21 @@
               <div class="column">
                 <div class="atome">
                   <label>Date de naissance :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.birthday}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{formatDate(identity.birthday)}}</p>
                 </div>
                 <div class="atome">
                   <label>Commune de naissance :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.birthPlace}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.birthPlace.city}}</p>
                 </div>
                 <div class="atome">
                   <label>Département ou collectivité outre-mer de naissance :</label>
-                  <p class="title is-6 is-uppercase is-spaced"> PAS BRANCHE</p>
+                  <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace.domTom || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
                   <label>Pays de naissance :</label>
-                  <p class="title is-6 is-uppercase is-spaced"> PAS BRANCHE</p>
+                  <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace.country}}</p>
                 </div>
                 <div class="atome">
                   <label>Nationalité :</label>
@@ -137,24 +137,13 @@
             </div>
           </div>
         </article>
-
-        <!-- <p><label>Nom de naissance : <small>(c'est le nom qui figure sur votre acte de naissance)</small></label> {{identity.lastName}}</p> -->
-        <!-- <p><label>Nom d'usage :<small>(s'il y a lieu)</small></label> {{identity.usageName}}</p> -->
-        <!-- <p><label>Prénoms :<small>(dans l'ordre de l'état civil)</small></label> {{identity.firstNames}}</p> -->
-        <!-- <p><label>Date de naissance :</label> {{identity.birthday}}</p> -->
-        <!-- <p><label>Sexe :</label> {{identity.sex === 'm' ? 'Masculin' : 'Féminin'}}</p> -->
-        <!-- <p><label>Commune de naissance :</label> {{identity.birthPlace}}</p> -->
-        <!-- <p><label>Département ou collectivité outre-mer de naissance :</label> PAS BRANCHE</p> -->
-        <!-- <p><label>Pays de naissance :</label> PAS BRANCHE</p> -->
-        <!-- <p><label>Nationalité :</label> PAS BRANCHE</p> -->
-
         <article class="message is-dark">
           <div class="message-body">
             <div class="columns">
               <div class="column">
                 <div class="atome">
                   <label>Adresse actuelle :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.address}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{addressLabelify(identity.address)}}</p>
                 </div>
                 <div class="atome">
                   <label>Tel domicile :</label>
@@ -168,16 +157,14 @@
                 </div>
                 <div class="atome">
                   <label>Courriel :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.email}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">
+                    <a :href="`mailto:${identity.email}`" v-if="identity.email">{{identity.email}}</a>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </article>
-
-        <!-- <p><label>Tel domicile :</label> {{identity.homePhoneNumber}}</p> -->
-        <!-- <p><label>Tel portable :</label> {{identity.cellPhoneNumber}}</p> -->
-        <!-- <p><label>Courriel :</label> {{identity.email}}</p> -->
 
         <div class="columns message-group">
           <div class="column">
@@ -292,7 +279,13 @@
 
 <script>
 import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
+import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
+import {addressLabelify} from '~/utils/geo.js';
+
 export default {
+  mixins: [
+    withDateDisplayMixin
+  ],
   components: {
     ArrowRight
   },
@@ -329,7 +322,8 @@ export default {
         body: document.documentElement.outerHTML,
       })
       console.log(result)
-    }
+    },
+    addressLabelify,
   }
 }
 </script>

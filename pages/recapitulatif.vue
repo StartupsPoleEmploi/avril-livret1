@@ -26,16 +26,17 @@
           <p v-if="experiencesProgress == 100">J'ai plus de {{bookletMinHours}} heures d'expériences professionnelles</p>
           <div class="columns is-multiline">
             <div v-for="experience in experiences" class="column">
-              <div class="box is-equal-height">
-                <h3 class="title is-4">{{ experience.role }} chez {{ experience.companyName }}</h3>
-                <h4 class="title is-5">Périodes</h4>
+              <div class="box is-equal-height content">
+                <h3 class="is-4">{{ experience.role }} chez {{ experience.companyName }}</h3>
+                <p>{{addressLabelify(experience.companyAddress)}}</p>
+                <p class="has-text-weight-bold  ">Périodes :</p>
                 <ul>
                   <li v-for="period in experience.periods">
                     <strong>{{periodTotalHours(period)}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
                   </li>
                 </ul>
-                <h4 class="title is-5" style="margin-top: 1rem;">Mes activités</h4>
-                <div class="content">
+                <p class="has-text-weight-bold">Mes activités :</p>
+                <div>
                   <ul>
                     <li v-for="activity in experience.activities">{{activity}}</li>
                   </ul>
@@ -78,12 +79,16 @@
           </div>
         </div>
       </div>
+      <nuxt-link to="/cerfa" class="button is-default is-fullwidth has-text-centered">
+        Voir le cerfa
+      </nuxt-link>
   </div>
 </template>
 
 <script>
 import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
 import {periodTotalHours} from '~/utils/time.js';
+import {addressLabelify} from '~/utils/geo.js';
 
 import {BOOKLET_MIN_HOURS} from '../constants/index';
 
@@ -128,7 +133,8 @@ export default {
     },
   },
   methods: {
-    periodTotalHours
+    periodTotalHours,
+    addressLabelify,
   }
 }
 </script>

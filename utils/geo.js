@@ -12,7 +12,7 @@ export const algoliaToAddress = (type, result) => {
   if (type == 'address') {
     return {
       street: result.locale_names[0],
-      city: result.city[0],
+      city: (result.city || [])[0],
       postalCode: (result.postcode || [])[0],
       country: result.country,
       lat: result._geoloc.lat,
