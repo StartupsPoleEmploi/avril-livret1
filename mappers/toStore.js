@@ -1,4 +1,4 @@
-import get from 'lodash.get';
+import get from "lodash.get";
 import { uuid } from "../utils/string";
 
 const mapClassification = data => data.label;
@@ -14,7 +14,7 @@ const mapExperience = experience => {
       postalCode: null,
       country: null,
       lat: null,
-      lng: null,
+      lng: null
     },
     category: experience.job_industry,
     contractType: experience.employment_type,
@@ -29,10 +29,10 @@ const mapExperience = experience => {
 };
 
 export const backendToStore = {
-  index: backendData =>({
+  index: backendData => ({
     hash: backendData.hash,
     certificationLabel: backendData.certification_label,
-    certifierLabel: backendData.certifier_label,
+    certifierLabel: backendData.certifier_label
   }),
   identity: backendData => ({
     firstNames: backendData.first_name,
@@ -42,19 +42,23 @@ export const backendToStore = {
     cellPhoneNumber: backendData.mobile_phone,
     birthday: backendData.birthday,
     birthPlace: {
-      city: backendData.birth_place,
-      country: null,
+      city: get(backendData, "birth_place.city", {}),
+      country: get(backendData, "birth_place.country", {}),
+      lat: get(backendData, "birth_place.lat", {}),
+      lng: get(backendData, "birth_place.lng", {})
     },
     address: {
-      street: backendData.street_address,
-      city: backendData.city,
-      postalCode: backendData.postal_code,
-      country: backendData.country,
+      street: get(backendData, "full_address.street", {}),
+      city: get(backendData, "full_address.city", {}),
+      postalCode: get(backendData, "full_address.postal_code", {}),
+      country: get(backendData, "full_address.country", {}),
+      lat: get(backendData, "full_address.lat"),
+      lng: get(backendData, "full_address.lng")
     }
   }),
   education: backendData => ({
-    relatedDegrees: get(backendData, 'diplomas', []).map(mapClassification),
-    trainings: get(backendData, 'courses', []).map(mapClassification),
+    relatedDegrees: get(backendData, "diplomas", []).map(mapClassification),
+    trainings: get(backendData, "courses", []).map(mapClassification),
     latestCourseLevel: backendData.grade,
     latestDegree: backendData.degree
   }),
