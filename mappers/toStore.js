@@ -1,3 +1,4 @@
+import get from 'lodash.get';
 import { uuid } from "../utils/string";
 
 const mapClassification = data => data.label;
@@ -52,8 +53,8 @@ export const backendToStore = {
     }
   }),
   education: backendData => ({
-    relatedDegrees: backendData.diplomas.map(mapClassification),
-    trainings: backendData.courses.map(mapClassification),
+    relatedDegrees: get(backendData, 'diplomas', []).map(mapClassification),
+    trainings: get(backendData, 'courses', []).map(mapClassification),
     latestCourseLevel: backendData.grade,
     latestDegree: backendData.degree
   }),

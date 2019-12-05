@@ -118,15 +118,15 @@ export const actions = {
     );
     commit(
       "identity/initState",
-      backendToStore.identity(civility)
+      backendToStore.identity(civility || {})
     );
     commit(
       "experiences/initState",
-      backendToStore.experiences(experiences)
+      backendToStore.experiences(experiences || [])
     );
     commit(
       "education/initState",
-      backendToStore.education(education)
+      backendToStore.education(education || {})
     );
   }
 };

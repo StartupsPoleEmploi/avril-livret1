@@ -10,7 +10,7 @@ export default async function ({ store, req, env } = context) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        identity: storeToBackend.identity(store.state.identity),
+        civility: storeToBackend.identity(store.state.identity),
         experiences: storeToBackend.experiences(store.state.experiences),
         education: storeToBackend.education(store.state.education),
       })
@@ -22,7 +22,7 @@ export default async function ({ store, req, env } = context) {
       console.log(':( Could not save')
     }
   } else {
-    console.log(process.client ? 'Not authenticated, no save' : 'Server side, no need to reload')
+    console.log(process.client ? 'Not authenticated, no save' : 'Server side, no need to save')
   }
 }
 

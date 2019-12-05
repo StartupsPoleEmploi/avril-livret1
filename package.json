@@ -23,6 +23,7 @@
     "esm": "^3.2.25",
     "express": "^4.16.4",
     "html-pdf": "^2.2.0",
+    "lodash.get": "^4.4.2",
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.12.0",

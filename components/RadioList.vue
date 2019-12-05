@@ -1,14 +1,14 @@
 <template>
   <div>
-    <nuxt-link v-for="{label, value} in options" :key="value" v-on:click.native="click(value)" :to="to" class="box" :class="isSelected(value) ? 'active' : ''">
+    <button v-for="{label, value} in options" :key="value" @click="clickAndGo(value)" class="box" :class="isSelected(value) ? 'active' : ''">
       <input type="radio" name="answer" :checked="isSelected(value) ? 'active' : ''"> &nbsp;{{label}}
-    </nuxt-link>
+    </button>
     <div v-if="extras">
       <button v-if="!showExtras" @click="setUserShowExtras" class="button is-text">Autres propositions</button>
       <div v-if="showExtras">
-        <nuxt-link v-for="{label, value} in extras" :key="value" v-on:click.native="click(value)" :to="to" class="box" :class="isSelected(value) ? 'active' : ''">
+        <button v-for="{label, value} in extras" :key="value" @click="clickAndGo(value)" class="box" :class="isSelected(value) ? 'active' : ''">
           <input type="radio" name="answer" :checked="isSelected(value) ? 'active' : ''"> &nbsp;{{label}}
-        </nuxt-link>
+        </button>
       </div>
     </div>
   </div>
@@ -33,7 +33,13 @@
       },
       setUserShowExtras() {
         this.userShowExtras = true;
-      }
+      },
+      clickAndGo(value) {
+        this.click(value);
+        this.$router.push({
+            path: this.to
+        })
+      },
     },
     props: [
       'value',
