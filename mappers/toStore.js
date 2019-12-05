@@ -18,13 +18,11 @@ const mapExperience = experience => {
     category: experience.job_industry,
     contractType: experience.employment_type,
     activities: experience.skills.map(mapClassification),
-    periods: [
-      {
-        start: experience.start_date,
-        end: experience.end_date,
-        weekHours: experience.week_hours_duration
-      }
-    ]
+    periods: experience.periods.map(period => ({
+      start: period.start_date,
+      end: period.end_date,
+      weekHours: period.week_hours_duration
+    }))
   };
   return map;
 };
