@@ -1,4 +1,4 @@
-import get from 'lodash.get';
+import get from "lodash.get";
 import { uuid } from "../utils/string";
 
 const mapClassification = data => data.label;
@@ -14,7 +14,7 @@ const mapExperience = experience => {
       postalCode: null,
       country: null,
       lat: null,
-      lng: null,
+      lng: null
     },
     category: experience.job_industry,
     contractType: experience.employment_type,
@@ -29,10 +29,10 @@ const mapExperience = experience => {
 };
 
 export const backendToStore = {
-  index: backendData =>({
+  index: backendData => ({
     hash: backendData.hash,
     certificationLabel: backendData.certification_label,
-    certifierLabel: backendData.certifier_label,
+    certifierLabel: backendData.certifier_label
   }),
   identity: backendData => ({
     firstNames: backendData.first_name,
@@ -41,20 +41,12 @@ export const backendToStore = {
     sex: backendData.gender,
     cellPhoneNumber: backendData.mobile_phone,
     birthday: backendData.birthday,
-    birthPlace: {
-      city: backendData.birth_place,
-      country: null,
-    },
-    address: {
-      street: backendData.street_address,
-      city: backendData.city,
-      postalCode: backendData.postal_code,
-      country: backendData.country,
-    }
+    birthPlace: backendData.birth_place,
+    address: backendData.full_address
   }),
   education: backendData => ({
-    relatedDegrees: get(backendData, 'diplomas', []).map(mapClassification),
-    trainings: get(backendData, 'courses', []).map(mapClassification),
+    relatedDegrees: get(backendData, "diplomas", []).map(mapClassification),
+    trainings: get(backendData, "courses", []).map(mapClassification),
     latestCourseLevel: backendData.grade,
     latestDegree: backendData.degree
   }),

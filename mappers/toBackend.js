@@ -6,9 +6,11 @@ const mapExperience = experience => ({
   job_industry: experience.category,
   employment_type: experience.contractTyoe,
   skills: experience.activities.map(mapClassification),
-  start_date: (experience.periods[0] || {}).start,
-  end_date: (experience.periods[0] || {}).end,
-  week_hours_duration: (experience.periods[0] || {}).weekHours
+  periods: experiences.periods.map(period => ({
+    start_date: period.start,
+    end_date: period.end,
+    week_hours_duration: period.weekHours
+  }))
 });
 
 const mapClassification = classification => ({
