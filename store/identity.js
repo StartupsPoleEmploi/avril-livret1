@@ -26,6 +26,10 @@ export const state = () => ({
     lat: null,
     lng: null,
   },
+  nationality: {
+    country: null,
+    country_code: null,
+  },
 })
 
 const OPTIONAL_FIELDS = [
@@ -82,6 +86,9 @@ export const mutations = {
   },
   addBirthPlace(state, value) {
     state.birthPlace = value
+  },
+  addNationality(state, value) {
+    state.nationality = value
   },
   addAddress(state, result) {
     state.address = result

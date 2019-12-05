@@ -86,6 +86,7 @@ export default {
   },
   data() {
     return {
+      // datePickerStyle: { top: 0, left: 0 },
       periodStart: '',
       periodEnd: '',
       periodWeekHours: '',

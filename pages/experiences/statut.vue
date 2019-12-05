@@ -6,7 +6,7 @@
       </h3>
       <RadioList
         :value="contractType"
-        :options="possibleAnswers"
+        :options="defaultAnswers"
         :extras="otherAnswers"
         to="/experiences/precision"
         :click="addContractType"
@@ -33,6 +33,7 @@
 <script>
 import RadioList from "~/components/RadioList.vue";
 import helpLoaderMixin from "~/mixins/helpLoader.js";
+import possibleAnswers from '~/contents/data/experienceStatuses';
 
 export default {
   mixins: [helpLoaderMixin],
@@ -46,71 +47,21 @@ export default {
   },
   computed: {
     contractType() {
-      return this.$store.getters["experiences/current"].contractType;
+      if (this.$store.getters["experiences/current"]) {
+        return this.$store.getters["experiences/current"].contractType;
+      }
     }
   },
   data() {
-    return {
-      possibleAnswers: [
-        {
-          label: "Salarié",
-          value: "1"
-        },
-        {
-          label: "Travailleur indépendant, artisan, profession libérale",
-          value: "2"
-        },
-        {
-          label: "Bénévolat",
-          value: "5",
-        },
-        {
-          label: "En contrat d’apprentissage",
-          value: "8"
-        },
-        {
-          label: "En contrat de professionnalisation",
-          value: "9"
-        },
-      ],
-      otherAnswers: [
-        {
-          label: "Contrat Unique d'Insertion (CUI, CAE...)",
-          value: "10"
-        },
-        {
-          label: "Volontaire {VIE, VIA...}",
-          value: "3"
-        },
-        {
-          label: "Sportif de haut niveau",
-          value: "4"
-        },
-        {
-          label: "Personne ayant exercé des responsabilités syndicales",
-          value: "6"
-        },
-        {
-          label: "Mandat électoral local ou fonction élective locale",
-          value: "7"
-        },
-        {
-          label: "Période d'immersion (PMSMP, EMT)",
-          value: "11"
-        },
-        {
-          label: "Préparation opérationnelle à l’emploi (POE)",
-          value: "12"
-        },
-        {
-          label: "Période de formation en milieu professionnel (PFMP)",
-          value: "13"
-        },
-        {
-          label: "Stage pratique dans le cadre d'une formation",
-          value: "14"
-        }
+    const [defaultAnswers, otherAnswers] = possibleAnswers.reduce(([d, o], a) => {
+      return [
+        d.concat(a.isOther ? [] : a),
+        o.concat(a.isOther ? a : []),
       ]
+    }, [[], []])
+    return {
+      defaultAnswers,
+      otherAnswers,
     };
   },
   methods: {
@@ -118,7 +69,6 @@ export default {
       console.log(event.key);
       if (event.key == "Enter") {
         console.log("enter key was pressed!");
-        // this.$router.push('/name')
         this.$router.push("name");
       }
     },

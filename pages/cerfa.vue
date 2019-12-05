@@ -89,7 +89,7 @@
                 <div class="atome">
                   <label>Nom d'usage :</label>
                   <p class="is-italic"><small>s'il y a lieu</small></p>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.usageName}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.usageName || '-'}}</p>
                 </div>
               </div>
               <div class="column">

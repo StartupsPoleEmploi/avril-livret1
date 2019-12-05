@@ -3,16 +3,15 @@
     <div class="form-fields">
 
       <div class="field">
-        <label class="label">Lieu de naissance</label>
-        <div class="control">
-        <GeoInput :input="addBirthPlace" ref="avril__focus" :value="birthPlace" type="city" placeholder="Exemple : Marseille, France" />
-        </div>
-      </div>
-
-      <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
           <date-picker :value="birthday" @input="addBirthday" lang="fr" format="DD/MM/YYYY"></date-picker>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Lieu de naissance</label>
+        <div class="control">
+        <GeoInput :input="addBirthPlace" ref="avril__focus" :value="birthPlace" type="city" placeholder="Exemple : Marseille, France" />
         </div>
       </div>
 
@@ -49,10 +48,10 @@ export default {
   },
   computed: {
     birthPlace() {
-      return this.$store.state.identity.birthPlace
+      return this.$store.state.identity.birthPlace;
     },
     birthday() {
-      return this.$store.state.identity.birthday
+      return this.$store.state.identity.birthday;
     }
   },
   mounted() {
@@ -61,8 +60,14 @@ export default {
     }
   },
   methods: {
-    addBirthPlace: function(result) {
+    addBirthPlace: function({country_code, ...result}) {
       this.$store.commit('identity/addBirthPlace', result)
+      const nationalityFields = {
+        country_code: this.$store.state.identity.nationality.country_code || country_code,
+        country: this.$store.state.identity.nationality.country || result.country,
+      };
+      console.log(nationalityFields)
+      this.$store.commit('identity/addNationality', nationalityFields);
     },
     addBirthday: function(date) {
       this.$store.commit('identity/addBirthday', date);
