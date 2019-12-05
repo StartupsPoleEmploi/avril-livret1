@@ -41,8 +41,20 @@ export const backendToStore = {
     sex: backendData.gender,
     cellPhoneNumber: backendData.mobile_phone,
     birthday: backendData.birthday,
-    birthPlace: backendData.birth_place,
-    address: backendData.full_address
+    birthPlace: {
+      city: get(backendData, "birth_place.city", {}),
+      country: get(backendData, "birth_place.country", {}),
+      lat: get(backendData, "birth_place.lat", {}),
+      lng: get(backendData, "birth_place.lng", {})
+    },
+    address: {
+      street: get(backendData, "full_address.street", {}),
+      city: get(backendData, "full_address.city", {}),
+      postalCode: get(backendData, "full_address.postal_code", {}),
+      country: get(backendData, "full_address.country", {}),
+      lat: get(backendData, "full_address.lat"),
+      lng: get(backendData, "full_address.lng")
+    }
   }),
   education: backendData => ({
     relatedDegrees: get(backendData, "diplomas", []).map(mapClassification),

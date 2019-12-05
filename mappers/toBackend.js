@@ -1,3 +1,5 @@
+import get from "lodash.get";
+
 const mapExperience = experience => ({
   uuid: experience.uuid,
   title: experience.role,
@@ -26,7 +28,9 @@ export const storeToBackend = {
     mobile_phone: state.cellPhoneNumber,
     birthday: state.birthday,
     birth_place: state.birthPlace,
-    full_address: state.address
+    full_address: Object.assign(state.address, {
+      postal_code: get(state, "address.postalCode", null)
+    })
   }),
   education: state => ({
     grade: state.latestCourseLevel,
