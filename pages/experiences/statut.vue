@@ -52,7 +52,9 @@ export default {
     }
   },
   data() {
-    possibleAnswers
+    return {
+      possibleAnswers
+    }
   },
   methods: {
     keymonitor: function(event) {

@@ -7,7 +7,7 @@
         </button>
       </div>
     </div>
-    <div v-if="otherOptions.length">
+    <div v-if="otherOptions && otherOptions.length">
       <button v-if="!showExtras" @click="setUserShowExtras" class="button is-text">Autres propositions</button>
       <div v-if="showExtras"  :class="inline ? 'columns' : null">
         <div :class="inline ? 'column' : null" v-for="{label, value} in otherOptions" :key="value">
