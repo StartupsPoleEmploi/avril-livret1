@@ -44,6 +44,16 @@
           inline
         />
       </div>
+      <div class="form-field-action field">
+        <div class="control">
+          <nuxt-link to="identite" class="is-ok button is-text is-pulled-left">
+            Remplir plus tard
+          </nuxt-link>
+          <nuxt-link to="identite" class="is-ok button is-dark is-pulled-right">
+            Continuer
+          </nuxt-link>
+        </div>
+      </div>
     </div>
     <Help :content="help" />
   </div>
@@ -65,7 +75,6 @@ export default {
       return this.$store.state.identity.currentSituation.activity;
     },
     currentSituationWorkingStatus() {
-      console.log(this.$store.state.identity.currentSituation.workingStatus)
       return this.$store.state.identity.currentSituation.workingStatus;
     },
     currentSituationJobSeekingIsPE() {
