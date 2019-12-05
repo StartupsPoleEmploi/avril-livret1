@@ -65,6 +65,10 @@ export default [
         to: "/identite/naissance"
       },
       {
+        label: "Situation",
+        to: "/identite/situation"
+      },
+      {
         label: "Identité",
         to: "/identite/identite"
       }

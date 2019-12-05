@@ -40,16 +40,15 @@
 
 a, button {
   &.box {
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-
-    }
+    cursor: pointer;
+    margin-bottom: 1rem;
     width: 100%;
     border: none;
     text-align: left;
     font-size: inherit;
     &.active, &:hover, &:focus {
       box-shadow: 0 2px 3px rgba(avril-color('marine'), 0.1), 0 0 0 1px avril-color('marine');
+      outline: none;
     }
   }
 }

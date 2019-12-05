@@ -21,7 +21,7 @@ export const algoliaToAddress = (type, result) => {
   } else if (type == 'country') {
     return {
       country: result.locale_names[0],
-      country_code: result.country_code,
+      country_code: result.country_code.toUpperCase(),
     }
   } else {
     return {
@@ -41,5 +41,5 @@ export const addressLabelify = address => {
   if (address.street) return `${address.street}\n ${address.postalCode} ${address.city}, ${address.country}`;
   if (address.domTom) return `${address.city}, ${address.domTom}, ${address.country}`;
   if (address.city) return `${address.city}, ${address.country}`;
-  return `${address.country} (${address.country_code.toUpperCase()})`
+  return `${address.country} (${address.country_code})`
 }
