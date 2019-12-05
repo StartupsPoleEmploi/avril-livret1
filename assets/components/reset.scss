@@ -2,10 +2,6 @@
   color: avril-color('marine') !important;
 }
 
-.box:not(:last-child){
-  margin-bottom: .5rem !important;
-}
-
 .field.has-addons .control:first-child:not(:only-child) .button, .field.has-addons .control:first-child:not(:only-child) .input, .field.has-addons .control:first-child:not(:only-child) .select select {
     border-bottom-right-radius: 0 !important;
     border-top-right-radius: 0 !important;

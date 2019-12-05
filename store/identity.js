@@ -1,5 +1,6 @@
 import {isBlank} from '../utils/boolean';
 import {percent} from '../utils/number';
+import {algoliaResultToAddress, isDomTom} from '../utils/geo';
 
 export const state = () => ({
   lastName: null,
@@ -10,17 +11,25 @@ export const state = () => ({
   homePhoneNumber: null,
   cellPhoneNumber: null,
   birthday: null,
-  birthPlace: null,
-  address: null,
-  // address: {
-  //   streetType: null,
-  //   streetName: null,
-  //   streetNumber: null,
-  //   city: null,
-  //   postalCode: null,
-  //   country: null,
-  //   isDomTom: false,
-  // },
+  birthPlace: {
+    city: null,
+    country: null,
+    lat: null,
+    lng: null,
+    domTom: null,
+  },
+  address: {
+    street: null,
+    city: null,
+    postalCode: null,
+    country: null,
+    lat: null,
+    lng: null,
+  },
+  nationality: {
+    country: null,
+    country_code: null,
+  },
 })
 
 const OPTIONAL_FIELDS = [
@@ -78,28 +87,12 @@ export const mutations = {
   addBirthPlace(state, value) {
     state.birthPlace = value
   },
-  addAddress(state, value) {
-    state.address = value
+  addNationality(state, value) {
+    state.nationality = value
   },
-  // addAddressStreetType(state, value) {
-  //   state.address.streetType = value
-  // },
-  // addAddressStreetName(state, value) {
-  //   state.address.streetName = value
-  // },
-  // addAddressStreetNumber(state, value) {
-  //   state.address.streetNumber = value
-  // },
-  // addAddressCity(state, value) {
-  //   state.address.city = value
-  // },
-  // addAddressPostalCode(state, value) {
-  //   state.address.postalCode = value
-  // },
-  // addAddressCountry(state, value) {
-  //   state.address.country = value
-  // },
-
+  addAddress(state, result) {
+    state.address = result
+  },
 }
 
 export const actions = {

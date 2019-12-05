@@ -1,3 +1,4 @@
+@import 'mixins';
 @import 'variables';
 
 @import "~bulma/sass/utilities/_all.sass";
@@ -14,6 +15,8 @@
 @import 'components/tabs';
 @import 'components/transition';
 @import 'components/progressbar';
+
+@import 'print';
 
 svg{
   width: 20px;

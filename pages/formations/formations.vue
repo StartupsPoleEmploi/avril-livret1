@@ -9,7 +9,7 @@
 
       <div class="field">
         <div class="control">
-          <input class="input" ref="avril__name" type="text" placeholder="Exemple : CACES, 1er secours, permis B, FIMO" @keyup.enter="addTraining">
+          <input class="input" ref="avril__name" type="text" placeholder="Ex: CACES, TOEIC, permis B, FIMO" @keyup.enter="addTraining">
           <div class="has-text-right" style="margin-top:5px;">
             Pour ajouter, appuyez sur <strong>Entrée</strong> ou
             <button class="button" :class="trainings.length ? 'is-default' : 'is-dark'" @click="addTraining" style="margin-top:4px">

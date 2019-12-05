@@ -7,8 +7,8 @@
           <h1 class="title is-1">Récapitulatif</h1>
 
           <div class="notification is-avril">
-            <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les en cliquant sur le bouton "Pas encore, poursuivre l'édition" en bas de page.</p>
-            <p>Si tout vous semble correct, enregistrez votre livret 1 dans votre dossier VAE Avril.</p>
+            <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les en cliquant sur le bouton "Je dois modifier certaines informations" en bas de page.</p>
+            <p>Si tout vous semble correct, votre dossier est enregistré et vous pouvez continuer.</p>
           </div>
         </div>
 
@@ -26,21 +26,27 @@
           <p v-if="experiencesProgress == 100">J'ai plus de {{bookletMinHours}} heures d'expériences professionnelles</p>
           <div class="columns is-multiline">
             <div v-for="experience in experiences" class="column">
-              <div class="box is-equal-height">
-                <h3 class="title is-4">{{ experience.role }} chez {{ experience.companyName }}</h3>
-                <h4 class="title is-5">Périodes</h4>
+              <div class="box is-equal-height content">
+                <h3 class="is-4">{{ experience.role }} chez {{ experience.companyName }}</h3>
+                <p>{{addressLabelify(experience.companyAddress)}}</p>
+                <p class="has-text-weight-bold  ">Périodes :</p>
                 <ul>
                   <li v-for="period in experience.periods">
-                    <strong>{{period.totalHours}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
+                    <strong>{{periodTotalHours(period)}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
                   </li>
                 </ul>
-                <h4 class="title is-5" style="margin-top: 1rem;">Mes activités</h4>
-                <ul class="list">
-                  <li class="list-item" v-for="activity in experience.activities">{{activity}}</li>
-                </ul>
+                <p class="has-text-weight-bold">Mes activités :</p>
+                <div>
+                  <ul>
+                    <li v-for="activity in experience.activities">{{activity}}</li>
+                  </ul>
+                </div>
                 <p v-if="experience.activities.length === 0">Pas de compétence renseignées.</p>
               </div>
             </div>
+          </div>
+          <div v-if="experiences.length === 0">
+            <p><strong>Je n'ai pas encore renseigné d'expérience professionnelle.</strong></p>
           </div>
         </section>
 
@@ -55,22 +61,34 @@
       </div>
 
       <div class="field">
-        <h3 class="title is-3">Est-ce que toutes ces informations sont exactes ?</h3>
+        <h3 class="title is-3">Est-ce que ces informations sont exactes et complètes ?</h3>
         <div class="control">
-          <a class="is-ok button is-dark" :href="phoenixUrl">{{progress < 100 ? 'Je termine plus tard' : 'Oui, retour sur Avril'}}</a>
-          <nuxt-link to="/" class="button is-default">
-            Pas encore, poursuivre l'édition
-          </nuxt-link>
-          <nuxt-link to="/cerfa" class="button is-default">
-            Voir le formulaire officiel
-          </nuxt-link>
+          <div class="columns">
+            <div class="column">
+              <a v-if="backUrl" class="is-ok button is-default is-fullwidth" :href="backUrl">Oui</a>
+              <nuxt-link v-else class="is-ok button is-default is-fullwidth" to="/cerfa">Oui</nuxt-link>
+            </div>
+            <div class="column">
+              <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
+                Je dois modifier certaines informations
+              </nuxt-link>
+            </div>
+            <div class="column">
+              <a class="is-ok button is-default is-fullwidth has-text-centered" :href="backUrl">Je complèterai plus tard</a>
+            </div>
+          </div>
         </div>
       </div>
+      <nuxt-link to="/cerfa" class="button is-default is-fullwidth has-text-centered">
+        Voir le cerfa
+      </nuxt-link>
   </div>
 </template>
 
 <script>
 import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
+import {periodTotalHours} from '~/utils/time.js';
+import {addressLabelify} from '~/utils/geo.js';
 
 import {BOOKLET_MIN_HOURS} from '../constants/index';
 
@@ -99,7 +117,7 @@ export default {
     RecapResidence,
   },
   data: () => ({
-    phoenixUrl: `${process.env.phoenixUrl}/candidatures/actuelle`,
+    backUrl: process.env.phoenixUrl && `${process.env.phoenixUrl}/candidatures/actuelle`,
     bookletMinHours: BOOKLET_MIN_HOURS,
   }),
   layout: 'recapitulatif',
@@ -114,6 +132,10 @@ export default {
       return this.$store.getters.progress;
     },
   },
+  methods: {
+    periodTotalHours,
+    addressLabelify,
+  }
 }
 </script>
 

@@ -1,5 +1,7 @@
 import {isBlank} from '../utils/boolean';
 import {percent} from '../utils/number';
+import latestDegreeAnswers from '~/contents/data/latestDegree';
+import latestCourseLevelAnswers from '~/contents/data/latestCourseLevel';
 
 export const state = () => ({
   relatedDegrees: [],
@@ -27,6 +29,14 @@ export const getters = {
   },
   progress: (state, {filledFields, totalFields}) => {
     return percent(filledFields/totalFields);
+  },
+  latestDegreeLabel: state => {
+    const answer = latestDegreeAnswers.find(a => a.value === state.latestDegree)
+    if (answer) return answer.label;
+  },
+  latestCourseLevelLabel: state => {
+    const answer = latestCourseLevelAnswers.find(a => a.value === state.latestCourseLevel)
+    if (answer) return answer.label;
   },
 }
 

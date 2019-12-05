@@ -4,7 +4,7 @@
       <div class="field">
         <label class="label">L'adresse de votre lieu de résidence</label>
         <div class="control">
-          <input :value="address" ref="avril__focus" class="input" type="text" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" @input="addAddress">
+          <GeoInput :input="addAddress" ref="avril__focus" :value="address" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" />
         </div>
       </div>
 
@@ -27,32 +27,27 @@
 
 <script>
 import helpLoaderMixin from '~/mixins/helpLoader.js';
+import {addressLabelify} from '~/utils/geo.js';
+import GeoInput from '~/components/GeoInput';
 
 export default {
   mixins: [helpLoaderMixin],
+  components: {
+    GeoInput,
+  },
   computed: {
-    address () {
-      return this.$store.state.identity.address
+    address() {
+      return this.$store.state.identity.address;
     },
   },
   mounted() {
-    this.$refs.avril__focus.focus()
+    if (!this.address) {
+      this.$refs.avril__focus.$el.getElementsByTagName('input')[0].focus()
+    }
   },
   methods: {
-    keymonitor: function(event) {
-      if(event.key == "Enter")
-      {
-        this.$router.push('/identite/naissance')
-      }
-    },
-    addAddress: function(e) {
-      this.$store.commit('identity/addAddress', e.target.value)
-      // ici il faut splitter l'adresse Google :
-      // this.$store.commit('identity/addAddressStreetType', 'Avenue')
-      // this.$store.commit('identity/addAddressStreetNumber', '45')
-      // this.$store.commit('identity/addAddressCity', 'Marseille')
-      // this.$store.commit('identity/addAddressPostalCode', '13000')
-      // this.$store.commit('identity/addAddressCountry', 'France')
+    addAddress: function(result) {
+      this.$store.commit('identity/addAddress', result)
     },
   },
 }

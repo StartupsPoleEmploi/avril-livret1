@@ -22,7 +22,12 @@
           <input :value="email" class="input" type="email" placeholder="Exemple : avril@pole-emploi.fr" @input="addEmail">
         </div>
       </div>
-
+      <div class="field">
+        <label class="label">Nationalité</label>
+        <div class="control">
+        <GeoInput :input="addNationality" :value="nationality" type="country" placeholder="Exemple : France" />
+        </div>
+      </div>
       <div class="field">
         <label class="label">Genre</label>
         <div class="control">
@@ -74,13 +79,17 @@
 
 <script>
 import helpLoaderMixin from '~/mixins/helpLoader.js';
+import GeoInput from '~/components/GeoInput';
 
 const formatPhoneNumber = value => {
-  return ((value || '').replace(/[^0-9]/g, '').match(/.{1,2}/g) || []).join(' ');
+  return ((value || '').replace(/[^0-9]/g, '').substring(0,10).match(/.{1,2}/g) || []).join(' ');
 };
 
 export default {
   mixins: [helpLoaderMixin],
+  components: {
+    GeoInput,
+  },
   computed: {
     lastName() {
       return this.$store.state.identity.lastName
@@ -102,6 +111,9 @@ export default {
     },
     cellPhoneNumber() {
       return formatPhoneNumber(this.$store.state.identity.cellPhoneNumber)
+    },
+    nationality() {
+      return this.$store.state.identity.nationality;
     },
   },
   created() {
@@ -136,6 +148,9 @@ export default {
     },
     addCellPhoneNumber: function(e) {
       this.$store.commit('identity/addCellPhoneNumber', e.target.value)
+    },
+    addNationality: function(result) {
+    this.$store.commit('identity/addNationality', result);
     },
   },
 }

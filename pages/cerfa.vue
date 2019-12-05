@@ -1,6 +1,10 @@
 <template>
   <div class="avril-recapitulatif">
-    <div class="recap-content">
+    <form @submit="addBody" method="POST" action="/cerfa.pdf" class="download">
+      <input type="hidden" name="body" :value="htmlBody">
+      <button type="submit" class="button is-dark is-pulled-right">Télécharger le PDF</button>
+    </form>
+    <div id="pdf-content" class="recap-content">
 
       <div class="header">
         <!-- <article class="message is-dark is-large">
@@ -19,31 +23,31 @@
           <div class="message-body">
             <h2 class="title is-4 has-text-weight-light">Rubrique 1 : Nature de la demande</h2>
             <div class="columns">
-          <div class="column">
-            <div class="control">
-              <label class="radio box is-block">
-                <input type="radio" name="nature" checked>
-                1ère demande
-              </label>
+              <div class="column">
+                <div class="control">
+                  <label class="radio box is-block">
+                    <input type="radio" checked>
+                    1ère demande
+                  </label>
+                </div>
+              </div>
+              <div class="column">
+                <div class="control">
+                  <label class="radio box is-block">
+                    <input type="radio" disabled>
+                    Renouvellement
+                  </label>
+                </div>
+              </div>
+              <div class="column">
+                <div class="control">
+                  <label class="radio box is-block">
+                    <input type="radio" disabled>
+                    Prolongation
+                  </label>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="column">
-            <div class="control">
-              <label class="radio box is-block">
-                <input type="radio" name="nature">
-                Renouvellement
-              </label>
-            </div>
-          </div>
-          <div class="column">
-            <div class="control">
-              <label class="radio box is-block">
-                <input type="radio" name="nature">
-                Prolongation
-              </label>
-            </div>
-          </div>
-        </div>
           </div>
         </article>
       </section>
@@ -85,7 +89,7 @@
                 <div class="atome">
                   <label>Nom d'usage :</label>
                   <p class="is-italic"><small>s'il y a lieu</small></p>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.usageName}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.usageName || '-'}}</p>
                 </div>
               </div>
               <div class="column">
@@ -109,21 +113,21 @@
               <div class="column">
                 <div class="atome">
                   <label>Date de naissance :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.birthday}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{formatDate(identity.birthday)}}</p>
                 </div>
                 <div class="atome">
                   <label>Commune de naissance :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.birthPlace}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.birthPlace.city}}</p>
                 </div>
                 <div class="atome">
                   <label>Département ou collectivité outre-mer de naissance :</label>
-                  <p class="title is-6 is-uppercase is-spaced"> PAS BRANCHE</p>
+                  <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace.domTom || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
                   <label>Pays de naissance :</label>
-                  <p class="title is-6 is-uppercase is-spaced"> PAS BRANCHE</p>
+                  <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace.country}}</p>
                 </div>
                 <div class="atome">
                   <label>Nationalité :</label>
@@ -133,24 +137,13 @@
             </div>
           </div>
         </article>
-
-        <!-- <p><label>Nom de naissance : <small>(c'est le nom qui figure sur votre acte de naissance)</small></label> {{identity.lastName}}</p> -->
-        <!-- <p><label>Nom d'usage :<small>(s'il y a lieu)</small></label> {{identity.usageName}}</p> -->
-        <!-- <p><label>Prénoms :<small>(dans l'ordre de l'état civil)</small></label> {{identity.firstNames}}</p> -->
-        <!-- <p><label>Date de naissance :</label> {{identity.birthday}}</p> -->
-        <!-- <p><label>Sexe :</label> {{identity.sex === 'm' ? 'Masculin' : 'Féminin'}}</p> -->
-        <!-- <p><label>Commune de naissance :</label> {{identity.birthPlace}}</p> -->
-        <!-- <p><label>Département ou collectivité outre-mer de naissance :</label> PAS BRANCHE</p> -->
-        <!-- <p><label>Pays de naissance :</label> PAS BRANCHE</p> -->
-        <!-- <p><label>Nationalité :</label> PAS BRANCHE</p> -->
-
         <article class="message is-dark">
           <div class="message-body">
             <div class="columns">
               <div class="column">
                 <div class="atome">
                   <label>Adresse actuelle :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.address}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{addressLabelify(identity.address)}}</p>
                 </div>
                 <div class="atome">
                   <label>Tel domicile :</label>
@@ -164,31 +157,157 @@
                 </div>
                 <div class="atome">
                   <label>Courriel :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.email}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">
+                    <a :href="`mailto:${identity.email}`" v-if="identity.email">{{identity.email}}</a>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- <p><label>Tel domicile :</label> {{identity.homePhoneNumber}}</p> -->
-        <!-- <p><label>Tel portable :</label> {{identity.cellPhoneNumber}}</p> -->
-        <!-- <p><label>Courriel :</label> {{identity.email}}</p> -->
-
-        <div class="columns">
+        <div class="columns message-group">
           <div class="column">
             <article class="message is-dark">
               <div class="message-body">
                 <h3 class="title is-5 has-text-weight-light">Vous êtes actuellement :</h3>
-                <p class="title is-6 is-uppercase is-spaced">A RAJOUTER</p>
+                <div class="control box">
+                  <div class="columns">
+                    <div class="column is-narrow">
+                      <label class="radio is-block">
+                        <input type="checkbox">
+                        1. En situation d'emploi :
+                      </label>
+                    </div>
+                    <div class="column">
+                      <ul>
+                        <li>
+                          <label class="radio is-block">
+                            <input type="checkbox"> CDI
+                          </label>
+                        </li>
+                        <li>
+                          <label class="radio is-block">
+                            <input type="checkbox"> CDD, CDD d'usage et intérim
+                          </label>
+                        </li>
+                        <li>
+                          <label class="radio is-block">
+                            <input type="checkbox"> Travailleur indépendant, artisan et profession libérale
+                          </label>
+                        </li>
+                        <li>
+                          <label class="radio is-block">
+                            <input type="checkbox"> Fonctionnaire
+                          </label>
+                        </li>
+                        <li>
+                          <label class="radio is-block">
+                            <input type="checkbox"> Militaire
+                          </label>
+                        </li>
+                        <li>
+                          <label class="radio is-block">
+                            <input type="checkbox"> Contrat aidé ou contrat en alternance
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="control box">
+                  <div class="columns">
+                    <div class="column is-narrow">
+                      <label class="radio is-block">
+                        <input type="checkbox">
+                        2. En inactivité
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="control box">
+                  <div class="columns" style="margin-bottom: 0;">
+                    <div class="column">
+                      <label class="radio is-block">
+                        <input type="checkbox">
+                          3. En recherche d'emploi :
+                      </label>
+                    </div>
+                  </div>
+                  <div class="columns">
+                    <div class="column is-11 is-offset-1 content">
+                      <ul>
+                        <li>
+                          Inscrit à Pôle-emploi : <input type="checkbox"> Oui, depuis le {{'NON RENSEIGNE'}} <input type="checkbox" style="margin-left: 1rem;"> Non
+                        </li>
+                        <li>
+                          Vous touchez l'assurance chômage (allocation de retour à l'emploi) : <input type="checkbox"> Oui <input type="checkbox" style="margin-left: 1rem;"> Non
+                        </li>
+                        <li>
+                          <label class="radio is-block">
+                            Vous touchez l'assurance chômage des intermittents du spectacle : <input type="checkbox"> Oui <input type="checkbox" style="margin-left: 1rem;"> Non
+                          </label>
+                        </li>
+                        <li>
+                          <label class="radio is-block">
+                            Vous êtes allocataire de minima sociaux : <input type="checkbox"> Oui <input type="checkbox" style="margin-left: 1rem;"> Non
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="control box">
+                  <div class="columns">
+                    <div class="column is-narrow">
+                      <label class="radio is-block">
+                        <input type="checkbox">
+                          4. Autres :
+                      </label>
+                    </div>
+                    <div class="column">
+                      <ul>
+                        <li>
+                          <label class="radio is-block">
+                            <input type="checkbox"> Volontaire
+                          </label>
+                        </li>
+                        <li>
+                          <label class="radio is-block">
+                            <input type="checkbox"> Mandat électoral
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </article>
           </div>
+        </div>
+        <div class="columns message-group">
           <div class="column">
             <article class="message is-dark">
               <div class="message-body">
                 <h3 class="title is-5 has-text-weight-light">Êtes-vous reconnu travailleur handicapé :</h3>
-                <p class="title is-6 is-uppercase is-spaced">A RAJOUTER</p>
+                <div class="columns">
+                  <div class="column">
+                    <div class="control">
+                      <label class="radio box is-block">
+                        <input type="radio" disabled>
+                        Oui
+                      </label>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="control">
+                      <label class="radio box is-block">
+                        <input type="radio" checked>
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </article>
           </div>
@@ -207,12 +326,12 @@
 
                 <div class="atome">
                   <label>Dernière classe suivie :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.latestCourseLevel}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.latestCourseLevel}} : {{latestCourseLevelLabel}}</p>
                 </div>
 
                 <div class="atome">
                   <label>Titre ou diplôme le plus élevé obtenu en France :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.latestDegree}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.latestDegree}} : {{latestDegreeLabel}}</p>
                 </div>
 
                 <div class="atome">
@@ -288,7 +407,15 @@
 
 <script>
 import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
+import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
+import {addressLabelify} from '~/utils/geo.js';
+import latestDegreeAnswers from '~/contents/data/latestDegree';
+import latestCourseLevelAnswers from '~/contents/data/latestCourseLevel';
+
 export default {
+  mixins: [
+    withDateDisplayMixin
+  ],
   components: {
     ArrowRight
   },
@@ -309,7 +436,31 @@ export default {
     experiences() {
       return this.$store.state.experiences
     },
+    latestDegreeLabel() {
+      return this.$store.getters['education/latestDegreeLabel'];
+    },
+    latestCourseLevelLabel() {
+      return this.$store.getters['education/latestCourseLevelLabel'];
+    },
   },
+  data() {
+    return {
+      htmlBody: null,
+    }
+  },
+  methods: {
+    addBody(e) {
+      this.htmlBody = document.documentElement.outerHTML;
+    },
+    async pdfDownload() {
+      const result = await fetch('/cerfa.pdf', {
+        method: 'POST',
+        body: document.documentElement.outerHTML,
+      })
+      console.log(result)
+    },
+    addressLabelify,
+  }
 }
 </script>
 

@@ -1,12 +1,24 @@
-const pdf = require('html-pdf');
-const fetch = require('node-fetch');
-// const {uuid} = import '../utils/string';
+import pdf from 'html-pdf';
+import fetch from 'node-fetch';
+import {uuid} from '../utils/string';
 
-module.exports = async (req, res) => {
-  console.log(req.path)
-  const query = await fetch(`http://localhost:3000${req.path.replace('.pdf', '')}`)
-  const body = await query.text()
-  pdf.create(body).toFile('./tmp/test.pdf', (err, pdfRes) => {
-    res.sendFile(pdfRes.filename);
-  });
+export default async (req, res) => {
+  if (req.body.body) {
+    pdf.create(req.body.body, {
+      format: 'A4',
+      header: {
+        height: '1cm',
+        // contents: phantom.callback(function(pageNum, numPages) {
+        //   return "<h1>Header <span style='float:right'>" + pageNum + " / " + numPages + "</span></h1>";
+        // })
+      },
+      footer: {
+        height: '1cm',
+      }
+    }).toFile(`./tmp/${uuid()}.pdf`, (err, pdfRes) => {
+      res.sendFile(pdfRes.filename);
+    });
+  } else {
+    res.send('Impossible de télécharger le document. Body Manquant.')
+  }
 }

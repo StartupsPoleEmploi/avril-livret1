@@ -3,16 +3,15 @@
     <div class="form-fields">
 
       <div class="field">
-        <label class="label">Lieu de naissance</label>
-        <div class="control">
-          <input :value="birthPlace" ref="avril__focus" class="input" type="text" placeholder="Exemple : Marseille, France" @input="addBirthPlace"/>
-        </div>
-      </div>
-
-      <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
           <date-picker :value="birthday" @input="addBirthday" lang="fr" format="DD/MM/YYYY"></date-picker>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Lieu de naissance</label>
+        <div class="control">
+        <GeoInput :input="addBirthPlace" ref="avril__focus" :value="birthPlace" type="city" placeholder="Exemple : Marseille, France" />
         </div>
       </div>
 
@@ -34,6 +33,7 @@
 
 <script>
 import DatePicker from 'vue2-datepicker';
+import GeoInput from '~/components/GeoInput';
 
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 import withDatePickerMixin from '~/mixins/withDatePicker.js';
@@ -43,43 +43,34 @@ export default {
     helpLoaderMixin,
     withDatePickerMixin,
   ],
+  components: {
+    GeoInput,
+  },
   computed: {
     birthPlace() {
-      return this.$store.state.identity.birthPlace
+      return this.$store.state.identity.birthPlace;
     },
     birthday() {
-      return this.$store.state.identity.birthday
+      return this.$store.state.identity.birthday;
     }
   },
   mounted() {
-    this.$refs.avril__focus.focus()
+    if (!this.birthPlace) {
+      this.$refs.avril__focus.$el.getElementsByTagName('input')[0].focus()
+    }
   },
   methods: {
-    addBirthPlace: function(e) {
-      this.$store.commit('identity/addBirthPlace', e.target.value)
-
-      // pareil, splitter le lieu grâce à Google
-      // addDateNaissance (state, value) {
-      //   state.birth.date = value
-      // },
-      // addDepartementNaissance (state, value) {
-      //   state.birth.departement = value
-      // },
-      // addCommuneNaissance (state, value) {
-      //   state.birth.city = value
-      // },
-      // addNationaliteNaissance (state, value) {
-      //   state.birth.nationalite = value
-      // },
+    addBirthPlace: function({country_code, ...result}) {
+      this.$store.commit('identity/addBirthPlace', result)
+      const nationalityFields = {
+        country_code: this.$store.state.identity.nationality.country_code || country_code,
+        country: this.$store.state.identity.nationality.country || result.country,
+      };
+      console.log(nationalityFields)
+      this.$store.commit('identity/addNationality', nationalityFields);
     },
     addBirthday: function(date) {
       this.$store.commit('identity/addBirthday', date);
-    },
-    keymonitor: function(event) {
-      if(event.key == "Enter")
-      {
-        this.$router.push('name')
-      }
     },
   },
 }
