@@ -6,18 +6,14 @@ const mapClassification = data => data.label;
 const mapExperience = experience => {
   const map = {
     uuid: experience.uuid || uuid(),
+    isCurrent: false,
     role: experience.title,
     companyName: experience.company_name,
-    companyAddress: {
-      street: null,
-      city: null,
-      postalCode: null,
-      country: null,
-      lat: null,
-      lng: null
-    },
-    category: experience.job_industry,
+    companyAddress: Object.assign(experience.full_address, {
+      postalCode: get(experience, "full_address.postal_code", {})
+    }),
     contractType: experience.employment_type,
+    category: experience.job_industry,
     activities: experience.skills.map(mapClassification),
     periods: experience.periods.map(period => ({
       start: period.start_date,
@@ -31,8 +27,8 @@ const mapExperience = experience => {
 export const backendToStore = {
   index: backendData => ({
     hash: backendData.hash,
-    certificationLabel: backendData.certification_label,
-    certifierLabel: backendData.certifier_label
+    certificationLabel: backendData.certification_name,
+    certifierLabel: backendData.certifier_name
   }),
   identity: backendData => ({
     firstNames: backendData.first_name,

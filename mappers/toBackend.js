@@ -4,7 +4,9 @@ const mapExperience = experience => ({
   uuid: experience.uuid,
   title: experience.role,
   company_name: experience.companyName,
-  full_address: experience.companyName,
+  full_address: Object.assign(experience.companyAddress, {
+    postal_code: get(experience, "companyAdress.postalCode", null)
+  }),
   job_industry: experience.category,
   employment_type: experience.contractType,
   skills: experience.activities.map(mapClassification),
