@@ -6,8 +6,7 @@
       </h3>
       <RadioList
         :value="contractType"
-        :options="defaultAnswers"
-        :extras="otherAnswers"
+        :options="possibleAnswers"
         to="/experiences/precision"
         :click="addContractType"
       />
@@ -53,16 +52,9 @@ export default {
     }
   },
   data() {
-    const [defaultAnswers, otherAnswers] = possibleAnswers.reduce(([d, o], a) => {
-      return [
-        d.concat(a.isOther ? [] : a),
-        o.concat(a.isOther ? a : []),
-      ]
-    }, [[], []])
     return {
-      defaultAnswers,
-      otherAnswers,
-    };
+      possibleAnswers
+    }
   },
   methods: {
     keymonitor: function(event) {

@@ -17,10 +17,10 @@
 
       <div class="form-field-action field">
         <div class="control">
-          <nuxt-link to="identite" class="is-ok button is-text is-pulled-left">
+          <nuxt-link to="situation" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
           </nuxt-link>
-          <nuxt-link to="identite" class="is-ok button is-dark is-pulled-right">
+          <nuxt-link to="situation" class="is-ok button is-dark is-pulled-right">
             Continuer
           </nuxt-link>
         </div>

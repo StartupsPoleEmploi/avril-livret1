@@ -1,4 +1,4 @@
-import get from 'lodash.get';
+import get from "lodash.get";
 import { uuid } from "../utils/string";
 
 const mapClassification = data => data.label;
@@ -6,18 +6,14 @@ const mapClassification = data => data.label;
 const mapExperience = experience => {
   const map = {
     uuid: experience.uuid || uuid(),
+    isCurrent: false,
     role: experience.title,
     companyName: experience.company_name,
-    companyAddress: {
-      street: null,
-      city: null,
-      postalCode: null,
-      country: null,
-      lat: null,
-      lng: null,
-    },
-    category: experience.job_industry,
+    companyAddress: Object.assign(experience.full_address, {
+      postalCode: get(experience, "full_address.postal_code", {})
+    }),
     contractType: experience.employment_type,
+    category: experience.job_industry,
     activities: experience.skills.map(mapClassification),
     periods: experience.periods.map(period => ({
       start: period.start_date,
@@ -29,10 +25,10 @@ const mapExperience = experience => {
 };
 
 export const backendToStore = {
-  index: backendData =>({
+  index: backendData => ({
     hash: backendData.hash,
-    certificationLabel: backendData.certification_label,
-    certifierLabel: backendData.certifier_label,
+    certificationLabel: backendData.certification_name,
+    certifierLabel: backendData.certifier_name
   }),
   identity: backendData => ({
     firstNames: backendData.first_name,
@@ -42,19 +38,23 @@ export const backendToStore = {
     cellPhoneNumber: backendData.mobile_phone,
     birthday: backendData.birthday,
     birthPlace: {
-      city: backendData.birth_place,
-      country: null,
+      city: get(backendData, "birth_place.city", {}),
+      country: get(backendData, "birth_place.country", {}),
+      lat: get(backendData, "birth_place.lat", {}),
+      lng: get(backendData, "birth_place.lng", {})
     },
     address: {
-      street: backendData.street_address,
-      city: backendData.city,
-      postalCode: backendData.postal_code,
-      country: backendData.country,
+      street: get(backendData, "full_address.street", {}),
+      city: get(backendData, "full_address.city", {}),
+      postalCode: get(backendData, "full_address.postal_code", {}),
+      country: get(backendData, "full_address.country", {}),
+      lat: get(backendData, "full_address.lat"),
+      lng: get(backendData, "full_address.lng")
     }
   }),
   education: backendData => ({
-    relatedDegrees: get(backendData, 'diplomas', []).map(mapClassification),
-    trainings: get(backendData, 'courses', []).map(mapClassification),
+    relatedDegrees: get(backendData, "diplomas", []).map(mapClassification),
+    trainings: get(backendData, "courses", []).map(mapClassification),
     latestCourseLevel: backendData.grade,
     latestDegree: backendData.degree
   }),

@@ -30,6 +30,10 @@ export const state = () => ({
     country: null,
     country_code: null,
   },
+  currentSituation: {
+    activity: null,
+  },
+  isHandicapped: null,
 })
 
 const OPTIONAL_FIELDS = [
@@ -69,9 +73,6 @@ export const mutations = {
   addSex(state, value) {
     state.sex = value
   },
-  addDomTom(state, value) {
-    state.isDomTom = value; // true or false
-  },
   addEmail(state, value) {
     state.email = value
   },
@@ -90,9 +91,35 @@ export const mutations = {
   addNationality(state, value) {
     state.nationality = value
   },
-  addAddress(state, result) {
-    state.address = result
+  addAddress(state, value) {
+    state.address = value
   },
+  addCurrentSituationActivity(state, value) {
+    state.currentSituation = Object.assign({}, state.currentSituation, {activity: value})
+  },
+  addCurrentSituationWorkingStatus(state, value) {
+    state.currentSituation = {
+      activity: state.currentSituation.activity,
+      workingStatus: value
+    }
+  },
+  addCurrentSituationJobSeekingIsPE(state, value) {
+    state.currentSituation = {
+      activity: state.currentSituation.activity,
+      jobSeekingIsPE: value
+    }
+  },
+  addCurrentSituationJobSeekingSubvention(state, value) {
+    state.currentSituation = {
+      activity: state.currentSituation.activity,
+      jobSeekingIsPE: state.currentSituation.jobSeekingIsPE,
+      jobSeekingSubvention: value,
+    }
+  },
+  addIsHandicapped(state, value) {
+    state.isHandicapped = value
+  },
+
 }
 
 export const actions = {

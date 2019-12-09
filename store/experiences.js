@@ -38,7 +38,7 @@ export const mutations = {
         postalCode: null,
         country: null,
         lat: null,
-        lng: null,
+        lng: null
       },
       category: null,
       contractType: null,

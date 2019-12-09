@@ -2,7 +2,7 @@
   <div class="form">
     <div class="form-fields">
       <h3 class="title is-5">
-        Quel est le diplôme le plus élevé que vous ayez obtenu en France ?
+        Quel est le diplôme le plus élevé que vous avez obtenu en France ?
       </h3>
       <RadioList
         :value="latestDegree"

@@ -1,14 +1,20 @@
+import get from "lodash.get";
+
 const mapExperience = experience => ({
   uuid: experience.uuid,
   title: experience.role,
   company_name: experience.companyName,
-  full_address: experience.companyName,
+  full_address: Object.assign(experience.companyAddress, {
+    postal_code: get(experience, "companyAdress.postalCode", null)
+  }),
   job_industry: experience.category,
-  employment_type: experience.contractTyoe,
+  employment_type: experience.contractType,
   skills: experience.activities.map(mapClassification),
-  start_date: (experience.periods[0] || {}).start,
-  end_date: (experience.periods[0] || {}).end,
-  week_hours_duration: (experience.periods[0] || {}).weekHours
+  periods: experience.periods.map(period => ({
+    start_date: period.start,
+    end_date: period.end,
+    week_hours_duration: period.weekHours
+  }))
 });
 
 const mapClassification = classification => ({
@@ -24,7 +30,9 @@ export const storeToBackend = {
     mobile_phone: state.cellPhoneNumber,
     birthday: state.birthday,
     birth_place: state.birthPlace,
-    full_address: state.address
+    full_address: Object.assign(state.address, {
+      postal_code: get(state, "address.postalCode", null)
+    })
   }),
   education: state => ({
     grade: state.latestCourseLevel,
