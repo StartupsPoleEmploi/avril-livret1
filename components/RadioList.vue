@@ -3,7 +3,7 @@
     <div :class="inline ? 'columns' : null">
       <div :class="inline ? 'column' : null" v-for="{label, value} in defaultOptions" :key="value">
         <button @click="clickAndGo(value)" class="box" :class="isSelected(value) ? 'active' : ''">
-          <input type="radio" :checked="isSelected(value) ? 'active' : ''"> &nbsp;{{label}}
+          <input type="radio" :checked="isSelected(value) ? 'active' : ''"> &nbsp;{{capitalize(label)}}
         </button>
       </div>
     </div>
@@ -12,7 +12,7 @@
       <div v-if="showExtras"  :class="inline ? 'columns' : null">
         <div :class="inline ? 'column' : null" v-for="{label, value} in otherOptions" :key="value">
           <button @click="clickAndGo(value)" class="box" :class="isSelected(value) ? 'active' : ''">
-            <input type="radio" :checked="isSelected(value) ? 'active' : ''"> &nbsp;{{label}}
+            <input type="radio" :checked="isSelected(value) ? 'active' : ''"> &nbsp;{{capitalize(label)}}
           </button>
         </div>
       </div>
@@ -21,6 +21,8 @@
 </template>
 
 <script type="text/javascript">
+
+  import {capitalize} from '~/utils/string';
 
   const booleanOptions = [{
     label: 'Oui',
@@ -58,6 +60,7 @@
       }
     },
     methods: {
+      capitalize,
       isSelected(optionValue) {
         return optionValue === this.value;
       },

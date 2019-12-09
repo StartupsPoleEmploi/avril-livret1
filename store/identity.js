@@ -5,8 +5,6 @@ import {algoliaResultToAddress, isDomTom} from '../utils/geo';
 
 import currentSituationAnswers from '~/contents/data/currentSituation';
 
-console.log(currentSituationAnswers)
-
 export const state = () => ({
   lastName: null,
   usageName: null,

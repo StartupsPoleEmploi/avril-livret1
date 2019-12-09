@@ -45,14 +45,14 @@
       <div class="field">
         <label class="label">Mon numéro de téléphone mobile</label>
         <div class="control">
-          <input :value="cellPhoneNumber" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addCellPhoneNumber">
+          <PhoneInput :value="cellPhoneNumber" class="input" placeholder="Exemple : 06 12 34 56 78" @input="addCellPhoneNumber" />
         </div>
       </div>
 
       <div class="field">
         <label class="label">Mon numéro de téléphone à domicile</label>
         <div class="control">
-          <input :value="homePhoneNumber" class="input" type="text" placeholder="Exemple : 01 99 88 77 66" @input="addHomePhoneNumber">
+          <PhoneInput :value="homePhoneNumber" class="input" placeholder="Exemple : 01 99 88 77 66" @input="addHomePhoneNumber" />
         </div>
       </div>
 
@@ -77,54 +77,44 @@
 <script>
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 import GeoInput from '~/components/GeoInput';
-
-const formatPhoneNumber = value => {
-  return ((value || '').replace(/[^0-9]/g, '').substring(0,10).match(/.{1,2}/g) || []).join(' ');
-};
+import PhoneInput from '~/components/PhoneInput';
 
 export default {
   mixins: [helpLoaderMixin],
   components: {
     GeoInput,
+    PhoneInput,
   },
   computed: {
     lastName() {
-      return this.$store.state.identity.lastName
+      return this.$store.state.identity.lastName;
     },
     firstNames() {
-      return this.$store.state.identity.firstNames
+      return this.$store.state.identity.firstNames;
     },
     usageName() {
-      return this.$store.state.identity.usageName
+      return this.$store.state.identity.usageName;
     },
     email() {
-      return this.$store.state.identity.email
+      return this.$store.state.identity.email;
     },
     sex() {
-      return this.$store.state.identity.sex
+      return this.$store.state.identity.sex;
     },
     homePhoneNumber() {
-      return formatPhoneNumber(this.$store.state.identity.homePhoneNumber)
+      return this.$store.state.identity.homePhoneNumber;
     },
     cellPhoneNumber() {
-      return formatPhoneNumber(this.$store.state.identity.cellPhoneNumber)
+      return this.$store.state.identity.cellPhoneNumber;
     },
     nationality() {
       return this.$store.state.identity.nationality;
     },
   },
-  created() {
-  },
   mounted() {
     this.$refs.avril__focus.focus()
   },
   methods: {
-    keymonitor: function(event) {
-      if(event.key == "Enter")
-      {
-        this.$router.push('name')
-      }
-    },
     addLastName: function(e) {
       this.$store.commit('identity/addLastName', e.target.value)
     },
@@ -140,33 +130,15 @@ export default {
     addEmail: function(e) {
       this.$store.commit('identity/addEmail', e.target.value)
     },
-    addHomePhoneNumber: function(e) {
-      this.$store.commit('identity/addHomePhoneNumber', e.target.value)
+    addHomePhoneNumber: function(phoneNumber) {
+      this.$store.commit('identity/addHomePhoneNumber', phoneNumber)
     },
-    addCellPhoneNumber: function(e) {
-      this.$store.commit('identity/addCellPhoneNumber', e.target.value)
+    addCellPhoneNumber: function(phoneNumber) {
+      this.$store.commit('identity/addCellPhoneNumber', phoneNumber)
     },
     addNationality: function(result) {
-    this.$store.commit('identity/addNationality', result);
+      this.$store.commit('identity/addNationality', result);
     },
   },
 }
 </script>
-
-<style>
-.avril-ou{
-  margin-top: 8px;
-  display: inline-block;
-}
-.columns.is-multiline{
-  margin-top: 40px;
-}
-.avril__ajouter__experience {
-  display: block
-}
-.is-equal-height {
-   display: flex;
-   flex-direction: column;
-   height: 100%;
-}
-</style>
