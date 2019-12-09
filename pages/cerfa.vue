@@ -391,6 +391,41 @@
 
       <section class="section section-sworn">
         <h3 class="title is-3">Déclaration sur l'honneur</h3>
+
+        <article class="message is-dark">
+          <div class="message-body">
+
+            <div class="control atome">
+              <label class="radio box is-block">
+                <input type="checkbox">
+                Je ne fais pas l'objet d'une mesure pénale ou administrative d'interdiction de présentation devant un jury d'examen ou de validation des acquis de l'expérience
+              </label>
+            </div>
+
+            <div class="control atome">
+              <label class="radio box is-block">
+                <input type="checkbox">
+                Je certifie que toutes les informations fournies sont exactes
+              </label>
+            </div>
+
+            <div class="control atome">
+              <label class="radio box is-block">
+                <input type="checkbox">
+                Je certifie que la présente candidature constitue l'unique demande pour cette certification pour la même année civile
+              </label>
+            </div>
+
+            <div class="control atome">
+              <label class="radio box is-block">
+                <input type="checkbox">
+                Je m'engage également à ne pas présenter plus de trois candidatures à la validation des acquis de l'expérience pour des diplômes, certificats ou titres différents durant la présente année civile
+              </label>
+            </div>
+
+          </div>
+        </article>
+
       </section>
 
       <section class="section section-sworn">
