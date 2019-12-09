@@ -19,9 +19,9 @@
             </p>
           </client-only>
         <div class="">
-          <a class="button is-dark" @click="addPeriod" style="margin-top:1rem">
+          <button class="button is-dark" @click="addPeriod" style="margin-top:1rem">
             + Ajouter cette période
-          </a>
+          </button>
         </div>
         </div>
       </div>

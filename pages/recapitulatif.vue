@@ -57,6 +57,11 @@
           <RecapBirthday/>
           <RecapResidence/>
         </section>
+        <section class="section section-identite">
+          <h3 class="title is-3">Ma situation actuelle</h3>
+          <p v-if="identity.isHandicapped">Je suis reconnu travailleur handicapé.</p>
+          <p v-else>Je suis ne suis pas reconnu travailleur handicapé.</p>
+        </section>
 
       </div>
 
@@ -122,6 +127,12 @@ export default {
   }),
   layout: 'recapitulatif',
   computed: {
+    education() {
+      return this.$store.state.education
+    },
+    identity() {
+      return this.$store.state.identity
+    },
     experiences() {
       return this.$store.state.experiences
     },
