@@ -8,7 +8,7 @@ export default [
     value: 2,
   },
   {
-    label: "Terminal",
+    label: "Terminale",
     value: 3,
   },
   {
