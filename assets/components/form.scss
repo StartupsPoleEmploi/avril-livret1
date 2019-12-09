@@ -1,62 +1,99 @@
-.input, .textarea{
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  align-items: center;
-  background-color: #FAFAFA !important;
-  border: 1px solid transparent;
-  border-color: #E7E8EB !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-  display: inline-flex;
-  font-size: 1rem;
-  height: 2.25em;
-  line-height: 1.5;
-  padding-bottom: calc(1.5em - 1px) !important;
-  padding-left: calc(0.625em - 1px);
-  padding-right: calc(0.625em - 1px);
-  padding-top: calc(1.5em - 1px) !important;
-  position: relative;
-  vertical-align: top;
-  color: avril-color('marine') !important;
-  font-size: 22px !important;
-  &:focus{
-    box-shadow: 0 0 0 2px avril-color('marine') !important;
-  }
-}
 .field{
   margin-bottom: 3rem !important;
+
+  .input, .textarea{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    align-items: center;
+    background-color: #FAFAFA;
+    border: 1px solid transparent;
+    border-color: #E7E8EB;
+    border-radius: 8px;
+    box-shadow: none;
+    display: inline-flex;
+    font-size: 1rem;
+    height: 2.25em;
+    line-height: 1.5;
+    padding-bottom: calc(1.5em - 1px);
+    padding-left: calc(0.625em - 1px);
+    padding-right: calc(0.625em - 1px);
+    padding-top: calc(1.5em - 1px);
+    position: relative;
+    vertical-align: top;
+    color: avril-color('marine');
+    font-size: 22px;
+    &:focus {
+      box-shadow: 0 0 0 2px avril-color('marine');
+      border-color: transparent;
+    }
+    &:hover {
+      border-color: #E7E8EB;
+    }
+  }
+
+  .mx-datepicker {
+    width: 100%;
+  }
+  .autocomplete-input {
+    padding-left: 3rem;
+  }
+}
+
+.autocomplete-input, .mx-input {
+  @extend .input;
+}
+
+.autocomplete-input {
+  padding-left: 3rem;
 }
 
 .natural-language {
-  .mx-input{
+  .input.heure, .mx-input {
+    height: 41px;
+    padding: 0;
+    background: none;
+    box-shadow: none;
     border: none;
     border-bottom: 2px solid avril-color('blue');
-    box-shadow: none;
     border-radius: 0;
-    font-size: 18px;
     font-weight: 600;
     color: avril-color('marine');
+    outline: none;
+    &:hover {
+      border-color: avril-color('blue');
+    }
+    &:focus {
+      box-shadow: none;
+      border-color: avril-color('marine');
+    }
+  }
 
-    @include placeholder {
-      font-size: 16px;
-      font-weight: 400;
+  .mx-datepicker {
+    width: auto;
+    .mx-input{
+      font-size: 18px;
+      @include placeholder {
+        font-size: 16px;
+        font-weight: 400;
+      }
     }
   }
   .input.heure{
-    height: 41px;
-    padding: 0 0 0 17px !important;
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    width: 60px;
-    font-size: 20px !important;
-    padding-left: 40px;
-    border-bottom: 2px solid avril-color('blue') !important;
-    border-radius: 0 !important;
-    font-weight: 600 !important;
-
+    width: 45px;
+    font-size: 20px;
+    text-align: center;
+    padding-right: 2px;
     @include placeholder {
       opacity: 0.6;
+    }
+
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type=number] {
+      -moz-appearance:textfield;
     }
   }
   .title{
@@ -95,8 +132,4 @@
       width: 140px;
     }
   }
-}
-
-.autocomplete-input {
-  @extend .input;
 }

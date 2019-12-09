@@ -5,7 +5,7 @@
       <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
-          <date-picker :value="birthday" @input="addBirthday" lang="fr" format="DD/MM/YYYY"></date-picker>
+          <date-picker :value="birthday" @input="addBirthday" lang="fr" format="DD/MM/YYYY" placeholder="Sélectionnez une date"></date-picker>
         </div>
       </div>
       <div class="field">
@@ -65,7 +65,6 @@ export default {
         country_code: this.$store.state.identity.nationality.country_code || country_code,
         country: this.$store.state.identity.nationality.country || result.country,
       };
-      console.log(nationalityFields)
       this.$store.commit('identity/addNationality', nationalityFields);
     },
     addBirthday: function(date) {

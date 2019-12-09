@@ -2,20 +2,17 @@
   <div class="form is-horizontal">
     <div class="form-fields fields">
       <div class="field">
+        <label class="label">Mes prénoms</label>
         <div class="control">
-          <div class="columns">
-            <div class="column">
-              <label class="label">Mon nom</label>
-              <input :value="lastName" ref="avril__focus" class="input" type="text" placeholder="Votre nom" @input="addLastName">
-            </div>
-            <div class="column">
-              <label class="label">Mes prénoms</label>
-              <input :value="firstNames" class="input" type="text" placeholder="Vos prénoms" @input="addFirstNames">
-            </div>
-          </div>
+          <input :value="firstNames" ref="avril__focus" class="input" type="text" placeholder="Vos prénoms" @input="addFirstNames">
         </div>
       </div>
-
+      <div class="field">
+        <label class="label">Mon nom</label>
+        <div class="control">
+        <input :value="lastName" class="input" type="text" placeholder="Votre nom" @input="addLastName">
+        </div>
+      </div>
       <div class="field">
         <label class="label">Mon email</label>
         <div class="control">

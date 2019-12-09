@@ -2,21 +2,14 @@
   <div class="form">
     <div class="form-fields">
       <h3 class="title is-5">C'est mon poste actuel ?</h3>
-      <div class="">
+      <div>
         <div class="field">
-          <div class="columns">
-            <div class="column">
-              <a @click="setIsCurrentJob(true)" class="box" :class="isCurrentJob ? 'active' : ''">
-                <input type="radio" :checked="isCurrentJob ? 'checked' : ''"> &nbsp;Oui
-              </a>
-            </div>
-            <div class="column">
-              <a @click="setIsCurrentJob(false)" class="box" :class="isCurrentJob ? '' : 'active'">
-                <input type="radio" :checked="isCurrentJob ? '' : 'active'"> &nbsp;Non
-              </a>
-            </div>
-          </div>
-        </div>
+        <RadioList
+          :value="isCurrentJob"
+          :click="setIsCurrentJob"
+          boolean
+          inline
+        />        </div>
         <div class="field box natural-language">
           <client-only placeholder="Chargement ...">
             <p class="title is-5">
@@ -73,6 +66,8 @@ import helpLoaderMixin from '~/mixins/helpLoader.js';
 import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
 import withDatePickerMixin from '~/mixins/withDatePicker.js';
 
+import RadioList from "~/components/RadioList.vue";
+
 export default {
   mixins: [
     helpLoaderMixin,
@@ -86,12 +81,14 @@ export default {
   },
   data() {
     return {
-      // datePickerStyle: { top: 0, left: 0 },
       periodStart: '',
       periodEnd: '',
       periodWeekHours: '',
-      isCurrentJob: false,
+      isCurrentJob: null,
     }
+  },
+  components: {
+    RadioList,
   },
   computed: {
     periods () {
