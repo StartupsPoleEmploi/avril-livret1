@@ -1,5 +1,5 @@
 export default {
-  activity: [{
+  status: [{
     label: 'En situation d\'emploi',
     value: 'working'
   }, {
@@ -17,7 +17,7 @@ export default {
     value: 'election',
     isOther: true,
   }],
-  workingStatus: [{
+  employmentType: [{
     label: 'CDI',
     value: 'permanent',
   }, {
@@ -36,7 +36,7 @@ export default {
     label: 'Contrat aidé ou contrat en alternance',
     value: 'alternance',
   }],
-  subvention: [{
+  compensationType: [{
     label: 'Au titre de l\'assurance chômage (Allocation de retour à l\'emploi)',
     value: 'jobless',
   }, {

@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import DatePicker from 'vue2-datepicker';
 import GeoInput from '~/components/GeoInput';
 
 import helpLoaderMixin from '~/mixins/helpLoader.js';

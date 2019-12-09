@@ -31,7 +31,10 @@ export const state = () => ({
     country_code: null,
   },
   currentSituation: {
-    activity: null,
+    status: null,
+    employmentType: null,
+    registerToPoleEmploi: null,
+    compensationType: null,
   },
   isHandicapped: null,
 })
@@ -94,26 +97,28 @@ export const mutations = {
   addAddress(state, value) {
     state.address = value
   },
-  addCurrentSituationActivity(state, value) {
-    state.currentSituation = Object.assign({}, state.currentSituation, {activity: value})
+  addCurrentSituationStatus(state, value) {
+    state.currentSituation = Object.assign({}, state.currentSituation, {status: value})
   },
-  addCurrentSituationWorkingStatus(state, value) {
+  addCurrentSituationEmploymentType(state, value) {
     state.currentSituation = {
-      activity: state.currentSituation.activity,
-      workingStatus: value
+      status: state.currentSituation.status,
+      employmentType: value,
     }
   },
-  addCurrentSituationJobSeekingIsPE(state, value) {
+  addCurrentSituationRegisterToPoleEmploi(state, value) {
     state.currentSituation = {
-      activity: state.currentSituation.activity,
-      jobSeekingIsPE: value
+      status: state.currentSituation.status,
+      registerToPoleEmploi: value,
+      employmentType: null,
     }
   },
-  addCurrentSituationJobSeekingSubvention(state, value) {
+  addCurrentSituationCompensationType(state, value) {
     state.currentSituation = {
-      activity: state.currentSituation.activity,
-      jobSeekingIsPE: state.currentSituation.jobSeekingIsPE,
-      jobSeekingSubvention: value,
+      status: state.currentSituation.status,
+      registerToPoleEmploi: state.currentSituation.registerToPoleEmploi,
+      compensationType: value,
+      employmentType: null,
     }
   },
   addIsHandicapped(state, value) {

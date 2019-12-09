@@ -9,6 +9,7 @@ export default {
   },
   data: () => ({
     dateFormat: 'DD/MM/YYYY',
+    storeFormat: 'YYYY-MM-DD',
     placeholder: 'Sélectionnez une date',
   })
 }
