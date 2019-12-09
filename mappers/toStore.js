@@ -9,7 +9,7 @@ const mapExperience = experience => {
     isCurrent: false,
     role: experience.title,
     companyName: experience.company_name,
-    companyAddress: Object.assign(experience.full_address, {
+    companyAddress: Object.assign({}, experience.full_address, {
       postalCode: get(experience, "full_address.postal_code", {})
     }),
     contractType: experience.employment_type,
