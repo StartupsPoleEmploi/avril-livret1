@@ -60,7 +60,13 @@
         <section class="section section-identite">
           <h3 class="title is-3">Ma situation actuelle</h3>
           <p v-if="identity.isHandicapped">Je suis reconnu travailleur handicapé.</p>
-          <p v-else>Je suis ne suis pas reconnu travailleur handicapé.</p>
+          <p v-else>Je ne suis pas reconnu travailleur handicapé.</p>
+          <p v-if="identity.currentSituation.status">
+            Je suis actuellement en <strong>{{currentSituationStatusLabel}}</strong><span v-if="identity.currentSituation.employmentType"> : <strong>{{currentSituationEmploymentTypeLabel}}</strong></span>.</p>
+          <p v-else>Je n'ai pas renseigné ma situation d'emploi.</p>
+          <p v-if="identity.currentSituation.registerToPoleEmploi !== null">
+            Je {{identity.currentSituation.registerToPoleEmploi ? 'suis' : 'ne suis pas'}} inscrit à Pôle-emploi<span v-if="identity.currentSituation.registerToPoleEmploiSince"> depuis le {{formatDate(identity.currentSituation.registerToPoleEmploiSince)}}</span>.</p>
+          <p v-if="identity.currentSituation.compensationType">Je suis indemnisé <strong>{{currentSituationCompensationTypeLabel}}</strong>.</p>
         </section>
 
       </div>
@@ -141,6 +147,15 @@ export default {
     },
     progress() {
       return this.$store.getters.progress;
+    },
+    currentSituationStatusLabel() {
+      return this.$store.getters['identity/currentSituationStatusLabel'];
+    },
+    currentSituationEmploymentTypeLabel() {
+      return this.$store.getters['identity/currentSituationEmploymentTypeLabel'];
+    },
+    currentSituationCompensationTypeLabel() {
+      return this.$store.getters['identity/currentSituationCompensationTypeLabel'];
     },
   },
   methods: {

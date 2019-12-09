@@ -1,5 +1,6 @@
 import {isBlank} from '../utils/boolean';
 import {percent} from '../utils/number';
+import {labelGetter} from '../utils/function';
 import latestDegreeAnswers from '~/contents/data/latestDegree';
 import latestCourseLevelAnswers from '~/contents/data/latestCourseLevel';
 
@@ -30,14 +31,8 @@ export const getters = {
   progress: (state, {filledFields, totalFields}) => {
     return percent(filledFields/totalFields);
   },
-  latestDegreeLabel: state => {
-    const answer = latestDegreeAnswers.find(a => a.value === state.latestDegree)
-    if (answer) return answer.label;
-  },
-  latestCourseLevelLabel: state => {
-    const answer = latestCourseLevelAnswers.find(a => a.value === state.latestCourseLevel)
-    if (answer) return answer.label;
-  },
+  latestDegreeLabel: state => labelGetter(latestDegreeAnswers, state.latestDegree),
+  latestCourseLevelLabel: state => labelGetter(latestCourseLevelAnswers, state.latestCourseLevel),
 }
 
 export const mutations = {

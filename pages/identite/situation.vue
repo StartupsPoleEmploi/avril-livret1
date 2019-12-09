@@ -11,7 +11,7 @@
         />
       </div>
       <div class="field">
-        <h3 class="title is-5">Je suis actuellement :</h3>
+        <h3 class="title is-5">Je suis actuellement en :</h3>
         <RadioList
           key="statusQuestion"
           :value="currentSituationStatus"
@@ -33,17 +33,17 @@
         <h3 class="title is-5">Je suis inscrit à Pôle emploi :</h3>
         <RadioList
           key="jobseekingSubQuestion"
-          :value="currentSituationRegisterToPoleEmploiBoolean"
-          :click="addCurrentSituationRegisterToPoleEmploiBoolean"
+          :value="currentSituationRegisterToPoleEmploi"
+          :click="addCurrentSituationRegisterToPoleEmploi"
           boolean
           inline
         />
       </div>
-      <div v-if="isJobSeeking && currentSituationRegisterToPoleEmploiBoolean">
+      <div v-if="isJobSeeking && currentSituationRegisterToPoleEmploi">
         <div class="field">
           <h3 class="title is-5">Depuis le :</h3>
           <div class="control">
-            <date-picker :value="currentSituationRegisterToPoleEmploiDate" @input="addCurrentSituationRegisterToPoleEmploiDate" :format="this.dateFormat"></date-picker>
+            <date-picker :value="currentSituationRegisterToPoleEmploiSince" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="this.dateFormat"></date-picker>
           </div>
         </div>
         <div class="field">
@@ -101,16 +101,12 @@ export default {
     currentSituationEmploymentType() {
       return this.$store.state.identity.currentSituation.employmentType;
     },
-    currentSituationRegisterToPoleEmploiBoolean() {
-      if (
-        this.$store.state.identity.currentSituation.registerToPoleEmploi === null ||
-        this.$store.state.identity.currentSituation.registerToPoleEmploi === undefined)
-        return null;
-      return !!this.$store.state.identity.currentSituation.registerToPoleEmploi;
+    currentSituationRegisterToPoleEmploi() {
+      return this.$store.state.identity.currentSituation.registerToPoleEmploi;
     },
-    currentSituationRegisterToPoleEmploiDate() {
-      if (typeof(this.$store.state.identity.currentSituation.registerToPoleEmploi) === 'string') {
-        return new Date(this.$store.state.identity.currentSituation.registerToPoleEmploi);
+    currentSituationRegisterToPoleEmploiSince() {
+      if (this.$store.state.identity.currentSituation.registerToPoleEmploiSince) {
+        return new Date(this.$store.state.identity.currentSituation.registerToPoleEmploiSince);
       }
     },
     currentSituationCompensationType() {
@@ -134,22 +130,27 @@ export default {
   },
   methods: {
     addCurrentSituationStatus: function(value) {
-      this.$store.commit('identity/addCurrentSituationStatus', value)
+      if (value != this.currentSituationStatus) {
+        this.$store.commit('identity/addCurrentSituationStatus', value)
+      }
     },
     addCurrentSituationEmploymentType: function(value) {
-      this.$store.commit('identity/addCurrentSituationEmploymentType', value)
+      if (value != this.currentSituationEmploymentType) {
+        this.$store.commit('identity/addCurrentSituationEmploymentType', value)
+      }
     },
-    addCurrentSituationRegisterToPoleEmploiBoolean: function(value) {
-      if (value !== this.currentSituationRegisterToPoleEmploiBoolean) {
+    addCurrentSituationRegisterToPoleEmploi: function(value) {
+      if (value !== this.currentSituationRegisterToPoleEmploi) {
         this.$store.commit('identity/addCurrentSituationRegisterToPoleEmploi', value)
       }
     },
-    addCurrentSituationRegisterToPoleEmploiDate: function(value) {
-      // console.log(moment(value).format(this.storeFormat))
-      this.$store.commit('identity/addCurrentSituationRegisterToPoleEmploi', moment(value).format(this.storeFormat))
+    addCurrentSituationRegisterToPoleEmploiSince: function(value) {
+      this.$store.commit('identity/addCurrentSituationRegisterToPoleEmploiSince', moment(value).format(this.storeFormat))
     },
     addCurrentSituationCompensationType: function(value) {
-      this.$store.commit('identity/addCurrentSituationCompensationType', value)
+      if (value != this.currentSituationCompensationType) {
+        this.$store.commit('identity/addCurrentSituationCompensationType', value)
+      }
     },
     addIsHandicapped: function(value) {
       this.$store.commit('identity/addIsHandicapped', value)

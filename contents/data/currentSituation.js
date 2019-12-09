@@ -1,12 +1,12 @@
 export default {
   status: [{
-    label: 'En situation d\'emploi',
+    label: 'situation d\'emploi',
     value: 'working'
   }, {
-    label: 'En inactivité',
+    label: 'inactivité',
     value: 'inactive',
   }, {
-    label: 'En recherche d\'emploi',
+    label: 'recherche d\'emploi',
     value: 'jobseeking',
   }, {
     label: 'Volontaire',
@@ -24,29 +24,29 @@ export default {
     label: 'CDD, CDD d\'usage et intérim',
     value: 'contract',
   }, {
-    label: 'Travailleur indépendant, artisan, profession libérale',
+    label: 'travailleur indépendant, artisan, profession libérale',
     value: 'independant',
   }, {
-    label: 'Fonctionnaire',
+    label: 'fonctionnaire',
     value: 'public',
   }, {
-    label: 'Militaire',
+    label: 'militaire',
     value: 'military',
   }, {
-    label: 'Contrat aidé ou contrat en alternance',
+    label: 'contrat aidé ou contrat en alternance',
     value: 'alternance',
   }],
   compensationType: [{
-    label: 'Au titre de l\'assurance chômage (Allocation de retour à l\'emploi)',
+    label: 'au titre de l\'assurance chômage (Allocation de retour à l\'emploi)',
     value: 'jobless',
   }, {
-    label: 'Au titre du régime spécifique d\'assurance chômage des intermittents du spectacle',
+    label: 'au titre du régime spécifique d\'assurance chômage des intermittents du spectacle',
     value: 'artist',
   }, {
-    label: 'Je suis allocataire de minima sociaux',
+    label: 'je suis allocataire de minima sociaux',
     value: 'poor',
   }, {
-    label: 'Je ne suis pas indemnisé',
+    label: 'je ne suis pas indemnisé',
     value: 'none',
   }]
 }

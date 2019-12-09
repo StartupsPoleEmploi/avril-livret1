@@ -1,6 +1,11 @@
 import {isBlank} from '../utils/boolean';
 import {percent} from '../utils/number';
+import {labelGetter} from '../utils/function';
 import {algoliaResultToAddress, isDomTom} from '../utils/geo';
+
+import currentSituationAnswers from '~/contents/data/currentSituation';
+
+console.log(currentSituationAnswers)
 
 export const state = () => ({
   lastName: null,
@@ -16,7 +21,6 @@ export const state = () => ({
     country: null,
     lat: null,
     lng: null,
-    domTom: null,
   },
   address: {
     street: null,
@@ -34,6 +38,7 @@ export const state = () => ({
     status: null,
     employmentType: null,
     registerToPoleEmploi: null,
+    registerToPoleEmploiSince: null,
     compensationType: null,
   },
   isHandicapped: null,
@@ -41,6 +46,7 @@ export const state = () => ({
 
 const OPTIONAL_FIELDS = [
   'usageName',
+  'homePhoneNumber',
 ];
 
 export const getters = {
@@ -58,6 +64,18 @@ export const getters = {
   progress: (state, {filledFields, totalFields}) => {
     return percent(filledFields/totalFields);
   },
+  currentSituationStatusLabel: state => labelGetter(
+    currentSituationAnswers.status,
+    state.currentSituation.status,
+  ),
+  currentSituationEmploymentTypeLabel: state => labelGetter(
+    currentSituationAnswers.employmentType,
+    state.currentSituation.employmentType,
+  ),
+  currentSituationCompensationTypeLabel: state => labelGetter(
+    currentSituationAnswers.compensationType,
+    state.currentSituation.compensationType,
+  ),
 }
 
 export const mutations = {
@@ -98,42 +116,42 @@ export const mutations = {
     state.address = value
   },
   addCurrentSituationStatus(state, value) {
-    state.currentSituation = Object.assign({}, state.currentSituation, {status: value})
+    state.currentSituation = {status: value}
   },
   addCurrentSituationEmploymentType(state, value) {
     state.currentSituation = {
-      status: state.currentSituation.status,
+      status: 'working',
       employmentType: value,
+      registerToPoleEmploi: null,
+      registerToPoleEmploiSince: null,
+      compensationType: null,
     }
   },
   addCurrentSituationRegisterToPoleEmploi(state, value) {
     state.currentSituation = {
-      status: state.currentSituation.status,
+      status: 'jobseeking',
       registerToPoleEmploi: value,
+      employmentType: null,
+    }
+  },
+  addCurrentSituationRegisterToPoleEmploiSince(state, value) {
+    state.currentSituation = {
+      status: 'jobseeking',
+      registerToPoleEmploi: true,
+      registerToPoleEmploiSince: value,
       employmentType: null,
     }
   },
   addCurrentSituationCompensationType(state, value) {
     state.currentSituation = {
-      status: state.currentSituation.status,
-      registerToPoleEmploi: state.currentSituation.registerToPoleEmploi,
+      status: 'jobseeking',
+      registerToPoleEmploi: true,
       compensationType: value,
       employmentType: null,
     }
   },
   addIsHandicapped(state, value) {
     state.isHandicapped = value
-  },
-
-}
-
-export const actions = {
-  initState ({commit}, serverState) {
-    console.log('action initState called')
-    console.log(serverState)
-    // state = Object.assign(state, serverState)
-    commit('addLastName', serverState.lastName)
-    commit('addEmail', serverState.email)
   },
 
 }
