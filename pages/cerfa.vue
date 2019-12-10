@@ -1,5 +1,5 @@
 <template>
-  <div class="avril-recapitulatif">
+  <div class="avril-recapitulatif avril-cerfa">
     <form @submit="addBody" method="POST" action="/cerfa.pdf" class="download">
       <input type="hidden" name="body" :value="htmlBody">
       <button type="submit" class="button is-dark is-pulled-right">Télécharger le PDF</button>
@@ -25,7 +25,7 @@
             <div class="columns">
               <div class="column">
                 <div class="control">
-                  <label class="radio box is-block">
+                  <label class="box">
                     <input type="radio" checked>
                     1ère demande
                   </label>
@@ -33,7 +33,7 @@
               </div>
               <div class="column">
                 <div class="control">
-                  <label class="radio box is-block">
+                  <label class="box">
                     <input type="radio" disabled>
                     Renouvellement
                   </label>
@@ -41,7 +41,7 @@
               </div>
               <div class="column">
                 <div class="control">
-                  <label class="radio box is-block">
+                  <label class="box">
                     <input type="radio" disabled>
                     Prolongation
                   </label>
@@ -147,13 +147,13 @@
                 </div>
                 <div class="atome">
                   <label>Tel domicile :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.homePhoneNumber}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.homePhoneNumber || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
                   <label>Tel portable :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.cellPhoneNumber}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.cellPhoneNumber || '-'}}</p>
                 </div>
                 <div class="atome">
                   <label>Courriel :</label>
@@ -174,41 +174,16 @@
                 <div class="control box">
                   <div class="columns">
                     <div class="column is-narrow">
-                      <label class="radio is-block">
-                        <input type="checkbox">
+                      <label>
+                        <input type="checkbox" disabled :checked="identity.currentSituation.status === 'working'">
                         1. En situation d'emploi :
                       </label>
                     </div>
                     <div class="column">
                       <ul>
-                        <li>
-                          <label class="radio is-block">
-                            <input type="checkbox"> CDI
-                          </label>
-                        </li>
-                        <li>
-                          <label class="radio is-block">
-                            <input type="checkbox"> CDD, CDD d'usage et intérim
-                          </label>
-                        </li>
-                        <li>
-                          <label class="radio is-block">
-                            <input type="checkbox"> Travailleur indépendant, artisan et profession libérale
-                          </label>
-                        </li>
-                        <li>
-                          <label class="radio is-block">
-                            <input type="checkbox"> Fonctionnaire
-                          </label>
-                        </li>
-                        <li>
-                          <label class="radio is-block">
-                            <input type="checkbox"> Militaire
-                          </label>
-                        </li>
-                        <li>
-                          <label class="radio is-block">
-                            <input type="checkbox"> Contrat aidé ou contrat en alternance
+                        <li v-for="type in currentSituationAnswers.employmentType">
+                          <label>
+                            <input type="checkbox" disabled :checked="identity.currentSituation.employmentType === type.value"> {{capitalize(type.label)}}
                           </label>
                         </li>
                       </ul>
@@ -219,7 +194,7 @@
                   <div class="columns">
                     <div class="column is-narrow">
                       <label class="radio is-block">
-                        <input type="checkbox">
+                        <input type="checkbox" disabled :checked="identity.currentSituation.status === 'inactive'">
                         2. En inactivité
                       </label>
                     </div>
@@ -229,7 +204,7 @@
                   <div class="columns" style="margin-bottom: 0;">
                     <div class="column">
                       <label class="radio is-block">
-                        <input type="checkbox">
+                        <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking'">
                           3. En recherche d'emploi :
                       </label>
                     </div>
@@ -238,19 +213,28 @@
                     <div class="column is-11 is-offset-1 content">
                       <ul>
                         <li>
-                          Inscrit à Pôle-emploi : <input type="checkbox"> Oui, depuis le {{'NON RENSEIGNE'}} <input type="checkbox" style="margin-left: 1rem;"> Non
+                          Inscrit à Pôle-emploi :
+                          <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.registerToPoleEmploi"> Oui
+                          <span v-if="identity.currentSituation.registerToPoleEmploiSince">depuis le {{formatDate(identity.currentSituation.registerToPoleEmploiSince)}}</span>
+                          <input type="checkbox" style="margin-left: 1rem;" disabled :checked="identity.currentSituation.status === 'jobseeking' && !identity.currentSituation.registerToPoleEmploi"> Non
                         </li>
                         <li>
-                          Vous touchez l'assurance chômage (allocation de retour à l'emploi) : <input type="checkbox"> Oui <input type="checkbox" style="margin-left: 1rem;"> Non
+                          Vous touchez l'assurance chômage (allocation de retour à l'emploi) :
+                          <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType === 'jobless'"> Oui
+                          <input type="checkbox" style="margin-left: 1rem;" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType !== 'jobless'"> Non
                         </li>
                         <li>
                           <label class="radio is-block">
-                            Vous touchez l'assurance chômage des intermittents du spectacle : <input type="checkbox"> Oui <input type="checkbox" style="margin-left: 1rem;"> Non
+                            Vous touchez l'assurance chômage des intermittents du spectacle :
+                            <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType === 'artist'"> Oui
+                            <input type="checkbox" style="margin-left: 1rem;" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType !== 'artist'"> Non
                           </label>
                         </li>
                         <li>
                           <label class="radio is-block">
-                            Vous êtes allocataire de minima sociaux : <input type="checkbox"> Oui <input type="checkbox" style="margin-left: 1rem;"> Non
+                            Vous êtes allocataire de minima sociaux :
+                            <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType === 'poor'"> Oui
+                            <input type="checkbox" style="margin-left: 1rem;" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType !== 'poor'"> Non
                           </label>
                         </li>
                       </ul>
@@ -261,7 +245,7 @@
                   <div class="columns">
                     <div class="column is-narrow">
                       <label class="radio is-block">
-                        <input type="checkbox">
+                        <input type="checkbox" disabled :checked="identity.currentSituation.status === 'volontary' || identity.currentSituation.status === 'election'">
                           4. Autres :
                       </label>
                     </div>
@@ -269,12 +253,12 @@
                       <ul>
                         <li>
                           <label class="radio is-block">
-                            <input type="checkbox"> Volontaire
+                            <input type="checkbox" disabled :checked="identity.currentSituation.status === 'volontary'"> Volontaire
                           </label>
                         </li>
                         <li>
                           <label class="radio is-block">
-                            <input type="checkbox"> Mandat électoral
+                            <input type="checkbox" disabled :checked="identity.currentSituation.status === 'election'"> Mandat électoral
                           </label>
                         </li>
                       </ul>
@@ -294,7 +278,7 @@
                   <div class="column">
                     <div class="control">
                       <label class="radio box is-block">
-                        <input type="radio" disabled>
+                        <input type="radio" disabled :checked="identity.isHandicapped">
                         Oui
                       </label>
                     </div>
@@ -302,7 +286,7 @@
                   <div class="column">
                     <div class="control">
                       <label class="radio box is-block">
-                        <input type="radio" checked>
+                        <input type="radio" :checked="!identity.isHandicapped">
                         Non
                       </label>
                     </div>
@@ -326,12 +310,12 @@
 
                 <div class="atome">
                   <label>Dernière classe suivie :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.latestCourseLevel}} : {{latestCourseLevelLabel}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.latestCourseLevel ? `${education.latestCourseLevel} : ${latestCourseLevelLabel}` : '-'}}</p>
                 </div>
 
                 <div class="atome">
                   <label>Titre ou diplôme le plus élevé obtenu en France :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.latestDegree}} : {{latestDegreeLabel}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.latestDegree ? `${education.latestDegree} : ${latestDegreeLabel}` : '-'}}</p>
                 </div>
 
                 <div class="atome">
@@ -344,11 +328,11 @@
 
                 <div class="atome">
                   <label>Attestation de comparabilité d'un diplôme délivré dans un pays étranger :</label>
-                  <p class="title is-6 is-uppercase is-spaced">PAS BRANCHE</p>
+                  <p class="title is-6 is-uppercase is-spaced">Non applicable</p>
                 </div>
                 <div class="atome">
                   <label>Attestation de reconnaissance d'études/et ou de formation/s suivie/s à l'étranger :</label>
-                  <p class="title is-6 is-uppercase is-spaced">PAS BRANCHE</p>
+                  <p class="title is-6 is-uppercase is-spaced">Non applicable</p>
                 </div>
                 <div class="atome">
                   <label>Partie(s) de certification professionnelle obtenue/s :</label>
@@ -366,13 +350,13 @@
               <div class="column">
                 <div class="atome">
                   <label>Certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE) :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.trainings.join(', ')}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.trainings.join(', ') || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
                   <label>Formations courtes suivies dans le cadre de la formation continue :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.relatedDegrees.join(', ')}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.relatedDegrees.join(', ') || '-'}}</p>
                 </div>
               </div>
             </div>
@@ -390,10 +374,9 @@
       </section>
 
       <section class="section section-sworn">
-        <h3 class="title is-3">Déclaration sur l'honneur</h3>
-
         <article class="message is-dark">
           <div class="message-body">
+            <h2 class="title is-4 has-text-weight-light">Rubrique 6 : Déclaration sur l'honneur</h2>
 
             <div class="control atome">
               <label class="radio box is-block">
@@ -443,9 +426,11 @@
 <script>
 import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
 import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
+import {capitalize} from '~/utils/string.js';
 import {addressLabelify} from '~/utils/geo.js';
 import latestDegreeAnswers from '~/contents/data/latestDegree';
 import latestCourseLevelAnswers from '~/contents/data/latestCourseLevel';
+import currentSituationAnswers from '~/contents/data/currentSituation';
 
 export default {
   mixins: [
@@ -480,6 +465,7 @@ export default {
   },
   data() {
     return {
+      currentSituationAnswers,
       htmlBody: null,
     }
   },
@@ -487,6 +473,7 @@ export default {
     addBody(e) {
       this.htmlBody = document.documentElement.outerHTML;
     },
+    capitalize,
     async pdfDownload() {
       const result = await fetch('/cerfa.pdf', {
         method: 'POST',

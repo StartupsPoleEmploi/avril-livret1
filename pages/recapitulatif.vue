@@ -90,9 +90,6 @@
           </div>
         </div>
       </div>
-      <nuxt-link to="/cerfa" class="button is-default is-fullwidth has-text-centered">
-        Voir le cerfa
-      </nuxt-link>
   </div>
 </template>
 

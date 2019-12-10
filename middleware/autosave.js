@@ -10,6 +10,8 @@ export default async function ({ store, req, env } = context) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        certificationLabel: store.state.certificationLabel,
+        certifierLabel: store.state.certifierLabel,
         civility: storeToBackend.identity(store.state.identity),
         experiences: storeToBackend.experiences(store.state.experiences),
         education: storeToBackend.education(store.state.education),
