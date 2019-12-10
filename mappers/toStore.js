@@ -1,4 +1,4 @@
-import parseISO from 'date-fns/parseISO';
+import parseISO from "date-fns/parseISO";
 import get from "lodash.get";
 import { uuid } from "../utils/string";
 import { parseDate } from "../utils/time";
@@ -48,14 +48,10 @@ export const backendToStore = {
         backendData,
         "current_situation.register_to_pole_emploi"
       ),
-      registerToPoleEmploiSince: parseDate(get(
-        backendData,
-        "current_situation.register_to_pole_emploi_since"
-      )),
-      compensationType: get(
-        backendData,
-        "current_situation.compensation_type"
+      registerToPoleEmploiSince: parseISO(
+        get(backendData, "current_situation.register_to_pole_emploi_since")
       ),
+      compensationType: get(backendData, "current_situation.compensation_type")
     },
     birthPlace: {
       city: get(backendData, "birth_place.city"),
@@ -63,6 +59,7 @@ export const backendToStore = {
       lat: get(backendData, "birth_place.lat"),
       lng: get(backendData, "birth_place.lng")
     },
+    nationality: Object.assign({}, backendData.nationality),
     address: {
       street: get(backendData, "full_address.street"),
       city: get(backendData, "full_address.city"),
