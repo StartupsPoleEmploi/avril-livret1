@@ -41,6 +41,7 @@ module.exports = {
     'nuxt-svg-loader',
     '@nuxtjs/markdownit',
     '@nuxtjs/google-analytics',
+    'cookie-universal-nuxt',
   ],
   plugins: [
     '~/plugins/filters.js',

@@ -77,6 +77,7 @@ export const actions = {
   async nuxtServerInit(
     { commit, dispatch },
     {
+      app,
       req: {
         query: { hash }
       },
@@ -84,7 +85,11 @@ export const actions = {
       env
     }
   ) {
-    console.log("nuxtServerInit called");
+    if (hash) {
+      app.$cookies.set('hash', hash);
+    } else {
+      hash = app.$cookies.get('hash');
+    }
     if (env.apiUrl && hash) {
       const apiUrl = `${env.apiUrl}/api/booklet?hash=${hash}`;
       console.log(apiUrl);
@@ -98,7 +103,6 @@ export const actions = {
         );
       } else {
         console.log("Request failed");
-        console.log(result);
         redirectToPhoenix({ redirect, env }, "request_failed");
       }
     } else {
