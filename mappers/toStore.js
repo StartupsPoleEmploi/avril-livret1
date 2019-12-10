@@ -30,7 +30,8 @@ export const backendToStore = {
   index: backendData => ({
     hash: backendData.hash,
     certificationLabel: backendData.certification_name,
-    certifierLabel: backendData.certifier_name
+    certifierLabel: backendData.certifier_name,
+    isComplete: backendData.is_complete,
   }),
   identity: backendData => ({
     firstNames: backendData.first_name,

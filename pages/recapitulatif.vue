@@ -74,8 +74,7 @@
         <div class="control">
           <div class="columns">
             <div class="column">
-              <a v-if="backUrl" class="is-ok button is-default is-fullwidth" :href="backUrl">Oui</a>
-              <nuxt-link v-else class="is-ok button is-default is-fullwidth" to="/cerfa">Oui</nuxt-link>
+              <button @click="markAsCompleteAndGoToCerfa" class="is-ok button is-default is-fullwidth" to="/cerfa">Oui</button>
             </div>
             <div class="column">
               <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
@@ -140,7 +139,7 @@ export default {
       return this.$store.getters.progress;
     },
     backUrl() {
-      return phoenixUrl(this.$store.state.hash)
+      return phoenixUrl(this.$store.state.hash);
     },
     currentSituationStatusLabel() {
       return this.$store.getters['identity/currentSituationStatusLabel'];
@@ -156,6 +155,12 @@ export default {
     formatDate,
     periodTotalHours,
     addressLabelify,
+    markAsCompleteAndGoToCerfa: function() {
+      this.$store.commit('markAsComplete');
+      this.$router.push({
+        path: '/cerfa'
+      })
+    },
   }
 }
 </script>

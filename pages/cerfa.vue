@@ -1,9 +1,23 @@
 <template>
   <div class="avril-recapitulatif avril-cerfa">
-    <form @submit="addBody" method="POST" action="/cerfa.pdf" class="download">
-      <input type="hidden" name="body" :value="htmlBody">
-      <button type="submit" class="button is-dark is-pulled-right">Télécharger le PDF</button>
-    </form>
+    <div class="action-buttons">
+      <div class="columns">
+        <div class="column">
+          <a v-if="backUrl" class="is-ok button is-default" :href="backUrl">Retour vers Avril</a>
+        </div>
+        <div class="column">
+          <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
+            Je dois encore modifier certaines informations
+          </nuxt-link>
+        </div>
+        <div class="column">
+          <form @submit="addBody" method="POST" action="/cerfa.pdf" class="download" target="_blank">
+            <input type="hidden" name="body" :value="htmlBody">
+            <button type="submit" class="button is-dark is-pulled-right">Télécharger le PDF</button>
+          </form>
+        </div>
+      </div>
+    </div>
     <div id="pdf-content" class="recap-content">
 
       <div class="header">
@@ -482,6 +496,7 @@ import {capitalize, pluralize} from '~/utils/string.js';
 import {labelGetter} from '~/utils/function.js';
 import {addressLabelify} from '~/utils/geo.js';
 import {periodTotalHours, formatDate} from '~/utils/time.js';
+import {phoenixUrl} from '~/utils/url.js';
 import currentSituationAnswers from '~/contents/data/currentSituation';
 import experienceStatusesAnswers from '~/contents/data/experienceStatuses';
 import experienceCategoriesAnswers from '~/contents/data/experienceCategories';
@@ -512,6 +527,9 @@ export default {
     },
     latestCourseLevelLabel() {
       return this.$store.getters['education/latestCourseLevelLabel'];
+    },
+    backUrl() {
+      return phoenixUrl(this.$store.state.hash)
     },
   },
   data() {

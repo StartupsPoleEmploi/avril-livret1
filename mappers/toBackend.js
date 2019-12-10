@@ -23,6 +23,11 @@ const mapClassification = classification => ({
 });
 
 export const storeToBackend = {
+  index: state => ({
+    is_complete: state.isComplete,
+    certification_name: state.certificationLabel,
+    certifier_name: state.certifierLabel,
+  }),
   identity: state => ({
     first_name: state.firstNames,
     last_name: state.lastName,
