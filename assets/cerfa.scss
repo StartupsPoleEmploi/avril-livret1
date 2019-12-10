@@ -4,4 +4,28 @@
     opacity: 1;
     color: inherit;
   }
+
+  table.experience-table {
+    width: 100%;
+    tr {
+      td {
+        padding: 0.5rem;
+        &:first-child {
+          text-align: right;
+          width: 25%;
+        }
+        &:last-child {
+          width: 75%;
+        }
+
+        ul {
+          margin-top: 0;
+          margin-left: 1rem;
+        }
+      }
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+  }
 }

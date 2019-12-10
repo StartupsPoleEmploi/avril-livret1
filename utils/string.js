@@ -5,7 +5,8 @@ export const uuid = () =>  (Math.random().toString(36).substring(2, 15) + Math.r
 export const pluralize = (first, second) => {
   const number = typeof first === 'number' ? first : second;
   const word = typeof first === 'number' ? second : first;
-  return `${number === first ? (number+' ') : ''}${word}${number > 1 ? 's' : ''}`
+  const pluralizedWords = word.split(/\s/).map(w => `${w}${number > 1 ? 's' : ''}`).join(' ');
+  return `${number === first ? (number+' ') : ''}${pluralizedWords}`
 }
 
 export const capitalize = word => {

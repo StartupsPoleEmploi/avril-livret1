@@ -5,13 +5,13 @@
       <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
-          <date-picker :value="birthday" @input="addBirthday" lang="fr" format="DD/MM/YYYY" placeholder="Sélectionnez une date"></date-picker>
+          <date-picker :value="birthday" @input="addBirthday" lang="fr" format="DD/MM/YYYY" placeholder="Ex: 01/01/1970"></date-picker>
         </div>
       </div>
       <div class="field">
         <label class="label">Lieu de naissance</label>
         <div class="control">
-        <GeoInput :input="addBirthPlace" ref="avril__focus" :value="birthPlace" type="city" placeholder="Exemple : Marseille, France" />
+        <GeoInput :input="addBirthPlace" ref="avril__focus" :value="birthPlace" type="city" placeholder="Ex: Marseille, France" />
         </div>
       </div>
 
@@ -62,7 +62,7 @@ export default {
     addBirthPlace: function({country_code, ...result}) {
       this.$store.commit('identity/addBirthPlace', result)
       const nationalityFields = {
-        country_code: this.$store.state.identity.nationality.country_code || country_code,
+        country_code: (this.$store.state.identity.nationality.country_code || country_code).toUpperCase(),
         country: this.$store.state.identity.nationality.country || result.country,
       };
       this.$store.commit('identity/addNationality', nationalityFields);

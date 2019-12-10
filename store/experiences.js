@@ -19,7 +19,7 @@ export const getters = {
   },
   current: state => {
     return state.find(e => e.isCurrent);
-  }
+  },
 };
 
 export const mutations = {

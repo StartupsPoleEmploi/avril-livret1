@@ -320,7 +320,7 @@
 
                 <div class="atome">
                   <label>Autre certification obtenue en France :</label>
-                  <p class="title is-6 is-uppercase is-spaced">A BRANCHER</p>
+                  <p class="title is-6 is-uppercase is-spaced">Non applicable</p>
                 </div>
 
               </div>
@@ -367,8 +367,59 @@
 
       <section class="section section-experiences">
         <article class="message is-dark">
-          <div class="message-body">
+          <div class="message-body content">
             <h2 class="title is-4 has-text-weight-light">Rubrique 5 : Information concernant votre expérience en rapport direct avec la certification viséee</h2>
+            <p v-if="experiences.length === 0">Aucune expérience professionnelle saisie.</p>
+            <p v-else>{{pluralize(experiences.length, 'experience professionnelle enregistrée')}} :</p>
+            <div v-for="experience in experiences" class="control atome box">
+              <table class="experience-table">
+                <tr>
+                  <td>Emploi ou fonction occupée :</td>
+                  <td><strong>{{experience.role}}</strong></td>
+                </tr>
+                <tr>
+                  <td>Nom et adresse de l'organisme :</td>
+                  <td>
+                    <strong>{{experience.companyName}}</strong><br />
+                    {{addressLabelify(experience.companyAddress)}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Statut :</td>
+                  <td><strong>{{experience.contractType}}</strong> - {{experienceStatusesLabel(experience)}}</td>
+                </tr>
+                <tr>
+                  <td>Famille professionnelle</td>
+                  <td><strong>{{experience.category}}</strong> - {{experienceCategoriesLabel(experience)}}</td>
+                </tr>
+                <tr>
+                  <td>Certification et niveau de formation suivie :</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>{{pluralize('Période', experience.periods.length)}} :</td>
+                  <td>
+                    <ul>
+                      <li v-for="period in experience.periods">
+                        <strong>{{period.weekHours}}h/semaine</strong>
+                        du <strong>{{formatDate(period.start)}}</strong>
+                        <span v-if="period.end">au <strong>{{formatDate(period.end)}}</strong></span>
+                        <span v-else>à <strong>aujourd'hui</strong></span>
+                        soit <strong>{{periodTotalHours(period)}} heures</strong> au total
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{pluralize('Activité', experience.activities.length)}}  :</td>
+                  <td>
+                    <ul>
+                      <li v-for="activity in experience.activities">{{activity}}</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
         </article>
       </section>
@@ -426,11 +477,13 @@
 <script>
 import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
 import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
-import {capitalize} from '~/utils/string.js';
+import {capitalize, pluralize} from '~/utils/string.js';
+import {labelGetter} from '~/utils/function.js';
 import {addressLabelify} from '~/utils/geo.js';
-import latestDegreeAnswers from '~/contents/data/latestDegree';
-import latestCourseLevelAnswers from '~/contents/data/latestCourseLevel';
+import {periodTotalHours} from '~/utils/time.js';
 import currentSituationAnswers from '~/contents/data/currentSituation';
+import experienceStatusesAnswers from '~/contents/data/experienceStatuses';
+import experienceCategoriesAnswers from '~/contents/data/experienceCategories';
 
 export default {
   mixins: [
@@ -466,6 +519,7 @@ export default {
   data() {
     return {
       currentSituationAnswers,
+      experienceStatusesAnswers,
       htmlBody: null,
     }
   },
@@ -474,14 +528,21 @@ export default {
       this.htmlBody = document.documentElement.outerHTML;
     },
     capitalize,
+    pluralize,
     async pdfDownload() {
       const result = await fetch('/cerfa.pdf', {
         method: 'POST',
         body: document.documentElement.outerHTML,
       })
-      console.log(result)
     },
     addressLabelify,
+    experienceStatusesLabel(experience) {
+      return labelGetter(experienceStatusesAnswers, experience.contractType)
+    },
+    experienceCategoriesLabel(experience) {
+      return labelGetter(experienceCategoriesAnswers, experience.category)
+    },
+    periodTotalHours,
   }
 }
 </script>

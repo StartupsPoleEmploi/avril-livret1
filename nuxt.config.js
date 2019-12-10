@@ -41,6 +41,7 @@ module.exports = {
   modules: [
     'nuxt-svg-loader',
     '@nuxtjs/markdownit',
+    '@nuxtjs/google-analytics',
   ],
   moment: {
     defaultLocale: 'fr',
@@ -58,4 +59,11 @@ module.exports = {
   },
   markdownit: {
   },
+  googleAnalytics: {
+    id: [
+      process.env.GA_API_KEY,
+      process.env.GA_PE_API_KEY,
+    ],
+    dev: false,
+  }
 }
