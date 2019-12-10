@@ -93,6 +93,7 @@
 
 <script>
 import {periodTotalHours, formatDate} from '~/utils/time.js';
+import {phoenixUrl} from '~/utils/url.js';
 import {addressLabelify} from '~/utils/geo.js';
 
 import {BOOKLET_MIN_HOURS} from '../constants/index';
@@ -119,7 +120,6 @@ export default {
     RecapResidence,
   },
   data: () => ({
-    backUrl: process.env.phoenixUrl && `${process.env.phoenixUrl}/candidatures/actuelle`,
     bookletMinHours: BOOKLET_MIN_HOURS,
   }),
   layout: 'recapitulatif',
@@ -138,6 +138,9 @@ export default {
     },
     progress() {
       return this.$store.getters.progress;
+    },
+    backUrl() {
+      return phoenixUrl(this.$store.state.hash)
     },
     currentSituationStatusLabel() {
       return this.$store.getters['identity/currentSituationStatusLabel'];

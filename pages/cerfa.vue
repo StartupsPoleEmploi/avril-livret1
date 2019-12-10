@@ -373,51 +373,53 @@
             <p v-else>{{pluralize(experiences.length, 'experience professionnelle enregistrée')}} :</p>
             <div v-for="experience in experiences" class="control atome box">
               <table class="experience-table">
-                <tr>
-                  <td>Emploi ou fonction occupée :</td>
-                  <td><strong>{{experience.role}}</strong></td>
-                </tr>
-                <tr>
-                  <td>Nom et adresse de l'organisme :</td>
-                  <td>
-                    <strong>{{experience.companyName}}</strong><br />
-                    {{addressLabelify(experience.companyAddress)}}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Statut :</td>
-                  <td><strong>{{experience.contractType}}</strong> - {{experienceStatusesLabel(experience)}}</td>
-                </tr>
-                <tr>
-                  <td>Famille professionnelle</td>
-                  <td><strong>{{experience.category}}</strong> - {{experienceCategoriesLabel(experience)}}</td>
-                </tr>
-                <tr>
-                  <td>Certification et niveau de formation suivie :</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>{{pluralize('Période', experience.periods.length)}} :</td>
-                  <td>
-                    <ul>
-                      <li v-for="period in experience.periods">
-                        <strong>{{period.weekHours}}h/semaine</strong>
-                        du <strong>{{formatDate(period.start)}}</strong>
-                        <span v-if="period.end">au <strong>{{formatDate(period.end)}}</strong></span>
-                        <span v-else>à <strong>aujourd'hui</strong></span>
-                        soit <strong>{{periodTotalHours(period)}} heures</strong> au total
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{{pluralize('Activité', experience.activities.length)}}  :</td>
-                  <td>
-                    <ul>
-                      <li v-for="activity in experience.activities">{{activity}}</li>
-                    </ul>
-                  </td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>Emploi ou fonction occupée :</td>
+                    <td><strong>{{experience.role}}</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Nom et adresse de l'organisme :</td>
+                    <td>
+                      <strong>{{experience.companyName}}</strong><br />
+                      {{addressLabelify(experience.companyAddress)}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Statut :</td>
+                    <td><strong>{{experience.contractType}}</strong> - {{experienceStatusesLabel(experience)}}</td>
+                  </tr>
+                  <tr>
+                    <td>Famille professionnelle</td>
+                    <td><strong>{{experience.category}}</strong> - {{experienceCategoriesLabel(experience)}}</td>
+                  </tr>
+                  <tr>
+                    <td>Certification et niveau de formation suivie :</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td>{{pluralize('Période', experience.periods.length)}} :</td>
+                    <td>
+                      <ul>
+                        <li v-for="period in experience.periods">
+                          <strong>{{period.weekHours}}h/semaine</strong>
+                          du <strong>{{formatDate(period.start)}}</strong>
+                          <span v-if="period.end">au <strong>{{formatDate(period.end)}}</strong></span>
+                          <span v-else>à <strong>aujourd'hui</strong></span>
+                          soit <strong>{{periodTotalHours(period)}} heures</strong> au total
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{pluralize('Activité', experience.activities.length)}}  :</td>
+                    <td>
+                      <ul>
+                        <li v-for="activity in experience.activities">{{activity}}</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import differenceInBusinessDays from 'date-fns/differenceInBusinessDays'
-import {format} from 'date-fns';
+import format from 'date-fns/format';
+import parseISO from 'date-fns/parseISO';
 
 export const periodTotalHours = period => {
   const dailyHours = parseInt(period.weekHours)/5;
@@ -7,4 +8,12 @@ export const periodTotalHours = period => {
   return parseInt(dailyHours * workedDays)
 }
 
-export const formatDate = date => format(date, 'dd/MM/yyyy')
+export const formatDate = date => {
+  return format(date, 'dd/MM/yyyy');
+}
+
+export const parseDate = date => {
+  if (date) {
+    return parseISO(date);
+  }
+}
