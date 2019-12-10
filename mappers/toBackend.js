@@ -33,10 +33,18 @@ export const storeToBackend = {
     is_handicapped: state.isHandicapped,
     current_situation: {
       status: state.status,
-      employment_type: state.employmentType,
-      register_to_pole_emploi: state.registerToPoleEmploi,
-      register_to_pole_emploi_since: state.registerToPoleEmploiSince,
-      compensation_type: state.compensationType
+      employment_type: get(state, "currentSituation.employmentType", null),
+      register_to_pole_emploi: get(
+        state,
+        "currentSituation.registerToPoleEmploi",
+        null
+      ),
+      register_to_pole_emploi_since: get(
+        state,
+        "currentSituation.registerToPoleEmploiSince",
+        null
+      ),
+      compensation_type: get(state, "currentSituation.compensationType", null)
     },
     full_address: Object.assign(state.address, {
       postal_code: get(state, "address.postalCode", null)
