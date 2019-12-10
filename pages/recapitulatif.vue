@@ -68,11 +68,9 @@
             Je {{identity.currentSituation.registerToPoleEmploi ? 'suis' : 'ne suis pas'}} inscrit à Pôle-emploi<span v-if="identity.currentSituation.registerToPoleEmploiSince"> depuis le {{formatDate(identity.currentSituation.registerToPoleEmploiSince)}}</span>.</p>
           <p v-if="identity.currentSituation.compensationType">Je suis indemnisé <strong>{{currentSituationCompensationTypeLabel}}</strong>.</p>
         </section>
-
       </div>
-
-      <div class="field">
-        <h3 class="title is-3">Est-ce que ces informations sont exactes et complètes ?</h3>
+      <div class="notification is-avril">
+        <h3 class="title is-3 has-text-centered">Est-ce que ces informations sont exactes et complètes ?</h3>
         <div class="control">
           <div class="columns">
             <div class="column">

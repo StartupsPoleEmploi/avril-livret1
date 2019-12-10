@@ -78,17 +78,15 @@ export const actions = {
     { commit, dispatch },
     {
       req: {
-        query: { hash: queryHash }
+        query: { hash }
       },
-      res,
-      store,
       redirect,
       env
     }
   ) {
     console.log("nuxtServerInit called");
-    if (env.apiUrl && queryHash) {
-      const apiUrl = `${env.apiUrl}/api/booklet?hash=${queryHash}`;
+    if (env.apiUrl && hash) {
+      const apiUrl = `${env.apiUrl}/api/booklet?hash=${hash}`;
       console.log(apiUrl);
       const result = await fetch(apiUrl);
       if (result.ok) {
@@ -96,7 +94,7 @@ export const actions = {
         console.log("fetched data", dataWithStatus.data);
         dispatch(
           "initState",
-          Object.assign({ hash: queryHash }, dataWithStatus.data)
+          Object.assign({ hash }, dataWithStatus.data)
         );
       } else {
         console.log("Request failed");
