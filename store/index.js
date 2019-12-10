@@ -1,6 +1,7 @@
 import { percent } from "../utils/number";
 import { first, last } from "../utils/array";
 import { fraToEng } from "../utils/translate";
+import { redirectToPhoenix } from "../utils/url";
 
 import steps from '~/contents/data/steps';
 
@@ -65,24 +66,16 @@ export const mutations = {
   }
 };
 
-const redirectToPhoenix = ({ redirect, env }, msg) => {
-  if (env.phoenixUrl) {
-    redirect(`${env.phoenixUrl}/candidatures/actuelle?msg=${msg}`);
-  } else {
-    console.log("Should redirect but env.phoenixUrl not set");
-  }
-};
-
 export const actions = {
   async nuxtServerInit(
     { commit, dispatch },
     {
       app,
+      env,
       req: {
         query: { hash }
       },
       redirect,
-      env
     }
   ) {
     if (hash) {
@@ -92,7 +85,6 @@ export const actions = {
     }
     if (env.apiUrl && hash) {
       const apiUrl = `${env.apiUrl}/api/booklet?hash=${hash}`;
-      console.log(apiUrl);
       const result = await fetch(apiUrl);
       if (result.ok) {
         const dataWithStatus = await result.json();
@@ -102,12 +94,12 @@ export const actions = {
           Object.assign({ hash }, dataWithStatus.data)
         );
       } else {
-        console.log("Request failed");
-        redirectToPhoenix({ redirect, env }, "request_failed");
+        console.error("Request failed");
+        redirectToPhoenix(redirect, hash, "request_failed");
       }
     } else {
-      console.log(env.apiUrl ? "No hash no request" : "env.apiUrl not set");
-      redirectToPhoenix({ redirect, env }, "not_allowed");
+      console.warn(env.apiUrl ? "No hash no request" : "env.apiUrl not set");
+      redirectToPhoenix(redirect, hash, "not_allowed");
     }
   },
   initState(
