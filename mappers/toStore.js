@@ -1,3 +1,4 @@
+import parseISO from 'date-fns/parseISO';
 import get from "lodash.get";
 import { uuid } from "../utils/string";
 
@@ -16,8 +17,8 @@ const mapExperience = experience => {
     category: experience.job_industry,
     activities: experience.skills.map(mapClassification),
     periods: experience.periods.map(period => ({
-      start: period.start_date,
-      end: period.end_date,
+      start: parseISO(period.start_date),
+      end: parseISO(period.end_date),
       weekHours: period.week_hours_duration
     }))
   };
@@ -36,38 +37,35 @@ export const backendToStore = {
     email: backendData.email,
     sex: backendData.gender,
     cellPhoneNumber: backendData.mobile_phone,
-    birthday: backendData.birthday,
+    birthday: parseISO(backendData.birthday),
     isHandicapped: backendData.is_handicapped,
     currentSituation: {
-      status: get(backendData, "current_situation.status", {}),
-      employmentType: get(backendData, "current_situation.employment_type", {}),
+      status: get(backendData, "current_situation.status"),
+      employmentType: get(backendData, "current_situation.employment_type"),
       registerToPoleEmploi: get(
         backendData,
-        "current_situation.register_to_pole_emploi",
-        {}
+        "current_situation.register_to_pole_emploi"
       ),
-      registerToPoleEmploiSince: get(
+      registerToPoleEmploiSince: parseISO(get(
         backendData,
-        "current_situation.register_to_pole_emploi_since",
-        {}
-      ),
+        "current_situation.register_to_pole_emploi_since"
+      )),
       compensationType: get(
         backendData,
-        "current_situation.compensation_type",
-        {}
-      )
+        "current_situation.compensation_type"
+      ),
     },
     birthPlace: {
-      city: get(backendData, "birth_place.city", {}),
-      country: get(backendData, "birth_place.country", {}),
-      lat: get(backendData, "birth_place.lat", {}),
-      lng: get(backendData, "birth_place.lng", {})
+      city: get(backendData, "birth_place.city"),
+      country: get(backendData, "birth_place.country"),
+      lat: get(backendData, "birth_place.lat"),
+      lng: get(backendData, "birth_place.lng")
     },
     address: {
-      street: get(backendData, "full_address.street", {}),
-      city: get(backendData, "full_address.city", {}),
-      postalCode: get(backendData, "full_address.postal_code", {}),
-      country: get(backendData, "full_address.country", {}),
+      street: get(backendData, "full_address.street"),
+      city: get(backendData, "full_address.city"),
+      postalCode: get(backendData, "full_address.postal_code"),
+      country: get(backendData, "full_address.country"),
       lat: get(backendData, "full_address.lat"),
       lng: get(backendData, "full_address.lng")
     }

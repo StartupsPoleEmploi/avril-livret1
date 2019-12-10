@@ -43,7 +43,7 @@
         <div class="field">
           <h3 class="title is-5">Depuis le :</h3>
           <div class="control">
-            <date-picker :value="currentSituationRegisterToPoleEmploiSince" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="this.dateFormat"></date-picker>
+            <date-picker :value="currentSituationRegisterToPoleEmploiSince" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="datePickerFormat" :placeholder="defaultPlaceholder"></date-picker>
           </div>
         </div>
         <div class="field">
@@ -72,7 +72,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 import withDatePickerMixin from '~/mixins/withDatePicker.js';
 
@@ -145,7 +144,7 @@ export default {
       }
     },
     addCurrentSituationRegisterToPoleEmploiSince: function(value) {
-      this.$store.commit('identity/addCurrentSituationRegisterToPoleEmploiSince', moment(value).format(this.storeFormat))
+      this.$store.commit('identity/addCurrentSituationRegisterToPoleEmploiSince', value)
     },
     addCurrentSituationCompensationType: function(value) {
       if (value != this.currentSituationCompensationType) {

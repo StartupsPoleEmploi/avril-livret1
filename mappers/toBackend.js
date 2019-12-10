@@ -1,3 +1,4 @@
+import formatISO from 'date-fns/formatISO'
 import get from "lodash.get";
 
 const mapExperience = experience => ({
@@ -11,8 +12,8 @@ const mapExperience = experience => ({
   employment_type: experience.contractType,
   skills: experience.activities.map(mapClassification),
   periods: experience.periods.map(period => ({
-    start_date: period.start,
-    end_date: period.end,
+    start_date: formatISO(period.start, { representation: 'date' }),
+    end_date: formatISO(period.end, { representation: 'date' }),
     week_hours_duration: period.weekHours
   }))
 });
@@ -28,7 +29,7 @@ export const storeToBackend = {
     email: state.email,
     gender: state.sex,
     mobile_phone: state.cellPhoneNumber,
-    birthday: state.birthday,
+    birthday: formatISO(state.birthday, { representation: 'date' }),
     birth_place: state.birthPlace,
     is_handicapped: state.isHandicapped,
     current_situation: {

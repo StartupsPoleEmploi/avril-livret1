@@ -94,8 +94,7 @@
 </template>
 
 <script>
-import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
-import {periodTotalHours} from '~/utils/time.js';
+import {periodTotalHours, formatDate} from '~/utils/time.js';
 import {addressLabelify} from '~/utils/geo.js';
 
 import {BOOKLET_MIN_HOURS} from '../constants/index';
@@ -111,9 +110,6 @@ import RecapBirthday from '~/components/recapitulatif/RecapBirthday.vue';
 import RecapResidence from '~/components/recapitulatif/RecapResidence.vue';
 
 export default {
-  mixins: [
-    withDateDisplayMixin,
-  ],
   components: {
     RecapClasse,
     RecapDiplome,
@@ -156,6 +152,7 @@ export default {
     },
   },
   methods: {
+    formatDate,
     periodTotalHours,
     addressLabelify,
   }

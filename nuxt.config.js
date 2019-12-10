@@ -10,7 +10,6 @@ module.exports = {
     },
     extend (config, ctx) {}
   },
-  buildModules: ['@nuxtjs/moment'],
   css: [
     '~/assets/app.scss',
     'swiper/dist/css/swiper.css'
@@ -43,10 +42,6 @@ module.exports = {
     '@nuxtjs/markdownit',
     '@nuxtjs/google-analytics',
   ],
-  moment: {
-    defaultLocale: 'fr',
-    locales: ['fr']
-  },
   plugins: [
     '~/plugins/filters.js',
     { src: '~/plugins/datepicker', ssr: false }
