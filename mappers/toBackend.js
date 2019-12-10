@@ -30,6 +30,14 @@ export const storeToBackend = {
     mobile_phone: state.cellPhoneNumber,
     birthday: state.birthday,
     birth_place: state.birthPlace,
+    is_handicapped: state.isHandicapped,
+    current_situation: {
+      status: state.status,
+      employment_type: state.employmentType,
+      register_to_pole_emploi: state.registerToPoleEmploi,
+      register_to_pole_emploi_since: state.registerToPoleEmploiSince,
+      compensation_type: state.compensationType
+    },
     full_address: Object.assign(state.address, {
       postal_code: get(state, "address.postalCode", null)
     })

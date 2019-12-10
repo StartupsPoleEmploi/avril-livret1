@@ -37,6 +37,26 @@ export const backendToStore = {
     sex: backendData.gender,
     cellPhoneNumber: backendData.mobile_phone,
     birthday: backendData.birthday,
+    isHandicapped: backendData.is_handicapped,
+    currentSituation: {
+      status: get(backendData, "current_situation.status", {}),
+      employmentType: get(backendData, "current_situation.employment_type", {}),
+      registerToPoleEmploi: get(
+        backendData,
+        "current_situation.register_to_pole_emploi",
+        {}
+      ),
+      registerToPoleEmploiSince: get(
+        backendData,
+        "current_situation.register_to_pole_emploi_since",
+        {}
+      ),
+      compensationType: get(
+        backendData,
+        "current_situation.compensation_type",
+        {}
+      )
+    },
     birthPlace: {
       city: get(backendData, "birth_place.city", {}),
       country: get(backendData, "birth_place.country", {}),
