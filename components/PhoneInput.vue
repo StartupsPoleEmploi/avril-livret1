@@ -19,6 +19,7 @@
       formatValue(e) {
         this.$emit('input', formatPhoneNumber(e.target.value))
       }
-    }
+    },
+    props: ['value']
   }
 </script>

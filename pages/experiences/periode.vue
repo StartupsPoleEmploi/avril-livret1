@@ -13,7 +13,7 @@
         <div class="field box natural-language">
           <client-only placeholder="Chargement ...">
             <p class="title is-5">
-              {{isCurrentJob ? 'Je travaille depuis le' : 'J\'ai travaillé du'}}<date-picker ref="periodStart" v-model="periodStart" :disabled-date="maxDate" :format="dateFormat" :placeholder="placeholder"></date-picker>
+              {{isCurrentJob ? 'Je travaille depuis le' : 'J\'ai travaillé du'}} <date-picker ref="periodStart" v-model="periodStart" :disabled-date="maxDate" :format="dateFormat" :placeholder="placeholder"></date-picker>
               <span v-if="!isCurrentJob">au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="dateFormat" :placeholder="placeholder"></date-picker></span>
               à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
             </p>
