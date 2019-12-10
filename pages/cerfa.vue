@@ -476,19 +476,15 @@
 
 <script>
 import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
-import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
 import {capitalize, pluralize} from '~/utils/string.js';
 import {labelGetter} from '~/utils/function.js';
 import {addressLabelify} from '~/utils/geo.js';
-import {periodTotalHours} from '~/utils/time.js';
+import {periodTotalHours, formatDate} from '~/utils/time.js';
 import currentSituationAnswers from '~/contents/data/currentSituation';
 import experienceStatusesAnswers from '~/contents/data/experienceStatuses';
 import experienceCategoriesAnswers from '~/contents/data/experienceCategories';
 
 export default {
-  mixins: [
-    withDateDisplayMixin
-  ],
   components: {
     ArrowRight
   },
@@ -543,6 +539,7 @@ export default {
       return labelGetter(experienceCategoriesAnswers, experience.category)
     },
     periodTotalHours,
+    formatDate,
   }
 }
 </script>

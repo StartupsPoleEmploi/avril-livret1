@@ -72,11 +72,10 @@
 
 <script>
 import helpLoaderMixin from "~/mixins/helpLoader.js";
-import withDateDisplayMixin from "~/mixins/withDateDisplay.js";
-import { periodTotalHours } from "~/utils/time.js";
+import { periodTotalHours, formatDate } from "~/utils/time.js";
 
 export default {
-  mixins: [helpLoaderMixin, withDateDisplayMixin],
+  mixins: [helpLoaderMixin],
   mounted() {
     this.$store.commit("experiences/removeNotFilled");
     this.$store.commit("experiences/removeCurrent");
@@ -99,7 +98,8 @@ export default {
     removeExperience(uuid) {
       this.$store.commit("experiences/remove", uuid);
     },
-    periodTotalHours
+    periodTotalHours,
+    formatDate,
   }
 };
 </script>

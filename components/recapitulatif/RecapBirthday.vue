@@ -8,13 +8,10 @@
 </template>
 
 <script>
-import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
 import {addressLabelify} from '~/utils/geo.js';
+import {formatDate} from '~/utils/time.js';
 
 export default {
-  mixins: [
-    withDateDisplayMixin
-  ],
   computed: {
     identite () {
       return this.$store.state.identity
@@ -22,6 +19,7 @@ export default {
   },
   methods: {
     addressLabelify,
+    formatDate,
   }
 }
 </script>

@@ -13,8 +13,8 @@
         <div class="field box natural-language">
           <client-only placeholder="Chargement ...">
             <p class="title is-5">
-              {{isCurrentJob ? 'Je travaille depuis le' : 'J\'ai travaillé du'}} <date-picker ref="periodStart" v-model="periodStart" :disabled-date="maxDate" :format="dateFormat" :placeholder="placeholder"></date-picker>
-              <span v-if="!isCurrentJob">au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="dateFormat" :placeholder="placeholder"></date-picker></span>
+              {{isCurrentJob ? 'Je travaille depuis le' : 'J\'ai travaillé du'}} <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" :placeholder="defaultPlaceholder"/>
+              <span v-if="!isCurrentJob">au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="datePickerFormat" :placeholder="defaultPlaceholder"></date-picker></span>
               à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
             </p>
           </client-only>
@@ -58,12 +58,9 @@
 </template>
 
 <script>
-import moment from 'moment';
-
-import {periodTotalHours} from '../../utils/time.js';
+import {periodTotalHours, formatDate} from '../../utils/time.js';
 
 import helpLoaderMixin from '~/mixins/helpLoader.js';
-import withDateDisplayMixin from '~/mixins/withDateDisplay.js';
 import withDatePickerMixin from '~/mixins/withDatePicker.js';
 
 import RadioList from "~/components/RadioList.vue";
@@ -71,7 +68,6 @@ import RadioList from "~/components/RadioList.vue";
 export default {
   mixins: [
     helpLoaderMixin,
-    withDateDisplayMixin,
     withDatePickerMixin,
   ],
   beforeCreate() {
@@ -97,6 +93,7 @@ export default {
     },
   },
   methods: {
+    formatDate,
     addPeriod() {
       if (!this.$refs.periodStart.value) return this.$refs.periodStart.focus();
       if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.focus();

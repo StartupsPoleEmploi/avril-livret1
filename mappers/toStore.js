@@ -1,3 +1,4 @@
+import parseISO from 'date-fns/parseISO';
 import get from "lodash.get";
 import { uuid } from "../utils/string";
 
@@ -16,8 +17,8 @@ const mapExperience = experience => {
     category: experience.job_industry,
     activities: experience.skills.map(mapClassification),
     periods: experience.periods.map(period => ({
-      start: period.start_date,
-      end: period.end_date,
+      start: parseISO(period.start_date),
+      end: parseISO(period.end_date),
       weekHours: period.week_hours_duration
     }))
   };
@@ -36,7 +37,7 @@ export const backendToStore = {
     email: backendData.email,
     sex: backendData.gender,
     cellPhoneNumber: backendData.mobile_phone,
-    birthday: backendData.birthday,
+    birthday: parseISO(backendData.birthday),
     birthPlace: {
       city: get(backendData, "birth_place.city", {}),
       country: get(backendData, "birth_place.country", {}),

@@ -8,8 +8,7 @@ export default {
     DatePicker,
   },
   data: () => ({
-    dateFormat: 'DD/MM/YYYY',
-    storeFormat: 'YYYY-MM-DD',
-    placeholder: 'Sélectionnez une date',
+    defaultPlaceholder: 'Sélectionnez une date',
+    datePickerFormat: 'DD/MM/YYYY',
   })
 }

@@ -5,7 +5,7 @@
       <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
-          <date-picker :value="birthday" @input="addBirthday" lang="fr" format="DD/MM/YYYY" placeholder="Ex: 01/01/1970"></date-picker>
+          <date-picker :value="birthday" @input="addBirthday" :format="datePickerFormat" placeholder="Ex: 01/01/1970"></date-picker>
         </div>
       </div>
       <div class="field">

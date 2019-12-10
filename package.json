@@ -20,6 +20,7 @@
     "bulma": "^0.8I.0",
     "bulma-o-steps": "^1.0.9",
     "cross-env": "^5.2.0",
+    "date-fns": "^2.8.1",
     "debounce": "^1.2.0",
     "esm": "^3.2.25",
     "express": "^4.16.4",
