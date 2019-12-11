@@ -8,7 +8,7 @@
       <div class="avril-navigation">
         <div class="navigation-header">
           <div class="avril-back">
-            <a :href="phoenixUrl">
+            <a :href="backUrl">
               <Back />
               retour
             </a>
@@ -51,6 +51,7 @@
 
 <script>
 import {capitalize} from '../utils/string';
+import {phoenixUrl} from '~/utils/url.js';
 
 import Back from '../components/svg/Back';
 import Stepper from '~/components/Stepper.vue';
@@ -63,6 +64,9 @@ import Tabs from '~/components/Tabs.vue';
       Tabs,
     },
     computed: {
+      backUrl() {
+        return phoenixUrl(this.$store.state.hash);
+      },
       isTheEnd() {
         return this.$store.getters.isTheEnd;
       },
@@ -77,9 +81,6 @@ import Tabs from '~/components/Tabs.vue';
           && !this.$store.getters['experiences/current'];
       },
     },
-    data: () => ({
-      phoenixUrl: `${process.env.phoenixUrl}/candidatures/actuelle`,
-    }),
     head () {
       if (this.$store.getters.pageTitle) {
         return {
