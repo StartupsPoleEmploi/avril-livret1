@@ -38,7 +38,7 @@ export const storeToBackend = {
     birth_place: state.birthPlace,
     is_handicapped: state.isHandicapped,
     current_situation: {
-      status: state.status,
+      status: get(state, "currentSituation.status"),
       employment_type: get(state, "currentSituation.employmentType"),
       register_to_pole_emploi: get(
         state,
