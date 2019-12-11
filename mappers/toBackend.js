@@ -5,7 +5,7 @@ const mapExperience = experience => ({
   uuid: experience.uuid,
   title: experience.role,
   company_name: experience.companyName,
-  full_address: Object.assign(experience.companyAddress, {
+  full_address: Object.assign({}, experience.companyAddress, {
     postal_code: get(experience, "companyAdress.postalCode")
   }),
   job_industry: experience.category,
@@ -51,7 +51,7 @@ export const storeToBackend = {
       compensation_type: get(state, "currentSituation.compensationType")
     },
     nationality: Object.assign({}, state.nationality),
-    full_address: Object.assign(state.address, {
+    full_address: Object.assign({}, state.address, {
       postal_code: get(state, "address.postalCode")
     })
   }),
