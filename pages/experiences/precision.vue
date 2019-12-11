@@ -25,6 +25,7 @@
               <button @click="removeActivity(activity.uuid)" class="delete is-pulled-right"></button>
             </li>
           </ul>
+          <p v-if="activities.length === 0">Je dois saisir au minimum une activité.</p>
         </div>
       </div>
 

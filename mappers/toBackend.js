@@ -1,19 +1,19 @@
-import formatISO from "date-fns/formatISO";
 import get from "lodash.get";
+import { formatISODate } from "../utils/time";
 
 const mapExperience = experience => ({
   uuid: experience.uuid,
   title: experience.role,
   company_name: experience.companyName,
   full_address: Object.assign(experience.companyAddress, {
-    postal_code: get(experience, "companyAdress.postalCode", null)
+    postal_code: get(experience, "companyAdress.postalCode")
   }),
   job_industry: experience.category,
   employment_type: experience.contractType,
   skills: experience.activities.map(mapClassification),
   periods: experience.periods.map(period => ({
-    start_date: formatISO(period.start, { representation: "date" }),
-    end_date: formatISO(period.end, { representation: "date" }),
+    start_date: formatISODate(period.start),
+    end_date: formatISODate(period.end),
     week_hours_duration: period.weekHours
   }))
 });
@@ -24,7 +24,7 @@ const mapClassification = classification => ({
 
 export const storeToBackend = {
   index: state => ({
-    is_complete: state.isComplete,
+    completedAt: formatISODate(state.completedAt, 'time'),
     certification_name: state.certificationLabel,
     certifier_name: state.certifierLabel,
   }),
@@ -34,27 +34,25 @@ export const storeToBackend = {
     email: state.email,
     gender: state.sex,
     mobile_phone: state.cellPhoneNumber,
-    birthday: formatISO(state.birthday, { representation: "date" }),
+    birthday: formatISODate(state.birthday),
     birth_place: state.birthPlace,
     is_handicapped: state.isHandicapped,
     current_situation: {
       status: state.status,
-      employment_type: get(state, "currentSituation.employmentType", null),
+      employment_type: get(state, "currentSituation.employmentType"),
       register_to_pole_emploi: get(
         state,
-        "currentSituation.registerToPoleEmploi",
-        null
+        "currentSituation.registerToPoleEmploi"
       ),
       register_to_pole_emploi_since: get(
         state,
-        "currentSituation.registerToPoleEmploiSince",
-        null
+        "currentSituation.registerToPoleEmploiSince"
       ),
-      compensation_type: get(state, "currentSituation.compensationType", null)
+      compensation_type: get(state, "currentSituation.compensationType")
     },
     nationality: Object.assign({}, state.nationality),
     full_address: Object.assign(state.address, {
-      postal_code: get(state, "address.postalCode", null)
+      postal_code: get(state, "address.postalCode")
     })
   }),
   education: state => ({

@@ -1,4 +1,3 @@
-import parseISO from "date-fns/parseISO";
 import get from "lodash.get";
 import { uuid } from "../utils/string";
 import { parseDate } from "../utils/time";
@@ -31,7 +30,7 @@ export const backendToStore = {
     hash: backendData.hash,
     certificationLabel: backendData.certification_name,
     certifierLabel: backendData.certifier_name,
-    isComplete: backendData.is_complete,
+    completedAt: backendData.completed_at,
   }),
   identity: backendData => ({
     firstNames: backendData.first_name,
@@ -48,7 +47,7 @@ export const backendToStore = {
         backendData,
         "current_situation.register_to_pole_emploi"
       ),
-      registerToPoleEmploiSince: parseISO(
+      registerToPoleEmploiSince: parseDate(
         get(backendData, "current_situation.register_to_pole_emploi_since")
       ),
       compensationType: get(backendData, "current_situation.compensation_type")

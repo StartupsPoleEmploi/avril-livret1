@@ -1,7 +1,10 @@
 <template>
   <div class="form">
     <div class="form-fields">
-      <h3 class="title is-5">C'est mon poste actuel ?</h3>
+      <h3 class="title is-5">
+        <span v-if="experience.role && experience.companyName">{{experience.role}} chez {{experience.companyName}}</span>
+        <span v-else>Cette experience</span>
+        est mon poste actuel ?</h3>
       <div>
         <div class="field">
         <RadioList
@@ -13,7 +16,7 @@
         <div class="field box natural-language">
           <client-only placeholder="Chargement ...">
             <p class="title is-5">
-              {{isCurrentJob ? 'Je travaille depuis le' : 'J\'ai travaillé du'}} <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" :placeholder="defaultPlaceholder"/>
+              {{isCurrentJob ? 'Je travaille depuis le' : 'J\'y ai travaillé du'}} <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" :placeholder="defaultPlaceholder"/>
               <span v-if="!isCurrentJob">au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="datePickerFormat" :placeholder="defaultPlaceholder"></date-picker></span>
               à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
             </p>
@@ -30,12 +33,14 @@
         <div v-for="period in periods" class="column is-half">
           <div class="box is-equal-height">
             <button @click="removePeriod(period.uuid)" class="delete" style="margin-left: auto; margin-bottom: 0.5rem;"></button>
-            <p class="title is-3">{{ periodTotalHours(period) }} heures</p>
-            <h3 class="title is-6">
-              Du {{ formatDate(period.start) }}<br />
+            <p class="title is-5">
+              <strong>{{ periodTotalHours(period) }} heures</strong> en tant que <strong>{{experience.role}}</strong> chez <strong>{{experience.companyName}}</strong> <br />
+            </p>
+            <p>
+              Du {{ formatDate(period.start) }}
               <span v-if="period.end">au {{ formatDate(period.end) }}</span>
               <span v-else>à aujourd'hui</span>
-            </h3>
+            </p>
             <button @click="editPeriod(period.uuid)" class="button is-text">Modifier</button>
           </div>
         </div>
@@ -87,7 +92,10 @@ export default {
     RadioList,
   },
   computed: {
-    periods () {
+    experience() {
+      return this.$store.getters['experiences/current'];
+    },
+    periods() {
       const currentExperience = this.$store.getters['experiences/current'];
       return currentExperience && currentExperience.periods;
     },
@@ -123,7 +131,9 @@ export default {
       this.isCurrentJob = value;
     },
     removePeriod(periodId) {
-      this.$store.dispatch('experiences/removePeriod', periodId);
+      if(window.confirm('Je confirme vouloir supprimer cette période ?')){
+        this.$store.dispatch('experiences/removePeriod', periodId);
+      }
     },
     maxDate(date) {
       return date > new Date() || (this.periodEnd && (date > this.periodEnd));

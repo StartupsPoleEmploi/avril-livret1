@@ -13,7 +13,7 @@ export const state = () => ({
   currentPath: null,
   hash: null,
   helpContent: null,
-  isComplete: false,
+  completedAt: null,
   steps,
 });
 
@@ -66,7 +66,7 @@ export const mutations = {
     state.helpContent = helpContent;
   },
   markAsComplete(state) {
-    state.isComplete = true;
+    state.completedAt = new Date();
   }
 };
 

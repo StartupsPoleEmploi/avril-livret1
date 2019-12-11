@@ -96,7 +96,9 @@ export default {
       this.$store.commit("experiences/setCurrent", uuid);
     },
     removeExperience(uuid) {
-      this.$store.commit("experiences/remove", uuid);
+      if(window.confirm('Je confirme vouloir supprimer cette expérience ?')){
+        this.$store.commit("experiences/remove", uuid);
+      }
     },
     periodTotalHours,
     formatDate,
