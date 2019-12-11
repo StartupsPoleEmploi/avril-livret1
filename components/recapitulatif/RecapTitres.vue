@@ -1,12 +1,14 @@
 <template>
-  <div v-if="relatedDegrees.length" class="recap-cell cell-titres">
-    J'ai un diplôme de
-    <span v-for="titre, index in relatedDegrees">
-      <span><strong>{{ titre }}</strong> <span v-if="index < relatedDegrees.length-1">et de </span></span>
-    </span>
-  </div>
-  <div v-else>
-    Je n'ai pas de diplôme supplémentaire.
+  <div>
+    <div v-if="relatedDegrees.length" class="recap-cell cell-titres">
+      J'ai un diplôme de
+      <span v-for="titre, index in relatedDegrees">
+        <span><strong>{{ titre }}</strong> <span v-if="index < relatedDegrees.length-1">et de </span></span>
+      </span>
+    </div>
+    <div v-else>
+      Je n'ai pas de diplôme supplémentaire.
+    </div>
   </div>
 </template>
 

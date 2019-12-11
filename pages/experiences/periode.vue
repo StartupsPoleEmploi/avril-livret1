@@ -14,10 +14,13 @@
           inline
         />        </div>
         <div class="field box natural-language">
-          <client-only placeholder="Chargement ...">
+          <client-only placeholder="Chargement du calendrier ...">
             <p class="title is-5">
-              {{isCurrentJob ? 'Je travaille depuis le' : 'J\'y ai travaillé du'}} <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" :placeholder="defaultPlaceholder"/>
-              <span v-if="!isCurrentJob">au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="datePickerFormat" :placeholder="defaultPlaceholder"></date-picker></span>
+              {{isCurrentJob ? 'Je travaille depuis le' : 'J\'y ai travaillé du'}}
+              <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" :placeholder="defaultPlaceholder"/>
+              <span v-if="!isCurrentJob">
+                au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="datePickerFormat" :placeholder="defaultPlaceholder" />
+              </span>
               à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
             </p>
           </client-only>

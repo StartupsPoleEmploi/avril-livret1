@@ -5,13 +5,15 @@
       <div class="field">
         <label class="label">Date de naissance</label>
         <div class="control">
-          <date-picker :value="birthday" @input="addBirthday" :format="datePickerFormat" placeholder="Ex: 01/01/1970"></date-picker>
+          <client-only placeholder="Chargement du calendrier ...">
+            <date-picker :value="birthday" @input="addBirthday" :format="datePickerFormat" placeholder="Ex: 01/01/1970" />
+          </client-only>
         </div>
       </div>
       <div class="field">
         <label class="label">Lieu de naissance</label>
         <div class="control">
-        <GeoInput :input="addBirthPlace" ref="avril__focus" :value="birthPlace" type="city" placeholder="Ex: Marseille, France" />
+          <GeoInput :input="addBirthPlace" ref="avril__focus" :value="birthPlace" type="city" placeholder="Ex: Marseille, France" />
         </div>
       </div>
 

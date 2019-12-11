@@ -43,7 +43,9 @@
         <div class="field">
           <h3 class="title is-5">Depuis le :</h3>
           <div class="control">
-            <date-picker :value="currentSituationRegisterToPoleEmploiSince" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="datePickerFormat" :placeholder="defaultPlaceholder"></date-picker>
+            <client-only placeholder="Chargement du calendrier ...">
+              <date-picker :value="currentSituationRegisterToPoleEmploiSince" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="datePickerFormat" :placeholder="defaultPlaceholder" />
+            </client-only>
           </div>
         </div>
         <div class="field">
