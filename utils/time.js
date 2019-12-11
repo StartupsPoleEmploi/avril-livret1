@@ -21,7 +21,7 @@ export const formatISODate = (date, representation='date') => {
   }
 }
 
-export const parseDate = date => {
+export const parseISODate = date => {
   if (date) {
     return parseISO(date);
   }

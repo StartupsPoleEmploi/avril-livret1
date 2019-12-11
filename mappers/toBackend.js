@@ -24,7 +24,7 @@ const mapClassification = classification => ({
 
 export const storeToBackend = {
   index: state => ({
-    completedAt: formatISODate(state.completedAt, 'time'),
+    completed_at: formatISODate(state.completedAt, 'complete'),
     certification_name: state.certificationLabel,
     certifier_name: state.certifierLabel,
   }),
