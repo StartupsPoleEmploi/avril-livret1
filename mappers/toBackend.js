@@ -44,10 +44,10 @@ export const storeToBackend = {
         state,
         "currentSituation.registerToPoleEmploi"
       ),
-      register_to_pole_emploi_since: get(
+      register_to_pole_emploi_since: formatISODate(get(
         state,
         "currentSituation.registerToPoleEmploiSince"
-      ),
+      )),
       compensation_type: get(state, "currentSituation.compensationType")
     },
     nationality: Object.assign({}, state.nationality),
