@@ -129,6 +129,7 @@ export const mutations = {
     state.currentSituation = {
       status: 'jobseeking',
       registerToPoleEmploi: value,
+      registerToPoleEmploiSince: state.currentSituation.registerToPoleEmploiSince,
       employmentType: null,
     }
   },
@@ -144,6 +145,7 @@ export const mutations = {
     state.currentSituation = {
       status: 'jobseeking',
       registerToPoleEmploi: true,
+      registerToPoleEmploiSince: state.currentSituation.registerToPoleEmploiSince,
       compensationType: value,
       employmentType: null,
     }

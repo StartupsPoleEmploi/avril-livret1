@@ -30,7 +30,7 @@ export const backendToStore = {
     hash: backendData.hash,
     certificationLabel: backendData.certification_name,
     certifierLabel: backendData.certifier_name,
-    completedAt: backendData.completed_at,
+    completedAt: parseISODate(backendData.completed_at),
   }),
   identity: backendData => ({
     firstNames: backendData.first_name,
