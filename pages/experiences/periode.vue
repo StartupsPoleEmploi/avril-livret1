@@ -44,7 +44,14 @@
               <span v-if="period.end">au {{ formatDate(period.end) }}</span>
               <span v-else>à aujourd'hui</span>
             </p>
-            <button @click="editPeriod(period.uuid)" class="button is-text">Modifier</button>
+            <div class="columns">
+              <div class="column">
+                <button @click="editPeriod(period.uuid)" class="button is-text">Modifier</button>
+              </div>
+              <div class="column">
+                <button @click="removePeriod(period.uuid)" class="button is-text">Supprimer</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
