@@ -64,7 +64,9 @@ export default {
       this.$refs.avril__name.value = ''
     },
     removeTraining(value) {
-      this.$store.commit('education/removeTraining', value)
+      if(window.confirm('Je confirme vouloir supprimer cette formation ?')){
+        this.$store.commit('education/removeTraining', value);
+      }
     }
   }
 }

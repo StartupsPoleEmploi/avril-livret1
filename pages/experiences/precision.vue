@@ -78,7 +78,9 @@ export default {
       return false;
     },
     removeActivity(activityId) {
-      this.$store.dispatch('experiences/removeActivity', activityId)
+      if(window.confirm('Je confirme vouloir supprimer cette activité ?')){
+        this.$store.dispatch('experiences/removeActivity', activityId)
+      }
     }
   }
 }

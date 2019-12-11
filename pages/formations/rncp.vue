@@ -67,7 +67,9 @@ export default {
       this.$refs.relatedDegree.value = ''
     },
     removeRelatedDegree(value) {
-      this.$store.commit('education/removeRelatedDegree', value)
+      if(window.confirm('Je confirme vouloir supprimer ce diplôme ?')){
+        this.$store.commit('education/removeRelatedDegree', value)
+      }
     }
   }
 }
