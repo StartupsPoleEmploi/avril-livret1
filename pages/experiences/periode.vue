@@ -33,7 +33,7 @@
       </div>
 
       <div class="columns is-multiline">
-        <div v-for="period in periods" class="column is-half">
+        <div v-for="period in periods" class="column">
           <div class="box is-equal-height">
             <button @click="removePeriod(period.uuid)" class="delete" style="margin-left: auto; margin-bottom: 0.5rem;"></button>
             <p class="title is-5">

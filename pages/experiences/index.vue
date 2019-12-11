@@ -32,13 +32,16 @@
                 <span v-else>à aujourd'hui</span>
               </li>
             </ul>
+            <div v-if="experienceIsIncomplete(experience)" class="notification is-danger">
+              Je dois compléter cette expérience.
+            </div>
             <div class="columns">
               <div class="column">
                 <nuxt-link
                   v-on:click.native="setCurrentExperience(experience.uuid)"
                   class="button is-text"
                   to="/experiences/fonction"
-                  >Modifier</nuxt-link
+                  >{{experienceIsIncomplete(experience) ? 'Compléter' : 'Modifier'}}</nuxt-link
                 >
               </div>
               <div class="column">
@@ -73,6 +76,7 @@
 <script>
 import helpLoaderMixin from "~/mixins/helpLoader.js";
 import { periodTotalHours, formatDate } from "~/utils/time.js";
+import { isBlank } from "~/utils/boolean.js";
 
 export default {
   mixins: [helpLoaderMixin],
@@ -99,6 +103,9 @@ export default {
       if(window.confirm('Je confirme vouloir supprimer cette expérience ?')){
         this.$store.commit("experiences/remove", uuid);
       }
+    },
+    experienceIsIncomplete(experience) {
+      return Object.values(experience).some(isBlank);
     },
     periodTotalHours,
     formatDate,

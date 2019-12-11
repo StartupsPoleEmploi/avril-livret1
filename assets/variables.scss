@@ -3,6 +3,7 @@ $avril-colors: (
   'gray-dark': #DEE1E8,
   'marine': #00163C,
   'blue': #66F2B3,
+  'red': #ea8a8a,
 );
 
 $avril-header: (
@@ -16,8 +17,9 @@ $avril-help: (
 @function avril-color($key: 'gray') {
   @return map-get($avril-colors, $key);
 }
-
+$danger: avril-color('red');
 $link: avril-color('marine');
 $link-hover: lighten(avril-color('marine'), 5%);
 $family-sans-serif: 'Nunito Sans', BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $background: avril-color('gray');
+$notification-padding: 0.5rem 1rem;
