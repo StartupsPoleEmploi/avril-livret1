@@ -390,30 +390,30 @@
               <table class="cerfa-table">
                 <tbody>
                   <tr>
-                    <td>Emploi ou fonction occupée :</td>
+                    <td>Emploi ou fonction occupée&nbsp;:</td>
                     <td><strong>{{experience.role}}</strong></td>
                   </tr>
                   <tr>
-                    <td>Nom et adresse de l'organisme :</td>
+                    <td>Nom et adresse de l'organisme&nbsp;:</td>
                     <td>
                       <strong>{{experience.companyName}}</strong><br />
                       {{addressLabelify(experience.companyAddress)}}
                     </td>
                   </tr>
                   <tr>
-                    <td>Statut :</td>
+                    <td>Statut&nbsp;:</td>
                     <td><strong>{{experience.contractType}}</strong> - {{experienceStatusesLabel(experience)}}</td>
                   </tr>
                   <tr>
-                    <td>Famille professionnelle</td>
+                    <td>Famille professionnelle&nbsp;:</td>
                     <td><strong>{{experience.category}}</strong> - {{experienceCategoriesLabel(experience)}}</td>
                   </tr>
                   <tr>
-                    <td>Certification et niveau de formation suivie :</td>
+                    <td>Certification et niveau de formation suivie&nbsp;:</td>
                     <td>-</td>
                   </tr>
                   <tr>
-                    <td>{{pluralize('Période', experience.periods.length)}} :</td>
+                    <td>{{pluralize('Période', experience.periods.length)}}&nbsp;:</td>
                     <td>
                       <ul>
                         <li v-for="period in experience.periods">
@@ -427,7 +427,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td>{{pluralize('Activité', experience.activities.length)}}  :</td>
+                    <td>{{pluralize('Activité', experience.activities.length)}}&nbsp;:</td>
                     <td>
                       <ul>
                         <li v-for="activity in experience.activities">{{activity}}</li>
@@ -514,23 +514,23 @@
             <table class="cerfa-table">
               <tbody>
                 <tr>
-                  <td>Dossier reçu le :</td>
+                  <td>Dossier reçu le&nbsp;:</td>
                   <td></td>
-                  <td>Dossier complet le :</td>
+                  <td>Dossier complet le&nbsp;:</td>
                   <td></td>
                 </tr>
                 <tr>
-                  <td>N° Identifiant :</td>
+                  <td>N° Identifiant&nbsp;:</td>
                   <td colspan="3"></td>
                 </tr>
                 <tr>
-                  <td>Niveau de certification visé, le cas échéant :</td>
+                  <td>Niveau de certification visé, le cas échéant&nbsp;:</td>
                   <td></td>
-                  <td>Code du diplôme :</td>
+                  <td>Code du diplôme&nbsp;:</td>
                   <td></td>
                 </tr>
                 <tr>
-                  <td>Décision de recevabilité :</td>
+                  <td>Décision de recevabilité&nbsp;:</td>
                   <td colspan="3">
                     <input type="checkbox">
                     <label class="checkbox">
@@ -543,9 +543,9 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Date de décision de la recevabilité :</td>
+                  <td>Date de décision de la recevabilité&nbsp;:</td>
                   <td></td>
-                  <td>Date limite de validité de la recevabilité (le cas échéant) :</td>
+                  <td>Date limite de validité de la recevabilité (le cas échéant)&nbsp;:</td>
                   <td></td>
                 </tr>
               </tbody>
@@ -678,11 +678,11 @@ input[type="checkbox"], input[type="radio"] {
       margin-right: 5px;
       display: inline-block;
       vertical-align: text-top;
-      width: 20px;
-      height: 20px;
+      width: 1.25rem;
+      height: 1.25rem;
       background: none;
-      font-size: 20px;
-      line-height: 20px;
+      font-size: 1.25rem;
+      line-height: 1.25rem;
       border: thin solid;
       font-weight: bold;
     }
@@ -692,5 +692,35 @@ input[type="checkbox"], input[type="radio"] {
     content: '✓';
   }
 }
+
+table.cerfa-table {
+  width: 100%;
+  font-size: 1rem;
+  tr {
+    td {
+      padding: 0.5rem;
+      &:first-child {
+        text-align: right;
+        width: 25%;
+      }
+      &:last-child {
+        width: 75%;
+      }
+
+      &:nth-child(3), &:nth-child(4) {
+        width: 25%;
+      }
+
+      ul {
+        margin-top: 0;
+        margin-left: 1rem;
+      }
+    }
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
 
 </style>
