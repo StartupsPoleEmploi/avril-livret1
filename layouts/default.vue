@@ -3,7 +3,7 @@
   <div class="container">
 
     <div class="avril-layout">
-
+      <Saving />
       <!-- Tabs -->
       <div class="avril-navigation">
         <div class="navigation-header">
@@ -56,10 +56,12 @@ import {phoenixUrl} from '~/utils/url.js';
 import Back from '../components/svg/Back';
 import Stepper from '~/components/Stepper.vue';
 import Tabs from '~/components/Tabs.vue';
+import Saving from '~/components/Saving.vue';
 
   export default {
     components: {
       Back,
+      Saving,
       Stepper,
       Tabs,
     },
@@ -87,9 +89,6 @@ import Tabs from '~/components/Tabs.vue';
           titleTemplate: `${this.$store.getters.pageTitle} - %s`,
         }
       }
-    },
-    mounted() {
-      console.log('mounted called');
     },
   }
 </script>
