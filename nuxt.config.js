@@ -15,9 +15,9 @@ module.exports = {
     'swiper/dist/css/swiper.css'
   ],
   env: {
-    nuxtUrl: process.env.NUXT_URL || 'http://localhost:3000',
     phoenixUrl: process.env.PHOENIX_URL,
     apiUrl: process.env.API_URL,
+    hotjarId: process.env.NUXT_HOTJAR_ID,
   },
   head: {
     title: 'Livret 1 by Avril, la VAE facile',
@@ -45,7 +45,8 @@ module.exports = {
   ],
   plugins: [
     '~/plugins/filters.js',
-    { src: '~/plugins/datepicker', ssr: false }
+    { src: '~/plugins/datepicker', ssr: false },
+    '~/plugins/hotjar.js',
   ],
   router: {
     middleware: [

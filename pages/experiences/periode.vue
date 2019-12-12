@@ -38,22 +38,18 @@
         <span v-if="experience.role && experience.companyName">en tant que {{experience.role}} chez {{experience.companyName}}</span>
         <span v-else>pour cette experience</span> :
       </h3>
-      <div class="columns">
-        <div v-for="period in periods" class="column">
-          <div class="box is-equal-height">
-            <p>
-              Du {{ formatDate(period.start) }}
-              <span v-if="period.end">au {{ formatDate(period.end) }}</span>
-              <span v-else>à aujourd'hui</span> : <strong>{{ periodTotalHours(period) }} heures</strong>
-            </p>
-            <div class="columns">
-              <div class="column">
-                <button @click="editPeriod(period.uuid)" class="button is-text">Modifier cette période</button>
-              </div>
-              <div class="column">
-                <button @click="removePeriod(period.uuid)" class="button is-text">Supprimer cette période</button>
-              </div>
-            </div>
+      <div class="box is-equal-height" v-for="period in periods">
+        <p>
+          Du {{ formatDate(period.start) }}
+          <span v-if="period.end">au {{ formatDate(period.end) }}</span>
+          <span v-else>à aujourd'hui</span> : <strong>{{ periodTotalHours(period) }} heures</strong>
+        </p>
+        <div class="columns">
+          <div class="column">
+            <button @click="editPeriod(period.uuid)" class="button is-text">Modifier cette période</button>
+          </div>
+          <div class="column">
+            <button @click="removePeriod(period.uuid)" class="button is-text">Supprimer cette période</button>
           </div>
         </div>
       </div>
