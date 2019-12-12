@@ -2,7 +2,6 @@
   <div class="form">
 
     <div class="form-fields">
-
       <div class="field">
         <div class="control">
           <label class="label" v-if="role != ''">Quelles activités avez-vous pratiqué dans votre emploi {{ role ? `de ${role}`: ''}} {{companyName ? `au sein de ${companyName}` : ''}} ?</label>
@@ -25,7 +24,9 @@
               <button @click="removeActivity(activity.uuid)" class="delete is-pulled-right"></button>
             </li>
           </ul>
-          <p v-if="activities.length === 0">Je dois saisir au minimum une activité.</p>
+          <div v-if="activities.length === 0" class="notification is-danger">
+            Je dois saisir au minimum une activité.
+          </div>
         </div>
       </div>
 
