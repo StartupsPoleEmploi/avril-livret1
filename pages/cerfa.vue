@@ -38,27 +38,21 @@
             <h2 class="title is-4 has-text-weight-light">Rubrique 1 : Nature de la demande</h2>
             <div class="columns">
               <div class="column">
-                <div class="control">
-                  <label class="box">
-                    <input type="radio" checked>
-                    1ère demande
-                  </label>
+                <div class="control box">
+                  <input type="radio" checked>
+                  <label>1ère demande</label>
                 </div>
               </div>
               <div class="column">
-                <div class="control">
-                  <label class="box">
-                    <input type="radio" disabled>
-                    Renouvellement
-                  </label>
+                <div class="control box">
+                  <input type="radio">
+                  <label>Renouvellement</label>
                 </div>
               </div>
               <div class="column">
-                <div class="control">
-                  <label class="box">
-                    <input type="radio" disabled>
-                    Prolongation
-                  </label>
+                <div class="control box">
+                  <input type="radio">
+                  <label>Prolongation</label>
                 </div>
               </div>
             </div>
@@ -188,16 +182,17 @@
                 <div class="control box">
                   <div class="columns">
                     <div class="column is-narrow">
+                      <input type="checkbox" :checked="identity.currentSituation.status === 'working'">
                       <label>
-                        <input type="checkbox" disabled :checked="identity.currentSituation.status === 'working'">
                         1. En situation d'emploi :
                       </label>
                     </div>
                     <div class="column">
                       <ul>
                         <li v-for="type in currentSituationAnswers.employmentType">
+                          <input type="checkbox" :checked="identity.currentSituation.employmentType === type.value">
                           <label>
-                            <input type="checkbox" disabled :checked="identity.currentSituation.employmentType === type.value"> {{capitalize(type.label)}}
+                            {{capitalize(type.label)}}
                           </label>
                         </li>
                       </ul>
@@ -207,8 +202,8 @@
                 <div class="control box">
                   <div class="columns">
                     <div class="column is-narrow">
-                      <label class="radio is-block">
-                        <input type="checkbox" disabled :checked="identity.currentSituation.status === 'inactive'">
+                      <input type="checkbox" :checked="identity.currentSituation.status === 'inactive'">
+                      <label>
                         2. En inactivité
                       </label>
                     </div>
@@ -217,8 +212,8 @@
                 <div class="control box">
                   <div class="columns" style="margin-bottom: 0;">
                     <div class="column">
-                      <label class="radio is-block">
-                        <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking'">
+                      <input type="checkbox" :checked="identity.currentSituation.status === 'jobseeking'">
+                      <label>
                           3. En recherche d'emploi :
                       </label>
                     </div>
@@ -228,27 +223,35 @@
                       <ul>
                         <li>
                           Inscrit à Pôle-emploi :
-                          <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.registerToPoleEmploi"> Oui
+                          <input type="checkbox" :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.registerToPoleEmploi">
+                          <label>Oui</label>
                           <span v-if="identity.currentSituation.registerToPoleEmploiSince">depuis le {{formatDate(identity.currentSituation.registerToPoleEmploiSince)}}</span>
-                          <input type="checkbox" style="margin-left: 1rem;" disabled :checked="identity.currentSituation.status === 'jobseeking' && !identity.currentSituation.registerToPoleEmploi"> Non
+                          <input type="checkbox" style="margin-left: 1rem;" :checked="identity.currentSituation.status === 'jobseeking' && !identity.currentSituation.registerToPoleEmploi">
+                          <label>Non</label>
                         </li>
                         <li>
                           Vous touchez l'assurance chômage (allocation de retour à l'emploi) :
-                          <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType === 'jobless'"> Oui
-                          <input type="checkbox" style="margin-left: 1rem;" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType !== 'jobless'"> Non
+                          <input type="checkbox" :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType === 'jobless'">
+                          <label>Oui</label>
+                          <input type="checkbox" style="margin-left: 1rem;" :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType !== 'jobless'">
+                          <label>Non</label>
                         </li>
                         <li>
-                          <label class="radio is-block">
+                          <label>
                             Vous touchez l'assurance chômage des intermittents du spectacle :
-                            <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType === 'artist'"> Oui
-                            <input type="checkbox" style="margin-left: 1rem;" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType !== 'artist'"> Non
+                            <input type="checkbox" :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType === 'artist'">
+                            <label>Oui</label>
+                            <input type="checkbox" style="margin-left: 1rem;" :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType !== 'artist'">
+                            <label>Non</label>
                           </label>
                         </li>
                         <li>
-                          <label class="radio is-block">
+                          <label>
                             Vous êtes allocataire de minima sociaux :
-                            <input type="checkbox" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType === 'poor'"> Oui
-                            <input type="checkbox" style="margin-left: 1rem;" disabled :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType !== 'poor'"> Non
+                            <input type="checkbox" :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType === 'poor'">
+                            <label>Oui</label>
+                            <input type="checkbox" style="margin-left: 1rem;" :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.compensationType !== 'poor'">
+                            <label>Non</label>
                           </label>
                         </li>
                       </ul>
@@ -258,22 +261,20 @@
                 <div class="control box">
                   <div class="columns">
                     <div class="column is-narrow">
-                      <label class="radio is-block">
-                        <input type="checkbox" disabled :checked="identity.currentSituation.status === 'volontary' || identity.currentSituation.status === 'election'">
+                      <input type="checkbox" :checked="identity.currentSituation.status === 'volontary' || identity.currentSituation.status === 'election'">
+                      <label>
                           4. Autres :
                       </label>
                     </div>
                     <div class="column">
                       <ul>
                         <li>
-                          <label class="radio is-block">
-                            <input type="checkbox" disabled :checked="identity.currentSituation.status === 'volontary'"> Volontaire
-                          </label>
+                          <input type="checkbox" :checked="identity.currentSituation.status === 'volontary'">
+                          <label>Volontaire</label>
                         </li>
                         <li>
-                          <label class="radio is-block">
-                            <input type="checkbox" disabled :checked="identity.currentSituation.status === 'election'"> Mandat électoral
-                          </label>
+                          <input type="checkbox" :checked="identity.currentSituation.status === 'election'">
+                          <label>Mandat électoral</label>
                         </li>
                       </ul>
                     </div>
@@ -290,17 +291,17 @@
                 <h3 class="title is-5 has-text-weight-light">Êtes-vous reconnu travailleur handicapé :</h3>
                 <div class="columns">
                   <div class="column">
-                    <div class="control">
-                      <label class="radio box is-block">
-                        <input type="radio" disabled :checked="identity.isHandicapped">
+                    <div class="control box">
+                      <input type="radio" :checked="identity.isHandicapped">
+                      <label>
                         Oui
                       </label>
                     </div>
                   </div>
                   <div class="column">
-                    <div class="control">
-                      <label class="radio box is-block">
-                        <input type="radio" :checked="!identity.isHandicapped">
+                    <div class="control box">
+                      <input type="radio" :checked="!identity.isHandicapped">
+                      <label>
                         Non
                       </label>
                     </div>
@@ -445,30 +446,30 @@
           <div class="message-body">
             <h2 class="title is-4 has-text-weight-light">Rubrique 6 : Déclaration sur l'honneur</h2>
 
-            <div class="control atome">
-              <label class="radio box is-block">
-                <input type="checkbox">
+            <div class="control atome box">
+              <input type="checkbox">
+              <label>
                 Je ne fais pas l'objet d'une mesure pénale ou administrative d'interdiction de présentation devant un jury d'examen ou de validation des acquis de l'expérience
               </label>
             </div>
 
-            <div class="control atome">
-              <label class="radio box is-block">
-                <input type="checkbox">
+            <div class="control atome box">
+              <input type="checkbox">
+              <label>
                 Je certifie que toutes les informations fournies sont exactes
               </label>
             </div>
 
-            <div class="control atome">
-              <label class="radio box is-block">
-                <input type="checkbox">
+            <div class="control atome box">
+              <input type="checkbox">
+              <label>
                 Je certifie que la présente candidature constitue l'unique demande pour cette certification pour la même année civile
               </label>
             </div>
 
-            <div class="control atome">
-              <label class="radio box is-block">
-                <input type="checkbox">
+            <div class="control atome box">
+              <input type="checkbox">
+              <label>
                 Je m'engage également à ne pas présenter plus de trois candidatures à la validation des acquis de l'expérience pour des diplômes, certificats ou titres différents durant la présente année civile
               </label>
             </div>
@@ -531,12 +532,12 @@
                 <tr>
                   <td>Décision de recevabilité :</td>
                   <td colspan="3">
+                    <input type="checkbox">
                     <label class="checkbox">
-                      <input type="checkbox">
                       Favorable
                     </label>
+                    <input type="checkbox">
                     <label class="checkbox" style="margin-left: 2rem;">
-                      <input type="checkbox">
                       Défavorable
                     </label>
                   </td>
@@ -633,7 +634,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 .avril-recapitulatif{
   padding: 2rem;
 }
@@ -661,4 +662,35 @@ section {
     display: none;
   }
 }
+
+input[type="checkbox"], input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+
+  & + label {
+    position: relative;
+    cursor: initial;
+    padding: 0;
+    padding-left: 5px;
+
+    &:before {
+      content: '';
+      margin-right: 5px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 20px;
+      height: 20px;
+      background: none;
+      font-size: 20px;
+      line-height: 20px;
+      border: thin solid;
+      font-weight: bold;
+    }
+  }
+
+  &:checked + label:before {
+    content: '✓';
+  }
+}
+
 </style>
