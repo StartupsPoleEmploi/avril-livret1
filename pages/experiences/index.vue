@@ -33,7 +33,7 @@
               </li>
             </ul>
             <div v-if="experienceIsIncomplete(experience)" class="notification is-danger">
-              Je dois compléter cette expérience.
+              Expérience à compléter.
             </div>
             <div class="columns">
               <div class="column">
