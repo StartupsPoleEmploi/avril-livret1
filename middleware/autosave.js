@@ -5,10 +5,16 @@ import {
   SAVING_ERROR,
 } from '~/constants/index';
 
-export default async function({ store, req, env }) {
+const savingStateNull = store => {
+  setTimeout(() => {
+    store.commit('setSavingState', null);
+  }, 2000);
+}
+
+export default function({ store, req, env }) {
   if (process.client && store.state.hash) {
     store.commit('setSavingState', SAVING_PENDING);
-    const response = await fetch(
+    fetch(
       `${env.apiUrl}/api/booklet?hash=${store.state.hash}`,
       {
         method: "PUT",
@@ -24,21 +30,26 @@ export default async function({ store, req, env }) {
           ...storeToBackend.index(store.state),
         })
       }
-    );
-    if (response.ok) {
-      const data = await response.json();
-      store.commit('setSavingState', SAVING_SUCCESS);
-    } else {
-      store.commit('setSavingState', SAVING_ERROR);
-    }
-    setTimeout(() => {
-      store.commit('setSavingState', null);
-    }, 2000);
+    ).then(response => {
+      if (response.ok) {
+        response.json().then(data => {
+          store.commit('setSavingState', SAVING_SUCCESS);
+          savingStateNull(store);
+        })
+      } else {
+        console.error(response);
+        store.commit('setSavingState', SAVING_ERROR);
+        savingStateNull(store);
+      }
+
+    })
+    return Promise.resolve(true);
   } else {
     console.log(
       process.client
         ? "Not authenticated, no save"
         : "Server side, no need to save"
     );
+    return Promise.resolve(true);
   }
 }

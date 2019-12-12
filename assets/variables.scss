@@ -17,6 +17,8 @@ $avril-help: (
 @function avril-color($key: 'gray') {
   @return map-get($avril-colors, $key);
 }
+$success: avril-color('blue');
+$info: avril-color('marine');
 $danger: avril-color('red');
 $link: avril-color('marine');
 $link-hover: lighten(avril-color('marine'), 5%);
