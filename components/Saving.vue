@@ -1,5 +1,5 @@
 <template>
-  <div class="saving notification" :class="`is-${savingStateClass}`">
+  <div v-if="savingState" class="saving notification" :class="`is-${savingStateClass}`">
     <p v-if="isPending">Enregistrement en cours ... </p>
     <p v-if="isSuccess">Enregistrement réussi :) </p>
     <p v-if="isError">Impossible d'enregistrer :( </p>
