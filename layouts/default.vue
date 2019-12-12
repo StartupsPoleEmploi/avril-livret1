@@ -88,6 +88,9 @@ import Tabs from '~/components/Tabs.vue';
         }
       }
     },
+    mounted() {
+      console.log('mounted called');
+    },
   }
 </script>
 

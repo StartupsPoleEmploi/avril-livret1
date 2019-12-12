@@ -36,7 +36,7 @@ module.exports = {
       }
     ]
   },
-  loading: '~/components/Loading.vue',
+  loading: false,
   mode: 'universal',
   modules: [
     'nuxt-svg-loader',
@@ -47,8 +47,8 @@ module.exports = {
   plugins: [
     '~/plugins/filters.js',
     { src: '~/plugins/datepicker', ssr: false },
-    '~/plugins/hotjar.js',
-    '~/plugins/crisp.js',
+    // '~/plugins/hotjar.js',
+    // '~/plugins/crisp.js',
   ],
   router: {
     middleware: [

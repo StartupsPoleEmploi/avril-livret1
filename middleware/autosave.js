@@ -2,6 +2,7 @@ import { storeToBackend } from "../mappers/toBackend";
 
 export default async function({ store, req, env } = context) {
   if (process.client && store.state.hash) {
+    store.commit('setIsSaving', true);
     const response = await fetch(
       `${env.apiUrl}/api/booklet?hash=${store.state.hash}`,
       {
@@ -22,6 +23,7 @@ export default async function({ store, req, env } = context) {
     if (response.ok) {
       const data = await response.json();
       console.log(":) Saved", data);
+      store.commit('setIsSaving', true);
     } else {
       console.log(":( Could not save");
     }

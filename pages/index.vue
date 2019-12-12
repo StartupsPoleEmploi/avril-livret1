@@ -4,6 +4,6 @@ export default {
     return this.$router.push({
         path: '/formations'
     })
-  }
+  },
 }
 </script>

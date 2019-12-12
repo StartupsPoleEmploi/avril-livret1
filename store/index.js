@@ -14,6 +14,7 @@ export const state = () => ({
   hash: null,
   helpContent: null,
   completedAt: null,
+  isSaving: false,
   steps,
 });
 
@@ -58,6 +59,9 @@ export const getters = {
 export const mutations = {
   initState(state, serverState) {
     state = Object.assign(state, serverState)
+  },
+  setIsSaving(state, value){
+    state.isSaving = value;
   },
   setCurrentPath(state, currentPath) {
     state.currentPath = currentPath;
