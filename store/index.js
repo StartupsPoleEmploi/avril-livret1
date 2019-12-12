@@ -77,7 +77,8 @@ export const actions = {
       app,
       env,
       req: {
-        query: { hash }
+        path: path,
+        query: { hash },
       },
       redirect,
     }
@@ -99,11 +100,11 @@ export const actions = {
         );
       } else {
         console.error("Request failed");
-        redirectToPhoenix(redirect, hash, "request_failed");
+        redirectToPhoenix({redirect, path}, hash, "request_failed");
       }
     } else {
       console.warn(env.apiUrl ? "No hash no request" : "env.apiUrl not set");
-      redirectToPhoenix(redirect, hash, "not_allowed");
+      redirectToPhoenix({redirect, path}, hash, "not_allowed");
     }
   },
   initState(
