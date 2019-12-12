@@ -386,7 +386,7 @@
             <p v-if="experiences.length === 0">Aucune expérience professionnelle saisie.</p>
             <p v-else>{{pluralize(experiences.length, 'experience professionnelle enregistrée')}} :</p>
             <div v-for="experience in experiences" class="control atome box">
-              <table class="experience-table">
+              <table class="cerfa-table">
                 <tbody>
                   <tr>
                     <td>Emploi ou fonction occupée :</td>
@@ -472,6 +472,31 @@
                 Je m'engage également à ne pas présenter plus de trois candidatures à la validation des acquis de l'expérience pour des diplômes, certificats ou titres différents durant la présente année civile
               </label>
             </div>
+            <div class="control atome">
+              <div class="columns">
+                <div class="column">
+                  <div class="box content" style="height: 200px;">
+                    <p>
+                      Fait à : ______________________________
+                      <br />
+                      <br />
+                      <br />
+                      Le : _________________________________
+                      <br />
+                    </p>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="box content" style="height: 200px;">
+                    <p>
+                      Nom et signature <span v-if="identity.sex === 'm'">du candidat</span><span v-else>de la candidate</span> :
+                      <br /><br /><br />
+                      <br /><br /><br />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
         </article>
@@ -480,8 +505,47 @@
 
       <section class="section section-sworn">
         <article class="message is-danger">
-          <div class="message-body">
+          <div class="message-body content">
             <h2 class="title is-4 has-text-weight-light">Rubrique 7 : Réservé à l'organisme certificateur (ne pas remplir)</h2>
+
+            <table class="cerfa-table">
+              <tbody>
+                <tr>
+                  <td>Dossier reçu le :</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Dossier complete le :</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>N° Identifiant :</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Code du diplôme :</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Niveau de certification visé le cas échéant :</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Décision de recevabilité :</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Date de décision de la recevabilité :</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Date limite de validité de la recevabilité (le cas échéant) :</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+
+
           </div>
         </article>
       </section>
