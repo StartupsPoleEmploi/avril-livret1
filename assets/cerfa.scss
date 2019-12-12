@@ -18,6 +18,10 @@
           width: 75%;
         }
 
+        &:nth-child(3), &:nth-child(4) {
+          width: 25%;
+        }
+
         ul {
           margin-top: 0;
           margin-left: 1rem;

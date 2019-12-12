@@ -477,11 +477,13 @@
                 <div class="column">
                   <div class="box content" style="height: 200px;">
                     <p>
+                      <br />
                       Fait à : ______________________________
                       <br />
                       <br />
                       <br />
                       Le : _________________________________
+                      <br />
                       <br />
                     </p>
                   </div>
@@ -513,32 +515,35 @@
                 <tr>
                   <td>Dossier reçu le :</td>
                   <td></td>
-                </tr>
-                <tr>
-                  <td>Dossier complete le :</td>
+                  <td>Dossier complet le :</td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>N° Identifiant :</td>
-                  <td></td>
+                  <td colspan="3"></td>
                 </tr>
                 <tr>
+                  <td>Niveau de certification visé, le cas échéant :</td>
+                  <td></td>
                   <td>Code du diplôme :</td>
                   <td></td>
                 </tr>
                 <tr>
-                  <td>Niveau de certification visé le cas échéant :</td>
-                  <td></td>
-                </tr>
-                <tr>
                   <td>Décision de recevabilité :</td>
-                  <td></td>
+                  <td colspan="3">
+                    <label class="checkbox">
+                      <input type="checkbox">
+                      Favorable
+                    </label>
+                    <label class="checkbox" style="margin-left: 2rem;">
+                      <input type="checkbox">
+                      Défavorable
+                    </label>
+                  </td>
                 </tr>
                 <tr>
                   <td>Date de décision de la recevabilité :</td>
                   <td></td>
-                </tr>
-                <tr>
                   <td>Date limite de validité de la recevabilité (le cas échéant) :</td>
                   <td></td>
                 </tr>
