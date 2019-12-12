@@ -4,15 +4,17 @@
       <h3 class="title is-5">
         <span v-if="experience.role && experience.companyName">{{experience.role}} chez {{experience.companyName}}</span>
         <span v-else>Cette experience</span>
-        est mon poste actuel ?</h3>
+        est mon poste actuel ?
+      </h3>
       <div>
         <div class="field">
-        <RadioList
-          :value="isCurrentJob"
-          :click="setIsCurrentJob"
-          boolean
-          inline
-        />        </div>
+          <RadioList
+            :value="isCurrentJob"
+            :click="setIsCurrentJob"
+            boolean
+            inline
+          />
+        </div>
         <div class="field box natural-language">
           <client-only placeholder="Chargement du calendrier ...">
             <p class="title is-5">
@@ -31,31 +33,32 @@
         </div>
         </div>
       </div>
-
-      <div class="columns is-multiline">
+      <h3 v-if="periods.length > 0" class="title is-5">
+        Périodes d'activité
+        <span v-if="experience.role && experience.companyName">en tant que {{experience.role}} chez {{experience.companyName}}</span>
+        <span v-else>pour cette experience</span> :
+      </h3>
+      <div class="columns">
         <div v-for="period in periods" class="column">
           <div class="box is-equal-height">
-            <p class="title is-5">
-              <strong>{{ periodTotalHours(period) }} heures</strong>
-            </p>
             <p>
               Du {{ formatDate(period.start) }}
               <span v-if="period.end">au {{ formatDate(period.end) }}</span>
-              <span v-else>à aujourd'hui</span>
+              <span v-else>à aujourd'hui</span> : <strong>{{ periodTotalHours(period) }} heures</strong>
             </p>
             <div class="columns">
               <div class="column">
-                <button @click="editPeriod(period.uuid)" class="button is-text">Modifier la période</button>
+                <button @click="editPeriod(period.uuid)" class="button is-text">Modifier cette période</button>
               </div>
               <div class="column">
-                <button @click="removePeriod(period.uuid)" class="button is-text">Supprimer</button>
+                <button @click="removePeriod(period.uuid)" class="button is-text">Supprimer cette période</button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="field">
+      <div class="field" style="margin-top: 2rem;">
         <div class="control">
           <nuxt-link to="/experiences" class="is-ok button is-text is-pulled-left">
             Remplir plus tard
