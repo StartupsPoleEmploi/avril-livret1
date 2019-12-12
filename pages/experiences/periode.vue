@@ -35,9 +35,8 @@
       <div class="columns is-multiline">
         <div v-for="period in periods" class="column">
           <div class="box is-equal-height">
-            <button @click="removePeriod(period.uuid)" class="delete" style="margin-left: auto; margin-bottom: 0.5rem;"></button>
             <p class="title is-5">
-              <strong>{{ periodTotalHours(period) }} heures</strong> en tant que <strong>{{experience.role}}</strong> chez <strong>{{experience.companyName}}</strong> <br />
+              <strong>{{ periodTotalHours(period) }} heures</strong>
             </p>
             <p>
               Du {{ formatDate(period.start) }}
@@ -46,7 +45,7 @@
             </p>
             <div class="columns">
               <div class="column">
-                <button @click="editPeriod(period.uuid)" class="button is-text">Modifier</button>
+                <button @click="editPeriod(period.uuid)" class="button is-text">Modifier la période</button>
               </div>
               <div class="column">
                 <button @click="removePeriod(period.uuid)" class="button is-text">Supprimer</button>
