@@ -99,7 +99,7 @@ export const actions = {
           Object.assign({ hash }, dataWithStatus.data)
         );
       } else {
-        console.error("Request failed");
+        console.error("Request failed", result);
         redirectToPhoenix({redirect, path}, hash, "request_failed");
       }
     } else {

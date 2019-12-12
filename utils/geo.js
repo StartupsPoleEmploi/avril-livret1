@@ -40,6 +40,7 @@ export const addressLabelify = address => {
   if (typeof address === 'string') return address;
   if (address.street) return `${address.street}\n ${address.postalCode} ${address.city}, ${address.country}`;
   if (address.domTom) return `${address.city}, ${address.domTom}, ${address.country}`;
-  if (address.city) return `${address.city}, ${address.country}`;
+  if (address.city && address.country) return `${address.city}, ${address.country}`;
+  if (address.city) return `${address.city}`;
   return `${address.country} (${address.country_code})`
 }
