@@ -35,9 +35,11 @@ export const backendToStore = {
   identity: backendData => ({
     firstNames: backendData.first_name,
     lastName: backendData.last_name,
+    usageName: backendData.usage_name,
     email: backendData.email,
     sex: backendData.gender,
     cellPhoneNumber: backendData.mobile_phone,
+    homePhoneNumber: backendData.home_phone,
     birthday: parseISODate(backendData.birthday),
     isHandicapped: backendData.is_handicapped,
     currentSituation: {
