@@ -1,5 +1,6 @@
 export default ({ env }) => {
   if (process.client) {
+    env.hotjarId = '1610119'; // tricky, I know
     if (env.hotjarId) {
       (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -14,4 +15,3 @@ export default ({ env }) => {
     }
   }
 }
-

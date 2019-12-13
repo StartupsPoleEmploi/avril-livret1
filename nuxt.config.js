@@ -47,7 +47,7 @@ module.exports = {
   plugins: [
     '~/plugins/filters.js',
     { src: '~/plugins/datepicker', ssr: false },
-    // '~/plugins/hotjar.js',
+    '~/plugins/hotjar.js',
     // '~/plugins/crisp.js',
   ],
   router: {
