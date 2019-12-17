@@ -201,7 +201,7 @@
                 </div>
                 <div class="control box">
                   <div class="columns">
-                    <div class="column is-narrow">
+                    <div class="column">
                       <input type="checkbox" :checked="identity.currentSituation.status === 'inactive'">
                       <label>
                         2. En inactivité
@@ -219,7 +219,7 @@
                     </div>
                   </div>
                   <div class="columns">
-                    <div class="column is-11 is-offset-1 content">
+                    <div class="column is-11 is-offset-1 is-print-fullwidth content">
                       <ul>
                         <li>
                           Inscrit à Pôle-emploi :
@@ -611,7 +611,7 @@ export default {
   },
   methods: {
     addBody(e) {
-      this.htmlBody = document.documentElement.outerHTML;
+      this.htmlBody = document.documentElement.outerHTML.replace(/<script.*?<\/script>/g, '');
     },
     capitalize,
     pluralize,
