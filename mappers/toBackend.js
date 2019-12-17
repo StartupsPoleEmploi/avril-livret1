@@ -31,9 +31,11 @@ export const storeToBackend = {
   identity: state => ({
     first_name: state.firstNames,
     last_name: state.lastName,
+    usage_name: state.usageName,
     email: state.email,
     gender: state.sex,
     mobile_phone: state.cellPhoneNumber,
+    home_phone: state.homePhoneNumber,
     birthday: formatISODate(state.birthday),
     birth_place: state.birthPlace,
     is_handicapped: state.isHandicapped,

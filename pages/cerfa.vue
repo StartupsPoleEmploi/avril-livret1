@@ -151,7 +151,7 @@
               <div class="column">
                 <div class="atome">
                   <label>Adresse actuelle :</label>
-                  <p class="title is-6 is-uppercase is-spaced" v-html="addressLabelify(identity.address).replace('\n', '<br />')"></p>
+                  <p class="title is-6 is-uppercase is-spaced" v-html="(addressLabelify(identity.address) || '').replace('\n', '<br />')"></p>
                 </div>
                 <div class="atome">
                   <label>Tel domicile :</label>
