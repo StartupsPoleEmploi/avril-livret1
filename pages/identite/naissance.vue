@@ -6,7 +6,7 @@
         <label class="label">Date de naissance</label>
         <div class="control">
           <client-only placeholder="Chargement du calendrier ...">
-            <date-picker :value="birthday" @input="addBirthday" :format="datePickerFormat" placeholder="Ex: 01/01/1970" />
+            <date-picker :value="birthday" @input="addBirthday" :format="datePickerFormat" placeholder="Ex: 01/01/1970" default-panel="year"/>
           </client-only>
         </div>
       </div>
