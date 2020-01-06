@@ -7,7 +7,7 @@ export const phoenixUrl = (hash, msg) =>
 
 export const redirectToPhoenix = ({path, redirect}, hash, msg) => {
   const phoenixUrlWithParams = phoenixUrl(hash, msg)
-  if (phoenixUrlWithParams) {
+  if (phoenixUrlWithParams && path !== '/hotjar') {
     redirect(phoenixUrlWithParams);
   } else {
     console.log("Should redirect but env.phoenixUrl not set");
