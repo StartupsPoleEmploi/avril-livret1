@@ -359,7 +359,7 @@
       <section class="section section-experiences">
         <article class="message is-dark">
           <div class="message-body content">
-            <h2 class="title is-4 has-text-weight-light">Rubrique 5 : Information concernant votre expérience en rapport direct avec la certification viséee</h2>
+            <h2 class="title is-4 has-text-weight-light">Rubrique 5 : Information concernant votre expérience en rapport direct avec la certification visée</h2>
             <p v-if="experiences.length === 0">Aucune expérience professionnelle saisie.</p>
             <p v-else>{{pluralize(experiences.length, 'experience professionnelle enregistrée')}} :</p>
             <div v-for="experience in experiences" class="control atome box">
