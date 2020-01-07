@@ -1,37 +1,13 @@
 <template>
   <div class="avril-recapitulatif avril-cerfa">
-    <div class="action-buttons">
-      <div class="columns">
-        <div class="column">
-          <a v-if="backUrl" class="is-ok button is-default" :href="backUrl">Retour vers Avril</a>
-        </div>
-        <div class="column">
-          <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
-            Je dois encore modifier certaines informations
-          </nuxt-link>
-        </div>
-        <div class="column">
-          <form @submit="addBody" method="POST" action="/cerfa.pdf" class="download" target="_blank">
-            <input type="hidden" name="body" :value="htmlBody">
-            <button type="submit" class="button is-dark is-pulled-right">Télécharger le PDF</button>
-          </form>
-        </div>
-      </div>
-    </div>
+    <CerfaMenu />
     <div id="pdf-content" class="recap-content">
-
       <div class="header">
-        <!-- <article class="message is-dark is-large">
-          <div class="message-body"> -->
-            <div class="section">
-              <h1 class="title is-3">Demande de recevabilité à la validation des acquis de l'expérience</h1>
-              <p class="subtitle">Code de l'éducation art. R335-5 à R335-11</p>
-            </div>
-          <!-- </div>
-        </article> -->
+        <section class="section">
+          <h1 class="title is-3">Demande de recevabilité à la validation des acquis de l'expérience</h1>
+          <p class="subtitle">Code de l'éducation art. R335-5 à R335-11</p>
+        </section>
       </div>
-
-
       <section class="section section-nature">
         <article class="message is-dark">
           <div class="message-body">
@@ -550,30 +526,29 @@
                 </tr>
               </tbody>
             </table>
-
-
           </div>
         </article>
       </section>
-
+      <CerfaMenu />
     </div>
   </div>
 </template>
 
 <script>
 import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
+import CerfaMenu from '~/components/CerfaMenu';
 import {capitalize, pluralize} from '~/utils/string.js';
 import {labelGetter} from '~/utils/function.js';
 import {addressLabelify} from '~/utils/geo.js';
 import {periodTotalHours, formatDate} from '~/utils/time.js';
-import {phoenixUrl} from '~/utils/url.js';
 import currentSituationAnswers from '~/contents/data/currentSituation';
 import experienceStatusesAnswers from '~/contents/data/experienceStatuses';
 import experienceCategoriesAnswers from '~/contents/data/experienceCategories';
 
 export default {
   components: {
-    ArrowRight
+    ArrowRight,
+    CerfaMenu,
   },
   layout: 'cerfa',
   computed: {
@@ -598,9 +573,6 @@ export default {
     latestCourseLevelLabel() {
       return this.$store.getters['education/latestCourseLevelLabel'];
     },
-    backUrl() {
-      return phoenixUrl(this.$store.state.hash)
-    },
   },
   data() {
     return {
@@ -610,17 +582,8 @@ export default {
     }
   },
   methods: {
-    addBody(e) {
-      this.htmlBody = document.documentElement.outerHTML.replace(/<script.*?<\/script>/g, '');
-    },
     capitalize,
     pluralize,
-    async pdfDownload() {
-      const result = await fetch('/cerfa.pdf', {
-        method: 'POST',
-        body: document.documentElement.outerHTML,
-      })
-    },
     addressLabelify,
     experienceStatusesLabel(experience) {
       return labelGetter(experienceStatusesAnswers, experience.contractType)
@@ -721,6 +684,4 @@ table.cerfa-table {
     }
   }
 }
-
-
 </style>
