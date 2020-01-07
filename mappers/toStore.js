@@ -53,9 +53,10 @@ export const backendToStore = {
     },
     birthPlace: {
       city: get(backendData, "birth_place.city", null),
+      county: get(backendData, "birth_place.county", null),
       country: get(backendData, "birth_place.country", null),
       lat: get(backendData, "birth_place.lat", null),
-      lng: get(backendData, "birth_place.lng", null)
+      lng: get(backendData, "birth_place.lng", null),
     },
     nationality: Object.assign({}, backendData.nationality),
     address: {

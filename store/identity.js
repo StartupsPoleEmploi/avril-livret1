@@ -1,7 +1,7 @@
 import {isBlank} from '../utils/boolean';
 import {percent} from '../utils/number';
 import {labelGetter} from '../utils/function';
-import {algoliaResultToAddress, isDomTom} from '../utils/geo';
+import {algoliaResultToAddress} from '../utils/geo';
 
 import currentSituationAnswers from '~/contents/data/currentSituation';
 
@@ -16,6 +16,7 @@ export const state = () => ({
   birthday: null,
   birthPlace: {
     city: null,
+    county: null,
     country: null,
     lat: null,
     lng: null,

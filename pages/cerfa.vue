@@ -105,7 +105,7 @@
                 </div>
                 <div class="atome">
                   <label>Département ou collectivité outre-mer de naissance :</label>
-                  <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace.domTom || '-'}}</p>
+                  <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace.county || '-'}}</p>
                 </div>
               </div>
               <div class="column">
