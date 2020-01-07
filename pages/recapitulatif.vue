@@ -41,7 +41,7 @@
                     <li v-for="activity in experience.activities">{{activity}}</li>
                   </ul>
                 </div>
-                <p v-if="experience.activities.length === 0">Pas de compétence renseignées.</p>
+                <p v-if="experience.activities.length === 0">Pas d'activité renseignée.</p>
               </div>
             </div>
           </div>
