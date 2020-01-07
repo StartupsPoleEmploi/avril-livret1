@@ -14,6 +14,7 @@
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.2.2",
     "@nuxtjs/markdownit": "^1.2.7",
+    "@nuxtjs/sentry": "^3.0.1",
     "@trevoreyre/autocomplete-vue": "^2.0.3",
     "algoliasearch": "^3.35.1",
     "bulma": "^0.8I.0",

@@ -42,6 +42,7 @@ module.exports = {
     'nuxt-svg-loader',
     '@nuxtjs/markdownit',
     '@nuxtjs/google-analytics',
+    '@nuxtjs/sentry',
     'cookie-universal-nuxt',
   ],
   plugins: [
@@ -64,5 +65,12 @@ module.exports = {
       process.env.GA_PE_API_KEY,
     ],
     dev: false,
+  },
+  sentry: {
+    dsn: process.env.SENTRY_DSN,
+    config: {
+      environment: process.env.NODE_ENV,
+      release: process.env.HEROKU_SLUG_COMMIT,
+    },
   }
 }
