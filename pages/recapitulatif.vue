@@ -1,24 +1,46 @@
 <template>
   <div class="avril-recapitulatif">
-
       <div class="recap-content">
-
         <div class="section">
           <h1 class="title is-1">Récapitulatif</h1>
-
           <div class="notification is-avril">
             <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les en cliquant sur le bouton "Je dois modifier certaines informations" en bas de page.</p>
             <p>Si tout vous semble correct, votre dossier est enregistré et vous pouvez continuer.</p>
           </div>
         </div>
 
-
         <section class="section section-formation">
           <h1 class="title is-3">Ma formation</h1>
-          <RecapClasse/>
-          <RecapDiplome/>
-          <RecapTitres/>
-          <RecapFormations/>
+          <div class="recap-cell cell-classe">
+            <p v-if="!education.latestCourseLevel">Je n'ai pas encore renseigné ma dernière classe.</p>
+            <p v-else>Je suis {{feminize('allé')}} jusqu'en <strong>{{latestCourseLevelLabel}}</strong></p>
+          </div>
+          <div class="recap-cell cell-diplome">
+            <p v-if="!education.latestDegree">Je n'ai pas encore renseigné mon diplôme le plus élevé.</p>
+            <p v-else>{{education.latestDegree > 1 ? 'J\'ai un' : 'Je n\'ai'}} <strong>{{latestDegreeLabel}}</strong></p>
+          </div>
+          <div class="recap-cell cell-titres">
+            <div v-if="relatedDegrees.length" >
+              J'ai un diplôme de
+              <span v-for="degree, index in relatedDegrees">
+                <span><strong>{{ degree }}</strong> <span v-if="index < relatedDegrees.length-1">et de </span></span>
+              </span>
+            </div>
+            <div v-else>
+              Je n'ai pas de diplôme supplémentaire.
+            </div>
+          </div>
+          <div class="recap-cell cell-formations">
+            <div v-if="education.trainings.length">
+              J'ai suivi une formation de
+              <span v-for="training, index in education.trainings">
+                <span><strong>{{ training }}</strong> <span v-if="index < education.trainings.length-1">et de </span></span>
+              </span>
+            </div>
+            <div v-else>
+              Je n'ai pas suivi de formation supplémentaire.
+            </div>
+          </div>
         </section>
 
         <section class="section section-formation">
@@ -52,21 +74,44 @@
 
         <section class="section section-identite">
           <h3 class="title is-3">Mon identité</h3>
-          <RecapName/>
-          <RecapContact/>
-          <RecapBirthday/>
-          <RecapResidence/>
+          <div class="recap-cell cell-name">
+            <p v-if="identity.firstNames && identity.lastName">
+              Je me nomme <strong>{{identity.lastName}} {{identity.firstNames}}</strong>
+              <span v-if="identity.usageName">(Nom d'usage : {{identity.usageName}})</span>
+            </p>
+            <p v-else>
+              <strong>Je n'ai pas encore renseigné mon nom.</strong>
+            </p>
+            <p>Je suis de sexe {{identity.sex ? (identity.sex === 'm' ? 'masculin' : 'féminin') : 'inconnu'}}.</p>
+          </div>
+          <div class="recap-cell cell-contact">
+            <p v-if="identity.email">Mon email : <strong>{{identity.email}}</strong></p>
+            <p v-else><strong>Je n'ai pas encore renseigné mon email.</strong></p>
+            <p v-if="identity.homePhoneNumber">Numéro de téléphone fixe : {{identity.homePhoneNumber}}.</p>
+            <p v-else>Je n'ai pas renseigné mon numéro de téléphone fixe.</p>
+            <p v-if="identity.cellPhoneNumber">Numéro de téléphone mobile : {{identity.cellPhoneNumber}}.</p>
+            <p v-else>Je n'ai pas renseigné mon numéro de téléphone mobile.</p>
+          </div>
+          <div class="recap-cell cell-birthday">
+            <p v-if="identity.birthday">Je suis {{feminize('né')}} le {{formatDate(identity.birthday)}} à {{addressLabelify(identity.birthPlace)}}</p>
+            <p v-else>Je n'ai pas encore renseigné ma date de naissance.</p>
+            <p v-if="identity.nationality.country_code">Je suis de nationalité {{identity.nationality.country_code.toUpperCase()}}.</p>
+            <p v-else>Je n'ai pas encore renseigné ma nationalité.</p>
+          </div>
+          <div class="recap-cell cell-residence">
+            <p v-if="identity.address">J'habite {{addressLabelify(identity.address)}}.</p>
+            <p v-else><strong>Je n'ai pas encore renseigné mon adresse.</strong></p>
+          </div>
         </section>
         <section class="section section-identite">
           <h3 class="title is-3">Ma situation actuelle</h3>
-          <p v-if="identity.isHandicapped">Je suis reconnu travailleur handicapé.</p>
-          <p v-else>Je ne suis pas reconnu travailleur handicapé.</p>
+          <p>Je {{identity.isHandicapped ? 'suis' : 'ne suis pas'}} {{feminize('reconnu')}} {{feminize('travailleur', 'travailleuse')}} {{feminize('handicapé')}}.</p>
           <p v-if="identity.currentSituation.status">
             Je suis actuellement en <strong>{{currentSituationStatusLabel}}</strong><span v-if="identity.currentSituation.employmentType"> : <strong>{{currentSituationEmploymentTypeLabel}}</strong></span>.</p>
           <p v-else>Je n'ai pas renseigné ma situation d'emploi.</p>
           <p v-if="identity.currentSituation.registerToPoleEmploi !== null">
-            Je {{identity.currentSituation.registerToPoleEmploi ? 'suis' : 'ne suis pas'}} inscrit à Pôle-emploi<span v-if="identity.currentSituation.registerToPoleEmploiSince"> depuis le {{formatDate(identity.currentSituation.registerToPoleEmploiSince)}}</span>.</p>
-          <p v-if="identity.currentSituation.compensationType">Je suis indemnisé <strong>{{currentSituationCompensationTypeLabel}}</strong>.</p>
+            Je {{identity.currentSituation.registerToPoleEmploi ? 'suis' : 'ne suis pas'}} {{feminize('inscrit')}} à Pôle-emploi<span v-if="identity.currentSituation.registerToPoleEmploiSince"> depuis le {{formatDate(identity.currentSituation.registerToPoleEmploiSince)}}</span>.</p>
+          <p v-if="identity.currentSituation.compensationType">Je suis {{feminize('indemnisé')}} <strong>{{currentSituationCompensationTypeLabel}}</strong>.</p>
         </section>
       </div>
       <div class="notification is-avril">
@@ -94,30 +139,11 @@
 import {periodTotalHours, formatDate} from '~/utils/time.js';
 import {phoenixUrl} from '~/utils/url.js';
 import {addressLabelify} from '~/utils/geo.js';
+import {feminize} from '~/utils/string.js';
 
 import {BOOKLET_MIN_HOURS} from '../constants/index';
 
-import RecapClasse from '~/components/recapitulatif/RecapClasse.vue';
-import RecapDiplome from '~/components/recapitulatif/RecapDiplome.vue';
-import RecapTitres from '~/components/recapitulatif/RecapTitres.vue';
-import RecapFormations from '~/components/recapitulatif/RecapFormations.vue';
-
-import RecapName from '~/components/recapitulatif/RecapName.vue';
-import RecapContact from '~/components/recapitulatif/RecapContact.vue';
-import RecapBirthday from '~/components/recapitulatif/RecapBirthday.vue';
-import RecapResidence from '~/components/recapitulatif/RecapResidence.vue';
-
 export default {
-  components: {
-    RecapClasse,
-    RecapDiplome,
-    RecapTitres,
-    RecapFormations,
-    RecapName,
-    RecapContact,
-    RecapBirthday,
-    RecapResidence,
-  },
   data: () => ({
     bookletMinHours: BOOKLET_MIN_HOURS,
   }),
@@ -125,6 +151,15 @@ export default {
   computed: {
     education() {
       return this.$store.state.education
+    },
+    latestCourseLevelLabel() {
+      return this.$store.getters['education/latestCourseLevelLabel'];
+    },
+    latestDegreeLabel() {
+      return this.$store.getters['education/latestDegreeLabel'];
+    },
+    relatedDegrees () {
+      return this.$store.state.education.relatedDegrees
     },
     identity() {
       return this.$store.state.identity
@@ -152,6 +187,9 @@ export default {
     },
   },
   methods: {
+    feminize: function(word, feminineVersion) {
+      return feminize(word, this.$store.state.identity.sex, feminineVersion);
+    },
     formatDate,
     periodTotalHours,
     addressLabelify,
