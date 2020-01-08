@@ -19,7 +19,6 @@
   export default {
     computed: {
       isMoreThanOneWeek(){
-        console.log(this.period)
         return isMoreThanOneWeek(this.period);
       },
       periodTotalHours(){
