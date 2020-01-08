@@ -54,7 +54,7 @@
                 <p class="has-text-weight-bold  ">Périodes :</p>
                 <ul>
                   <li v-for="period in experience.periods">
-                    <strong>{{periodTotalHours(period)}} heures</strong> du {{ formatDate(period.start) }} au {{ formatDate(period.end) }}
+                    <PeriodDisplay :period="period" />
                   </li>
                 </ul>
                 <p class="has-text-weight-bold">Mes activités :</p>
@@ -143,11 +143,16 @@ import {feminize} from '~/utils/string.js';
 
 import {BOOKLET_MIN_HOURS} from '../constants/index';
 
+import PeriodDisplay from '~/components/PeriodDisplay.vue';
+
 export default {
   data: () => ({
     bookletMinHours: BOOKLET_MIN_HOURS,
   }),
   layout: 'recapitulatif',
+  components: {
+    PeriodDisplay,
+  },
   computed: {
     education() {
       return this.$store.state.education

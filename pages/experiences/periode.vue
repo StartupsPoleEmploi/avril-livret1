@@ -2,7 +2,7 @@
   <div class="form">
     <div class="form-fields">
       <h3 class="title is-5">
-        <span v-if="experience.role && experience.companyName">{{experience.role}} chez {{experience.companyName}}</span>
+        <span v-if="experience && experience.role && experience.companyName">{{experience.role}} chez {{experience.companyName}}</span>
         <span v-else>Cette experience</span>
         est mon poste actuel ?
       </h3>
@@ -33,16 +33,14 @@
         </div>
         </div>
       </div>
-      <h3 v-if="periods.length > 0" class="title is-5">
+      <h3 v-if="periods && periods.length > 0" class="title is-5">
         Périodes d'activité
-        <span v-if="experience.role && experience.companyName">en tant que {{experience.role}} chez {{experience.companyName}}</span>
+        <span v-if="experience && experience.role && experience.companyName">en tant que {{experience.role}} chez {{experience.companyName}}</span>
         <span v-else>pour cette experience</span> :
       </h3>
       <div class="box is-equal-height" v-for="period in periods">
         <p>
-          Du {{ formatDate(period.start) }}
-          <span v-if="period.end">au {{ formatDate(period.end) }}</span>
-          <span v-else>à aujourd'hui</span> : <strong>{{ periodTotalHours(period) }} heures</strong>
+          <PeriodDisplay :period="period" />
         </p>
         <div class="columns">
           <div class="column">
@@ -71,12 +69,11 @@
 </template>
 
 <script>
-import {periodTotalHours, formatDate} from '../../utils/time.js';
-
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 import withDatePickerMixin from '~/mixins/withDatePicker.js';
 
 import RadioList from "~/components/RadioList.vue";
+import PeriodDisplay from "~/components/PeriodDisplay.vue";
 
 export default {
   mixins: [
@@ -97,6 +94,7 @@ export default {
     }
   },
   components: {
+    PeriodDisplay,
     RadioList,
   },
   computed: {
@@ -109,7 +107,6 @@ export default {
     },
   },
   methods: {
-    formatDate,
     addPeriod() {
       if (!this.$refs.periodStart.value) return this.$refs.periodStart.focus();
       if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.focus();
@@ -149,7 +146,6 @@ export default {
     minDate(date) {
       return date > new Date() || (this.periodStart && (date < this.periodStart));
     },
-    periodTotalHours,
   }
 }
 </script>

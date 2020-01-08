@@ -26,10 +26,7 @@
             </h3>
             <ul style="margin-bottom: 1rem;">
               <li v-for="period in experience.periods">
-                <strong>{{ periodTotalHours(period) }} heures</strong> du
-                {{ formatDate(period.start) }}
-                <span v-if="period.end">au {{ formatDate(period.end) }}</span>
-                <span v-else>à aujourd'hui</span>
+                <PeriodDisplay :period="period" />
               </li>
             </ul>
             <div v-if="experienceIsIncomplete(experience)" class="notification is-danger">
@@ -74,41 +71,42 @@
 </template>
 
 <script>
-import helpLoaderMixin from "~/mixins/helpLoader.js";
-import { periodTotalHours, formatDate } from "~/utils/time.js";
-import { isBlank } from "~/utils/boolean.js";
+import helpLoaderMixin from '~/mixins/helpLoader.js';
+import { isBlank } from '~/utils/boolean.js';
+import PeriodDisplay from '~/components/PeriodDisplay.vue';
 
 export default {
   mixins: [helpLoaderMixin],
   mounted() {
-    this.$store.commit("experiences/removeNotFilled");
-    this.$store.commit("experiences/removeCurrent");
+    this.$store.commit('experiences/removeNotFilled');
+    this.$store.commit('experiences/removeCurrent');
+  },
+  components: {
+    PeriodDisplay,
   },
   computed: {
     experiences() {
       return this.$store.state.experiences;
     },
     experiencesProgress() {
-      return this.$store.getters["experiences/progress"];
+      return this.$store.getters['experiences/progress'];
     }
   },
   methods: {
     newExperience() {
-      this.$store.dispatch("experiences/newExperience");
+      this.$store.dispatch('experiences/newExperience');
     },
     setCurrentExperience(uuid) {
-      this.$store.commit("experiences/setCurrent", uuid);
+      this.$store.commit('experiences/setCurrent', uuid);
     },
     removeExperience(uuid) {
       if(window.confirm('Je confirme vouloir supprimer cette expérience ?')){
-        this.$store.commit("experiences/remove", uuid);
+        this.$store.commit('experiences/remove', uuid);
       }
     },
     experienceIsIncomplete(experience) {
       return Object.values(experience).some(isBlank);
     },
-    periodTotalHours,
-    formatDate,
   }
 };
 </script>

@@ -1,12 +1,20 @@
-import differenceInBusinessDays from 'date-fns/differenceInBusinessDays'
+import differenceInBusinessDays from 'date-fns/differenceInBusinessDays';
+import addDays from 'date-fns/addDays';
 import parseISO from 'date-fns/parseISO';
 import formatISO from 'date-fns/formatISO';
 import format from 'date-fns/format';
 
+export const workedDays = period => {
+  return differenceInBusinessDays(addDays(period.end, 1) || new Date(), period.start)
+}
+
 export const periodTotalHours = period => {
   const dailyHours = parseInt(period.weekHours)/5;
-  const workedDays = differenceInBusinessDays(period.end || new Date(), period.start)
-  return parseInt(dailyHours * workedDays)
+  return parseInt(dailyHours * workedDays(period))
+}
+
+export const isMoreThanOneWeek = period => {
+  return workedDays(period) > 5;
 }
 
 export const formatDate = date => {

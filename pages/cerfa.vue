@@ -393,11 +393,7 @@
                     <td>
                       <ul>
                         <li v-for="period in experience.periods">
-                          <strong>{{period.weekHours}}h/semaine</strong>
-                          du <strong>{{formatDate(period.start)}}</strong>
-                          <span v-if="period.end">au <strong>{{formatDate(period.end)}}</strong></span>
-                          <span v-else>à <strong>aujourd'hui</strong></span>
-                          soit <strong>{{periodTotalHours(period)}} heures</strong> au total
+                          <PeriodDisplay :period="period" />
                         </li>
                       </ul>
                     </td>
@@ -537,10 +533,11 @@
 <script>
 import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
 import CerfaMenu from '~/components/CerfaMenu';
+import PeriodDisplay from '~/components/PeriodDisplay.vue';
 import {capitalize, pluralize} from '~/utils/string.js';
 import {labelGetter} from '~/utils/function.js';
 import {addressLabelify} from '~/utils/geo.js';
-import {periodTotalHours, formatDate} from '~/utils/time.js';
+import {formatDate} from '~/utils/time.js';
 import currentSituationAnswers from '~/contents/data/currentSituation';
 import experienceStatusesAnswers from '~/contents/data/experienceStatuses';
 import experienceCategoriesAnswers from '~/contents/data/experienceCategories';
@@ -549,6 +546,7 @@ export default {
   components: {
     ArrowRight,
     CerfaMenu,
+    PeriodDisplay,
   },
   layout: 'cerfa',
   computed: {
@@ -591,7 +589,6 @@ export default {
     experienceCategoriesLabel(experience) {
       return labelGetter(experienceCategoriesAnswers, experience.category)
     },
-    periodTotalHours,
     formatDate,
   }
 }
