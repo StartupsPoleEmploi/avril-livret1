@@ -48,6 +48,7 @@ module.exports = {
   plugins: [
     '~/plugins/filters.js',
     { src: '~/plugins/datepicker', ssr: false },
+    '~/plugins/phoenixUrl.js',
     // '~/plugins/hotjar.js',
     // '~/plugins/crisp.js',
   ],
@@ -63,8 +64,21 @@ module.exports = {
     id: [
       process.env.GA_API_KEY,
       process.env.GA_PE_API_KEY,
-    ],
+    ].filter(v => v),
     dev: false,
+    // debug: {
+    //   enabled: true,
+    //   sendHitTask: true
+    // },
+    fields: {
+      allowLinker: !!process.env.PHOENIX_URL,
+    },
+    beforeFirstHit: (params) => {
+      if (window.phoenixUrl) {
+        window.ga('require', 'linker');
+        window.ga('linker:autoLink', [window.phoenixUrl.replace(/^https?:\/\//i, '')] );
+      }
+    },
   },
   sentry: {
     dsn: process.env.SENTRY_DSN,
