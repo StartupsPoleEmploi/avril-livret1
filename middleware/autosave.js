@@ -8,7 +8,7 @@ import {
 const savingStateNull = store => {
   setTimeout(() => {
     store.commit('setSavingState', null);
-  }, 2000);
+  }, 3000);
 }
 
 export default function({ store, req, env }) {
@@ -33,7 +33,11 @@ export default function({ store, req, env }) {
     ).then(response => {
       if (response.ok) {
         response.json().then(data => {
-          store.commit('setSavingState', SAVING_SUCCESS);
+          if (data.status === 'ok') {
+            store.commit('setSavingState', SAVING_SUCCESS);
+          } else {
+            store.commit('setSavingState', SAVING_ERROR);
+          }
           savingStateNull(store);
         })
       } else {

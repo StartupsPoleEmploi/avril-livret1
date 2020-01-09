@@ -25,7 +25,7 @@ export default {
         case SAVING_SUCCESS:
           return 'success';
         case SAVING_ERROR:
-          return 'error';
+          return 'danger';
       }
       return this.$store.state.savingState;
     },
