@@ -49,7 +49,7 @@ module.exports = {
     '~/plugins/filters.js',
     { src: '~/plugins/datepicker', ssr: false },
     '~/plugins/phoenixUrl.js',
-    // '~/plugins/hotjar.js',
+    '~/plugins/hotjar.js',
     // '~/plugins/crisp.js',
   ],
   router: {
