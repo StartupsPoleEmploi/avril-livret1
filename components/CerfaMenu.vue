@@ -10,9 +10,9 @@
         </nuxt-link>
       </div>
       <div class="column">
-        <form @submit="addBody" method="POST" action="/cerfa.pdf" class="download" target="_blank">
+        <form @submit="addBody" method="POST" action="/cerfa.pdf" class="download" target="print_popup">
           <input type="hidden" name="body" :value="htmlBody">
-          <button type="submit" class="button is-dark is-pulled-right" :disabled="!!htmlBody">
+          <button download="cerfa.pdf" type="submit" class="button is-dark is-pulled-right" :disabled="!!htmlBody">
             {{htmlBody ? 'Téléchargement ...' : 'Télécharger le PDF'}}
           </button>
         </form>
@@ -38,8 +38,10 @@ export default {
   methods: {
     addBody(e) {
       this.htmlBody = document.documentElement.outerHTML.replace(/<script.*?<\/script>/g, '');
+      window.open('about:blank','print_popup','width=1000,height=800');
       setTimeout(() => {
         this.htmlBody = null;
+        window.location = this.backUrl;
       }, 500);
     },
   },
