@@ -5,7 +5,7 @@ import formatISO from 'date-fns/formatISO';
 import format from 'date-fns/format';
 
 export const workedDays = period => {
-  return differenceInBusinessDays(addDays(period.end, 1) || new Date(), period.start)
+  return differenceInBusinessDays((period.end ? addDays(period.end, 1) : new Date()), period.start)
 }
 
 export const periodTotalHours = period => {
