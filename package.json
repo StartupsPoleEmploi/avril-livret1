@@ -17,7 +17,7 @@
     "@nuxtjs/sentry": "^3.0.1",
     "@trevoreyre/autocomplete-vue": "^2.0.3",
     "algoliasearch": "^3.35.1",
-    "bulma": "^0.8I.0",
+    "bulma": "^0.8.0",
     "bulma-o-steps": "^1.0.9",
     "cookie-universal-nuxt": "^2.1.0",
     "cross-env": "^5.2.0",
