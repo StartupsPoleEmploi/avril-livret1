@@ -49,7 +49,9 @@
           <div class="columns is-multiline">
             <div v-for="experience in experiences" class="column">
               <div class="box is-equal-height content">
-                <h3 class="is-4">{{ experience.role }} chez {{ experience.companyName }}</h3>
+                <h3 class="is-4">
+                  <CompanyDisplay :experience="experience" />
+                </h3>
                 <p>{{addressLabelify(experience.companyAddress)}}</p>
                 <p class="has-text-weight-bold  ">Périodes :</p>
                 <ul>
@@ -143,6 +145,7 @@ import {feminize} from '~/utils/string.js';
 
 import {BOOKLET_MIN_HOURS} from '../constants/index';
 
+import CompanyDisplay from '~/components/CompanyDisplay.vue';
 import PeriodDisplay from '~/components/PeriodDisplay.vue';
 
 export default {
@@ -151,6 +154,7 @@ export default {
   }),
   layout: 'recapitulatif',
   components: {
+    CompanyDisplay,
     PeriodDisplay,
   },
   computed: {

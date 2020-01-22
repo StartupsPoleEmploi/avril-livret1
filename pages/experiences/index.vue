@@ -22,7 +22,7 @@
         <div v-for="experience in experiences" class="column">
           <div class="box is-equal-height">
             <h3 class="title is-4">
-              {{ experience.role }} chez {{ experience.companyName }}
+              <CompanyDisplay :experience="experience" />
             </h3>
             <ul style="margin-bottom: 1rem;">
               <li v-for="period in experience.periods">
@@ -74,14 +74,15 @@
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 import { isBlank } from '~/utils/boolean.js';
 import PeriodDisplay from '~/components/PeriodDisplay.vue';
+import CompanyDisplay from '~/components/CompanyDisplay.vue';
 
 export default {
   mixins: [helpLoaderMixin],
   mounted() {
-    this.$store.commit('experiences/removeNotFilled');
     this.$store.commit('experiences/removeCurrent');
   },
   components: {
+    CompanyDisplay,
     PeriodDisplay,
   },
   computed: {

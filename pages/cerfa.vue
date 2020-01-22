@@ -367,12 +367,12 @@
                 <tbody>
                   <tr>
                     <td>Emploi ou fonction occupée&nbsp;:</td>
-                    <td><strong>{{experience.role}}</strong></td>
+                    <td><strong>{{experience.role || 'A COMPLETER'}}</strong></td>
                   </tr>
                   <tr>
                     <td>Nom et adresse de l'organisme&nbsp;:</td>
                     <td>
-                      <strong>{{experience.companyName}}</strong><br />
+                      <strong>{{experience.companyName  || 'A COMPLETER'}}</strong><br />
                       {{addressLabelify(experience.companyAddress)}}
                     </td>
                   </tr>
