@@ -1,8 +1,8 @@
 {
-  "name": "Prototype-c",
+  "name": "Livret 1 by Avril, la VAE facile",
   "version": "1.0.0",
-  "description": "My tiptop Nuxt.js project",
-  "author": "dmassiani",
+  "description": "To start a VAE, one needs to fill the 'livret 1', which is a long CERFA. Avril dematerialized it here",
+  "author": "Team Avril",
   "private": true,
   "scripts": {
     "dev": "nodemon -r esm server/index.js --watch server",
