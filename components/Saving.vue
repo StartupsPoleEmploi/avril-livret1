@@ -1,5 +1,6 @@
 <template>
   <div v-if="savingState" class="saving notification" :class="`is-${savingStateClass}`">
+    <p v-if="isWarning">Non connecté : les données ne sont pas enregistrées </p>
     <p v-if="isPending">Enregistrement en cours ... </p>
     <p v-if="isSuccess">Enregistrement réussi :) </p>
     <p v-if="isError">Impossible d'enregistrer :( </p>
@@ -8,6 +9,7 @@
 
 <script>
 import {
+  NO_SAVING,
   SAVING_PENDING,
   SAVING_SUCCESS,
   SAVING_ERROR,
@@ -20,6 +22,8 @@ export default {
     },
     savingStateClass() {
       switch (this.$store.state.savingState) {
+        case NO_SAVING:
+          return 'warning';
         case SAVING_PENDING:
           return 'info';
         case SAVING_SUCCESS:
@@ -37,6 +41,9 @@ export default {
     },
     isError() {
       return this.$store.state.savingState === SAVING_ERROR
+    },
+    isWarning() {
+      return this.$store.state.savingState === NO_SAVING
     },
   },
 }

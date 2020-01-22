@@ -1,5 +1,6 @@
 import { storeToBackend } from "../mappers/toBackend";
 import {
+  NO_SAVING,
   SAVING_PENDING,
   SAVING_SUCCESS,
   SAVING_ERROR,
@@ -49,11 +50,8 @@ export default function({ store, req, env }) {
     })
     return Promise.resolve(true);
   } else {
-    console.log(
-      process.client
-        ? "Not authenticated, no save"
-        : "Server side, no need to save"
-    );
+    store.commit('setSavingState', NO_SAVING);
+    savingStateNull(store);
     return Promise.resolve(true);
   }
 }
