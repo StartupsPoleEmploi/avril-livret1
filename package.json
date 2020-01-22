@@ -1,7 +1,7 @@
 {
-  "name": "Livret 1 by Avril, la VAE facile",
+  "name": "livret-1",
   "version": "1.0.0",
-  "description": "To start a VAE, one needs to fill the 'livret 1', which is a long CERFA. Avril dematerialized it here",
+  "description": "To start a VAE, one needs to fill the livret 1, which is a long CERFA. Avril dematerialized it here",
   "author": "Team Avril",
   "private": true,
   "scripts": {
