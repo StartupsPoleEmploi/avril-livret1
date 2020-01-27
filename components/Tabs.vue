@@ -1,13 +1,12 @@
 <template>
 
   <div class="navigation-tabs">
-
-      <nuxt-link to="/formations"  :class="currentTab == 'formations' ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
+      <nuxt-link to="/formations" class="navigation-tab is-vertical-center" :class="currentTab == 'formations' ? 'navigation-active' : ''">
         <Check v-if="educationProgress === 100" />
         <span class="title is-4">Ma formation</span>
       </nuxt-link>
 
-      <nuxt-link to="/experiences" :class="currentTab == 'experiences' ? 'navigation-tab navigation-active is-vertical-center' : 'navigation-tab is-vertical-center'">
+      <nuxt-link to="/experiences" class="navigation-tab is-vertical-center" :class="currentTab == 'experiences' ? 'navigation-active' : ''">
         <Check v-if="experiencesProgress === 100" />
         <span class="title is-4">Mes expériences professionnelles</span>
         <div class="progress-vision">
@@ -21,11 +20,10 @@
         </div>
       </nuxt-link>
 
-      <nuxt-link to="/identite" class="navigation-tab is-vertical-center"  :class="currentTab == 'identite' ? 'navigation-active' : ''">
+      <nuxt-link to="/identite" class="navigation-tab is-vertical-center" :class="currentTab == 'identite' ? 'navigation-active' : ''">
         <Check v-if="identityProgress === 100" />
         <span class="title is-4">Mon identité</span>
       </nuxt-link>
-
     </div>
 
 

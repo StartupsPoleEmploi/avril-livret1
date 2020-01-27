@@ -92,8 +92,8 @@ export const actions = {
     } else {
       hash = app.$cookies.get('hash');
     }
-    if (env.apiUrl && hash) {
-      const apiUrl = `${env.apiUrl}/api/booklet?hash=${hash}`;
+    if (env.serverToPhoenixUrl && hash) {
+      const apiUrl = `${env.serverToPhoenixUrl}/api/booklet?hash=${hash}`;
       const result = await fetch(apiUrl);
       if (result.ok) {
         const dataWithStatus = await result.json();
@@ -107,7 +107,7 @@ export const actions = {
         redirectToPhoenix({redirect, path}, hash, "request_failed");
       }
     } else {
-      console.warn(env.apiUrl ? "No hash no request" : "env.apiUrl not set");
+      console.warn(env.serverToPhoenixUrl ? "No hash no request" : "env.serverToPhoenixUrl not set");
       redirectToPhoenix({redirect, path}, hash, "not_allowed");
     }
   },

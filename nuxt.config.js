@@ -1,7 +1,7 @@
 
 module.exports = {
   server: {
-    port: process.env.NUXT_PORT || process.env.PORT || 3000,
+    port: process.env.PORT || 3000,
     host: '0.0.0.0',
   },
   build: {
@@ -19,8 +19,8 @@ module.exports = {
     'swiper/dist/css/swiper.css'
   ],
   env: {
-    phoenixUrl: process.env.PHOENIX_URL,
-    apiUrl: process.env.API_URL,
+    clientToPhoenixUrl: process.env.CLIENT_TO_PHOENIX_URL,
+    serverToPhoenixUrl: process.env.SERVER_TO_PHOENIX_URL,
     hotjarId: process.env.NUXT_HOTJAR_ID,
     crispWebsiteId: process.env.NUXT_CRISP_WEBSITE_ID,
   },
@@ -57,6 +57,7 @@ module.exports = {
     // '~/plugins/crisp.js',
   ],
   router: {
+    base: process.env.NUXT_PATH,
     middleware: [
       'autosave',
       'store-current-path',
@@ -75,7 +76,7 @@ module.exports = {
     //   sendHitTask: true
     // },
     fields: {
-      allowLinker: !!process.env.PHOENIX_URL,
+      allowLinker: !!process.env.CLIENT_TO_PHOENIX_URL,
     },
     beforeFirstHit: (params) => {
       if (window.phoenixUrl) {

@@ -1,9 +1,14 @@
-export const isBlank = value => {
-  return (!(value instanceof Date)) && (
-    (value === null) ||
-    (value === undefined) ||
-    (typeof value === 'string' && value.trim() === '') ||
-    (Array.isArray(value) && value.every(isBlank)) ||
-    (typeof value === 'object') && Object.values(value).every(isBlank)
-  )
+import isValid from 'date-fns/isValid';
+
+export const isPresent = value => {
+  return
+    isValid(value) ||
+    value !== null ||
+    value !== undefined ||
+    value !== NaN ||
+    typeof value === 'string' && value.trim().length > 0 ||
+    Array.isArray(value) && value.any(isPresent) ||
+    typeof value === 'object' && Object.values(value).any(isPresent)
 }
+
+export const isBlank = value => !isPresent(value);

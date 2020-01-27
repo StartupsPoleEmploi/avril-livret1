@@ -16,7 +16,7 @@ export default function({ store, req, env }) {
   if (process.client && store.state.hash) {
     store.commit('setSavingState', SAVING_PENDING);
     fetch(
-      `${env.apiUrl}/api/booklet?hash=${store.state.hash}`,
+      `${env.clientToPhoenixUrl}/api/booklet?hash=${store.state.hash}`,
       {
         method: "PUT",
         mode: "cors",
@@ -47,7 +47,11 @@ export default function({ store, req, env }) {
         savingStateNull(store);
       }
 
-    })
+    }).catch(error => {
+        console.error(error);
+        store.commit('setSavingState', SAVING_ERROR);
+        savingStateNull(store);
+      })
     return Promise.resolve(true);
   } else {
     store.commit('setSavingState', NO_SAVING);

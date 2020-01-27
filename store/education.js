@@ -1,4 +1,4 @@
-import {isBlank} from '../utils/boolean';
+import {isPresent} from '../utils/boolean';
 import {percent} from '../utils/number';
 import {labelGetter} from '../utils/function';
 import latestDegreeAnswers from '~/contents/data/latestDegree';
@@ -26,7 +26,7 @@ export const getters = {
     return Object.values(mandatoryState).length;
   },
   filledFields: (state, {mandatoryState}) => {
-    return Object.values(mandatoryState).filter(v => !isBlank(v)).length;
+    return Object.values(mandatoryState).filter(v => isPresent(v)).length;
   },
   progress: (state, {filledFields, totalFields}) => {
     return percent(filledFields/totalFields);
