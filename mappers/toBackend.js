@@ -6,7 +6,7 @@ const mapExperience = experience => ({
   title: experience.role,
   company_name: experience.companyName,
   full_address: Object.assign({}, experience.companyAddress, {
-    postal_code: get(experience, "companyAdress.postalCode")
+    postal_code: get(experience, "companyAddress.postalCode")
   }),
   job_industry: experience.category,
   employment_type: experience.contractType,
@@ -24,9 +24,9 @@ const mapClassification = classification => ({
 
 export const storeToBackend = {
   index: state => ({
-    completed_at: formatISODate(state.completedAt, 'complete'),
+    completed_at: formatISODate(state.completedAt, "complete"),
     certification_name: state.certificationLabel,
-    certifier_name: state.certifierLabel,
+    certifier_name: state.certifierLabel
   }),
   identity: state => ({
     first_name: state.firstNames,
@@ -46,10 +46,9 @@ export const storeToBackend = {
         state,
         "currentSituation.registerToPoleEmploi"
       ),
-      register_to_pole_emploi_since: formatISODate(get(
-        state,
-        "currentSituation.registerToPoleEmploiSince"
-      )),
+      register_to_pole_emploi_since: formatISODate(
+        get(state, "currentSituation.registerToPoleEmploiSince")
+      ),
       compensation_type: get(state, "currentSituation.compensationType")
     },
     nationality: Object.assign({}, state.nationality),
