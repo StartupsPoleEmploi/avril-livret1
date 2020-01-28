@@ -1,14 +1,21 @@
 import isValid from 'date-fns/isValid';
 
-export const isPresent = value => {
-  return
-    isValid(value) ||
-    value !== null ||
-    value !== undefined ||
-    value !== NaN ||
-    typeof value === 'string' && value.trim().length > 0 ||
-    Array.isArray(value) && value.any(isPresent) ||
-    typeof value === 'object' && Object.values(value).any(isPresent)
+export const isNumber = value => typeof value === 'number'
+export const isString = value => typeof value === 'string'
+export const isDate = value => (value && typeof value.getMonth === 'function')
+export const isArray = value => Array.isArray(value)
+export const isObject = value => typeof value === 'object' && value !== null
+
+export const isBlank = value => {
+  return (
+    value === null ||
+    value === undefined ||
+    isNumber(value) && value === NaN ||
+    isString(value) && value.trim().length == 0 ||
+    isArray(value) && value.every(isBlank) ||
+    isDate(value) && !isValid(value) ||
+    isObject(value) && Object.values(value).every(isBlank)
+  )
 }
 
-export const isBlank = value => !isPresent(value);
+export const isPresent = value => !isBlank(value)
