@@ -42,7 +42,7 @@
               query: input,
               type: this.type,
             }, function(err, res) {
-              if (err) {
+              if (err || !res) {
                 reject(err);
               }
               resolve(res.hits);
