@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import get from 'lodash.get';
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 import withDatePickerMixin from '~/mixins/withDatePicker.js';
 
@@ -102,8 +103,7 @@ export default {
       return this.$store.getters['experiences/current'];
     },
     periods() {
-      const currentExperience = this.$store.getters['experiences/current'];
-      return currentExperience && currentExperience.periods;
+      return get(this.$store.getters['experiences/current'], 'periods');
     },
   },
   methods: {

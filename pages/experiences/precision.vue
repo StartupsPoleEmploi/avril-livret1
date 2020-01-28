@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import get from 'lodash.get';
 import helpLoaderMixin from '~/mixins/helpLoader.js';
 
 export default {
@@ -57,13 +58,13 @@ export default {
   },
   computed: {
     role() {
-      return this.$store.getters['experiences/current'].role;
+      return get(this.$store.getters['experiences/current'], 'role');
     },
     companyName() {
-      return this.$store.getters['experiences/current'].companyName;
+      return get(this.$store.getters['experiences/current'], 'companyName');
     },
     activities() {
-      return this.$store.getters['experiences/current'].activities;
+      return get(this.$store.getters['experiences/current'], 'activities');
     },
     experiencesProgress() {
       return this.$store.getters['experiences/progress'];

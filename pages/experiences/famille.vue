@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import get from 'lodash.get';
 import RadioList from "~/components/RadioList.vue";
 import helpLoaderMixin from "~/mixins/helpLoader.js";
 import possibleAnswers from '~/contents/data/experienceCategories';
@@ -44,7 +45,7 @@ export default {
   },
   computed: {
     category() {
-      return this.$store.getters["experiences/current"].category;
+      return get(this.$store.getters["experiences/current"], 'category');
     }
   },
   data() {

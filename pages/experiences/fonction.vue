@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import get from 'lodash.get';
 import helpLoaderMixin from "~/mixins/helpLoader.js";
 import GeoInput from '~/components/GeoInput';
 
@@ -70,17 +71,19 @@ export default {
   },
   computed: {
     role() {
-      return this.$store.getters["experiences/current"].role;
+      return get(this.$store.getters["experiences/current"], 'role');
     },
     companyName() {
-      return this.$store.getters["experiences/current"].companyName;
+      return get(this.$store.getters["experiences/current"], 'companyName');
     },
     companyAddress() {
-      return this.$store.getters["experiences/current"].companyAddress;
+      return get(this.$store.getters["experiences/current"], 'companyAddress');
     }
   },
   mounted() {
-    this.$refs.role.focus();
+    if (this.$refs.role) {
+      this.$refs.role.focus();
+    }
   },
   methods: {
     addRole(e) {

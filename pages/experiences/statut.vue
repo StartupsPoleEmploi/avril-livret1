@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import get from 'lodash.get';
 import RadioList from "~/components/RadioList.vue";
 import helpLoaderMixin from "~/mixins/helpLoader.js";
 import possibleAnswers from '~/contents/data/experienceStatuses';
@@ -46,9 +47,7 @@ export default {
   },
   computed: {
     contractType() {
-      if (this.$store.getters["experiences/current"]) {
-        return this.$store.getters["experiences/current"].contractType;
-      }
+      return get(this.$store.getters["experiences/current"], 'contractType');
     }
   },
   data() {
@@ -57,13 +56,6 @@ export default {
     }
   },
   methods: {
-    keymonitor: function(event) {
-      console.log(event.key);
-      if (event.key == "Enter") {
-        console.log("enter key was pressed!");
-        this.$router.push("name");
-      }
-    },
     addContractType(e) {
       this.$store.dispatch("experiences/addContractType", e);
     }
