@@ -10,6 +10,7 @@ export const countyWithNumber = result => {
 }
 
 export const algoliaToAddress = (type, result) => {
+  if (!result) return;
   if (type == 'address') {
     return {
       street: result.locale_names[0],
