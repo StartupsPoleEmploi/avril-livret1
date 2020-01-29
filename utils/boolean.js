@@ -4,7 +4,7 @@ export const isNumber = value => typeof value === 'number'
 export const isString = value => typeof value === 'string'
 export const isDate = value => (value && typeof value.getMonth === 'function')
 export const isArray = value => Array.isArray(value)
-export const isObject = value => typeof value === 'object' && value !== null
+export const isObject = value => typeof value === 'object' && value !== null && !isDate(value)
 
 export const isBlank = value => {
   return (

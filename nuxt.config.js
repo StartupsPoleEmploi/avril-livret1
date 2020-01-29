@@ -14,6 +14,7 @@ module.exports = {
     },
     extend (config, ctx) {}
   },
+  buildDir: '/build',
   css: [
     '~/assets/app.scss',
     'swiper/dist/css/swiper.css'
