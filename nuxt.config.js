@@ -14,7 +14,7 @@ module.exports = {
     },
     extend (config, ctx) {}
   },
-  buildDir: '/build',
+  buildDir: process.env.NUXT_BUILD_DIR,
   css: [
     '~/assets/app.scss',
     'swiper/dist/css/swiper.css'
