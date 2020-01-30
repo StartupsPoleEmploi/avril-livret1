@@ -97,7 +97,7 @@ export const actions = {
       const result = await fetch(apiUrl);
       if (result.ok) {
         const dataWithStatus = await result.json();
-        console.log("fetched data", dataWithStatus.data);
+        console.log("fetched data");
         dispatch(
           "initState",
           Object.assign({ hash }, dataWithStatus.data)
