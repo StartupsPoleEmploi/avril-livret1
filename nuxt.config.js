@@ -52,9 +52,10 @@ module.exports = {
   ],
   plugins: [
     '~/plugins/filters.js',
-    { src: '~/plugins/datepicker', ssr: false },
+    { src: '~/plugins/datepicker', mode: 'client' },
     '~/plugins/phoenixUrl.js',
     '~/plugins/hotjar.js',
+    { src: '~/plugins/expandable-image', mode: 'client' },
     // '~/plugins/crisp.js',
   ],
   router: {

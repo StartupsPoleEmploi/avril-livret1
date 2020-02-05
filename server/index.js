@@ -11,7 +11,7 @@ const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
 
 app.get('/healthcheck', (req, res) => {
-  res.send(200)
+  res.sendStatus(200);
 })
 
 app.post(

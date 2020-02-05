@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-    <Help :content="help" />
+    <Help :content="help" img="help.png" />
   </div>
 </template>
 
@@ -64,7 +64,7 @@ export default {
       return get(this.$store.getters['experiences/current'], 'companyName');
     },
     activities() {
-      return get(this.$store.getters['experiences/current'], 'activities');
+      return get(this.$store.getters['experiences/current'], 'activities') || [];
     },
     experiencesProgress() {
       return this.$store.getters['experiences/progress'];

@@ -4,5 +4,4 @@ Voici un lien vers la fiche du métier pour trouver des exemples d'activités :
 
 <a href="https://www.pole-emploi.fr/candidat/decouvrir-le-marche-du-travail/les-fiches-metiers.html" target="_blank">Fiches métiers</a>
 
-Exemples: "J'utilise des tableaux croisés dynamiques dans le logiciel Excel" ou "J'aide des adultes et des personnes handicapées à prendre leurs repas"
-
+Exemple :
