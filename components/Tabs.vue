@@ -12,10 +12,10 @@
         <div class="progress-vision">
           <div class="progress__bar --hours"><div class="progress__bar--suivi" :style="`width:${experiencesProgress}%`"></div></div>
           <p v-if="experiencesProgress < 100">
-            Vous avez ajouté <strong>{{experiencesTotalHours}}</strong> {{'heure' | pluralize(experiencesTotalHours)}} sur {{experiencesMinHours}} demandées.
+            <strong>{{experiencesTotalHours}}</strong> {{'heure renseignée' | pluralize(experiencesTotalHours)}} sur {{experiencesMinHours}} demandées.
           </p>
           <p v-else>
-            Vous avez renseigné <strong>{{experiencesTotalHours}}</strong> {{'heure' | pluralize(experiencesTotalHours)}}.
+            <strong>{{experiencesTotalHours}}</strong> {{'heure renseignée' | pluralize(experiencesTotalHours)}}.
           </p>
         </div>
       </nuxt-link>

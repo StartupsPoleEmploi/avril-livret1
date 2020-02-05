@@ -10,6 +10,10 @@ const app = express()
 const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
 
+app.get('/healthcheck', (req, res) => {
+  res.send(200)
+})
+
 app.post(
   `${get(config, 'router.base')}/cerfa.pdf`,
   express.urlencoded({ extended: true, limit: '1mb', }),
