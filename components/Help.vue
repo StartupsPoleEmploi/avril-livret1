@@ -26,7 +26,7 @@
   }
 
   body > .expandable-image.expanded.bg-click {
-    cursor: pointer;
+    cursor: zoom-out;
     & > img {
       cursor: default;
     }
