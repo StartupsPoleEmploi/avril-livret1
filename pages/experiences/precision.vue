@@ -21,7 +21,7 @@
           <ul v-for="activity in activities">
             <li class="box">
               {{activity}}
-              <button @click="removeActivity(activity.uuid)" class="delete is-pulled-right"></button>
+              <button @click="removeActivity(activity)" class="delete is-pulled-right"></button>
             </li>
           </ul>
           <div v-if="activities.length === 0" class="notification is-danger">
@@ -79,9 +79,9 @@ export default {
       this.$refs.activity_input.value = '';
       return false;
     },
-    removeActivity(activityId) {
+    removeActivity(activity) {
       if(window.confirm('Je confirme vouloir supprimer cette activité ?')){
-        this.$store.dispatch('experiences/removeActivity', activityId)
+        this.$store.dispatch('experiences/removeActivity', activity)
       }
     }
   }

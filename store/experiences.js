@@ -120,15 +120,13 @@ export const actions = {
   addActivity({ commit, getters }, activity) {
     commit("mutateExperience", {
       id: getters.current.uuid,
-      activities: getters.current.activities.concat(
-        Object.assign(activity, { uuid: uuid() })
-      )
+      activities: getters.current.activities.concat(activity)
     });
   },
-  removeActivity({ commit, getters }, activityId) {
+  removeActivity({ commit, getters }, activity) {
     commit("mutateExperience", {
       id: getters.current.uuid,
-      activities: getters.current.activities.filter(a => a.uuid !== activityId)
+      activities: getters.current.activities.filter(a => a !== activity)
     });
   }
 };
