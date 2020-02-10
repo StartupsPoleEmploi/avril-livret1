@@ -88,7 +88,7 @@ module.exports = {
     },
   },
   sentry: {
-    dsn: process.env.SENTRY_DSN,
+    dsn: process.env.NUXT_SENTRY_DSN,
     config: {
       environment: process.env.NODE_ENV,
       release: process.env.HEROKU_SLUG_COMMIT,
