@@ -48,6 +48,7 @@
 <script>
 import get from 'lodash.get';
 import helpLoaderMixin from '~/mixins/helpLoader.js';
+import {isBlank} from '~/utils/boolean.js';
 
 export default {
   mixins: [helpLoaderMixin],
@@ -74,10 +75,10 @@ export default {
     this.$refs.activity_input.focus()
   },
   methods: {
-    addActivity (e) {
+    addActivity(e) {
+      if (isBlank(this.$refs.activity_input.value)) return;
       this.$store.dispatch('experiences/addActivity', this.$refs.activity_input.value)
       this.$refs.activity_input.value = '';
-      return false;
     },
     removeActivity(activity) {
       if(window.confirm('Je confirme vouloir supprimer cette activité ?')){
