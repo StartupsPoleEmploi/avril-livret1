@@ -43,13 +43,13 @@
             <div class="columns">
           <div class="column">
             <div class="atome">
-              <label>Nature, intitulé complet et niveau de la certification :</label>
+              <label>Nature, intitulé complet et niveau de la certification&nbsp;:</label>
               <p class="title is-6 is-uppercase is-spaced">{{certificationLabel}}</p>
             </div>
           </div>
           <div class="column">
             <div class="atome">
-              <label>Autorité responsable de la certification :</label>
+              <label>Autorité responsable de la certification&nbsp;:</label>
               <p class="title is-6 is-uppercase is-spaced">{{certifierLabel}}</p>
             </div>
           </div>
@@ -66,24 +66,24 @@
             <div class="columns">
               <div class="column">
                 <div class="atome">
-                  <label>Nom de naissance :</label>
+                  <label>Nom de naissance&nbsp;:</label>
                   <p class="is-italic"><small>c'est le nom qui figure sur votre acte de naissance</small></p>
                   <p class="title is-6 is-uppercase is-spaced">{{identity.lastName}}</p>
                 </div>
                 <div class="atome">
-                  <label>Nom d'usage :</label>
+                  <label>Nom d'usage&nbsp;:</label>
                   <p class="is-italic"><small>s'il y a lieu</small></p>
                   <p class="title is-6 is-uppercase is-spaced">{{identity.usageName || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
-                  <label>Prénoms :</label>
+                  <label>Prénoms&nbsp;:</label>
                   <p class="is-italic"><small>dans l'ordre de l'état civil</small></p>
                   <p class="title is-6 is-uppercase is-spaced">{{identity.firstNames}}</p>
                 </div>
                 <div class="atome">
-                  <label>Sexe :</label>
+                  <label>Sexe&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">{{identity.sex === 'm' ? 'Masculin' : 'Féminin'}}</p>
                 </div>
               </div>
@@ -96,25 +96,25 @@
             <div class="columns">
               <div class="column">
                 <div class="atome">
-                  <label>Date de naissance :</label>
+                  <label>Date de naissance&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">{{formatDate(identity.birthday)}}</p>
                 </div>
                 <div class="atome">
-                  <label>Commune de naissance :</label>
+                  <label>Commune de naissance&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">{{identity.birthPlace.city}}</p>
                 </div>
                 <div class="atome">
-                  <label>Département ou collectivité outre-mer de naissance :</label>
+                  <label>Département ou collectivité outre-mer de naissance&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace.county || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
-                  <label>Pays de naissance :</label>
+                  <label>Pays de naissance&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace.country}}</p>
                 </div>
                 <div class="atome">
-                  <label>Nationalité :</label>
+                  <label>Nationalité&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">{{identity.nationality.country_code}}</p><!-- FR ou UE/UEEE ou Autre -->
                 </div>
               </div>
@@ -126,21 +126,21 @@
             <div class="columns">
               <div class="column">
                 <div class="atome">
-                  <label>Adresse actuelle :</label>
+                  <label>Adresse actuelle&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced" v-html="(addressLabelify(identity.address) || '').replace('\n', '<br />')"></p>
                 </div>
                 <div class="atome">
-                  <label>Tel domicile :</label>
+                  <label>Tel domicile&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">{{identity.homePhoneNumber || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
-                  <label>Tel portable :</label>
+                  <label>Tel portable&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">{{identity.cellPhoneNumber || '-'}}</p>
                 </div>
                 <div class="atome">
-                  <label>Courriel :</label>
+                  <label>Courriel&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">
                     <a :href="`mailto:${identity.email}`" v-if="identity.email">{{identity.email}}</a>
                   </p>
@@ -154,7 +154,7 @@
           <div class="column">
             <article class="message is-dark">
               <div class="message-body">
-                <h3 class="title is-5 has-text-weight-light">Vous êtes actuellement :</h3>
+                <h3 class="title is-5 has-text-weight-light">Vous êtes actuellement&nbsp;:</h3>
                 <div class="control box">
                   <div class="columns">
                     <div class="column is-narrow">
@@ -264,7 +264,7 @@
           <div class="column">
             <article class="message is-dark">
               <div class="message-body">
-                <h3 class="title is-5 has-text-weight-light">Êtes-vous reconnu travailleur handicapé :</h3>
+                <h3 class="title is-5 has-text-weight-light">Êtes-vous reconnu travailleur handicapé&nbsp;:</h3>
                 <div class="columns">
                   <div class="column">
                     <div class="control box">
@@ -300,34 +300,70 @@
               <div class="column">
 
                 <div class="atome">
-                  <label>Dernière classe suivie :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.latestCourseLevel ? `${education.latestCourseLevel} : ${latestCourseLevelLabel}` : '-'}}</p>
+                  <label>Dernière classe suivie&nbsp;:</label>
+                  <p class="title is-6 is-uppercase is-spaced">
+                    {{education.latestCourseLevel ? `${education.latestCourseLevel} : ${latestCourseLevelLabel}` : '-'}}
+                  </p>
                 </div>
 
                 <div class="atome">
-                  <label>Titre ou diplôme le plus élevé obtenu en France :</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.latestDegree ? `${education.latestDegree} : ${latestDegreeLabel}` : '-'}}</p>
+                  <label>Titre ou diplôme le plus élevé obtenu en France&nbsp;:</label>
+                  <p class="title is-6 is-uppercase is-spaced">
+                    {{education.latestDegree ? `${education.latestDegree} : ${latestDegreeLabel}` : '-'}}
+                  </p>
                 </div>
 
                 <div class="atome">
-                  <label>Autre certification obtenue en France :</label>
-                  <p class="title is-6 is-uppercase is-spaced">Non applicable</p>
-                </div>
-
-              </div>
-              <div class="column">
-
-                <div class="atome">
-                  <label>Attestation de comparabilité d'un diplôme délivré dans un pays étranger :</label>
+                  <label>Autre certification obtenue en France&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">Non applicable</p>
                 </div>
                 <div class="atome">
-                  <label>Attestation de reconnaissance d'études/et ou de formation/s suivie/s à l'étranger :</label>
-                  <p class="title is-6 is-uppercase is-spaced">Non applicable</p>
-                </div>
-                <div class="atome">
-                  <label>Partie(s) de certification professionnelle obtenue/s :</label>
+                  <label>Partie(s) de certification professionnelle obtenue/s&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">{{education.trainings.length ? 'Oui' : 'Non'}}</p>
+                </div>
+              </div>
+              <div class="column" style="background-color: rgba(0, 0, 0, 0.05);">
+                <h5 class="title is-6 is-uppercase has-text-centered">A compléter manuellement si besoin</h5>
+                <div class="atome">
+                  <p style="margin-bottom: 1rem;">
+                    <label>Attestation de comparabilité d'un diplôme délivré dans un pays étranger&nbsp;:</label>
+                  </p>
+                  <ul>
+                    <li class="is-inline-block">
+                      <input type="checkbox" :checked="false">
+                      <label>Niveau V</label>
+                    </li>
+                    <li class="is-inline-block">
+                      <input type="checkbox" :checked="false">
+                      <label>Niveau IV</label>
+                    </li>
+                    <li class="is-inline-block">
+                      <input type="checkbox" :checked="false">
+                      <label>Niveau III</label>
+                    </li>
+                    <li class="is-inline-block">
+                      <input type="checkbox" :checked="false">
+                      <label>Niveau II</label>
+                    </li>
+                    <li class="is-inline-block">
+                      <input type="checkbox" :checked="false">
+                      <label>Niveau I</label>
+                    </li>
+                  </ul>
+                  <ul>
+
+                  </ul>
+                </div>
+                <div class="atome">
+                  <p style="margin-bottom: 1rem;">
+                    <label>Attestation de reconnaissance d'études/et ou de formation/s suivie/s à l'étranger&nbsp;:</label>
+                  </p>
+                  <p>
+                    <input type="checkbox" :checked="false">
+                    <label>Oui</label>
+                    <input type="checkbox" :checked="false">
+                    <label>Non</label>
+                  </p>
                 </div>
 
               </div>
@@ -340,13 +376,13 @@
             <div class="columns">
               <div class="column">
                 <div class="atome">
-                  <label>Certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE) :</label>
+                  <label>Certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE)&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">{{education.trainings.join(', ') || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
-                  <label>Formations courtes suivies dans le cadre de la formation continue :</label>
+                  <label>Formations courtes suivies dans le cadre de la formation continue&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">{{education.relatedDegrees.join(', ') || '-'}}</p>
                 </div>
               </div>
