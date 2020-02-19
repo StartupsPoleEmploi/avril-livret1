@@ -17,7 +17,8 @@
     },
     methods: {
       formatValue(e) {
-        this.$emit('input', formatPhoneNumber(e.target.value))
+        e.target.value = formatPhoneNumber(e.target.value)
+        this.$emit('input', e.target.value)
       }
     },
     props: ['value']
