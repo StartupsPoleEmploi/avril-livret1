@@ -9,7 +9,6 @@
     "build": "nuxt build",
     "start": "node -r esm server/index.js",
     "generate": "nuxt generate",
-    "heroku-postbuild": "npm run build",
     "setup": "yarn install && yarn build && yarn start"
   },
   "dependencies": {

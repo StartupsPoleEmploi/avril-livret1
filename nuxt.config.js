@@ -53,7 +53,7 @@ module.exports = {
   plugins: [
     '~/plugins/filters.js',
     { src: '~/plugins/datepicker', mode: 'client' },
-    '~/plugins/phoenixUrl.js',
+    // '~/plugins/phoenixUrl.js',
     '~/plugins/hotjar.js',
     { src: '~/plugins/expandable-image', mode: 'client' },
     // '~/plugins/crisp.js',
@@ -77,15 +77,15 @@ module.exports = {
     //   enabled: true,
     //   sendHitTask: true
     // },
-    fields: {
-      allowLinker: !!process.env.CLIENT_TO_PHOENIX_URL,
-    },
-    beforeFirstHit: (params) => {
-      if (window.phoenixUrl) {
-        window.ga('require', 'linker');
-        window.ga('linker:autoLink', [window.phoenixUrl.replace(/^https?:\/\//i, '')] );
-      }
-    },
+    // fields: {
+    //   allowLinker: !!process.env.CLIENT_TO_PHOENIX_URL,
+    // },
+    // beforeFirstHit: (params) => {
+    //   if (window.phoenixUrl) {
+    //     window.ga('require', 'linker');
+    //     window.ga('linker:autoLink', [window.phoenixUrl.replace(/^https?:\/\//i, '')] );
+    //   }
+    // },
   },
   sentry: {
     dsn: process.env.NUXT_SENTRY_DSN,
