@@ -16,7 +16,11 @@ export default async (req, res) => {
         height: '1cm',
       }
     }).toFile(`./tmp/${uuid()}.pdf`, (err, pdfRes) => {
-      res.sendFile(pdfRes.filename);
+      if (err) {
+        console.error(err);
+      } else {
+        res.sendFile(pdfRes.filename);
+      }
     });
   } else {
     res.send('Impossible de télécharger le document. Body Manquant.')
