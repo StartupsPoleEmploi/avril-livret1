@@ -52,26 +52,4 @@ export default [
       },
     ]
   },
-  {
-    store: "identity",
-    path: "identite",
-    steps: [
-      {
-        label: "Lieu de résidence",
-        to: "/identite"
-      },
-      {
-        label: "Naissance",
-        to: "/identite/naissance"
-      },
-      {
-        label: "Situation",
-        to: "/identite/situation"
-      },
-      {
-        label: "Identité",
-        to: "/identite/identite"
-      }
-    ]
-  }
 ]

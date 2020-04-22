@@ -19,11 +19,6 @@
           </p>
         </div>
       </nuxt-link>
-
-      <nuxt-link to="/identite" class="navigation-tab is-vertical-center" :class="currentTab == 'identite' ? 'navigation-active' : ''">
-        <Check v-if="identityProgress === 100" />
-        <span class="title is-4">Mon identité</span>
-      </nuxt-link>
     </div>
 
 
@@ -39,9 +34,6 @@ export default {
   computed: {
     educationProgress() {
       return this.$store.getters['education/progress'];
-    },
-    identityProgress() {
-      return this.$store.getters['identity/progress'];
     },
     experiencesProgress() {
       return this.$store.getters['experiences/progress'];

@@ -1,7 +1,9 @@
+import get from 'lodash.get';
 import { percent } from "../utils/number";
 import { first, last } from "../utils/array";
 import { fraToEng } from "../utils/translate";
 import { redirectToPhoenix } from "../utils/url";
+import { queryApiOrRedirect } from 'avril/js/utils/api';
 
 import steps from '~/contents/data/steps';
 
@@ -75,9 +77,8 @@ export const mutations = {
 };
 
 export const actions = {
-  async nuxtServerInit(
-    { commit, dispatch },
-    {
+  async nuxtServerInit({ commit, dispatch }, context) {
+    const {
       app,
       env,
       req: {
@@ -85,8 +86,8 @@ export const actions = {
         query: { hash },
       },
       redirect,
-    }
-  ) {
+    } = context;
+
     if (hash) {
       app.$cookies.set('hash', hash);
     } else {
@@ -94,13 +95,31 @@ export const actions = {
     }
     if (env.serverToPhoenixUrl && hash) {
       const apiUrl = `${env.serverToPhoenixUrl}/api/booklet?hash=${hash}`;
-      const result = await fetch(apiUrl);
+      const identityData = await queryApiOrRedirect('identity', context);
+      console.log('#############################');
+      console.log('#############################');
+      console.log('#############################');
+      console.log('#############################');
+      console.log(identityData);
+      console.log('#############################');
+      console.log('#############################');
+      console.log('#############################');
+      console.log('#############################');
+      console.log('#############################');
+      const result = await fetch(apiUrl, {
+        headers: {
+          'X-auth': get(context, 'env.serverAuthKey'),
+        }
+      });
       if (result.ok) {
         const dataWithStatus = await result.json();
         console.log("fetched data");
         dispatch(
-          "initState",
-          Object.assign({ hash }, dataWithStatus.data)
+          "initState", {
+            ...dataWithStatus.data,
+            civility: identityData,
+            hash,
+          }
         );
       } else {
         console.error("Request failed", result);

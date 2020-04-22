@@ -24,6 +24,7 @@ module.exports = {
     serverToPhoenixUrl: process.env.SERVER_TO_PHOENIX_URL,
     hotjarId: process.env.NUXT_HOTJAR_ID,
     crispWebsiteId: process.env.NUXT_CRISP_WEBSITE_ID,
+    serverAuthKey: process.env.SECRET_KEY_BASE,
   },
   head: {
     title: 'Livret 1 by Avril, la VAE facile',

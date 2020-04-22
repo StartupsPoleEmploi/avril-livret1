@@ -34,40 +34,41 @@ export const backendToStore = {
     completedAt: parseISODate(backendData.completed_at),
   }),
   identity: backendData => ({
-    firstNames: backendData.first_name,
-    lastName: backendData.last_name,
-    usageName: backendData.usage_name,
-    email: backendData.email,
-    sex: backendData.gender,
-    cellPhoneNumber: backendData.mobile_phone,
-    homePhoneNumber: backendData.home_phone,
+    // firstNames: backendData.first_name,
+    // lastName: backendData.last_name,
+    // usageName: backendData.usage_name,
+    // email: backendData.email,
+    // sex: backendData.gender,
+    // cellPhoneNumber: backendData.mobile_phone,
+    // homePhoneNumber: backendData.home_phone,
     birthday: parseISODate(backendData.birthday),
-    isHandicapped: backendData.is_handicapped,
+    // isHandicapped: backendData.is_handicapped,
     currentSituation: {
-      status: get(backendData, "current_situation.status", null),
-      employmentType: get(backendData, "current_situation.employment_type", null),
-      registerToPoleEmploi: get(backendData, "current_situation.register_to_pole_emploi", null),
+      ...get(backendData, 'currentSituation'),
+      // status: get(backendData, "currentSituation.status", null),
+    //   employmentType: get(backendData, "current_situation.employment_type", null),
+    //   registerToPoleEmploi: get(backendData, "current_situation.register_to_pole_emploi", null),
       registerToPoleEmploiSince: parseISODate(
-        get(backendData, "current_situation.register_to_pole_emploi_since", null)
+        get(backendData, "currentSituation.registerToPoleEmploiSince", null)
       ),
-      compensationType: get(backendData, "current_situation.compensation_type")
+      // compensationType: get(backendData, "current_situation.compensation_type")
     },
-    birthPlace: {
-      city: get(backendData, "birth_place.city", null),
-      county: get(backendData, "birth_place.county", null),
-      country: get(backendData, "birth_place.country", null),
-      lat: get(backendData, "birth_place.lat", null),
-      lng: get(backendData, "birth_place.lng", null),
-    },
-    nationality: Object.assign({}, backendData.nationality),
-    address: {
-      street: get(backendData, "full_address.street", null),
-      city: get(backendData, "full_address.city", null),
-      postalCode: get(backendData, "full_address.postal_code", null),
-      country: get(backendData, "full_address.country", null),
-      lat: get(backendData, "full_address.lat", null),
-      lng: get(backendData, "full_address.lng", null)
-    }
+    // birthPlace: {
+    //   city: get(backendData, "birth_place.city", null),
+    //   county: get(backendData, "birth_place.county", null),
+    //   country: get(backendData, "birth_place.country", null),
+    //   lat: get(backendData, "birth_place.lat", null),
+    //   lng: get(backendData, "birth_place.lng", null),
+    // },
+    // nationality: Object.assign({}, backendData.nationality),
+    // address: {
+    //   street: get(backendData, "full_address.street", null),
+    //   city: get(backendData, "full_address.city", null),
+    //   postalCode: get(backendData, "full_address.postal_code", null),
+    //   country: get(backendData, "full_address.country", null),
+    //   lat: get(backendData, "full_address.lat", null),
+    //   lng: get(backendData, "full_address.lng", null)
+    // }
   }),
   education: backendData => ({
     relatedDegrees: get(backendData, "diplomas", []).map(mapClassification),

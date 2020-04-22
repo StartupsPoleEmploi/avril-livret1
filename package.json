@@ -1,5 +1,5 @@
 {
-  "name": "livret-1",
+  "name": "avril-livret1",
   "version": "1.0.0",
   "description": "To start a VAE, one needs to fill the livret 1, which is a long CERFA. Avril dematerialized it here",
   "author": "Team Avril",
@@ -17,6 +17,7 @@
     "@nuxtjs/sentry": "^3.0.1",
     "@trevoreyre/autocomplete-vue": "^2.0.3",
     "algoliasearch": "^3.35.1",
+    "avril": "StartupsPoleEmploi/avril-shared",
     "bulma": "^0.8.0",
     "bulma-o-steps": "^1.0.9",
     "cookie-universal-nuxt": "^2.1.0",
@@ -31,8 +32,8 @@
     "node-sass": "^4.12.0",
     "nuxt": "^2.10.2",
     "nuxt-sass-resources-loader": "^2.0.5",
-    "nuxt-svg-loader": "^1.0.1",
-    "sass-loader": "^8.0.0",
+    "nuxt-svg-loader": "^1.2.0",
+    "sass-loader": "^8.0.2",
     "vue-awesome-swiper": "^3.1.3",
     "vue-expandable-image": "^0.1.0",
     "vue2-datepicker": "^3.3.0"
