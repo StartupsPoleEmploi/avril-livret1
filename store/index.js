@@ -54,7 +54,7 @@ export const getters = {
     return state.currentPath === first(getters.flatPaths);
   },
   isTheEnd: (state, getters) => {
-    return state.currentPath === last(getters.flatPaths);
+    return state.currentPath === '/experiences' && getters['experiences/progress'] === 100
   }
 };
 
@@ -78,7 +78,7 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, context) {
-    const {
+    let {
       app,
       env,
       req: {
@@ -96,16 +96,6 @@ export const actions = {
     if (env.serverToPhoenixUrl && hash) {
       const apiUrl = `${env.serverToPhoenixUrl}/api/booklet?hash=${hash}`;
       const identityData = await queryApiOrRedirect('identity', context);
-      console.log('#############################');
-      console.log('#############################');
-      console.log('#############################');
-      console.log('#############################');
-      console.log(identityData);
-      console.log('#############################');
-      console.log('#############################');
-      console.log('#############################');
-      console.log('#############################');
-      console.log('#############################');
       const result = await fetch(apiUrl, {
         headers: {
           'X-auth': get(context, 'env.serverAuthKey'),
@@ -113,7 +103,6 @@ export const actions = {
       });
       if (result.ok) {
         const dataWithStatus = await result.json();
-        console.log("fetched data");
         dispatch(
           "initState", {
             ...dataWithStatus.data,

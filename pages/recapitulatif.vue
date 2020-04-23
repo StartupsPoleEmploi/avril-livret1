@@ -101,7 +101,7 @@
             <p v-else>Je n'ai pas encore renseigné ma nationalité.</p>
           </div>
           <div class="recap-cell cell-residence">
-            <p v-if="identity.address">J'habite {{addressLabelify(identity.address)}}.</p>
+            <p v-if="isPresent(identity.address)">J'habite {{addressLabelify(identity.address)}}.</p>
             <p v-else><strong>Je n'ai pas encore renseigné mon adresse.</strong></p>
           </div>
         </section>
@@ -138,6 +138,7 @@
 </template>
 
 <script>
+  import {isPresent} from 'avril/js/utils/boolean.js';
 import {periodTotalHours, formatDate} from '~/utils/time.js';
 import {phoenixUrl} from '~/utils/url.js';
 import {addressLabelify} from '~/utils/geo.js';
@@ -202,6 +203,7 @@ export default {
     formatDate,
     periodTotalHours,
     addressLabelify,
+    isPresent,
     markAsCompleteAndGoToCerfa: function() {
       this.$store.commit('markAsComplete');
       this.$router.push({

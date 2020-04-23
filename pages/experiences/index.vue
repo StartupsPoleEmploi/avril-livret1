@@ -59,10 +59,10 @@
         </div>
         <nuxt-link
           :event="experiencesProgress < 100 ? '' : 'click'"
-          to="/identite"
+          to="/recapitulatif"
           class="button is-dark"
         >
-          Avancer vers mon identité
+          Enregistrer mon dossier de recevabilité
         </nuxt-link>
       </div>
     </div>

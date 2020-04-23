@@ -34,6 +34,7 @@ export const backendToStore = {
     completedAt: parseISODate(backendData.completed_at),
   }),
   identity: backendData => ({
+    ...backendData,
     // firstNames: backendData.first_name,
     // lastName: backendData.last_name,
     // usageName: backendData.usage_name,
