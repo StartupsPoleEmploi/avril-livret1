@@ -46,59 +46,59 @@
 </template>
 
 <script>
-import get from 'lodash.get';
-import helpLoaderMixin from '~/mixins/helpLoader.js';
-import {isBlank} from '~/utils/boolean.js';
+  import get from 'lodash.get';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import {isBlank} from 'avril/js/utils/boolean.js';
 
-export default {
-  mixins: [helpLoaderMixin],
-  beforeCreate() {
-    if (!this.$store.getters['experiences/current']) {
-      this.$router.push('/experiences');
-    }
-  },
-  computed: {
-    role() {
-      return get(this.$store.getters['experiences/current'], 'role');
+  export default {
+    mixins: [helpLoaderMixin],
+    beforeCreate() {
+      if (!this.$store.getters['experiences/current']) {
+        this.$router.push('/experiences');
+      }
     },
-    companyName() {
-      return get(this.$store.getters['experiences/current'], 'companyName');
+    computed: {
+      role() {
+        return get(this.$store.getters['experiences/current'], 'role');
+      },
+      companyName() {
+        return get(this.$store.getters['experiences/current'], 'companyName');
+      },
+      activities() {
+        return get(this.$store.getters['experiences/current'], 'activities') || [];
+      },
+      experiencesProgress() {
+        return this.$store.getters['experiences/progress'];
+      },
     },
-    activities() {
-      return get(this.$store.getters['experiences/current'], 'activities') || [];
+    mounted() {
+      this.$refs.activity_input.focus()
     },
-    experiencesProgress() {
-      return this.$store.getters['experiences/progress'];
-    },
-  },
-  mounted() {
-    this.$refs.activity_input.focus()
-  },
-  methods: {
-    addActivity(e) {
-      if (isBlank(this.$refs.activity_input.value)) return;
-      this.$store.dispatch('experiences/addActivity', this.$refs.activity_input.value)
-      this.$refs.activity_input.value = '';
-    },
-    removeActivity(activity) {
-      if(window.confirm('Je confirme vouloir supprimer cette activité ?')){
-        this.$store.dispatch('experiences/removeActivity', activity)
+    methods: {
+      addActivity(e) {
+        if (isBlank(this.$refs.activity_input.value)) return;
+        this.$store.dispatch('experiences/addActivity', this.$refs.activity_input.value)
+        this.$refs.activity_input.value = '';
+      },
+      removeActivity(activity) {
+        if(window.confirm('Je confirme vouloir supprimer cette activité ?')){
+          this.$store.dispatch('experiences/removeActivity', activity)
+        }
       }
     }
   }
-}
 </script>
 
 <style>
-.activites{
-  margin-top: 4rem;
-}
-.mx-datepicker-range {
-  width: 100%;
-}
-.form-help-ativites{
-  height: 60%;
-  padding: 1rem;
-  overflow: auto;
-}
+  .activites{
+    margin-top: 4rem;
+  }
+  .mx-datepicker-range {
+    width: 100%;
+  }
+  .form-help-ativites{
+    height: 60%;
+    padding: 1rem;
+    overflow: auto;
+  }
 </style>

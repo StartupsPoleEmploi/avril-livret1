@@ -14,29 +14,29 @@
 </template>
 
 <script>
-import RadioList from "~/components/RadioList.vue";
-import helpLoaderMixin from "~/mixins/helpLoader.js";
-import possibleAnswers from '~/contents/data/latestCourseLevel';
+  import RadioList from 'avril/js/components/RadioList.vue';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import possibleAnswers from '~/contents/data/latestCourseLevel';
 
-export default {
-  mixins: [helpLoaderMixin],
-  components: {
-    RadioList
-  },
-  computed: {
-    latestCourseLevel() {
-      return this.$store.state.education.latestCourseLevel;
+  export default {
+    mixins: [helpLoaderMixin],
+    components: {
+      RadioList
+    },
+    computed: {
+      latestCourseLevel() {
+        return this.$store.state.education.latestCourseLevel;
+      }
+    },
+    data() {
+      return {
+        possibleAnswers,
+      };
+    },
+    methods: {
+      addLatestCourseLevel(e) {
+        this.$store.commit('education/addLatestCourseLevel', e);
+      }
     }
-  },
-  data() {
-    return {
-      possibleAnswers,
-    };
-  },
-  methods: {
-    addLatestCourseLevel(e) {
-      this.$store.commit("education/addLatestCourseLevel", e);
-    }
-  }
-};
+  };
 </script>

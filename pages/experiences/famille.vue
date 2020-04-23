@@ -28,35 +28,35 @@
 </template>
 
 <script>
-import get from 'lodash.get';
-import RadioList from "~/components/RadioList.vue";
-import helpLoaderMixin from "~/mixins/helpLoader.js";
-import possibleAnswers from '~/contents/data/experienceCategories';
+  import get from 'lodash.get';
+  import RadioList from 'avril/js/components/RadioList.vue';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import possibleAnswers from '~/contents/data/experienceCategories';
 
-export default {
-  mixins: [helpLoaderMixin],
-  beforeCreate() {
-    if (!this.$store.getters["experiences/current"]) {
-      this.$router.push("/experiences");
+  export default {
+    mixins: [helpLoaderMixin],
+    beforeCreate() {
+      if (!this.$store.getters['experiences/current']) {
+        this.$router.push('/experiences');
+      }
+    },
+    components: {
+      RadioList
+    },
+    computed: {
+      category() {
+        return get(this.$store.getters['experiences/current'], 'category');
+      }
+    },
+    data() {
+      return {
+        possibleAnswers,
+      };
+    },
+    methods: {
+      addCategory(category) {
+        this.$store.dispatch('experiences/addCategory', category);
+      }
     }
-  },
-  components: {
-    RadioList
-  },
-  computed: {
-    category() {
-      return get(this.$store.getters["experiences/current"], 'category');
-    }
-  },
-  data() {
-    return {
-      possibleAnswers,
-    };
-  },
-  methods: {
-    addCategory(category) {
-      this.$store.dispatch("experiences/addCategory", category);
-    }
-  }
-};
+  };
 </script>

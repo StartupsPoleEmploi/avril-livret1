@@ -30,35 +30,35 @@
 </template>
 
 <script>
-import get from 'lodash.get';
-import RadioList from "~/components/RadioList.vue";
-import helpLoaderMixin from "~/mixins/helpLoader.js";
-import possibleAnswers from '~/contents/data/experienceStatuses';
+  import get from 'lodash.get';
+  import RadioList from 'avril/js/components/RadioList.vue';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import possibleAnswers from '~/contents/data/experienceStatuses';
 
-export default {
-  mixins: [helpLoaderMixin],
-  beforeCreate() {
-    if (!this.$store.getters["experiences/current"]) {
-      this.$router.push("/experiences");
+  export default {
+    mixins: [helpLoaderMixin],
+    beforeCreate() {
+      if (!this.$store.getters['experiences/current']) {
+        this.$router.push('/experiences');
+      }
+    },
+    components: {
+      RadioList
+    },
+    computed: {
+      contractType() {
+        return get(this.$store.getters['experiences/current'], 'contractType');
+      }
+    },
+    data() {
+      return {
+        possibleAnswers
+      }
+    },
+    methods: {
+      addContractType(e) {
+        this.$store.dispatch('experiences/addContractType', e);
+      }
     }
-  },
-  components: {
-    RadioList
-  },
-  computed: {
-    contractType() {
-      return get(this.$store.getters["experiences/current"], 'contractType');
-    }
-  },
-  data() {
-    return {
-      possibleAnswers
-    }
-  },
-  methods: {
-    addContractType(e) {
-      this.$store.dispatch("experiences/addContractType", e);
-    }
-  }
-};
+  };
 </script>

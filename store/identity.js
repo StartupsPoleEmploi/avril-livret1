@@ -1,7 +1,6 @@
-import {isPresent} from '../utils/boolean';
-import {percent} from '../utils/number';
-import {labelGetter} from '../utils/function';
-import {algoliaResultToAddress} from '../utils/geo';
+import {isPresent} from 'avril/js/utils/boolean';
+import {percent} from 'avril/js/utils/number';
+import {labelGetter} from 'avril/js/utils/function';
 
 import currentSituationAnswers from '~/contents/data/currentSituation';
 
@@ -81,77 +80,76 @@ export const mutations = {
   initState(state, serverState) {
     state = Object.assign(state, serverState)
   },
-  addLastName(state, value) {
-    state.lastName = value
-  },
-  addUsageName(state, value) {
-    state.usageName = value
-  },
-  addFirstNames(state, value) {
-    state.firstNames = value
-  },
-  addSex(state, value) {
-    state.sex = value
-  },
-  addEmail(state, value) {
-    state.email = value
-  },
-  addHomePhoneNumber(state, value) {
-    state.homePhoneNumber = value
-  },
-  addCellPhoneNumber(state, value) {
-    state.cellPhoneNumber = value
-  },
-  addBirthday(state, value) {
-    state.birthday = value
-  },
-  addBirthPlace(state, value) {
-    state.birthPlace = value
-  },
-  addNationality(state, value) {
-    state.nationality = value
-  },
-  addAddress(state, value) {
-    state.address = value
-  },
-  addCurrentSituationStatus(state, value) {
-    state.currentSituation = {status: value}
-  },
-  addCurrentSituationEmploymentType(state, value) {
-    state.currentSituation = {
-      status: 'working',
-      employmentType: value,
-      registerToPoleEmploi: null,
-      registerToPoleEmploiSince: null,
-      compensationType: null,
-    }
-  },
-  addCurrentSituationRegisterToPoleEmploi(state, value) {
-    state.currentSituation = {
-      status: 'jobseeking',
-      registerToPoleEmploi: value,
-      employmentType: null,
-    }
-  },
-  addCurrentSituationRegisterToPoleEmploiSince(state, value) {
-    state.currentSituation = {
-      status: 'jobseeking',
-      registerToPoleEmploi: true,
-      registerToPoleEmploiSince: value,
-      employmentType: null,
-    }
-  },
-  addCurrentSituationCompensationType(state, value) {
-    state.currentSituation = {
-      status: 'jobseeking',
-      registerToPoleEmploi: true,
-      registerToPoleEmploiSince: state.currentSituation.registerToPoleEmploiSince,
-      compensationType: value,
-      employmentType: null,
-    }
-  },
-  addIsHandicapped(state, value) {
-    state.isHandicapped = value
-  },
-
+  // addLastName(state, value) {
+  //   state.lastName = value
+  // },
+  // addUsageName(state, value) {
+  //   state.usageName = value
+  // },
+  // addFirstNames(state, value) {
+  //   state.firstNames = value
+  // },
+  // addSex(state, value) {
+  //   state.sex = value
+  // },
+  // addEmail(state, value) {
+  //   state.email = value
+  // },
+  // addHomePhoneNumber(state, value) {
+  //   state.homePhoneNumber = value
+  // },
+  // addCellPhoneNumber(state, value) {
+  //   state.cellPhoneNumber = value
+  // },
+  // addBirthday(state, value) {
+  //   state.birthday = value
+  // },
+  // addBirthPlace(state, value) {
+  //   state.birthPlace = value
+  // },
+  // addNationality(state, value) {
+  //   state.nationality = value
+  // },
+  // addAddress(state, value) {
+  //   state.address = value
+  // },
+  // addCurrentSituationStatus(state, value) {
+  //   state.currentSituation = {status: value}
+  // },
+  // addCurrentSituationEmploymentType(state, value) {
+  //   state.currentSituation = {
+  //     status: 'working',
+  //     employmentType: value,
+  //     registerToPoleEmploi: null,
+  //     registerToPoleEmploiSince: null,
+  //     compensationType: null,
+  //   }
+  // },
+  // addCurrentSituationRegisterToPoleEmploi(state, value) {
+  //   state.currentSituation = {
+  //     status: 'jobseeking',
+  //     registerToPoleEmploi: value,
+  //     employmentType: null,
+  //   }
+  // },
+  // addCurrentSituationRegisterToPoleEmploiSince(state, value) {
+  //   state.currentSituation = {
+  //     status: 'jobseeking',
+  //     registerToPoleEmploi: true,
+  //     registerToPoleEmploiSince: value,
+  //     employmentType: null,
+  //   }
+  // },
+  // addCurrentSituationCompensationType(state, value) {
+  //   state.currentSituation = {
+  //     status: 'jobseeking',
+  //     registerToPoleEmploi: true,
+  //     registerToPoleEmploiSince: state.currentSituation.registerToPoleEmploiSince,
+  //     compensationType: value,
+  //     employmentType: null,
+  //   }
+  // },
+  // addIsHandicapped(state, value) {
+  //   state.isHandicapped = value
+  // },
 }

@@ -55,62 +55,62 @@
 </template>
 
 <script>
-import get from 'lodash.get';
-import helpLoaderMixin from "~/mixins/helpLoader.js";
-import GeoInput from '~/components/GeoInput';
+  import get from 'lodash.get';
+  import GeoInput from 'avril/js/components/GeoInput';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
 
-export default {
-  mixins: [helpLoaderMixin],
-  components: {
-    GeoInput,
-  },
-  beforeCreate() {
-    if (!this.$store.getters["experiences/current"]) {
-      this.$router.push("/experiences");
+  export default {
+    mixins: [helpLoaderMixin],
+    components: {
+      GeoInput,
+    },
+    beforeCreate() {
+      if (!this.$store.getters['experiences/current']) {
+        this.$router.push('/experiences');
+      }
+    },
+    computed: {
+      role() {
+        return get(this.$store.getters['experiences/current'], 'role');
+      },
+      companyName() {
+        return get(this.$store.getters['experiences/current'], 'companyName');
+      },
+      companyAddress() {
+        return get(this.$store.getters['experiences/current'], 'companyAddress');
+      }
+    },
+    mounted() {
+      if (this.$refs.role) {
+        this.$refs.role.focus();
+      }
+    },
+    methods: {
+      addRole(e) {
+        this.$store.dispatch('experiences/addRole', e.target.value);
+      },
+      addCompanyName(e) {
+        this.$store.dispatch('experiences/addCompanyName', e.target.value);
+      },
+      addCompanyAddress(result) {
+        this.$store.dispatch('experiences/addCompanyAddress', result);
+      },
     }
-  },
-  computed: {
-    role() {
-      return get(this.$store.getters["experiences/current"], 'role');
-    },
-    companyName() {
-      return get(this.$store.getters["experiences/current"], 'companyName');
-    },
-    companyAddress() {
-      return get(this.$store.getters["experiences/current"], 'companyAddress');
-    }
-  },
-  mounted() {
-    if (this.$refs.role) {
-      this.$refs.role.focus();
-    }
-  },
-  methods: {
-    addRole(e) {
-      this.$store.dispatch("experiences/addRole", e.target.value);
-    },
-    addCompanyName(e) {
-      this.$store.dispatch("experiences/addCompanyName", e.target.value);
-    },
-    addCompanyAddress(result) {
-      this.$store.dispatch("experiences/addCompanyAddress", result);
-    },
-  }
-};
+  };
 </script>
 
-<style>
-.push-enter {
-  margin-top: 5px;
-  margin-right: 8px;
-}
-.avril-field-action {
-  margin-top: 2rem;
-}
-.real-stepper-container {
-  visibility: hidden;
-}
-.real-navigation {
-  z-index: -2;
-}
+<style scoped>
+  .push-enter {
+    margin-top: 5px;
+    margin-right: 8px;
+  }
+  .avril-field-action {
+    margin-top: 2rem;
+  }
+  .real-stepper-container {
+    visibility: hidden;
+  }
+  .real-navigation {
+    z-index: -2;
+  }
 </style>

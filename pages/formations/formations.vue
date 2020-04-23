@@ -46,31 +46,29 @@
 </template>
 
 <script>
-import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
 
-export default {
-  mixins: [helpLoaderMixin],
-  computed: {
-    trainings () {
-      return this.$store.state.education.trainings;
+  export default {
+    mixins: [helpLoaderMixin],
+    computed: {
+      trainings () {
+        return this.$store.state.education.trainings;
+      },
     },
-  },
-  methods: {
-    addTraining(e) {
-      if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
-        return false;
-      }
-      this.$store.commit('education/addTraining', this.$refs.avril__name.value)
-      this.$refs.avril__name.value = ''
-    },
-    removeTraining(value) {
-      if(window.confirm('Je confirme vouloir supprimer cette formation ?')){
-        this.$store.commit('education/removeTraining', value);
+    methods: {
+      addTraining(e) {
+        if( this.$refs.avril__name.value == '' || this.$refs.avril__name.value == ' ' ){
+          return false;
+        }
+        this.$store.commit('education/addTraining', this.$refs.avril__name.value)
+        this.$refs.avril__name.value = ''
+      },
+      removeTraining(value) {
+        if(window.confirm('Je confirme vouloir supprimer cette formation ?')){
+          this.$store.commit('education/removeTraining', value);
+        }
       }
     }
   }
-}
 </script>
 
-<style>
-</style>

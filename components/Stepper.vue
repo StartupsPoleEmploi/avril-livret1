@@ -17,20 +17,20 @@
 
 </template>
 <script>
-import NavBack from '~/components/NavBack.vue';
+  import NavBack from '~/components/NavBack.vue';
 
-export default {
-  components: {
-    NavBack
-  },
-  computed: {
-    currentPath() {
-      return this.$store.state.currentPath;
+  export default {
+    components: {
+      NavBack
     },
-    steps() {
-      const stepObject = this.$store.state.steps.find(s => s.path === this.$store.getters.currentTab);
-      if (stepObject) return stepObject.steps.filter(s => !s.hidden);
+    computed: {
+      currentPath() {
+        return this.$store.state.currentPath;
+      },
+      steps() {
+        const stepObject = this.$store.state.steps.find(s => s.path === this.$store.getters.currentTab);
+        if (stepObject) return stepObject.steps.filter(s => !s.hidden);
+      },
     },
-  },
-}
+  }
 </script>

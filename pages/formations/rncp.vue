@@ -46,31 +46,31 @@
 </template>
 
 <script>
-import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
 
-export default {
-  mixins: [helpLoaderMixin],
-  computed: {
-    currentDegree() {
-      return this.$store.state.education.currentDegree;
+  export default {
+    mixins: [helpLoaderMixin],
+    computed: {
+      currentDegree() {
+        return this.$store.state.education.currentDegree;
+      },
+      relatedDegrees() {
+        return this.$store.state.education.relatedDegrees;
+      },
     },
-    relatedDegrees() {
-      return this.$store.state.education.relatedDegrees;
-    },
-  },
-  methods: {
-    addRelatedDegree(e) {
-      if( this.$refs.relatedDegree.value == '' || this.$refs.relatedDegree.value == ' ' ){
-        return false;
-      }
-      this.$store.commit('education/addRelatedDegree', this.$refs.relatedDegree.value)
-      this.$refs.relatedDegree.value = ''
-    },
-    removeRelatedDegree(value) {
-      if(window.confirm('Je confirme vouloir supprimer ce diplôme ?')){
-        this.$store.commit('education/removeRelatedDegree', value)
+    methods: {
+      addRelatedDegree(e) {
+        if( this.$refs.relatedDegree.value == '' || this.$refs.relatedDegree.value == ' ' ){
+          return false;
+        }
+        this.$store.commit('education/addRelatedDegree', this.$refs.relatedDegree.value)
+        this.$refs.relatedDegree.value = ''
+      },
+      removeRelatedDegree(value) {
+        if(window.confirm('Je confirme vouloir supprimer ce diplôme ?')){
+          this.$store.commit('education/removeRelatedDegree', value)
+        }
       }
     }
   }
-}
 </script>

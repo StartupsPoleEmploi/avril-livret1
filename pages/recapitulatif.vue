@@ -139,84 +139,84 @@
 
 <script>
   import {isPresent} from 'avril/js/utils/boolean.js';
-import {periodTotalHours, formatDate} from '~/utils/time.js';
-import {phoenixUrl} from '~/utils/url.js';
-import {addressLabelify} from '~/utils/geo.js';
-import {feminize} from '~/utils/string.js';
+  import {periodTotalHours, formatDate} from 'avril/js/utils/time.js';
+  import {addressLabelify} from 'avril/js/utils/geo.js';
+  import {feminize} from 'avril/js/utils/string.js';
+  import {phoenixUrl} from '~/utils/url.js';
 
-import {BOOKLET_MIN_HOURS} from '../constants/index';
+  import {BOOKLET_MIN_HOURS} from '~/constants/index';
 
-import CompanyDisplay from '~/components/CompanyDisplay.vue';
-import PeriodDisplay from '~/components/PeriodDisplay.vue';
+  import CompanyDisplay from '~/components/CompanyDisplay.vue';
+  import PeriodDisplay from '~/components/PeriodDisplay.vue';
 
-export default {
-  data: () => ({
-    bookletMinHours: BOOKLET_MIN_HOURS,
-  }),
-  layout: 'recapitulatif',
-  components: {
-    CompanyDisplay,
-    PeriodDisplay,
-  },
-  computed: {
-    education() {
-      return this.$store.state.education
+  export default {
+    data: () => ({
+      bookletMinHours: BOOKLET_MIN_HOURS,
+    }),
+    layout: 'recapitulatif',
+    components: {
+      CompanyDisplay,
+      PeriodDisplay,
     },
-    latestCourseLevelLabel() {
-      return this.$store.getters['education/latestCourseLevelLabel'];
+    computed: {
+      education() {
+        return this.$store.state.education
+      },
+      latestCourseLevelLabel() {
+        return this.$store.getters['education/latestCourseLevelLabel'];
+      },
+      latestDegreeLabel() {
+        return this.$store.getters['education/latestDegreeLabel'];
+      },
+      relatedDegrees () {
+        return this.$store.state.education.relatedDegrees
+      },
+      identity() {
+        return this.$store.state.identity
+      },
+      experiences() {
+        return this.$store.state.experiences
+      },
+      experiencesProgress() {
+        return this.$store.getters['experiences/progress'];
+      },
+      progress() {
+        return this.$store.getters.progress;
+      },
+      backUrl() {
+        return phoenixUrl(this.$store.state.hash);
+      },
+      currentSituationStatusLabel() {
+        return this.$store.getters['identity/currentSituationStatusLabel'];
+      },
+      currentSituationEmploymentTypeLabel() {
+        return this.$store.getters['identity/currentSituationEmploymentTypeLabel'];
+      },
+      currentSituationCompensationTypeLabel() {
+        return this.$store.getters['identity/currentSituationCompensationTypeLabel'];
+      },
     },
-    latestDegreeLabel() {
-      return this.$store.getters['education/latestDegreeLabel'];
-    },
-    relatedDegrees () {
-      return this.$store.state.education.relatedDegrees
-    },
-    identity() {
-      return this.$store.state.identity
-    },
-    experiences() {
-      return this.$store.state.experiences
-    },
-    experiencesProgress() {
-      return this.$store.getters['experiences/progress'];
-    },
-    progress() {
-      return this.$store.getters.progress;
-    },
-    backUrl() {
-      return phoenixUrl(this.$store.state.hash);
-    },
-    currentSituationStatusLabel() {
-      return this.$store.getters['identity/currentSituationStatusLabel'];
-    },
-    currentSituationEmploymentTypeLabel() {
-      return this.$store.getters['identity/currentSituationEmploymentTypeLabel'];
-    },
-    currentSituationCompensationTypeLabel() {
-      return this.$store.getters['identity/currentSituationCompensationTypeLabel'];
-    },
-  },
-  methods: {
-    feminize: function(word, feminineVersion) {
-      return feminize(word, this.$store.state.identity.sex, feminineVersion);
-    },
-    formatDate,
-    periodTotalHours,
-    addressLabelify,
-    isPresent,
-    markAsCompleteAndGoToCerfa: function() {
-      this.$store.commit('markAsComplete');
-      this.$router.push({
-        path: '/cerfa'
-      })
-    },
+    methods: {
+      feminize: function(word, feminineVersion) {
+        return feminize(word, this.$store.state.identity.sex, feminineVersion);
+      },
+      formatDate,
+      periodTotalHours,
+      addressLabelify,
+      isPresent,
+      markAsCompleteAndGoToCerfa: function() {
+        this.$store.commit('markAsComplete');
+        this.$router.push({
+          path: '/cerfa'
+        })
+      },
+    }
   }
-}
 </script>
 
 <style scoped>
-.avril-recapitulatif{
-  padding: 4rem;
-  padding-top: 2rem;
-}
+  .avril-recapitulatif{
+    padding: 4rem;
+    padding-top: 2rem;
+  }
 </style>

@@ -1,6 +1,6 @@
-import get from "lodash.get";
-import { uuid } from "../utils/string";
-import { parseISODate } from "../utils/time";
+import get from 'lodash.get';
+import { uuid } from 'avril/js/utils/string';
+import { parseISODate } from 'avril/js/utils/time';
 
 const mapClassification = data => data.label;
 
@@ -11,7 +11,7 @@ const mapExperience = experience => {
     role: experience.title,
     companyName: experience.company_name,
     companyAddress: Object.assign({}, experience.full_address, {
-      postalCode: get(experience, "full_address.postal_code", null)
+      postalCode: get(experience, 'full_address.postal_code', null)
     }),
     contractType: experience.employment_type,
     category: experience.job_industry,
@@ -50,7 +50,7 @@ export const backendToStore = {
     //   employmentType: get(backendData, "current_situation.employment_type", null),
     //   registerToPoleEmploi: get(backendData, "current_situation.register_to_pole_emploi", null),
       registerToPoleEmploiSince: parseISODate(
-        get(backendData, "currentSituation.registerToPoleEmploiSince", null)
+        get(backendData, 'currentSituation.registerToPoleEmploiSince', null)
       ),
       // compensationType: get(backendData, "current_situation.compensation_type")
     },
@@ -72,8 +72,8 @@ export const backendToStore = {
     // }
   }),
   education: backendData => ({
-    relatedDegrees: get(backendData, "diplomas", []).map(mapClassification),
-    trainings: get(backendData, "courses", []).map(mapClassification),
+    relatedDegrees: get(backendData, 'diplomas', []).map(mapClassification),
+    trainings: get(backendData, 'courses', []).map(mapClassification),
     latestCourseLevel: backendData.grade,
     latestDegree: backendData.degree
   }),

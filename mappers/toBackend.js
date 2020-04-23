@@ -1,12 +1,12 @@
-import get from "lodash.get";
-import { formatISODate } from "../utils/time";
+import get from 'lodash.get';
+import { formatISODate } from 'avril/js/utils/time';
 
 const mapExperience = experience => ({
   uuid: experience.uuid,
   title: experience.role,
   company_name: experience.companyName,
   full_address: Object.assign({}, experience.companyAddress, {
-    postal_code: get(experience, "companyAddress.postalCode")
+    postal_code: get(experience, 'companyAddress.postalCode')
   }),
   job_industry: experience.category,
   employment_type: experience.contractType,
@@ -24,7 +24,7 @@ const mapClassification = classification => ({
 
 export const storeToBackend = {
   index: state => ({
-    completed_at: formatISODate(state.completedAt, "complete"),
+    completed_at: formatISODate(state.completedAt, 'complete'),
     certification_name: state.certificationLabel,
     certifier_name: state.certifierLabel
   }),

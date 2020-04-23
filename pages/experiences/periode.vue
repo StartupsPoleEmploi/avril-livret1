@@ -69,83 +69,83 @@
 </template>
 
 <script>
-import get from 'lodash.get';
-import helpLoaderMixin from '~/mixins/helpLoader.js';
-import withDatePickerMixin from '~/mixins/withDatePicker.js';
+  import get from 'lodash.get';
+  import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
 
-import RadioList from "~/components/RadioList.vue";
-import PeriodDisplay from "~/components/PeriodDisplay.vue";
+  import RadioList from 'avril/js/components/RadioList.vue';
+  import PeriodDisplay from '~/components/PeriodDisplay.vue';
 
-export default {
-  mixins: [
-    helpLoaderMixin,
-    withDatePickerMixin,
-  ],
-  beforeCreate() {
-    if (!this.$store.getters['experiences/current']) {
-      this.$router.push('/experiences');
-    }
-  },
-  data() {
-    return {
-      periodStart: '',
-      periodEnd: '',
-      periodWeekHours: '',
-      isCurrentJob: null,
-    }
-  },
-  components: {
-    PeriodDisplay,
-    RadioList,
-  },
-  computed: {
-    experience() {
-      return this.$store.getters['experiences/current'];
-    },
-    periods() {
-      return get(this.$store.getters['experiences/current'], 'periods');
-    },
-  },
-  methods: {
-    addPeriod() {
-      if (!this.$refs.periodStart.value) return this.$refs.periodStart.focus();
-      if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.focus();
-      if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.focus();
-
-      const period = {
-        start: this.periodStart,
-        end: this.isCurrentJob ? null : this.periodEnd,
-        weekHours: parseInt(this.periodWeekHours),
-      };
-      this.$store.dispatch('experiences/addPeriod', period);
-
-      this.periodStart = '';
-      this.periodEnd = '';
-      this.periodWeekHours = '';
-      this.isCurrentJob = false;
-    },
-    editPeriod(periodId) {
-      const period = this.$store.getters['experiences/current'].periods.find(p => p.uuid == periodId)
-      this.periodStart = period.start;
-      this.periodEnd = period.end;
-      this.periodWeekHours = period.weekHours;
-      this.isCurrentJob = !period.end;
-      this.$store.dispatch('experiences/removePeriod', periodId);
-    },
-    setIsCurrentJob(value) {
-      this.isCurrentJob = value;
-    },
-    removePeriod(periodId) {
-      if(window.confirm('Je confirme vouloir supprimer cette période ?')){
-        this.$store.dispatch('experiences/removePeriod', periodId);
+  export default {
+    mixins: [
+      helpLoaderMixin,
+      withDatePickerMixin,
+    ],
+    beforeCreate() {
+      if (!this.$store.getters['experiences/current']) {
+        this.$router.push('/experiences');
       }
     },
-    maxDate(date) {
-      return date > new Date() || (this.periodEnd && (date > this.periodEnd));
+    data() {
+      return {
+        periodStart: '',
+        periodEnd: '',
+        periodWeekHours: '',
+        isCurrentJob: null,
+      }
     },
-    minDate(date) {
-      return date > new Date() || (this.periodStart && (date < this.periodStart));
+    components: {
+      PeriodDisplay,
+      RadioList,
     },
+    computed: {
+      experience() {
+        return this.$store.getters['experiences/current'];
+      },
+      periods() {
+        return get(this.$store.getters['experiences/current'], 'periods');
+      },
+    },
+    methods: {
+      addPeriod() {
+        if (!this.$refs.periodStart.value) return this.$refs.periodStart.focus();
+        if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.focus();
+        if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.focus();
+
+        const period = {
+          start: this.periodStart,
+          end: this.isCurrentJob ? null : this.periodEnd,
+          weekHours: parseInt(this.periodWeekHours),
+        };
+        this.$store.dispatch('experiences/addPeriod', period);
+
+        this.periodStart = '';
+        this.periodEnd = '';
+        this.periodWeekHours = '';
+        this.isCurrentJob = false;
+      },
+      editPeriod(periodId) {
+        const period = this.$store.getters['experiences/current'].periods.find(p => p.uuid == periodId)
+        this.periodStart = period.start;
+        this.periodEnd = period.end;
+        this.periodWeekHours = period.weekHours;
+        this.isCurrentJob = !period.end;
+        this.$store.dispatch('experiences/removePeriod', periodId);
+      },
+      setIsCurrentJob(value) {
+        this.isCurrentJob = value;
+      },
+      removePeriod(periodId) {
+        if(window.confirm('Je confirme vouloir supprimer cette période ?')){
+          this.$store.dispatch('experiences/removePeriod', periodId);
+        }
+      },
+      maxDate(date) {
+        return date > new Date() || (this.periodEnd && (date > this.periodEnd));
+      },
+      minDate(date) {
+        return date > new Date() || (this.periodStart && (date < this.periodStart));
+      },
+    }
   }
-}
 </script>

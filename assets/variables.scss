@@ -1,3 +1,5 @@
+@import '~avril/scss/variables/fonts';
+
 $avril-colors: (
   'gray': #F5F6F9,
   'gray-dark': #DEE1E8,
@@ -22,6 +24,6 @@ $info: avril-color('marine');
 $danger: avril-color('red');
 $link: avril-color('marine');
 $link-hover: lighten(avril-color('marine'), 5%);
-$family-sans-serif: 'Nunito Sans', BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+// $family-sans-serif: 'Nunito Sans', BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $background: avril-color('gray');
 $notification-padding: 0.5rem 1rem;

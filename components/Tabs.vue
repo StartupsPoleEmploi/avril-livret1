@@ -24,29 +24,30 @@
 
 </template>
 <script>
-import Check from './svg/Check';
-import {BOOKLET_MIN_HOURS} from '../constants/index';
+  import Check from 'avril/images/icons/check.svg';
 
-export default {
-  components: {
-    Check,
-  },
-  computed: {
-    educationProgress() {
-      return this.$store.getters['education/progress'];
+  import {BOOKLET_MIN_HOURS} from '~/constants/index';
+
+  export default {
+    components: {
+      Check,
     },
-    experiencesProgress() {
-      return this.$store.getters['experiences/progress'];
+    computed: {
+      educationProgress() {
+        return this.$store.getters['education/progress'];
+      },
+      experiencesProgress() {
+        return this.$store.getters['experiences/progress'];
+      },
+      experiencesTotalHours() {
+        return this.$store.getters['experiences/totalHours'];
+      },
+      experiencesMinHours() {
+        return BOOKLET_MIN_HOURS;
+      },
+      currentTab () {
+        return this.$store.getters.currentTab;
+      }
     },
-    experiencesTotalHours() {
-      return this.$store.getters['experiences/totalHours'];
-    },
-    experiencesMinHours() {
-      return BOOKLET_MIN_HOURS;
-    },
-    currentTab () {
-      return this.$store.getters.currentTab;
-    }
-  },
-}
+  }
 </script>

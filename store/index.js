@@ -1,13 +1,13 @@
 import get from 'lodash.get';
-import { percent } from "../utils/number";
-import { first, last } from "../utils/array";
-import { fraToEng } from "../utils/translate";
-import { redirectToPhoenix } from "../utils/url";
+import { percent } from 'avril/js/utils/number';
+import { first, last } from 'avril/js/utils/array';
 import { queryApiOrRedirect } from 'avril/js/utils/api';
+import { fraToEng } from '~/utils/translate';
+import { redirectToPhoenix } from '~/utils/url';
 
 import steps from '~/contents/data/steps';
 
-import { backendToStore } from "../mappers/toStore";
+import { backendToStore } from '~/mappers/toStore';
 
 export const state = () => ({
   certificationLabel: null,
@@ -111,12 +111,12 @@ export const actions = {
           }
         );
       } else {
-        console.error("Request failed", result);
-        redirectToPhoenix({redirect, path}, hash, "request_failed");
+        console.error('Request failed', result);
+        redirectToPhoenix({redirect, path}, hash, 'request_failed');
       }
     } else {
-      console.warn(env.serverToPhoenixUrl ? "No hash no request" : "env.serverToPhoenixUrl not set");
-      redirectToPhoenix({redirect, path}, hash, "not_allowed");
+      console.warn(env.serverToPhoenixUrl ? 'No hash no request' : 'env.serverToPhoenixUrl not set');
+      redirectToPhoenix({redirect, path}, hash, 'not_allowed');
     }
   },
   initState(
@@ -124,19 +124,19 @@ export const actions = {
     { civility, experiences, education, ...rest }
   ) {
     commit(
-      "initState",
+      'initState',
       backendToStore.index(rest)
     );
     commit(
-      "identity/initState",
+      'identity/initState',
       backendToStore.identity(civility || {})
     );
     commit(
-      "experiences/initState",
+      'experiences/initState',
       backendToStore.experiences(experiences || [])
     );
     commit(
-      "education/initState",
+      'education/initState',
       backendToStore.education(education || {})
     );
   }

@@ -1,4 +1,4 @@
-import { storeToBackend } from "../mappers/toBackend";
+import { storeToBackend } from '~/mappers/toBackend';
 import {
   NO_SAVING,
   SAVING_PENDING,
@@ -18,11 +18,11 @@ export default function({ store, req, env }) {
     fetch(
       `${env.clientToPhoenixUrl}/api/booklet?hash=${store.state.hash}`,
       {
-        method: "PUT",
-        mode: "cors",
+        method: 'PUT',
+        mode: 'cors',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           civility: storeToBackend.identity(store.state.identity),

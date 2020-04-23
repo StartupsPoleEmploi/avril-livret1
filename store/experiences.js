@@ -1,8 +1,8 @@
-import Vue from "vue";
-import { uuid } from "../utils/string";
-import { periodTotalHours } from "../utils/time";
-import { percent } from "../utils/number";
-import { BOOKLET_MIN_HOURS } from "../constants/index";
+import Vue from 'vue';
+import { uuid } from 'avril/js/utils/string';
+import { periodTotalHours } from 'avril/js/utils/time';
+import { percent } from 'avril/js/utils/number';
+import { BOOKLET_MIN_HOURS } from '~/constants/index';
 
 export const state = () => [];
 
@@ -70,41 +70,41 @@ export const mutations = {
 export const actions = {
   newExperience({ commit }) {
     const id = uuid();
-    commit("new", id);
-    commit("setCurrent", id);
+    commit('new', id);
+    commit('setCurrent', id);
   },
   addRole({ commit, getters }, role) {
-    commit("mutateExperience", {
+    commit('mutateExperience', {
       id: getters.current.uuid,
       role
     });
   },
   addCompanyName({ commit, getters }, companyName) {
-    commit("mutateExperience", {
+    commit('mutateExperience', {
       id: getters.current.uuid,
       companyName
     });
   },
   addCompanyAddress({ commit, getters }, companyAddress) {
-    commit("mutateExperience", {
+    commit('mutateExperience', {
       id: getters.current.uuid,
       companyAddress
     });
   },
   addCategory({ commit, getters }, category) {
-    commit("mutateExperience", {
+    commit('mutateExperience', {
       id: getters.current.uuid,
       category
     });
   },
   addContractType({ commit, getters }, contractType) {
-    commit("mutateExperience", {
+    commit('mutateExperience', {
       id: getters.current.uuid,
       contractType
     });
   },
   addPeriod({ commit, getters }, period) {
-    commit("mutateExperience", {
+    commit('mutateExperience', {
       id: getters.current.uuid,
       periods: getters.current.periods.concat(
         Object.assign(period, { uuid: uuid() })
@@ -112,19 +112,19 @@ export const actions = {
     });
   },
   removePeriod({ commit, getters }, periodId) {
-    commit("mutateExperience", {
+    commit('mutateExperience', {
       id: getters.current.uuid,
       periods: getters.current.periods.filter(p => p.uuid !== periodId)
     });
   },
   addActivity({ commit, getters }, activity) {
-    commit("mutateExperience", {
+    commit('mutateExperience', {
       id: getters.current.uuid,
       activities: getters.current.activities.concat(activity)
     });
   },
   removeActivity({ commit, getters }, activity) {
-    commit("mutateExperience", {
+    commit('mutateExperience', {
       id: getters.current.uuid,
       activities: getters.current.activities.filter(a => a !== activity)
     });

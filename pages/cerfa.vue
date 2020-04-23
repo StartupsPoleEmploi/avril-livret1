@@ -567,154 +567,154 @@
 </template>
 
 <script>
-import ArrowRight from '@/assets/svgs/keyboard-arrow-right.svg';
-import CerfaMenu from '~/components/CerfaMenu';
-import PeriodDisplay from '~/components/PeriodDisplay.vue';
-import {capitalize, pluralize} from '~/utils/string.js';
-import {labelGetter} from '~/utils/function.js';
-import {addressLabelify} from '~/utils/geo.js';
-import {formatDate} from '~/utils/time.js';
-import currentSituationAnswers from '~/contents/data/currentSituation';
-import experienceStatusesAnswers from '~/contents/data/experienceStatuses';
-import experienceCategoriesAnswers from '~/contents/data/experienceCategories';
+  import ArrowRight from 'avril/images/icons/arrow-right.svg';
+  import {capitalize, pluralize} from 'avril/js/utils/string.js';
+  import {labelGetter} from 'avril/js/utils/function.js';
+  import {addressLabelify} from 'avril/js/utils/geo.js';
+  import {formatDate} from 'avril/js/utils/time.js';
+  import CerfaMenu from '~/components/CerfaMenu';
+  import PeriodDisplay from '~/components/PeriodDisplay.vue';
+  import currentSituationAnswers from '~/contents/data/currentSituation';
+  import experienceStatusesAnswers from '~/contents/data/experienceStatuses';
+  import experienceCategoriesAnswers from '~/contents/data/experienceCategories';
 
-export default {
-  components: {
-    ArrowRight,
-    CerfaMenu,
-    PeriodDisplay,
-  },
-  layout: 'cerfa',
-  computed: {
-    certificationLabel() {
-      return this.$store.state.certificationLabel
+  export default {
+    components: {
+      ArrowRight,
+      CerfaMenu,
+      PeriodDisplay,
     },
-    certifierLabel() {
-      return this.$store.state.certifierLabel
+    layout: 'cerfa',
+    computed: {
+      certificationLabel() {
+        return this.$store.state.certificationLabel
+      },
+      certifierLabel() {
+        return this.$store.state.certifierLabel
+      },
+      identity() {
+        return this.$store.state.identity
+      },
+      education() {
+        return this.$store.state.education
+      },
+      experiences() {
+        return this.$store.state.experiences
+      },
+      latestDegreeLabel() {
+        return this.$store.getters['education/latestDegreeLabel'];
+      },
+      latestCourseLevelLabel() {
+        return this.$store.getters['education/latestCourseLevelLabel'];
+      },
     },
-    identity() {
-      return this.$store.state.identity
+    data() {
+      return {
+        currentSituationAnswers,
+        experienceStatusesAnswers,
+        htmlBody: null,
+      }
     },
-    education() {
-      return this.$store.state.education
-    },
-    experiences() {
-      return this.$store.state.experiences
-    },
-    latestDegreeLabel() {
-      return this.$store.getters['education/latestDegreeLabel'];
-    },
-    latestCourseLevelLabel() {
-      return this.$store.getters['education/latestCourseLevelLabel'];
-    },
-  },
-  data() {
-    return {
-      currentSituationAnswers,
-      experienceStatusesAnswers,
-      htmlBody: null,
+    methods: {
+      capitalize,
+      pluralize,
+      addressLabelify,
+      experienceStatusesLabel(experience) {
+        return labelGetter(experienceStatusesAnswers, experience.contractType)
+      },
+      experienceCategoriesLabel(experience) {
+        return labelGetter(experienceCategoriesAnswers, experience.category)
+      },
+      formatDate,
     }
-  },
-  methods: {
-    capitalize,
-    pluralize,
-    addressLabelify,
-    experienceStatusesLabel(experience) {
-      return labelGetter(experienceStatusesAnswers, experience.contractType)
-    },
-    experienceCategoriesLabel(experience) {
-      return labelGetter(experienceCategoriesAnswers, experience.category)
-    },
-    formatDate,
   }
-}
 </script>
 
 <style lang="scss">
-.avril-recapitulatif{
-  padding: 2rem;
-}
-section {
-  margin: 2rem 1rem;
-  padding: 0;
-}
-.message.is-avril{
-  background: #fbfbfb;
-}
-.message.is-avril .message-body{
-  border-color: #66f2b3;
-}
-.atome{
-  margin-bottom: 2rem;
-}
-.is-spaced{
-  letter-spacing: .1rem;
-}
-.is-bottom-bordered{
-  /* border-bottom: 2px solid #333; */
-}
-@media screen {
-  .unseen{
-    display: none;
+  .avril-recapitulatif{
+    padding: 2rem;
   }
-}
-
-input[type="checkbox"], input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-
-  & + label {
-    position: relative;
-    cursor: initial;
+  section {
+    margin: 2rem 1rem;
     padding: 0;
-    padding-left: 5px;
-
-    &:before {
-      content: '';
-      margin-right: 5px;
-      display: inline-block;
-      vertical-align: text-top;
-      width: 1.25rem;
-      height: 1.25rem;
-      background: none;
-      font-size: 1.25rem;
-      line-height: 1.25rem;
-      border: thin solid;
-      font-weight: bold;
+  }
+  .message.is-avril{
+    background: #fbfbfb;
+  }
+  .message.is-avril .message-body{
+    border-color: #66f2b3;
+  }
+  .atome{
+    margin-bottom: 2rem;
+  }
+  .is-spaced{
+    letter-spacing: .1rem;
+  }
+  .is-bottom-bordered{
+    /* border-bottom: 2px solid #333; */
+  }
+  @media screen {
+    .unseen{
+      display: none;
     }
   }
 
-  &:checked + label:before {
-    content: '✓';
-  }
-}
+  input[type="checkbox"], input[type="radio"] {
+    position: absolute;
+    opacity: 0;
 
-table.cerfa-table {
-  width: 100%;
-  font-size: 1rem;
-  tr {
-    td {
-      padding: 0.5rem;
-      &:first-child {
-        text-align: right;
-        width: 25%;
-      }
-      &:last-child {
-        width: 75%;
-      }
+    & + label {
+      position: relative;
+      cursor: initial;
+      padding: 0;
+      padding-left: 5px;
 
-      &:nth-child(3), &:nth-child(4) {
-        width: 25%;
-      }
-
-      ul {
-        margin-top: 0;
-        margin-left: 1rem;
+      &:before {
+        content: '';
+        margin-right: 5px;
+        display: inline-block;
+        vertical-align: text-top;
+        width: 1.25rem;
+        height: 1.25rem;
+        background: none;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        border: thin solid;
+        font-weight: bold;
       }
     }
-    &:last-child td {
-      border-bottom: none;
+
+    &:checked + label:before {
+      content: '✓';
     }
   }
-}
+
+  table.cerfa-table {
+    width: 100%;
+    font-size: 1rem;
+    tr {
+      td {
+        padding: 0.5rem;
+        &:first-child {
+          text-align: right;
+          width: 25%;
+        }
+        &:last-child {
+          width: 75%;
+        }
+
+        &:nth-child(3), &:nth-child(4) {
+          width: 25%;
+        }
+
+        ul {
+          margin-top: 0;
+          margin-left: 1rem;
+        }
+      }
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+  }
 </style>

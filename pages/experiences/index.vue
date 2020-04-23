@@ -71,56 +71,56 @@
 </template>
 
 <script>
-import helpLoaderMixin from '~/mixins/helpLoader.js';
-import { isBlank } from '~/utils/boolean.js';
-import PeriodDisplay from '~/components/PeriodDisplay.vue';
-import CompanyDisplay from '~/components/CompanyDisplay.vue';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import { isBlank } from 'avril/js/utils/boolean.js';
+  import PeriodDisplay from '~/components/PeriodDisplay.vue';
+  import CompanyDisplay from '~/components/CompanyDisplay.vue';
 
-export default {
-  mixins: [helpLoaderMixin],
-  mounted() {
-    this.$store.commit('experiences/removeCurrent');
-  },
-  components: {
-    CompanyDisplay,
-    PeriodDisplay,
-  },
-  computed: {
-    experiences() {
-      return this.$store.state.experiences;
+  export default {
+    mixins: [helpLoaderMixin],
+    mounted() {
+      this.$store.commit('experiences/removeCurrent');
     },
-    experiencesProgress() {
-      return this.$store.getters['experiences/progress'];
-    }
-  },
-  methods: {
-    newExperience() {
-      this.$store.dispatch('experiences/newExperience');
+    components: {
+      CompanyDisplay,
+      PeriodDisplay,
     },
-    setCurrentExperience(uuid) {
-      this.$store.commit('experiences/setCurrent', uuid);
-    },
-    removeExperience(uuid) {
-      if(window.confirm('Je confirme vouloir supprimer cette expérience ?')){
-        this.$store.commit('experiences/remove', uuid);
+    computed: {
+      experiences() {
+        return this.$store.state.experiences;
+      },
+      experiencesProgress() {
+        return this.$store.getters['experiences/progress'];
       }
     },
-    experienceIsIncomplete(experience) {
-      return Object.values(experience).some(isBlank);
-    },
-  }
-};
+    methods: {
+      newExperience() {
+        this.$store.dispatch('experiences/newExperience');
+      },
+      setCurrentExperience(uuid) {
+        this.$store.commit('experiences/setCurrent', uuid);
+      },
+      removeExperience(uuid) {
+        if(window.confirm('Je confirme vouloir supprimer cette expérience ?')){
+          this.$store.commit('experiences/remove', uuid);
+        }
+      },
+      experienceIsIncomplete(experience) {
+        return Object.values(experience).some(isBlank);
+      },
+    }
+  };
 </script>
 
 <style>
-.experience-index {
-  padding-top: 5rem;
-}
-.avril-ou {
-  margin-top: 8px;
-  display: inline-block;
-}
-.columns.is-multiline {
-  margin-top: 40px;
-}
+  .experience-index {
+    padding-top: 5rem;
+  }
+  .avril-ou {
+    margin-top: 8px;
+    display: inline-block;
+  }
+  .columns.is-multiline {
+    margin-top: 40px;
+  }
 </style>

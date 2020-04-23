@@ -27,28 +27,28 @@
 </template>
 
 <script>
-import RadioList from "~/components/RadioList.vue";
-import helpLoaderMixin from "~/mixins/helpLoader.js";
-import possibleAnswers from '~/contents/data/latestDegree';
-export default {
-  mixins: [helpLoaderMixin],
-  components: {
-    RadioList
-  },
-  computed: {
-    latestDegree() {
-      return this.$store.state.education.latestDegree;
+  import RadioList from 'avril/js/components/RadioList.vue';
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import possibleAnswers from '~/contents/data/latestDegree';
+  export default {
+    mixins: [helpLoaderMixin],
+    components: {
+      RadioList
+    },
+    computed: {
+      latestDegree() {
+        return this.$store.state.education.latestDegree;
+      }
+    },
+    data() {
+      return {
+        possibleAnswers,
+      };
+    },
+    methods: {
+      addLatestDegree(e) {
+        this.$store.commit('education/addLatestDegree', e);
+      }
     }
-  },
-  data() {
-    return {
-      possibleAnswers,
-    };
-  },
-  methods: {
-    addLatestDegree(e) {
-      this.$store.commit("education/addLatestDegree", e);
-    }
-  }
-};
+  };
 </script>

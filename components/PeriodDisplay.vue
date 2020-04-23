@@ -14,7 +14,7 @@
     formatDate,
     isMoreThanOneWeek,
     periodTotalHours,
-  } from '../utils/time.js';
+  } from 'avril/js/utils/time.js';
 
   export default {
     computed: {

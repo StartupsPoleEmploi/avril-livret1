@@ -22,28 +22,28 @@
 </template>
 
 <script type="text/javascript">
-import {phoenixUrl} from '~/utils/url.js';
+  import {phoenixUrl} from '~/utils/url.js';
 
-export default {
-  computed: {
-    backUrl() {
-      return phoenixUrl(this.$store.state.hash)
+  export default {
+    computed: {
+      backUrl() {
+        return phoenixUrl(this.$store.state.hash)
+      },
     },
-  },
-  data() {
-    return {
-      htmlBody: null,
-    }
-  },
-  methods: {
-    addBody(e) {
-      this.htmlBody = document.documentElement.outerHTML.replace(/<script.*?<\/script>/g, '');
-      window.open('about:blank','print_popup','width=1000,height=800');
-      setTimeout(() => {
-        this.htmlBody = null;
-        window.location = this.backUrl;
-      }, 500);
+    data() {
+      return {
+        htmlBody: null,
+      }
     },
-  },
-}
+    methods: {
+      addBody(e) {
+        this.htmlBody = document.documentElement.outerHTML.replace(/<script.*?<\/script>/g, '');
+        window.open('about:blank','print_popup','width=1000,height=800');
+        setTimeout(() => {
+          this.htmlBody = null;
+          window.location = this.backUrl;
+        }, 500);
+      },
+    },
+  }
 </script>

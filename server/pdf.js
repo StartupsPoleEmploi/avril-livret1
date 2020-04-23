@@ -1,6 +1,6 @@
 import pdf from 'html-pdf';
 import fetch from 'node-fetch';
-import {uuid} from '../utils/string';
+import {uuid} from 'avril/js/utils/string';
 
 export default async (req, res) => {
   if (req.body.body) {

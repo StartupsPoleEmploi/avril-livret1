@@ -1,6 +1,4 @@
-export const objectToQueryString = object => Object.keys(object).filter(k => object[k]).map(k => {
-  return `${encodeURIComponent(k)}=${encodeURIComponent(object[k])}`
-}).join('&');
+import {objectToQueryString} from 'avril/js/utils/url';
 
 export const phoenixUrl = (hash, msg) =>
   (process.env.clientToPhoenixUrl ? `${process.env.clientToPhoenixUrl}/candidatures?${objectToQueryString({hash, msg})}` : null);

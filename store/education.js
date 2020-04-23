@@ -1,6 +1,6 @@
-import {isPresent} from '../utils/boolean';
-import {percent} from '../utils/number';
-import {labelGetter} from '../utils/function';
+import {isPresent} from 'avril/js/utils/boolean';
+import {percent} from 'avril/js/utils/number';
+import {labelGetter} from 'avril/js/utils/function';
 import latestDegreeAnswers from '~/contents/data/latestDegree';
 import latestCourseLevelAnswers from '~/contents/data/latestCourseLevel';
 

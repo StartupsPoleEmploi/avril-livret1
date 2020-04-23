@@ -1,6 +1,5 @@
 <template>
   <div class="form">
-
     <div class="form-fields">
         <h3 class="title">Avez-vous une ou plusieurs partie(s) de certification professionnelle ?</h3>
         <div class="columns">
@@ -15,10 +14,7 @@
             </nuxt-link>
           </div>
         </div>
-
       </div>
-
-
       <div class="form-help">
         <h3 class="title is-5">Besoin d'aide ?</h3>
         <div class="form-help-content">
@@ -32,17 +28,13 @@
 </template>
 
 <script>
-export default {
-  mounted() {
-  },
-  methods: {
-    addCertification (e) {
-      this.$store.commit('experiences/addCertification', e)
+  export default {
+    mounted() {
     },
+    methods: {
+      addCertification (e) {
+        this.$store.commit('experiences/addCertification', e)
+      },
+    }
   }
-}
 </script>
-
-<style>
-
-</style>
