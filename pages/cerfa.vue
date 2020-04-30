@@ -115,7 +115,7 @@
                 </div>
                 <div class="atome">
                   <label>Nationalité&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.nationality.country_code}}</p><!-- FR ou UE/UEEE ou Autre -->
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.nationality.countryCode}}</p><!-- FR ou UE/UEEE ou Autre -->
                 </div>
               </div>
             </div>

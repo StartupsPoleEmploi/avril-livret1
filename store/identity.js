@@ -30,7 +30,7 @@ export const state = () => ({
   },
   nationality: {
     country: null,
-    country_code: null,
+    countryCode: null,
   },
   currentSituation: {
     status: null,

@@ -35,13 +35,13 @@ export const backendToStore = {
   }),
   identity: backendData => ({
     ...backendData,
-    // firstNames: backendData.first_name,
+    firstNames: backendData.firstName,
     // lastName: backendData.last_name,
     // usageName: backendData.usage_name,
     // email: backendData.email,
-    // sex: backendData.gender,
-    // cellPhoneNumber: backendData.mobile_phone,
-    // homePhoneNumber: backendData.home_phone,
+    sex: backendData.gender,
+    cellPhoneNumber: backendData.mobilePhone,
+    homePhoneNumber: backendData.homePhone,
     birthday: parseISODate(backendData.birthday),
     // isHandicapped: backendData.is_handicapped,
     currentSituation: {
@@ -62,6 +62,7 @@ export const backendToStore = {
     //   lng: get(backendData, "birth_place.lng", null),
     // },
     // nationality: Object.assign({}, backendData.nationality),
+    address: backendData.fullAddress,
     // address: {
     //   street: get(backendData, "full_address.street", null),
     //   city: get(backendData, "full_address.city", null),
