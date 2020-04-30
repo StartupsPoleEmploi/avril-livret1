@@ -56,7 +56,7 @@
 
 <script>
   import get from 'lodash.get';
-  import GeoInput from 'avril/js/components/GeoInput';
+  import GeoInput from 'avril/js/components/GeoInput.vue';
   import helpLoaderMixin from '~/mixins/helpLoader.js';
 
   export default {
