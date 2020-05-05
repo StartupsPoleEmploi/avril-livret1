@@ -21,7 +21,7 @@
             <div class="progress__bar--suivi" :style="`width:${progress}%`"></div>
           </div>
           <div class="">
-            {{progress}}% complété
+            {{progress}}% {{'complété' | pluralize(progress)}}
           </div>
 
           <Tabs></Tabs>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-  import {capitalize} from 'avril/js/utils/string';
+  import {capitalize, pluralize} from 'avril/js/utils/string';
   import {phoenixUrl} from '~/utils/url.js';
 
   import Back from 'avril/images/icons/back.svg';
