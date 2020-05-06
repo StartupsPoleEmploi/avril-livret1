@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "node -r esm server/index.js",
     "generate": "nuxt generate",
-    "setup": "yarn install && yarn build && yarn start"
+    "setup": "yarn upgrade avril && yarn install && yarn build && yarn start"
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.2.2",

@@ -1,7 +1,7 @@
 import get from 'lodash.get';
 import { percent } from 'avril/js/utils/number';
 import { first, last } from 'avril/js/utils/array';
-import { queryApiOrRedirect } from 'avril/js/utils/api';
+import { queryApiWithContext } from 'avril/js/utils/api';
 import { fraToEng } from '~/utils/translate';
 import { redirectToPhoenix } from '~/utils/url';
 
@@ -95,7 +95,7 @@ export const actions = {
     }
     if (env.serverToPhoenixUrl && hash) {
       const apiUrl = `${env.serverToPhoenixUrl}/api/booklet?hash=${hash}`;
-      const identityData = await queryApiOrRedirect('identity', context);
+      const identityData = await queryApiWithContext(context)('identity');
       const result = await fetch(apiUrl, {
         headers: {
           'X-auth': get(context, 'env.serverAuthKey'),
