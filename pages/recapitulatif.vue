@@ -84,7 +84,7 @@
             <p v-else>
               <strong>Je n'ai pas encore renseigné mon nom.</strong>
             </p>
-            <p>Je suis de sexe {{identity.sex ? (identity.sex === 'm' ? 'masculin' : 'féminin') : 'inconnu'}}.</p>
+            <p>Je suis de sexe {{identity.sex ? (identity.sex && identity.sex[0] === 'm' ? 'masculin' : 'féminin') : 'inconnu'}}.</p>
           </div>
           <div class="recap-cell cell-contact">
             <p v-if="identity.email">Mon email : <strong>{{identity.email}}</strong></p>
