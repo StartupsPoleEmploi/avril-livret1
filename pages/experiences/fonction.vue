@@ -34,6 +34,7 @@
           <GeoInput
             :input="addCompanyAddress"
             :value="companyAddress"
+            :credentials="credentials"
             placeholder="Exemple : 44 rue de dupont, 13000 Marseille"
           />
         </div>
@@ -78,6 +79,11 @@
       },
       companyAddress() {
         return get(this.$store.getters['experiences/current'], 'companyAddress');
+      }
+    },
+    data: function() {
+      return {
+        credentials: process.env.algoliaCredentials,
       }
     },
     mounted() {
