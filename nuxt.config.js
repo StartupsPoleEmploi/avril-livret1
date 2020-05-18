@@ -60,7 +60,7 @@ module.exports = {
     // '~/plugins/crisp.js',
   ],
   router: {
-    base: process.env.NUXT_PATH,
+    base: process.env.NUXT_PROFILE_PATH,
     middleware: [
       'autosave',
       'store-current-path',
@@ -74,22 +74,9 @@ module.exports = {
       process.env.GA_PE_API_KEY,
     ].filter(v => v),
     dev: false,
-    // debug: {
-    //   enabled: true,
-    //   sendHitTask: true
-    // },
-    // fields: {
-    //   allowLinker: !!process.env.CLIENT_TO_PHOENIX_URL,
-    // },
-    // beforeFirstHit: (params) => {
-    //   if (window.phoenixUrl) {
-    //     window.ga('require', 'linker');
-    //     window.ga('linker:autoLink', [window.phoenixUrl.replace(/^https?:\/\//i, '')] );
-    //   }
-    // },
   },
   sentry: {
-    dsn: process.env.NUXT_SENTRY_DSN,
+    dsn: process.env.NUXT_BOOKLET_SENTRY_DSN,
     config: {
       environment: process.env.NODE_ENV,
       release: process.env.HEROKU_SLUG_COMMIT,
