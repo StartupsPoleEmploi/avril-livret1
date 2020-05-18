@@ -60,7 +60,7 @@ module.exports = {
     // '~/plugins/crisp.js',
   ],
   router: {
-    base: process.env.NUXT_PROFILE_PATH,
+    base: process.env.NUXT_BOOKLET_PATH,
     middleware: [
       'autosave',
       'store-current-path',
