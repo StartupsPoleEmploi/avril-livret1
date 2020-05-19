@@ -14,7 +14,9 @@ const mapExperience = experience => ({
   periods: experience.periods.map(period => ({
     start_date: formatISODate(period.start),
     end_date: formatISODate(period.end),
-    week_hours_duration: period.weekHours
+    week_hours_duration: period.weekHours,
+    total_hours: period.totalHours,
+
   }))
 });
 

@@ -20,7 +20,8 @@ const mapExperience = experience => {
       uuid: period.uuid || uuid(),
       start: parseISODate(period.start_date),
       end: parseISODate(period.end_date),
-      weekHours: period.week_hours_duration
+      weekHours: period.week_hours_duration,
+      totalHours: period.total_hours,
     }))
   };
   return map;

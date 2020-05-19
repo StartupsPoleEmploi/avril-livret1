@@ -19,14 +19,23 @@
           <client-only placeholder="Chargement du calendrier ...">
             <p class="title is-5">
               {{isCurrentJob ? 'Je travaille depuis le' : 'J\'y ai travaillé du'}}
-              <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" :placeholder="defaultPlaceholder"/>
+              <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" placeholder="date"/>
               <span v-if="!isCurrentJob">
-                au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="datePickerFormat" :placeholder="defaultPlaceholder" />
+                au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="datePickerFormat" placeholder="date" />
               </span>
-              à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
+              <span v-if="showWeekHours">
+                à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
+              </span>
+              <span v-else>
+                pour un total de <input ref="periodTotalHours" class="input heure total" type="number" v-model="periodTotalHours" placeholder="1607" min="0"> heures.
+              </span>
             </p>
+            <button class="button is-text is-small" @click="toggleWeekHours" style="margin-top:1rem">
+              <span v-if="showWeekHours">Je connais le nombre d'heure total</span>
+              <span v-else>Je connais le nombre d'heure par semaine</span>
+            </button>
           </client-only>
-        <div class="">
+        <div class="buttons">
           <button class="button is-dark" @click="addPeriod" style="margin-top:1rem">
             + Ajouter cette période
           </button>
@@ -91,7 +100,9 @@
         periodStart: '',
         periodEnd: '',
         periodWeekHours: '',
+        periodTotalHours: '',
         isCurrentJob: null,
+        showWeekHours: true,
       }
     },
     components: {
@@ -110,18 +121,24 @@
       addPeriod() {
         if (!this.$refs.periodStart.value) return this.$refs.periodStart.focus();
         if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.focus();
-        if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.focus();
+        if (this.showWeekHours) {
+          if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.focus();
+        } else {
+          if (!this.$refs.periodTotalHours.value) return this.$refs.periodTotalHours.focus();
+        }
 
         const period = {
           start: this.periodStart,
           end: this.isCurrentJob ? null : this.periodEnd,
-          weekHours: parseInt(this.periodWeekHours),
+          weekHours: this.periodWeekHours ? parseInt(this.periodWeekHours) : null,
+          totalHours: this.periodTotalHours ? parseInt(this.periodTotalHours) : null,
         };
         this.$store.dispatch('experiences/addPeriod', period);
 
         this.periodStart = '';
         this.periodEnd = '';
         this.periodWeekHours = '';
+        this.periodTotalHours = '';
         this.isCurrentJob = false;
       },
       editPeriod(periodId) {
@@ -129,7 +146,9 @@
         this.periodStart = period.start;
         this.periodEnd = period.end;
         this.periodWeekHours = period.weekHours;
+        this.periodTotalHours = period.totalHours;
         this.isCurrentJob = !period.end;
+        this.showWeekHours = !!period.weekHours;
         this.$store.dispatch('experiences/removePeriod', periodId);
       },
       setIsCurrentJob(value) {
@@ -146,6 +165,14 @@
       minDate(date) {
         return date > new Date() || (this.periodStart && (date < this.periodStart));
       },
+      toggleWeekHours() {
+        this.showWeekHours = !this.showWeekHours;
+        if (this.showWeekHours) {
+          this.periodTotalHours = '';
+        } else {
+          this.periodWeekHours = '';
+        }
+      }
     }
   }
 </script>
