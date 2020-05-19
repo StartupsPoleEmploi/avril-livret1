@@ -2,9 +2,11 @@
   <div class="action-buttons">
     <div class="columns">
       <div class="column">
-        <a v-if="backUrl" class="is-ok button is-default" :href="backUrl">Retour vers Avril</a>
+        <a v-if="backUrl" class="is-ok button is-default" :href="backUrl">
+          Retour vers {{isEditable ? 'mon profil' : 'Avril'}}
+        </a>
       </div>
-      <div class="column">
+      <div class="column" v-if="isEditable">
         <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
           Je dois encore modifier certaines informations
         </nuxt-link>
@@ -26,8 +28,15 @@
 
   export default {
     computed: {
+      isEditable() {
+        return !this.$store.state.isReadOnly;
+      },
       backUrl() {
-        return phoenixUrl(this.$store.state.hash)
+        if (this.isEditable) {
+          return phoenixUrl({hash: this.$store.state.hash})
+        } else {
+          return phoenixUrl({delegate_hash: this.$store.state.delegateHash})
+        }
       },
     },
     data() {
@@ -41,7 +50,9 @@
         window.open('about:blank','print_popup','width=1000,height=800');
         setTimeout(() => {
           this.htmlBody = null;
-          window.location = this.backUrl;
+          if (this.isEditable) {
+            window.location = this.backUrl;
+          }
         }, 500);
       },
     },

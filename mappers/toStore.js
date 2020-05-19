@@ -29,7 +29,9 @@ const mapExperience = experience => {
 
 export const backendToStore = {
   index: backendData => ({
+    isReadOnly: backendData.isReadOnly,
     hash: backendData.hash,
+    delegateHash: backendData.delegateHash,
     certificationLabel: backendData.certification_name,
     certifierLabel: backendData.certifier_name,
     completedAt: parseISODate(backendData.completed_at),

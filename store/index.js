@@ -13,10 +13,12 @@ export const state = () => ({
   certificationLabel: null,
   certifierLabel: null,
   currentPath: null,
+  delegateHash: null,
   hash: null,
   helpContent: null,
   completedAt: null,
   savingState: null,
+  isReadOnly: false,
   steps,
 });
 
@@ -83,7 +85,10 @@ export const actions = {
       env,
       req: {
         path: path,
-        query: { hash },
+        query: {
+          delegate_hash,
+          hash,
+        },
       },
       redirect,
     } = context;
@@ -93,8 +98,10 @@ export const actions = {
     } else {
       hash = app.$cookies.get('hash');
     }
-    if (env.serverToPhoenixUrl && hash) {
-      const apiUrl = `${env.serverToPhoenixUrl}/api/booklet?hash=${hash}`;
+
+    if (env.serverToPhoenixUrl && (hash || delegate_hash)) {
+      const query = delegate_hash ? `delegate_hash=${delegate_hash}` : `hash=${hash}`
+      const apiUrl = `${env.serverToPhoenixUrl}/api/booklet?${query}`;
       const identityData = await queryApiWithContext(context)('identity');
       const result = await fetch(apiUrl, {
         headers: {
@@ -104,19 +111,21 @@ export const actions = {
       if (result.ok) {
         const dataWithStatus = await result.json();
         dispatch(
-          "initState", {
+          'initState', {
             ...dataWithStatus.data,
             civility: identityData,
+            isReadOnly: !!delegate_hash,
+            delegateHash: delegate_hash,
             hash,
           }
         );
       } else {
         console.error('Request failed', result);
-        redirectToPhoenix({redirect, path}, hash, 'request_failed');
+        redirectToPhoenix({redirect, path}, {hash}, 'request_failed');
       }
     } else {
       console.warn(env.serverToPhoenixUrl ? 'No hash no request' : 'env.serverToPhoenixUrl not set');
-      redirectToPhoenix({redirect, path}, hash, 'not_allowed');
+      redirectToPhoenix({redirect, path}, {hash}, 'not_allowed');
     }
   },
   initState(

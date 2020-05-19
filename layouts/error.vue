@@ -17,7 +17,10 @@
   export default {
     computed: {
       backUrl() {
-        return phoenixUrl(this.$store.state.hash);
+        if (this.$store.state.delegateHash) {
+          return phoenixUrl({delegate_hash: this.$store.state.delegateHash});
+        }
+        return phoenixUrl({hash: this.$store.state.hash});
       },
     },
     props: ['error'],

@@ -184,7 +184,7 @@
         return this.$store.getters.progress;
       },
       backUrl() {
-        return phoenixUrl(this.$store.state.hash);
+        return phoenixUrl({hash: this.$store.state.hash});
       },
       currentSituationStatusLabel() {
         return this.$store.getters['identity/currentSituationStatusLabel'];

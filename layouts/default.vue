@@ -67,7 +67,7 @@
     },
     computed: {
       backUrl() {
-        return phoenixUrl(this.$store.state.hash);
+        return phoenixUrl({hash: this.$store.state.hash});
       },
       isTheEnd() {
         return this.$store.getters.isTheEnd;
@@ -83,11 +83,18 @@
           && !this.$store.getters['experiences/current'];
       },
     },
-    head () {
+    head() {
       if (this.$store.getters.pageTitle) {
         return {
           titleTemplate: `${this.$store.getters.pageTitle} - %s`,
         }
+      }
+    },
+    mounted() {
+      if (this.$store.state.isReadOnly) {
+        return this.$router.push({
+          path: '/cerfa'
+        })
       }
     },
   }
