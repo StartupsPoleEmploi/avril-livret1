@@ -1,47 +1,6 @@
 <template>
   <div class="form">
     <div class="form-fields">
-      <h3 class="title is-5">
-        <span v-if="experience && experience.role && experience.companyName">{{experience.role}} chez {{experience.companyName}}</span>
-        <span v-else>Cette experience</span>
-        est mon poste actuel ?
-      </h3>
-      <div>
-        <div class="field">
-          <RadioList
-            :value="isCurrentJob"
-            :click="setIsCurrentJob"
-            boolean
-            inline
-          />
-        </div>
-        <div class="field box natural-language">
-          <client-only placeholder="Chargement du calendrier ...">
-            <p class="title is-5">
-              {{isCurrentJob ? 'Je travaille depuis le' : 'J\'y ai travaillé du'}}
-              <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" placeholder="date"/>
-              <span v-if="!isCurrentJob">
-                au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="datePickerFormat" placeholder="date" />
-              </span>
-              <span v-if="showWeekHours">
-                à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
-              </span>
-              <span v-else>
-                pour un total de <input ref="periodTotalHours" class="input heure total" type="number" v-model="periodTotalHours" placeholder="1607" min="0"> heures.
-              </span>
-            </p>
-            <button class="button is-text is-small" @click="toggleWeekHours" style="margin-top:1rem">
-              <span v-if="showWeekHours">Je connais le nombre d'heure total</span>
-              <span v-else>Je connais le nombre d'heure par semaine</span>
-            </button>
-          </client-only>
-        <div class="buttons">
-          <button class="button is-dark" @click="addPeriod" style="margin-top:1rem">
-            + Ajouter cette période
-          </button>
-        </div>
-        </div>
-      </div>
       <h3 v-if="periods && periods.length > 0" class="title is-5">
         Périodes d'activité
         <span v-if="experience && experience.role && experience.companyName">en tant que {{experience.role}} chez {{experience.companyName}}</span>
@@ -59,6 +18,61 @@
             <button @click="removePeriod(period.uuid)" class="button is-text">Supprimer cette période</button>
           </div>
         </div>
+      </div>
+      <div class="field has-text-centered" v-if="periods.length > 0">
+        <button class="button is-dark" @click="toggleShowNewPeriod">
+          <span v-if="showNewPeriod">Annuler nouvelle période</span>
+          <span v-else>
+            Ajouter une autre période
+            <span v-if="experience && experience.role && experience.companyName">en tant que {{experience.role}} chez {{experience.companyName}}</span>
+          </span>
+        </button>
+      </div>
+      <div v-if="showNewPeriod || periods.length === 0">
+        <h3 class="title is-5">
+          <span v-if="experience && experience.role && experience.companyName">{{experience.role}} chez {{experience.companyName}}</span>
+          <span v-else>Cette experience</span>
+          est mon poste actuel ?
+        </h3>
+        <div>
+          <div class="field">
+            <RadioList
+              :value="isCurrentJob"
+              :click="setIsCurrentJob"
+              boolean
+              inline
+            />
+          </div>
+          <div class="field box natural-language">
+            <client-only placeholder="Chargement du calendrier ...">
+              <p class="title is-5">
+                {{isCurrentJob ? 'Je travaille depuis le' : 'J\'y ai travaillé du'}}
+                <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" placeholder="date"/>
+                <span v-if="!isCurrentJob">
+                  au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="datePickerFormat" placeholder="date" />
+                </span>
+                <span v-if="showWeekHours">
+                  à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
+                </span>
+                <span v-else>
+                  pour un total de <input ref="periodTotalHours" class="input heure total" type="number" v-model="periodTotalHours" placeholder="1607" min="0"> heures.
+                </span>
+              </p>
+              <p class="has-text-right">
+              </p>
+            </client-only>
+          <div class="buttons" style="justify-content: space-between; align-items: bottom;">
+            <button class="button is-dark" @click="addPeriod">
+              + Ajouter cette période
+            </button>
+            <button class="button is-text is-small" @click="toggleWeekHours">
+              <span v-if="showWeekHours">Je saisis le nombre d'heure total</span>
+              <span v-else>Je saisis mes heures par semaine</span>
+            </button>
+          </div>
+          </div>
+        </div>
+
       </div>
 
       <div class="field" style="margin-top: 2rem;">
@@ -103,6 +117,7 @@
         periodTotalHours: '',
         isCurrentJob: null,
         showWeekHours: true,
+        showNewPeriod: false,
       }
     },
     components: {
@@ -140,6 +155,7 @@
         this.periodWeekHours = '';
         this.periodTotalHours = '';
         this.isCurrentJob = false;
+        this.showNewPeriod = false;
       },
       editPeriod(periodId) {
         const period = this.$store.getters['experiences/current'].periods.find(p => p.uuid == periodId)
@@ -149,6 +165,7 @@
         this.periodTotalHours = period.totalHours;
         this.isCurrentJob = !period.end;
         this.showWeekHours = !!period.weekHours;
+        this.showNewPeriod = true;
         this.$store.dispatch('experiences/removePeriod', periodId);
       },
       setIsCurrentJob(value) {
@@ -172,6 +189,9 @@
         } else {
           this.periodWeekHours = '';
         }
+      },
+      toggleShowNewPeriod() {
+        this.showNewPeriod = !this.showNewPeriod;
       }
     }
   }

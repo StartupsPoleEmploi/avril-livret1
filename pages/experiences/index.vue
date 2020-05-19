@@ -29,8 +29,8 @@
                 <PeriodDisplay :period="period" />
               </li>
             </ul>
-            <div v-if="experienceIsIncomplete(experience)" class="notification is-danger">
-              Expérience à compléter.
+            <div v-if="incompleteFields(experience).length" class="notification is-danger">
+              Champs à compléter: {{incompleteFields(experience).join(', ')}}
             </div>
             <div class="columns">
               <div class="column">
@@ -38,7 +38,7 @@
                   v-on:click.native="setCurrentExperience(experience.uuid)"
                   class="button is-text"
                   to="/experiences/fonction"
-                  >{{experienceIsIncomplete(experience) ? 'Compléter' : 'Modifier'}}</nuxt-link
+                  >{{incompleteFields(experience).length ? 'Compléter' : 'Modifier'}}</nuxt-link
                 >
               </div>
               <div class="column">
@@ -76,6 +76,27 @@
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
   import CompanyDisplay from '~/components/CompanyDisplay.vue';
 
+  const translateKey = k => {
+    switch(k) {
+      case 'role':
+        return 'fonction';
+      case 'companyName':
+        return 'nom de l\'entreprise';
+      case 'companyAddress':
+        return 'addresse de l\'entreprise';
+      case 'category':
+        return 'famille professionnelle';
+      case 'contractType':
+        return 'statut';
+      case 'activities':
+        return 'activités';
+      case 'periods':
+        return 'périodes d\'emploi';
+      default:
+        return '';
+    }
+  }
+
   export default {
     mixins: [helpLoaderMixin],
     mounted() {
@@ -105,8 +126,16 @@
           this.$store.commit('experiences/remove', uuid);
         }
       },
-      experienceIsIncomplete(experience) {
-        return Object.values(experience).some(isBlank);
+      // experienceIsIncomplete(experience) {
+      //   return Object.values(experience).some(isBlank);
+      // },
+      incompleteFields(experience) {
+        return Object.entries(experience).reduce((result, [k, v]) => {
+          if (isBlank(v)) {
+            return result.concat(translateKey(k))
+          }
+          return result
+        }, [])
       },
     }
   };

@@ -61,9 +61,9 @@
     border: none;
     border-bottom: 2px solid avril-color('blue');
     border-radius: 0;
-    // font-weight: 600;
     color: avril-color('marine');
     outline: none;
+    font-family: $family-serif;
     &:hover {
       border-color: avril-color('blue');
     }
@@ -71,32 +71,16 @@
       box-shadow: none;
       border-color: avril-color('marine');
     }
-    font-family: ff-tisa-web-pro, serif;
-    &::-webkit-input-placeholder {
-      // font-family: Nunito, sans-serif;
-      // font-weight: 600;
-      // font-size: 1em;
-      // font-family: 'myFont', Arial, Helvetica, sans-serif;
-    }
   }
 
   .mx-datepicker {
-    // width: auto;
     .mx-input{
       padding-left: 0.5rem;
-      // font-size: 18px;
-      // @include placeholder {
-      //   font-size: 16px;
-      //   font-weight: 400;
-      // }
     }
   }
   .input.heure{
     width: 45px;
-    // font-size: 20px;
     text-align: center;
-    // padding-right: 2px;
-
     &.total {
       width: 70px;
     }
