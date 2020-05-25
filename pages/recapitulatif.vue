@@ -97,7 +97,7 @@
           <div class="recap-cell cell-birthday">
             <p v-if="identity.birthday">Je suis {{feminize('né')}} le {{formatDate(identity.birthday)}} à {{addressLabelify(identity.birthPlace)}}</p>
             <p v-else>Je n'ai pas encore renseigné ma date de naissance.</p>
-            <p v-if="identity.nationality.countryCode">Je suis de nationalité {{identity.nationality.countryCode.toUpperCase()}}.</p>
+            <p v-if="identity.nationality && identity.nationality.countryCode">Je suis de nationalité {{identity.nationality.countryCode.toUpperCase()}}.</p>
             <p v-else>Je n'ai pas encore renseigné ma nationalité.</p>
           </div>
           <div class="recap-cell cell-residence">
