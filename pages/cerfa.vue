@@ -101,7 +101,7 @@
                 </div>
                 <div class="atome">
                   <label>Commune de naissance&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.birthPlace.city}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.birthPlace && identity.birthPlace.city || '-'}}</p>
                 </div>
                 <div class="atome">
                   <label>Département ou collectivité outre-mer de naissance&nbsp;:</label>
@@ -111,11 +111,11 @@
               <div class="column">
                 <div class="atome">
                   <label>Pays de naissance&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace.country}}</p>
+                  <p class="title is-6 is-uppercase is-spaced"> {{identity.birthPlace && identity.birthPlace.country || '-'}}</p>
                 </div>
                 <div class="atome">
                   <label>Nationalité&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.nationality.countryCode}}</p><!-- FR ou UE/UEEE ou Autre -->
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.nationality && identity.nationality.countryCode || '-'}}</p><!-- FR ou UE/UEEE ou Autre -->
                 </div>
               </div>
             </div>
