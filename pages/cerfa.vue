@@ -462,7 +462,7 @@
             </div>
 
             <div class="control atome box">
-              <input type="checkbox">
+              <input type="checkbox" :checked="!!completedAt">
               <label>
                 Je certifie que toutes les informations fournies sont exactes
               </label>
@@ -586,6 +586,9 @@
     },
     layout: 'cerfa',
     computed: {
+      completedAt() {
+        return this.$store.state.completedAt
+      },
       certificationLabel() {
         return this.$store.state.certificationLabel
       },
@@ -680,12 +683,14 @@
         font-size: 1.25rem;
         line-height: 1.25rem;
         border: thin solid;
-        font-weight: bold;
+        // font-weight: bold;
       }
     }
 
     &:checked + label:before {
+      content: 'X';
       content: '✓';
+      content: '\2714';
     }
   }
 

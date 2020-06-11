@@ -121,15 +121,23 @@
         <div class="control">
           <div class="columns">
             <div class="column">
-              <button @click="markAsCompleteAndGoBack" class="is-ok button is-dark is-fullwidth" to="/cerfa">Oui</button>
+              <button @click="markAsCompleteAndGoBack" class="is-ok button is-dark is-fullwidth" to="/cerfa">Je certifie exacte l'intégralité des informations fournies dans ce document</button>
             </div>
-            <div class="column">
-              <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
-                Je dois modifier certaines informations
-              </nuxt-link>
-            </div>
-            <div class="column">
-              <a class="is-ok button is-default is-fullwidth has-text-centered" :href="backUrl">Je complèterai plus tard</a>
+          </div>
+          <div class="columns">
+            <div class="buttons">
+              <div class="column">
+                <a class="is-ok button is-default is-fullwidth has-text-centered" :href="backUrl">
+                  <Back />
+                  Je complèterai plus tard
+                </a>
+              </div>
+              <div class="column">
+                <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
+                  <Pencil />
+                  Je dois modifier certaines informations
+                </nuxt-link>
+              </div>
             </div>
           </div>
         </div>
@@ -148,6 +156,8 @@
 
   import CompanyDisplay from '~/components/CompanyDisplay.vue';
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
+  import Back from 'avril/images/icons/back.svg';
+  import Pencil from 'avril/images/icons/pencil.svg';
 
   export default {
     data: () => ({
@@ -155,6 +165,8 @@
     }),
     layout: 'recapitulatif',
     components: {
+      Back,
+      Pencil,
       CompanyDisplay,
       PeriodDisplay,
     },
