@@ -561,8 +561,8 @@
           </div>
         </article>
       </section>
-      <CerfaMenu />
     </div>
+    <CerfaMenu />
   </div>
 </template>
 
@@ -630,7 +630,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .avril-recapitulatif{
     padding: 2rem;
   }

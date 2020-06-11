@@ -1,13 +1,15 @@
 <template>
-  <div class="action-buttons">
+  <div class="action-buttons section" style="padding-left: 0; padding-right: 0;">
     <div class="columns">
       <div class="column">
-        <a v-if="backUrl" class="is-ok button is-default" :href="backUrl">
+        <a v-if="backUrl" class="is-ok button is-text" :href="backUrl">
+          <Back />
           Retour vers {{isEditable ? 'mon profil' : 'Avril'}}
         </a>
       </div>
       <div class="column" v-if="isEditable">
-        <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
+        <nuxt-link to="/" class="button is-text is-fullwidth has-text-centered">
+          <Pencil />
           Je dois encore modifier certaines informations
         </nuxt-link>
       </div>
@@ -25,8 +27,14 @@
 
 <script type="text/javascript">
   import {phoenixUrl} from '~/utils/url.js';
+  import Back from 'avril/images/icons/back.svg';
+  import Pencil from 'avril/images/icons/pencil.svg';
 
   export default {
+    components: {
+      Back,
+      Pencil,
+    },
     computed: {
       isEditable() {
         return !this.$store.state.isReadOnly;
@@ -58,3 +66,9 @@
     },
   }
 </script>
+
+<style lang="scss" scoped>
+  .action-buttons {
+    margin: 3rem 0;
+  }
+</style>

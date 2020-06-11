@@ -7,10 +7,12 @@
       background: lighten(avril-color('blue'), 5%);
       color: avril-color('marine') !important;
     }
-    svg{
-      width: 16px;
-      margin-left: -6px;
-      fill: avril-color('marine');
-    }
+  }
+  svg{
+    height: 1rem;
+    padding-right: 0.5rem;
+    // margin-left: -6px;
+
+    fill: avril-color('marine');
   }
 }

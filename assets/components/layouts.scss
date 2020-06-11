@@ -1,4 +1,6 @@
 //layout général
+@import '~avril/scss/variables';
+
 .avril{
   &-back{
     svg{
@@ -33,6 +35,18 @@
 
   }
 }
+
+.cerfa-layout {
+  background: #fafafa;
+  #pdf-content {
+    background: $white;
+    box-shadow: 0 0 0 0.75pt #d1d1d1, 0 0 3pt 0.75pt #ccc;
+    margin: -1rem;
+    padding: 1rem;
+  }
+}
+
+
 
 .avril--actions{
   padding-top: 2rem;

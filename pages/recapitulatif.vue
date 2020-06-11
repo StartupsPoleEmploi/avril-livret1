@@ -121,7 +121,7 @@
         <div class="control">
           <div class="columns">
             <div class="column">
-              <button @click="markAsCompleteAndGoToCerfa" class="is-ok button is-default is-fullwidth" to="/cerfa">Oui</button>
+              <button @click="markAsCompleteAndGoBack" class="is-ok button is-dark is-fullwidth" to="/cerfa">Oui</button>
             </div>
             <div class="column">
               <nuxt-link to="/" class="button is-default is-fullwidth has-text-centered">
@@ -204,11 +204,9 @@
       periodTotalHours,
       addressLabelify,
       isPresent,
-      markAsCompleteAndGoToCerfa: function() {
+      markAsCompleteAndGoBack: function() {
         this.$store.commit('markAsComplete');
-        this.$router.push({
-          path: '/cerfa'
-        })
+        window.location.href = this.backUrl;
       },
     }
   }

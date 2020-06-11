@@ -1,11 +1,13 @@
 <template>
-  <div class="container">
-    <div class="columns">
-      <div class="column is-10 is-offset-1 is-print-fullwidth">
-        <div class="avril-layout">
-          <div class="avril-">
-            <div class="avril-form-help-container">
-              <nuxt />
+  <div class="cerfa-layout">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-10 is-offset-1 is-print-fullwidth">
+          <div class="avril-layout">
+            <div class="avril-">
+              <div class="avril-form-help-container">
+                <nuxt />
+              </div>
             </div>
           </div>
         </div>
