@@ -23,4 +23,13 @@
   .message-group, .message {
     page-break-inside: avoid;
   }
+
+
+  .cerfa-layout {
+    background: transparent;
+    #pdf-content {
+      background: transparent;
+      box-shadow: none;
+    }
+  }
 }

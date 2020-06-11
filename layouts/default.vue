@@ -97,6 +97,10 @@
         })
       }
     },
+    asyncData: async function() {
+      console.log('coucou loulou')
+      return {};
+    }
   }
 </script>
 
