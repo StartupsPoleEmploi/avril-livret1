@@ -84,7 +84,7 @@
                 </div>
                 <div class="atome">
                   <label>Sexe&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.sex === 'm' ? 'Masculin' : 'Féminin'}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.sex && identity.sex[0] === 'm' ? 'Masculin' : 'Féminin'}}</p>
                 </div>
               </div>
             </div>

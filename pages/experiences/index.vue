@@ -83,7 +83,7 @@
       case 'companyName':
         return 'nom de l\'entreprise';
       case 'companyAddress':
-        return 'addresse de l\'entreprise';
+        return 'adresse de l\'entreprise';
       case 'category':
         return 'famille professionnelle';
       case 'contractType':
