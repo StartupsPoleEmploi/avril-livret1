@@ -90,15 +90,8 @@
 </script>
 
 <style>
-  .activites{
-    margin-top: 4rem;
-  }
-  .mx-datepicker-range {
-    width: 100%;
-  }
-  .form-help-ativites{
-    height: 60%;
-    padding: 1rem;
-    overflow: auto;
+  .push-enter {
+    margin-top: 5px;
+    margin-right: 8px;
   }
 </style>

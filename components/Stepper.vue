@@ -1,8 +1,8 @@
 <template>
   <div class="form-header">
-    <div class="avril-stepper-container">
+    <div class="stepper-container">
       <NavBack/>
-      <div class="avril-stepper">
+      <div class="stepper">
         <ul class="steps is-small is-centered has-content-centered">
           <li v-for="step in steps" class="steps-segment" :class="step.to == currentPath ? 'is-active' : ''">
             <nuxt-link :to="step.to" class="steps-marker" :class="step.to == currentPath ? 'is-hollow' : ''"></nuxt-link>
@@ -34,3 +34,13 @@
     },
   }
 </script>
+
+<style lang="scss" scoped>
+  .stepper-container {
+    display: flex;
+
+    .stepper {
+      flex: 1;
+    }
+  }
+</style>

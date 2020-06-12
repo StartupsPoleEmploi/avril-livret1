@@ -1,3 +1,18 @@
+a, button {
+  &.box {
+    cursor: pointer;
+    margin-bottom: 1rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: inherit;
+    &.active, &:hover, &:focus {
+      box-shadow: 0 2px 3px rgba(avril-color('marine'), 0.1), 0 0 0 1px avril-color('marine');
+      outline: none;
+    }
+  }
+}
+
 .button{
   &.is-dark{
     background: avril-color('blue');
@@ -8,6 +23,20 @@
       color: avril-color('marine') !important;
     }
   }
+
+  &.is-default {
+    background: whitesmoke !important;
+    border-color: #dbdbdb;
+  }
+
+  &.is-wrapped {
+    white-space: normal;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
   svg{
     height: 1rem;
     padding-right: 0.5rem;

@@ -1,5 +1,4 @@
 export default async function ({ store, route }) {
-  console.log(route.matched[0])
   if (route.path && route.path.replace('/', '')) {
     store.commit('setCurrentPath', route.path);
     try {

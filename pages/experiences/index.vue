@@ -7,53 +7,54 @@
         v-on:click.native="newExperience()"
         to="/experiences/fonction"
         class="button"
-        :class="experiencesProgress < 100 ? 'is-dark' : ''"
+        :class="experiencesProgress < 100 ? 'is-dark' : 'is-default'"
       >
-        &nbsp;
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>add</title>
           <path
             d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
           ></path></svg
-        >&nbsp; Ajouter une
+        > Ajouter une
         {{ experiences.length ? "nouvelle " : "" }}expérience
       </nuxt-link>
-      <div class="columns is-multiline">
-        <div v-for="experience in experiences" class="column">
-          <div class="box is-equal-height">
-            <h3 class="title is-4">
-              <CompanyDisplay :experience="experience" />
-            </h3>
-            <ul style="margin-bottom: 1rem;">
-              <li v-for="period in experience.periods">
-                <PeriodDisplay :period="period" />
-              </li>
-            </ul>
-            <div v-if="incompleteFields(experience).length" class="notification is-danger">
-              Champs à compléter: {{incompleteFields(experience).join(', ')}}
-            </div>
-            <div class="columns">
-              <div class="column">
-                <nuxt-link
-                  v-on:click.native="setCurrentExperience(experience.uuid)"
-                  class="button is-text"
-                  to="/experiences/fonction"
-                  >{{incompleteFields(experience).length ? 'Compléter' : 'Modifier'}}</nuxt-link
-                >
+      <div class="section is-vertical">
+        <div class="columns is-multiline">
+          <div v-for="experience in experiences" class="column">
+            <div class="box is-equal-height">
+              <h3 class="title is-4">
+                <CompanyDisplay :experience="experience" />
+              </h3>
+              <ul style="margin-bottom: 1rem;">
+                <li v-for="period in experience.periods">
+                  <PeriodDisplay :period="period" />
+                </li>
+              </ul>
+              <div v-if="incompleteFields(experience).length" class="notification is-danger">
+                Champs à compléter: {{incompleteFields(experience).join(', ')}}
               </div>
-              <div class="column">
-                <button
-                  @click="removeExperience(experience.uuid)"
-                  class="button is-text"
-                >
-                  Supprimer
-                </button>
+              <div class="columns">
+                <div class="column">
+                  <nuxt-link
+                    v-on:click.native="setCurrentExperience(experience.uuid)"
+                    class="button is-text"
+                    to="/experiences/fonction"
+                    >{{incompleteFields(experience).length ? 'Compléter' : 'Modifier'}}</nuxt-link
+                  >
+                </div>
+                <div class="column">
+                  <button
+                    @click="removeExperience(experience.uuid)"
+                    class="button is-text"
+                  >
+                    Supprimer
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div v-if="experiencesProgress === 100" style="margin-top: 1rem;">
+      <div v-if="experiencesProgress === 100">
         <div class="title is-5">
           Pas d'autre expérience professionnelle à ajouter ?
         </div>
@@ -126,9 +127,6 @@
           this.$store.commit('experiences/remove', uuid);
         }
       },
-      // experienceIsIncomplete(experience) {
-      //   return Object.values(experience).some(isBlank);
-      // },
       incompleteFields(experience) {
         return Object.entries(experience).reduce((result, [k, v]) => {
           if (isBlank(v)) {
@@ -141,15 +139,11 @@
   };
 </script>
 
-<style>
-  .experience-index {
-    padding-top: 5rem;
-  }
-  .avril-ou {
-    margin-top: 8px;
-    display: inline-block;
-  }
-  .columns.is-multiline {
-    margin-top: 40px;
-  }
+<style lang="scss" scoped >
+  @import '~avril/scss/variables';
+  // .experience-index {
+  //   @include tablet {
+  //     padding-top: 8rem;
+  //   }
+  // }
 </style>

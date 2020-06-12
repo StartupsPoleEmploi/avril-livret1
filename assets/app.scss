@@ -3,12 +3,11 @@
 
 @import '~bulma/sass/utilities/_all.sass';
 @import '~bulma/bulma';
+@import '~avril/scss/components/section';
 
 @import 'components/buttons';
 @import 'components/form';
 @import 'components/layouts';
-@import 'components/layout-form';
-@import 'components/layout-help';
 @import 'components/notification';
 @import 'components/reset';
 @import 'components/stepper';

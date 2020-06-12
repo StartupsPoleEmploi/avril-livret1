@@ -1,40 +1,4 @@
-//layout général
 @import '~avril/scss/variables';
-
-.avril{
-  &-back{
-    svg{
-      width: 10px;
-    }
-  }
-  &-form-header{
-    flex: 1;
-    flex-grow: 2;
-    flex-direction: column;
-  }
-  &-navigation{
-    z-index: 88;
-  }
-  &-default{
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    background: avril-color('marine');
-    color: #fff;
-    flex-direction: row;
-    text-align: center;
-    label{
-      color: #fff !important;
-    }
-    .control{
-      text-align: center !important;
-    }
-    .title{
-      color: #fff !important;
-    }
-
-  }
-}
 
 .cerfa-layout {
   background: #fafafa;
@@ -46,92 +10,72 @@
   }
 }
 
-
-
-.avril--actions{
-  padding-top: 2rem;
+.avril-layout{
+  display: flex;
+  flex-direction: row;
 }
-
-a, button {
-  &.box {
-    cursor: pointer;
-    margin-bottom: 1rem;
-    width: 100%;
-    border: none;
-    text-align: left;
-    font-size: inherit;
-    &.active, &:hover, &:focus {
-      box-shadow: 0 2px 3px rgba(avril-color('marine'), 0.1), 0 0 0 1px avril-color('marine');
-      outline: none;
-    }
+.avril-navigation{
+  flex: 1;
+  flex-direction: column;
+  min-height: 100vh;
+  display: none;
+  @include desktop {
+    display: flex;
   }
 }
-
-.experiences-header{
-  padding: 3rem;
-  padding-bottom: 2rem;
-  .field{
-    margin-bottom: 0 !important;
-  }
-  .has-addons{
-
-  }
-  .lefty{
-
-  }
-  .righty{
-
-  }
-}
-
-.real,.avril{
-
-  // --------------------------
-  // Navigation
-  // --------------------------
-  &-navigation{
-    flex: 1;
-    flex-direction: column;
-    display: flex;
-    min-height: 100vh;
-  }
-
-  // --------------------------
-  // Content
-  // --------------------------
-  &-layout{
-    display: flex;
-    flex-direction: row;
-    // min-height: 100vh;
-  }
-  &-content{
-    flex: 1;
-    flex-grow: 3;
-    display: flex;
-    flex-direction: column;
+.avril-content{
+  flex: 1;
+  flex-grow: 3;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  @include desktop {
+    padding: 2rem 3rem;
     margin-top: 3rem;
     margin-bottom: 3rem;
-    background: #fff;
-    border-radius: 6px;
-    box-shadow: 0 0 44px rgba(0, 22, 60, .12);
-    // overflow-y: auto;
   }
-  &-form-help-container{
-    display: flex;
-    flex-direction: column;
-    // padding-top: 4rem;
+  @include widescreen {
+    padding: 4rem 5rem;
   }
-  &-form{
-    flex: 1;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 80vh;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 0 44px rgba(0, 22, 60, .12);
+  width: 100%;
+}
+
+.form{
+  display: flex;
+  flex-direction: row;
+}
+.form-header {
+  height: 8rem;
+  .title{
+    padding: 0 4rem;
   }
-  &-help{
-    flex: 1;
+  display: none;
+  @include desktop {
+    display: block;
+  }
+}
+.form-fields{
+  flex: 1;
+  display: flex;
+  flex-grow: 1.6;
+  flex-direction: column;
+}
+.form-help {
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 80vh;
+  padding-left: 3rem;
+  @include widescreen {
+    padding-left: 5rem;
+  }
+
+  border-radius: 6px;
+  display: none;
+  @include desktop {
     display: flex;
-    flex-direction: column;
-    min-height: 80vh;
   }
 }

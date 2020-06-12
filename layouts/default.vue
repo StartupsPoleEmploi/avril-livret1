@@ -1,47 +1,39 @@
 <template>
+  <div>
+    <Saving />
+    <div class="container">
 
-  <div class="container">
-
-    <div class="avril-layout">
-      <Saving />
-      <!-- Tabs -->
-      <div class="avril-navigation">
-        <div class="navigation-header">
-          <div class="avril-back">
-            <a :href="backUrl">
+      <div class="avril-layout">
+        <div class="avril-navigation">
+          <div class="navigation-header">
+            <a :href="backUrl" class="button is-default">
               <Back />
-              retour
+              Retour vers mon profil
             </a>
           </div>
+          <div class="navigation-tabs">
+            <h3 class="navigation-title title is-4">Dossier de recevabilité</h3>
+            <h4 class="navigation-subtitle title is-5">{{certificationLabel}}</h4>
+            <div class="navigation-progressbar progress__bar">
+              <div class="progress__bar--suivi" :style="`width:${progress}%`"></div>
+            </div>
+            <div class="">
+              {{progress}}% {{'complété' | pluralize(progress)}}
+            </div>
+
+            <Tabs></Tabs>
+
+            <div class="section is-vertical">
+              <nuxt-link v-if="!isTheEnd" to="/recapitulatif" class="button is-default is-fullwidth">
+                Enregistrer mon dossier de recevabilité
+              </nuxt-link>
+            </div>
+          </div>
         </div>
-        <div class="navigation-tabs">
-          <h3 class="navigation-title title is-4">Dossier de recevabilité</h3>
-          <h4 class="navigation-subtitle title is-5">{{certificationLabel}}</h4>
-          <div class="navigation-progressbar progress__bar">
-            <div class="progress__bar--suivi" :style="`width:${progress}%`"></div>
-          </div>
-          <div class="">
-            {{progress}}% {{'complété' | pluralize(progress)}}
-          </div>
 
-          <Tabs></Tabs>
-
-          <div class="avril--actions">
-            <nuxt-link v-if="!isTheEnd" to="/recapitulatif" class="is-ok button is-default is-fullwidth">
-              Enregistrer mon dossier de recevabilité
-            </nuxt-link>
-          </div>
-
-        </div>
-      </div>
-
-
-      <div class="avril-content">
-        <div class="avril-form-help-container">
+        <div class="avril-content">
           <Stepper v-if="!withoutStepper" />
-          <div class="form">
-            <nuxt />
-          </div>
+          <nuxt />
         </div>
       </div>
     </div>

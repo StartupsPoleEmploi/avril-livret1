@@ -104,19 +104,3 @@
     }
   };
 </script>
-
-<style scoped>
-  .push-enter {
-    margin-top: 5px;
-    margin-right: 8px;
-  }
-  .avril-field-action {
-    margin-top: 2rem;
-  }
-  .real-stepper-container {
-    visibility: hidden;
-  }
-  .real-navigation {
-    z-index: -2;
-  }
-</style>

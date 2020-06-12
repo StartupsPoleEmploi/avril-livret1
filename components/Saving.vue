@@ -49,10 +49,17 @@
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  @import '~avril/scss/variables';
+
   .saving {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
+    display: none;
+    @include desktop {
+      display: block;
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 1;
+    }
   }
 </style>

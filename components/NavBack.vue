@@ -1,15 +1,11 @@
 <template>
-  <div class="field has-addons is-pulled-left">
-    <p class="control">
-      <button @click="back" class="button lefty" :class="!displayBack ? 'is-static' : ''">
-        <ArrowLeft />
-      </button>
-    </p>
-    <p class="control">
-      <button @click="next" class="button righty" :class="!displayNext ? 'is-static' : ''">
-        <ArrowRight />
-      </button>
-    </p>
+  <div class="nav-back">
+    <button @click="back" class="button is-default" :class="!displayBack ? 'is-static' : ''">
+      <ArrowLeft />
+    </button>
+    <button @click="next" class="button is-default" :class="!displayNext ? 'is-static' : ''">
+      <ArrowRight />
+    </button>
   </div>
 </template>
 
@@ -48,3 +44,9 @@
     },
   }
 </script>
+
+<style scoped lang="scss">
+  // .nav-back {
+  //   margin-right: 1rem;
+  // }
+</style>
