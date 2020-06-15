@@ -18,9 +18,6 @@
 
 @import 'print';
 
-svg{
-  width: 20px;
-}
 .steps.is-hollow .is-active .steps-marker, .steps .is-active .steps-marker.is-hollow {
     border-color: avril-color('blue');
     background: avril-color('blue');

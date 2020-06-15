@@ -1,38 +1,13 @@
-// progress bar du footer
-.progress__{
-  &bar{
-    background: #20c396;
-    height: 6px;
-    width: 100%;
+.progress-bar{
+  background: #bfbfbf;
+  height: 0.33rem;
+  width: 100%;
+  display: block;
+  margin: 0.33rem 0;
+  .bar{
+    background: avril-color('marine');
+    width: 0%;
+    height: 100%;
     display: block;
-    margin: 4px 0;
-    &--suivi{
-      background: avril-color('marine');
-      width: 0%;
-      height: 6px;
-      display: block;
-    }
-  }
-}
-.progress-vision{
-  margin: 2rem 0;
-}
-.navigation-progressbar{
-  height: 5px;
-  width: 90%;
-  background: #dee2e1;
-  .progress__bar--suivi{
-    height: 5px;
-  }
-}
-
-.navigation-tabs{
-  .progress__bar{
-    background: #bfbfbf;
-  }
-  .nuxt-link-active{
-    .progress__bar{
-      background: #20c396;
-    }
   }
 }

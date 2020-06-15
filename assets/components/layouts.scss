@@ -15,11 +15,11 @@
   flex-direction: row;
 }
 .avril-navigation{
-  flex: 1;
-  flex-direction: column;
-  min-height: 100vh;
-  display: none;
+  // display: none;
   @include desktop {
+    flex: 1;
+    flex-direction: column;
+    min-height: 100vh;
     display: flex;
   }
 }
@@ -38,7 +38,7 @@
     padding: 4rem 5rem;
   }
   background: #fff;
-  border-radius: 6px;
+  border-radius: $radius;
   box-shadow: 0 0 44px rgba(0, 22, 60, .12);
   width: 100%;
 }
@@ -67,13 +67,13 @@
   flex: 1;
   flex-direction: column;
   flex-grow: 1;
-  min-height: 80vh;
+  // min-height: 80vh;
   padding-left: 3rem;
   @include widescreen {
     padding-left: 5rem;
   }
 
-  border-radius: 6px;
+  border-radius: $radius;
   display: none;
   @include desktop {
     display: flex;

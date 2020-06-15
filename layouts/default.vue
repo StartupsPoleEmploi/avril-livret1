@@ -12,21 +12,25 @@
             </a>
           </div>
           <div class="navigation-tabs">
-            <h3 class="navigation-title title is-4">Dossier de recevabilité</h3>
-            <h4 class="navigation-subtitle title is-5">{{certificationLabel}}</h4>
-            <div class="navigation-progressbar progress__bar">
-              <div class="progress__bar--suivi" :style="`width:${progress}%`"></div>
-            </div>
-            <div class="">
-              {{progress}}% {{'complété' | pluralize(progress)}}
+            <div class="navigation-titles">
+              <h3 class="title is-4">Dossier de recevabilité</h3>
+              <h4 class="title is-5">{{certificationLabel}}</h4>
+              <div class="progress-bar">
+                <div class="bar" :style="`width:${progress}%`"></div>
+              </div>
+              <div>
+                {{progress}}% {{'complété' | pluralize(progress)}}
+              </div>
             </div>
 
             <Tabs></Tabs>
 
-            <div class="section is-vertical">
-              <nuxt-link v-if="!isTheEnd" to="/recapitulatif" class="button is-default is-fullwidth">
-                Enregistrer mon dossier de recevabilité
-              </nuxt-link>
+            <div class="section is-vertical is-small">
+              <div class="navigation-titles">
+                <nuxt-link v-if="!isTheEnd" to="/recapitulatif" class="button is-default is-wrapped">
+                  Enregistrer mon dossier de recevabilité
+                </nuxt-link>
+              </div>
             </div>
           </div>
         </div>
@@ -96,52 +100,9 @@
   }
 </script>
 
-<style>
-  html {
-    font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      Roboto, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px;
-    word-spacing: 1px;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
+<style lang="scss" scoped>
+  .navigation-titles {
+    margin-right: 2rem;
   }
 
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-    margin: 0;
-  }
-
-  .button--green {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #3b8070;
-    color: #3b8070;
-    text-decoration: none;
-    padding: 10px 30px;
-  }
-
-  .button--green:hover {
-    color: #fff;
-    background-color: #3b8070;
-  }
-
-  .button--grey {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #35495e;
-    color: #35495e;
-    text-decoration: none;
-    padding: 10px 30px;
-    margin-left: 15px;
-  }
-
-  .button--grey:hover {
-    color: #fff;
-    background-color: #35495e;
-  }
 </style>
