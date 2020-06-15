@@ -15,7 +15,7 @@
   flex-direction: row;
 }
 .avril-navigation{
-  // display: none;
+  display: none;
   @include desktop {
     flex: 1;
     flex-direction: column;
