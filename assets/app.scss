@@ -18,6 +18,10 @@
 
 @import 'print';
 
+html {
+  overflow-y: auto;
+}
+
 .steps.is-hollow .is-active .steps-marker, .steps .is-active .steps-marker.is-hollow {
     border-color: avril-color('blue');
     background: avril-color('blue');

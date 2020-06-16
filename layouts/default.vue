@@ -4,37 +4,93 @@
     <div class="container">
 
       <div class="avril-layout">
-        <div class="avril-navigation">
-          <div class="navigation-header">
-            <a :href="backUrl" class="button is-default">
+        <div class="avril-aside">
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+          <div class="aside-section is-hidden-touch">
+            <a :href="backUrl" class="button is-default is-wrapped">
               <Back />
               Retour vers mon profil
             </a>
           </div>
-          <div class="navigation-tabs">
-            <div class="navigation-titles">
-              <h3 class="title is-4">Dossier de recevabilité</h3>
-              <h4 class="title is-5">{{certificationLabel}}</h4>
-              <div class="progress-bar">
-                <div class="bar" :style="`width:${progress}%`"></div>
-              </div>
-              <div>
-                {{progress}}% {{'complété' | pluralize(progress)}}
+          <div class="aside-section">
+            <h3 class="title is-4">Dossier de recevabilité</h3>
+            <h4 class="subtitle">{{certificationLabel}}</h4>
+            <div class="progress-bar is-hidden-touch">
+              <div class="bar" :style="`width:${progress}%`"></div>
+            </div>
+            <div class="progress-label">
+              {{progress}}% {{'complété' | pluralize(progress)}}
+            </div>
+          </div>
+
+          <div class="aside-section is-hidden-touch">
+            <Tabs></Tabs>
+          </div>
+          <div class="aside-section is-hidden-touch">
+            <nuxt-link v-if="!isTheEnd" to="/recapitulatif" class="button is-default is-wrapped">
+              Enregistrer mon dossier de recevabilité
+            </nuxt-link>
+          </div>
+          <div class="navbar-menu is-hidden-desktop">
+            <a :href="backUrl" class="navbar-item">
+              <!-- <Back /> -->
+              Retour vers mon profil
+            </a>
+            <nuxt-link to="/recapitulatif" class="navbar-item is-primary">
+              Enregistrer mon dossier de recevabilité
+            </nuxt-link>
+
+            <hr class="navbar-divider">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <nuxt-link to="/formations" class="navbar-link">
+                Ma formation
+              </nuxt-link>
+
+              <div class="navbar-dropdown">
+                <nuxt-link to="/formations" class="navbar-item">
+                  Dernière formation
+                </nuxt-link>
+                <nuxt-link to="/formations/diplome" class="navbar-item">
+                  Niveau
+                </nuxt-link>
+                <nuxt-link to="/formations/rncp" class="navbar-item">
+                  Diplôme(s)
+                </nuxt-link>
+                <nuxt-link to="/formations/formations" class="navbar-item">
+                  Formations
+                </nuxt-link>
               </div>
             </div>
+            <hr class="navbar-divider">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <nuxt-link to="/experiences" class="navbar-link">
+                Mes expériences professionnelles
+              </nuxt-link>
 
-            <Tabs></Tabs>
-
-            <div class="section is-vertical is-small">
-              <div class="navigation-titles">
-                <nuxt-link v-if="!isTheEnd" to="/recapitulatif" class="button is-default is-wrapped">
-                  Enregistrer mon dossier de recevabilité
+              <div class="navbar-dropdown">
+                <nuxt-link to="/experiences/fonction" class="navbar-item">
+                  Fonction
+                </nuxt-link>
+                <nuxt-link to="/experiences/famille" class="navbar-item">
+                  Famille pro
+                </nuxt-link>
+                <nuxt-link to="/experiences/statut" class="navbar-item">
+                  Statut
+                </nuxt-link>
+                <nuxt-link to="/experiences/precision" class="navbar-item">
+                  Activités
+                </nuxt-link>
+                <nuxt-link to="/experiences/periode" class="navbar-item">
+                  Période
                 </nuxt-link>
               </div>
             </div>
           </div>
         </div>
-
         <div class="avril-content">
           <Stepper v-if="!withoutStepper" />
           <nuxt />
@@ -93,16 +149,5 @@
         })
       }
     },
-    asyncData: async function() {
-      console.log('coucou loulou')
-      return {};
-    }
   }
 </script>
-
-<style lang="scss" scoped>
-  .navigation-titles {
-    margin-right: 2rem;
-  }
-
-</style>
