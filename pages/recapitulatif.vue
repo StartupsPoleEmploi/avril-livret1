@@ -1,80 +1,84 @@
 <template>
   <div class="avril-recapitulatif">
     <div class="recap-content">
-      <div class="section">
+      <div class="section is-vertical is-small">
         <h1 class="title is-1">Récapitulatif</h1>
-        <div class="notification is-avril">
+        <div class="notification is-avril section is-small">
           <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les en cliquant sur le bouton "Je dois modifier certaines informations" en bas de page.</p>
           <p>Si tout vous semble correct, votre dossier est enregistré et vous pouvez continuer.</p>
         </div>
       </div>
 
-      <section class="section section-formation">
-        <h1 class="title is-3">Ma formation</h1>
-        <div class="recap-cell cell-classe">
-          <p v-if="!education.latestCourseLevel">Je n'ai pas encore renseigné ma dernière classe.</p>
-          <p v-else>Je suis {{feminize('allé')}} jusqu'en <strong>{{latestCourseLevelLabel}}</strong></p>
-        </div>
-        <div class="recap-cell cell-diplome">
-          <p v-if="!education.latestDegree">Je n'ai pas encore renseigné mon diplôme le plus élevé.</p>
-          <p v-else>{{education.latestDegree > 1 ? 'J\'ai un' : 'Je n\'ai'}} <strong>{{latestDegreeLabel}}</strong></p>
-        </div>
-        <div class="recap-cell cell-titres">
-          <div v-if="relatedDegrees.length" >
-            J'ai un diplôme de
-            <span v-for="degree, index in relatedDegrees">
-              <span><strong>{{ degree }}</strong> <span v-if="index < relatedDegrees.length-1">et de </span></span>
-            </span>
+      <section class="section is-vertical is-small section-formation">
+        <div class="content">
+          <h1 class="title is-3">Ma formation</h1>
+          <div class="recap-cell cell-classe">
+            <p v-if="!education.latestCourseLevel">Je n'ai pas encore renseigné ma dernière classe.</p>
+            <p v-else>Je suis {{feminize('allé')}} jusqu'en <strong>{{latestCourseLevelLabel}}</strong></p>
           </div>
-          <div v-else>
-            Je n'ai pas de diplôme supplémentaire.
+          <div class="recap-cell cell-diplome">
+            <p v-if="!education.latestDegree">Je n'ai pas encore renseigné mon diplôme le plus élevé.</p>
+            <p v-else>{{education.latestDegree > 1 ? 'J\'ai un' : 'Je n\'ai'}} <strong>{{latestDegreeLabel}}</strong></p>
           </div>
-        </div>
-        <div class="recap-cell cell-formations">
-          <div v-if="education.trainings.length">
-            J'ai suivi une formation de
-            <span v-for="training, index in education.trainings">
-              <span><strong>{{ training }}</strong> <span v-if="index < education.trainings.length-1">et de </span></span>
-            </span>
+          <div class="recap-cell cell-titres">
+            <div v-if="relatedDegrees.length" >
+              J'ai un diplôme de
+              <span v-for="degree, index in relatedDegrees">
+                <span><strong>{{ degree }}</strong> <span v-if="index < relatedDegrees.length-1">et de </span></span>
+              </span>
+            </div>
+            <div v-else>
+              Je n'ai pas de diplôme supplémentaire.
+            </div>
           </div>
-          <div v-else>
-            Je n'ai pas suivi de formation supplémentaire.
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-formation">
-        <h3 class="title is-3">Mes expériences professionnelles</h3>
-        <p v-if="experiencesProgress == 100">J'ai plus de {{bookletMinHours}} heures d'expériences professionnelles</p>
-        <div class="columns is-multiline">
-          <div v-for="experience in experiences" class="column">
-            <div class="box is-equal-height content">
-              <h3 class="is-4">
-                <CompanyDisplay :experience="experience" />
-              </h3>
-              <p>{{addressLabelify(experience.companyAddress)}}</p>
-              <p class="has-text-weight-bold  ">Périodes :</p>
-              <ul>
-                <li v-for="period in experience.periods">
-                  <PeriodDisplay :period="period" />
-                </li>
-              </ul>
-              <p class="has-text-weight-bold">Mes activités :</p>
-              <div>
-                <ul>
-                  <li v-for="activity in experience.activities">{{activity}}</li>
-                </ul>
-              </div>
-              <p v-if="experience.activities.length === 0">Pas d'activité renseignée.</p>
+          <div class="recap-cell cell-formations">
+            <div v-if="education.trainings.length">
+              J'ai suivi une formation de
+              <span v-for="training, index in education.trainings">
+                <span><strong>{{ training }}</strong> <span v-if="index < education.trainings.length-1">et de </span></span>
+              </span>
+            </div>
+            <div v-else>
+              Je n'ai pas suivi de formation supplémentaire.
             </div>
           </div>
         </div>
-        <div v-if="experiences.length === 0">
-          <p><strong>Je n'ai pas encore renseigné d'expérience professionnelle.</strong></p>
+      </section>
+
+      <section class="section is-vertical is-small section-experiences">
+        <div class="content">
+          <h3 class="title is-3">Mes expériences professionnelles</h3>
+          <p v-if="experiencesProgress == 100">J'ai plus de {{bookletMinHours}} heures d'expériences professionnelles</p>
+          <div class="columns is-multiline">
+            <div v-for="experience in experiences" class="column">
+              <div class="box is-equal-height">
+                <h3 class="is-4">
+                  <CompanyDisplay :experience="experience" />
+                </h3>
+                <p>{{addressLabelify(experience.companyAddress)}}</p>
+                <p class="has-text-weight-bold  ">Périodes :</p>
+                <ul>
+                  <li v-for="period in experience.periods">
+                    <PeriodDisplay :period="period" />
+                  </li>
+                </ul>
+                <p class="has-text-weight-bold">Mes activités :</p>
+                <div>
+                  <ul>
+                    <li v-for="activity in experience.activities">{{activity}}</li>
+                  </ul>
+                </div>
+                <p v-if="experience.activities.length === 0">Pas d'activité renseignée.</p>
+              </div>
+            </div>
+          </div>
+          <div v-if="experiences.length === 0">
+            <p><strong>Je n'ai pas encore renseigné d'expérience professionnelle.</strong></p>
+          </div>
         </div>
       </section>
 
-      <section class="section section-identite">
+      <section class="section is-vertical is-small section-identite">
         <h3 class="title is-3">Mon identité</h3>
         <div class="recap-cell cell-name">
           <p v-if="identity.firstNames && identity.lastName">
@@ -105,7 +109,7 @@
           <p v-else><strong>Je n'ai pas encore renseigné mon adresse.</strong></p>
         </div>
       </section>
-      <section class="section section-identite">
+      <section class="section is-vertical is-small section-situation">
         <h3 class="title is-3">Ma situation actuelle</h3>
         <p>Je {{identity.isHandicapped ? 'suis' : 'ne suis pas'}} {{feminize('reconnu')}} {{feminize('travailleur', 'travailleuse')}} {{feminize('handicapé')}}.</p>
         <p v-if="identity.currentSituation.status">
@@ -116,8 +120,8 @@
         <p v-if="identity.currentSituation.compensationType">Je suis {{feminize('indemnisé')}} <strong>{{currentSituationCompensationTypeLabel}}</strong>.</p>
       </section>
     </div>
-    <section class="section section-confirmation">
-      <div class="notification is-avril">
+    <section class="section is-vertical is-small section-confirmation">
+      <div class="notification is-avril section is-small">
         <h3 class="title is-3 has-text-centered">Est-ce que ces informations sont exactes et complètes ?</h3>
         <div class="control">
           <div class="columns">
@@ -127,17 +131,20 @@
           </div>
           <div class="columns">
             <div class="column">
-              <a class="button is-default is-wrapped" :href="backUrl">
+              <a class="button is-white is-wrapped" :href="backUrl">
                 Je complèterai plus tard
               </a>
             </div>
             <div class="column">
-              <nuxt-link to="/" class="button is-default is-wrapped">
+              <nuxt-link to="/" class="button is-white is-wrapped">
                 Je dois modifier certaines informations
               </nuxt-link>
             </div>
           </div>
         </div>
+      </div>
+      <div v-if="errorMsg" class="notification is-danger">
+        <p>{{errorMsg}}</p>
       </div>
     </section>
   </div>
@@ -157,9 +164,12 @@
   import Back from 'avril/images/icons/back.svg';
   import Pencil from 'avril/images/icons/pencil.svg';
 
+  import {saveLocalState} from '~/utils/url';
+
   export default {
     data: () => ({
       bookletMinHours: BOOKLET_MIN_HOURS,
+      errorMsg: null,
     }),
     layout: 'recapitulatif',
     components: {
@@ -216,19 +226,14 @@
       isPresent,
       markAsCompleteAndGoBack: function() {
         this.$store.commit('markAsComplete');
-        window.location.href = this.backUrl;
+        saveLocalState()(this.$store).then(res => {
+          if (res.ok) {
+            window.location.href = this.backUrl;
+          } else {
+            this.errorMsg = 'Désolé nous ne sommes pas parvenu à enregistrer. Merci de réessayer plus tard.'
+          }
+        })
       },
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  @import '~avril/scss/variables';
-
-  .avril-recapitulatif {
-    @include desktop {
-      padding: 4rem;
-      padding-top: 2rem;
-    }
-  }
-</style>

@@ -1,4 +1,4 @@
-import { storeToBackend } from '~/mappers/toBackend';
+import {saveLocalState} from '~/utils/url';
 import {
   NO_SAVING,
   SAVING_PENDING,
@@ -15,23 +15,7 @@ const savingStateNull = store => {
 export default function({ store, req, env }) {
   if (process.client && store.state.hash) {
     store.commit('setSavingState', SAVING_PENDING);
-    fetch(
-      `${env.clientToPhoenixUrl}/api/booklet?hash=${store.state.hash}`,
-      {
-        method: 'PUT',
-        mode: 'cors',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          civility: storeToBackend.identity(store.state.identity),
-          experiences: storeToBackend.experiences(store.state.experiences),
-          education: storeToBackend.education(store.state.education),
-          ...storeToBackend.index(store.state),
-        })
-      }
-    ).then(response => {
+    saveLocalState(env.clientToPhoenixUrl)(store).then(response => {
       if (response.ok) {
         response.json().then(data => {
           if (data.status === 'ok') {
