@@ -37,14 +37,21 @@
 }
 .navigation{
   &-active{
-    background: avril-color('blue');
-    color: avril-color('marine') !important;
+    background: avril-color('marine');
+    color: avril-color('gray') !important;
     .title{
-      color: avril-color('marine') !important;
+      color: avril-color('gray') !important;
     }
-    &:hover{
-      color: avril-color('marine') !important;
-      background: darken(avril-color('blue'), 3%);
+    .progress-bar .bar {
+      background: avril-color('gray');
+    }
+    svg {
+      fill: avril-color('gray');
+      height: 1rem;
+    }
+    &:hover {
+      background: avril-color('marine');
+      opacity: 0.9;
     }
   }
   &-indicator{

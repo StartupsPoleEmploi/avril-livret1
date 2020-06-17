@@ -3,7 +3,7 @@
     <input class="input" ref="itemInput" type="text" :placeholder="placeholder" @keyup.enter="doAddItem">
     <div class="has-text-right">
       Pour ajouter, appuyez sur <strong>Entrée</strong> ou
-      <button class="button" :class="items.length ? 'is-default' : 'is-dark'" @click="doAddItem">
+      <button class="button" :class="items.length ? 'is-default' : 'is-primary'" @click="doAddItem">
         + Ajouter
       </button>
     </div>

@@ -62,7 +62,7 @@
           </p>
         </client-only>
         <div class="buttons" style="justify-content: space-between; align-items: bottom;">
-          <button class="button is-dark" @click="addPeriod">
+          <button class="button is-primary" @click="addPeriod">
             + Ajouter cette période
           </button>
           <button class="button is-text is-small" @click="toggleWeekHours">

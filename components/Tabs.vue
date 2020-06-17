@@ -1,11 +1,11 @@
 <template>
   <div class="navigation-tabs">
-    <nuxt-link to="/formations" class="navigation-tab is-vertical-center" :class="currentTab == 'formations' ? 'navigation-active' : ''">
+    <nuxt-link to="/formations" class="navigation-tab" :class="currentTab == 'formations' ? 'navigation-active' : ''">
       <Check v-if="educationProgress === 100" />
       <span class="title is-4">Ma formation</span>
     </nuxt-link>
 
-    <nuxt-link to="/experiences" class="navigation-tab is-vertical-center" :class="currentTab == 'experiences' ? 'navigation-active' : ''">
+    <nuxt-link to="/experiences" class="navigation-tab" :class="currentTab == 'experiences' ? 'navigation-active' : ''">
       <Check v-if="experiencesProgress === 100" />
       <span class="title is-4">Mes expériences professionnelles</span>
       <div class="section is-vertical is-small">
@@ -49,13 +49,3 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  @import '~assets/variables';
-
-  .navigation-tab {
-    svg {
-      fill: avril-color('marine');
-      height: 1rem;
-    }
-  }
-</style>

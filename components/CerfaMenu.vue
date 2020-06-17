@@ -16,7 +16,7 @@
       <div class="column">
         <form @submit="addBody" method="POST" action="cerfa.pdf" class="download" target="print_popup">
           <input type="hidden" name="body" :value="htmlBody">
-          <button download="cerfa.pdf" type="submit" class="button is-dark is-pulled-right" :disabled="!!htmlBody">
+          <button download="cerfa.pdf" type="submit" class="button is-primary is-pulled-right" :disabled="!!htmlBody">
             {{htmlBody ? 'Téléchargement ...' : 'Télécharger le PDF'}}
           </button>
         </form>

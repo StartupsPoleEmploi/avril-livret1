@@ -6,7 +6,7 @@
       v-on:click.native="newExperience()"
       to="/experiences/fonction"
       class="button"
-      :class="experiencesProgress < 100 ? 'is-dark' : 'is-default'"
+      :class="experiencesProgress < 100 ? 'is-primary' : 'is-default'"
     >
       <Plus />
       Ajouter une
@@ -56,7 +56,7 @@
       <nuxt-link
         :event="experiencesProgress < 100 ? '' : 'click'"
         to="/recapitulatif"
-        class="button is-dark"
+        class="button is-primary"
       >
         Enregistrer mon dossier de recevabilité
       </nuxt-link>

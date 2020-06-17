@@ -87,7 +87,7 @@
             </div>
             <hr class="navbar-divider" />
             <div class="navbar-item">
-              <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/recapitulatif" class="button" :class="progress === 100 ? 'is-dark' : 'is-default'">
+              <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/recapitulatif" class="button" :class="progress === 100 ? 'is-primary' : 'is-default'">
                 Enregistrer mon dossier de recevabilité
               </nuxt-link>
             </div>

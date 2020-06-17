@@ -61,13 +61,13 @@
     background: none;
     box-shadow: none;
     border: none;
-    border-bottom: 2px solid avril-color('blue');
+    border-bottom: 2px solid avril-color('marine');
     border-radius: 0;
     color: avril-color('marine');
     outline: none;
     font-family: $family-serif;
     &:hover {
-      border-color: avril-color('blue');
+      border-color: avril-color('marine');
     }
     &:focus {
       box-shadow: none;

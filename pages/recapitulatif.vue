@@ -124,7 +124,7 @@
         <div class="control">
           <div class="columns is-centered">
             <div class="column">
-              <button @click="markAsCompleteAndGoBack" class="button is-dark is-fullwidth is-wrapped" to="/cerfa">
+              <button @click="markAsCompleteAndGoBack" class="button is-primary is-fullwidth is-wrapped" to="/cerfa">
                 <span>
                   <Check />
                   Je certifie exacte l'intégralité des informations fournies dans ce document

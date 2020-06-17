@@ -27,7 +27,7 @@
           case SAVING_PENDING:
             return 'info';
           case SAVING_SUCCESS:
-            return 'success';
+            return 'primary';
           case SAVING_ERROR:
             return 'danger';
         }

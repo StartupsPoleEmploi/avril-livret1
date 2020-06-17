@@ -4,7 +4,7 @@
       <nuxt-link :to="to" class="button is-text is-pulled-left">
         Remplir plus tard
       </nuxt-link>
-      <nuxt-link v-if="value" :to="to" class="button is-pulled-right" :class="isEmptyArray ? 'is-default' : 'is-dark'" >
+      <nuxt-link v-if="value" :to="to" class="button is-pulled-right" :class="isEmptyArray ? 'is-default' : 'is-primary'" >
         {{isEmptyArray ? 'Aucun, continuer' : 'Continuer'}}
       </nuxt-link>
     </div>
