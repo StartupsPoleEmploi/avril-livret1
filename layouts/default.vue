@@ -43,57 +43,57 @@
             </div>
             <hr class="navbar-divider" />
             <div class="navbar-item has-dropdown is-hoverable">
-              <nuxt-link to="/formations" class="navbar-link">
+              <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations" class="navbar-link">
                 Ma formation
               </nuxt-link>
 
               <div class="navbar-dropdown">
-                <nuxt-link to="/formations" class="navbar-item">
+                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations" class="navbar-item">
                   Dernière formation
                 </nuxt-link>
-                <nuxt-link to="/formations/diplome" class="navbar-item">
+                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations/diplome" class="navbar-item">
                   Niveau
                 </nuxt-link>
-                <nuxt-link to="/formations/rncp" class="navbar-item">
+                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations/rncp" class="navbar-item">
                   Diplôme(s)
                 </nuxt-link>
-                <nuxt-link to="/formations/formations" class="navbar-item">
+                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations/formations" class="navbar-item">
                   Formations
                 </nuxt-link>
               </div>
             </div>
             <div class="navbar-item has-dropdown is-hoverable">
-              <nuxt-link to="/experiences" class="navbar-link">
+              <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences" class="navbar-link">
                 Mes expériences professionnelles
               </nuxt-link>
 
               <div class="navbar-dropdown" v-if="currentExperience">
-                <nuxt-link to="/experiences/fonction" class="navbar-item">
+                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/fonction" class="navbar-item">
                   Fonction
                 </nuxt-link>
-                <nuxt-link to="/experiences/famille" class="navbar-item">
+                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/famille" class="navbar-item">
                   Famille pro
                 </nuxt-link>
-                <nuxt-link to="/experiences/statut" class="navbar-item">
+                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/statut" class="navbar-item">
                   Statut
                 </nuxt-link>
-                <nuxt-link to="/experiences/precision" class="navbar-item">
+                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/precision" class="navbar-item">
                   Activités
                 </nuxt-link>
-                <nuxt-link to="/experiences/periode" class="navbar-item">
+                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/periode" class="navbar-item">
                   Période
                 </nuxt-link>
               </div>
             </div>
             <hr class="navbar-divider" />
             <div class="navbar-item">
-              <nuxt-link to="/recapitulatif" class="button" :class="progress === 100 ? 'is-dark' : 'is-default'">
+              <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/recapitulatif" class="button" :class="progress === 100 ? 'is-dark' : 'is-default'">
                 Enregistrer mon dossier de recevabilité
               </nuxt-link>
             </div>
           </div>
         </div>
-        <div class="avril-content">
+        <div class="avril-content" @click="toggleMobileMenu(false)">
           <Stepper v-if="!withoutStepper" />
             <div class="form">
               <div class="form-fields">
@@ -164,8 +164,10 @@
       }
     },
     middleware: async function({store, route}) {
-      const helpContent = await import(`~/contents/help${route.path}${route.path.split('/').length == 2 ? '/index' : ''}.md`);
-      store.commit('setHelpContent', helpContent.default);
+      try {
+        const helpContent = await import(`~/contents/help${route.path}${route.path.split('/').length == 2 ? '/index' : ''}.md`);
+        store.commit('setHelpContent', helpContent.default);
+      } catch(e) {}
     },
     mounted() {
       if (this.$store.state.isReadOnly) {
@@ -175,8 +177,8 @@
       }
     },
     methods: {
-      toggleMobileMenu: function() {
-        this.showMobileMenu = !this.showMobileMenu;
+      toggleMobileMenu: function(value) {
+        this.showMobileMenu = typeof value === 'undefined' ? !this.showMobileMenu : value;
       },
     },
   }
