@@ -1,7 +1,7 @@
 <template>
   <div class="form experience-index">
     <div class="form-fields">
-      <h1 class="title is-3">Mes expériences professionnelles</h1>
+      <h1 class="title is-4">Mes expériences professionnelles</h1>
 
       <nuxt-link
         v-on:click.native="newExperience()"
@@ -9,13 +9,9 @@
         class="button"
         :class="experiencesProgress < 100 ? 'is-dark' : 'is-default'"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <title>add</title>
-          <path
-            d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
-          ></path></svg
-        > Ajouter une
-        {{ experiences.length ? "nouvelle " : "" }}expérience
+        <Plus />
+        Ajouter une
+        {{ experiences.length ? 'nouvelle ' : '' }}expérience
       </nuxt-link>
       <div class="section is-vertical">
         <div class="columns is-multiline">
@@ -72,8 +68,10 @@
 </template>
 
 <script>
-  import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import Plus from 'avril/images/icons/plus.svg';
   import { isBlank } from 'avril/js/utils/boolean.js';
+
+  import helpLoaderMixin from '~/mixins/helpLoader.js';
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
   import CompanyDisplay from '~/components/CompanyDisplay.vue';
 
@@ -106,6 +104,7 @@
     components: {
       CompanyDisplay,
       PeriodDisplay,
+      Plus,
     },
     computed: {
       experiences() {
@@ -138,12 +137,3 @@
     }
   };
 </script>
-
-<style lang="scss" scoped >
-  @import '~avril/scss/variables';
-  // .experience-index {
-  //   @include tablet {
-  //     padding-top: 8rem;
-  //   }
-  // }
-</style>

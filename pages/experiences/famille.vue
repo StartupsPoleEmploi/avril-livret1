@@ -1,26 +1,18 @@
 <template>
   <div class="form">
     <div class="form-fields">
-      <h3 class="title is-5">
-        Quelle est la famille professionnelle de votre métier ?
-      </h3>
-      <RadioList
-        :value="category"
-        :options="possibleAnswers"
-        to="/experiences/statut"
-        :click="addCategory"
-      />
-
-      <div class="form-field-action field" style="margin-top: 20px">
-        <div class="control">
-          <nuxt-link to="statut" class="is-ok button is-text is-pulled-left">
-            Remplir plus tard
-          </nuxt-link>
-          <nuxt-link v-if="category" to="statut" class="is-ok button is-dark is-pulled-right">
-            Continuer
-          </nuxt-link>
-        </div>
+      <div class="field">
+        <h3 class="title is-5">
+          Quelle est la famille professionnelle de votre métier ?
+        </h3>
+        <RadioList
+          :value="category"
+          :options="possibleAnswers"
+          to="/experiences/statut"
+          :click="addCategory"
+        />
       </div>
+      <ContinueOrFillLater to="/experiences/statut" :value="category" />
     </div>
 
     <Help :content="help" />
@@ -32,6 +24,7 @@
   import RadioList from 'avril/js/components/RadioList.vue';
   import helpLoaderMixin from '~/mixins/helpLoader.js';
   import possibleAnswers from '~/contents/data/experienceCategories';
+  import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
 
   export default {
     mixins: [helpLoaderMixin],
@@ -41,7 +34,8 @@
       }
     },
     components: {
-      RadioList
+      ContinueOrFillLater,
+      RadioList,
     },
     computed: {
       category() {

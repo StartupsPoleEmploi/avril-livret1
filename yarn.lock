@@ -1829,7 +1829,7 @@ available-typed-arrays@^1.0.0, available-typed-arrays@^1.0.2:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/060a1ff4009dae450dcc211b7092becc342af39d"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/071ba1e3a43d2d637331e59ebec8822578e63be9"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
     algoliasearch "^3.35.1"

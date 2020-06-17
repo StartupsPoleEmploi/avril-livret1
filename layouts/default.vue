@@ -5,7 +5,7 @@
 
       <div class="avril-layout">
         <div class="avril-aside">
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a @click="toggleMobileMenu()" role="button" class="navbar-burger burger" :class="showMobileMenu ? 'is-active' : ''" aria-label="menu" :aria-expanded="`${showMobileMenu}`" data-target="mobile-menu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -35,16 +35,13 @@
               Enregistrer mon dossier de recevabilité
             </nuxt-link>
           </div>
-          <div class="navbar-menu is-hidden-desktop">
-            <a :href="backUrl" class="navbar-item">
-              <!-- <Back /> -->
-              Retour vers mon profil
-            </a>
-            <nuxt-link to="/recapitulatif" class="navbar-item is-primary">
-              Enregistrer mon dossier de recevabilité
-            </nuxt-link>
-
-            <hr class="navbar-divider">
+          <div id="mobile-menu" class="navbar-menu is-hidden-desktop" :class="showMobileMenu ? 'is-active' : ''">
+            <div class="navbar-item">
+              <a :href="backUrl" class="button is-default">
+                <Back />
+                Retour vers mon profil
+              </a>
+            </div>
             <div class="navbar-item has-dropdown is-hoverable">
               <nuxt-link to="/formations" class="navbar-link">
                 Ma formation
@@ -65,13 +62,12 @@
                 </nuxt-link>
               </div>
             </div>
-            <hr class="navbar-divider">
             <div class="navbar-item has-dropdown is-hoverable">
               <nuxt-link to="/experiences" class="navbar-link">
                 Mes expériences professionnelles
               </nuxt-link>
 
-              <div class="navbar-dropdown">
+              <div class="navbar-dropdown" v-if="currentExperience">
                 <nuxt-link to="/experiences/fonction" class="navbar-item">
                   Fonction
                 </nuxt-link>
@@ -88,6 +84,11 @@
                   Période
                 </nuxt-link>
               </div>
+            </div>
+            <div class="navbar-item">
+              <nuxt-link to="/recapitulatif" class="button" :class="progress === 100 ? 'is-primary' : 'is-default'">
+                Enregistrer mon dossier de recevabilité
+              </nuxt-link>
             </div>
           </div>
         </div>
@@ -130,10 +131,18 @@
       certificationLabel() {
         return this.$store.state.certificationLabel;
       },
+      currentExperience() {
+        return this.$store.getters['experiences/current'];
+      },
       withoutStepper() {
         return this.$store.getters.currentTab === 'experiences'
           && !this.$store.getters['experiences/current'];
       },
+    },
+    data: function() {
+      return {
+        showMobileMenu: false,
+      }
     },
     head() {
       if (this.$store.getters.pageTitle) {
@@ -148,6 +157,11 @@
           path: '/cerfa'
         })
       }
+    },
+    methods: {
+      toggleMobileMenu: function() {
+        this.showMobileMenu = !this.showMobileMenu;
+      },
     },
   }
 </script>

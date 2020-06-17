@@ -1,5 +1,7 @@
 .field{
-  margin-bottom: 3rem !important;
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
 
   .input, .textarea{
     -moz-appearance: none;

@@ -1,13 +1,16 @@
 <template>
   <div class="form">
     <div class="form-fields">
-      <h3 class="title is-5">Quelle classe avez vous suivi en dernier ?</h3>
-      <RadioList
-        :value="latestCourseLevel"
-        :options="possibleAnswers"
-        to="/formations/diplome"
-        :click="addLatestCourseLevel"
-      />
+      <div class="field">
+        <h3 class="title is-5">Quelle classe avez vous suivi en dernier ?</h3>
+        <RadioList
+          :value="latestCourseLevel"
+          :options="possibleAnswers"
+          to="/formations/diplome"
+          :click="addLatestCourseLevel"
+        />
+      </div>
+      <ContinueOrFillLater to="/formations/diplome" :value="latestCourseLevel" />
     </div>
     <Help :content="help" />
   </div>
@@ -15,13 +18,15 @@
 
 <script>
   import RadioList from 'avril/js/components/RadioList.vue';
+  import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
   import helpLoaderMixin from '~/mixins/helpLoader.js';
   import possibleAnswers from '~/contents/data/latestCourseLevel';
 
   export default {
     mixins: [helpLoaderMixin],
     components: {
-      RadioList
+      ContinueOrFillLater,
+      RadioList,
     },
     computed: {
       latestCourseLevel() {

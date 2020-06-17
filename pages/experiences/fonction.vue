@@ -9,7 +9,7 @@
             ref="role"
             class="input"
             type="text"
-            placeholder="Exemple : Boulanger Pâtissier"
+            placeholder="Ex: Boulanger Pâtissier"
             @input="addRole"
           />
         </div>
@@ -22,7 +22,7 @@
             :value="companyName"
             class="input"
             type="text"
-            placeholder="Exemple : Crêche p'tit loup"
+            placeholder="Ex: Crêche p'tit loup"
             @input="addCompanyName"
           />
         </div>
@@ -35,21 +35,11 @@
             :input="addCompanyAddress"
             :value="companyAddress"
             :credentials="credentials"
-            placeholder="Exemple : 44 rue de dupont, 13000 Marseille"
+            placeholder="Ex: 44 rue de dupont, 13000 Marseille"
           />
         </div>
       </div>
-
-      <div class="form-field-action field">
-        <div class="control">
-          <nuxt-link to="famille" class="is-ok button is-text is-pulled-left">
-            Remplir plus tard
-          </nuxt-link>
-          <nuxt-link to="famille" class="is-ok button is-dark is-pulled-right">
-            Continuer
-          </nuxt-link>
-        </div>
-      </div>
+      <ContinueOrFillLater to="/experiences/famille" :value="role && companyName" />
     </div>
     <Help :content="help" />
   </div>
@@ -59,11 +49,13 @@
   import get from 'lodash.get';
   import GeoInput from 'avril/js/components/GeoInput.vue';
   import helpLoaderMixin from '~/mixins/helpLoader.js';
+  import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
 
   export default {
     mixins: [helpLoaderMixin],
     components: {
       GeoInput,
+      ContinueOrFillLater,
     },
     beforeCreate() {
       if (!this.$store.getters['experiences/current']) {

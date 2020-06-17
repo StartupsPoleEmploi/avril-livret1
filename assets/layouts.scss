@@ -10,7 +10,7 @@
   }
 }
 
-.avril-layout{
+.avril-layout {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -19,9 +19,8 @@
     padding: 3rem 0;
     flex-direction: row;
   }
-  .avril-aside{
+  .avril-aside {
     position: relative;
-    // display: none;
     @include desktop {
       flex-direction: column;
       display: flex;

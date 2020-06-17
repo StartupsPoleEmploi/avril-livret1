@@ -3,43 +3,19 @@
 
     <div class="form-fields">
       <div class="field">
-        <div class="control">
-          <label class="label" v-if="role != ''">Quelles activités avez-vous pratiqué dans votre emploi {{ role ? `de ${role}`: ''}} {{companyName ? `au sein de ${companyName}` : ''}} ?</label>
-          <label class="label" v-else>Quelles activités avez-vous fait dans votre emploi ?</label>
-          <input class="input" ref="activity_input" type="text" placeholder="Exemple : Je pétris de la pâte à pain" @keyup.enter="addActivity">
-          <div class="push-enter" style="margin-top:5px; margin-left:6px;">
-            Appuyez sur <strong>Entrée</strong> pour ajouter cette activité ou
-            <a class="button is-pulled-right" :class="activities.length ? 'is-default' : 'is-dark'" @click="addActivity" style="margin-top:4px">
-              + Ajouter
-            </a>
-          </div>
+        <h3 class="title is-5">{{label}}</h3>
+        <ItemInput :items="activities" :addItem="addActivity" placeholder="Ex: Je pétris de la pâte à pain" />
+      </div>
+
+      <ItemList :items="activities" :removeItem="removeActivity" />
+
+      <div class="field" v-if="activities.length === 0">
+        <div class="notification is-danger">
+          Je dois saisir au minimum une activité.
         </div>
       </div>
 
-      <div class="field">
-        <div class="titres">
-          <ul v-for="activity in activities">
-            <li class="box">
-              {{activity}}
-              <button @click="removeActivity(activity)" class="delete is-pulled-right"></button>
-            </li>
-          </ul>
-          <div v-if="activities.length === 0" class="notification is-danger">
-            Je dois saisir au minimum une activité.
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="control">
-          <nuxt-link to="/experiences/periode" class="is-ok button is-text is-pulled-left">
-            Remplir plus tard
-          </nuxt-link>
-          <nuxt-link to="/experiences/periode" class="is-ok button is-pulled-right" :class="activities.length ? 'is-dark' : 'is-default'">
-            Continuer
-          </nuxt-link>
-        </div>
-      </div>
+      <ContinueOrFillLater to="/experiences/periode" :value="activities" />
     </div>
     <Help :content="help" img="help.png" />
   </div>
@@ -49,6 +25,9 @@
   import get from 'lodash.get';
   import helpLoaderMixin from '~/mixins/helpLoader.js';
   import {isBlank} from 'avril/js/utils/boolean.js';
+  import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
+  import ItemList from '~/components/ItemList.vue';
+  import ItemInput from '~/components/ItemInput.vue';
 
   export default {
     mixins: [helpLoaderMixin],
@@ -57,12 +36,22 @@
         this.$router.push('/experiences');
       }
     },
+    components: {
+      ContinueOrFillLater,
+      ItemInput,
+      ItemList,
+    },
     computed: {
       role() {
         return get(this.$store.getters['experiences/current'], 'role');
       },
       companyName() {
         return get(this.$store.getters['experiences/current'], 'companyName');
+      },
+      label() {
+        const roleString = this.role ? `de ${this.role}` : ''
+        const companyString = this.companyName ? `au sein de ${this.companyName}` : '';
+        return `Quelles activités avez-vous pratiqué dans votre emploi ${roleString} ${companyString} ?`
       },
       activities() {
         return get(this.$store.getters['experiences/current'], 'activities') || [];
@@ -71,14 +60,9 @@
         return this.$store.getters['experiences/progress'];
       },
     },
-    mounted() {
-      this.$refs.activity_input.focus()
-    },
     methods: {
-      addActivity(e) {
-        if (isBlank(this.$refs.activity_input.value)) return;
-        this.$store.dispatch('experiences/addActivity', this.$refs.activity_input.value)
-        this.$refs.activity_input.value = '';
+      addActivity(value) {
+        this.$store.dispatch('experiences/addActivity', value)
       },
       removeActivity(activity) {
         if(window.confirm('Je confirme vouloir supprimer cette activité ?')){
