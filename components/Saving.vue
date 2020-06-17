@@ -53,13 +53,14 @@
   @import '~avril/scss/variables';
 
   .saving {
-    display: none;
-    @include desktop {
-      display: block;
-      position: fixed;
-      top: 2rem;
-      right: 2rem;
-      z-index: 1;
+    display: block;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1;
+    @include touch {
+      top: 1rem;
+      right: 1rem;
     }
   }
 </style>
