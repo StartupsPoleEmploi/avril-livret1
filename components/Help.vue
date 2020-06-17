@@ -1,7 +1,8 @@
 <template>
   <div class="form-help">
-    <div class="notification is-success">
-      <h3 class="title is-5">Besoin d'aide ?</h3>
+    <div class="notification is-default" :class="isExpanded ? 'is-expanded' : ''">
+      <button v-if="isExpanded" @click="toggleExpanded()" class="delete is-pulled-right"></button>
+      <h3 class="title is-5" @click="toggleExpanded()">Besoin d'aide ?</h3>
       <div class="form-help-content content">
         <div v-html="content"></div>
         <client-only>
@@ -13,6 +14,16 @@
 </template>
 <script type="text/javascript">
   export default {
+    data: function() {
+      return {
+        isExpanded: false,
+      }
+    },
+    methods: {
+      toggleExpanded: function() {
+        this.isExpanded = !this.isExpanded;
+      },
+    },
     props: [
       'content',
       'img',

@@ -37,14 +37,17 @@ a, button {
     justify-content: center;
   }
 
-  svg{
-    height: 1rem;
-    padding-right: 0.25rem;
-    vertical-align: middle;
-    fill: avril-color('marine');
-  }
   span svg {
     position: relative;
     top: -1px;
+    vertical-align: middle;
+  }
+}
+
+a, .button {
+  svg {
+    height: 1rem;
+    padding-right: 0.25rem;
+    fill: avril-color('marine');
   }
 }

@@ -115,6 +115,9 @@
 .form {
   display: flex;
   flex-direction: row;
+  @include touch {
+    flex-direction: column-reverse;
+  }
   .form-fields{
     flex: 1;
     display: flex;
@@ -131,7 +134,20 @@
       padding-left: 5rem;
     }
     @include touch {
-      display: none;
+      padding-left: 0;
+      padding-bottom: 2rem;
+      .notification {
+        float: right;
+        &:not(.is-expanded) {
+          .title {
+            margin-bottom: 0;
+            font-size: 1rem;
+          }
+          .form-help-content {
+            display: none;
+          }
+        }
+      }
     }
   }
 }

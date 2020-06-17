@@ -1,25 +1,20 @@
 <template>
-  <div class="form">
-    <div class="form-fields">
-      <div class="field">
-        <h3 class="title is-5">Quels diplômes avez-vous obtenu en rapport avec le diplôme {{certification || ' que vous souhaitez obtenir'}} ?</h3>
-        <ItemInput :items="relatedDegrees" :addItem="addRelatedDegree" placeholder="Ex: Bac pro commerce" />
-      </div>
-      <ItemList :items="relatedDegrees" :removeItem="removeRelatedDegree" />
-      <ContinueOrFillLater to="/formations/formations" :value="relatedDegrees" />
+  <div>
+    <div class="field">
+      <h3 class="title is-5">Quels diplômes avez-vous obtenu en rapport avec le diplôme {{certification || ' que vous souhaitez obtenir'}} ?</h3>
+      <ItemInput :items="relatedDegrees" :addItem="addRelatedDegree" placeholder="Ex: Bac pro commerce" />
     </div>
-    <Help :content="help" />
+    <ItemList :items="relatedDegrees" :removeItem="removeRelatedDegree" />
+    <ContinueOrFillLater to="/formations/formations" :value="relatedDegrees" />
   </div>
 </template>
 
 <script>
-  import helpLoaderMixin from '~/mixins/helpLoader.js';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
   import ItemList from '~/components/ItemList.vue';
   import ItemInput from '~/components/ItemInput.vue';
 
   export default {
-    mixins: [helpLoaderMixin],
     components: {
       ContinueOrFillLater,
       ItemInput,

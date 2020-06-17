@@ -95,7 +95,13 @@
         </div>
         <div class="avril-content">
           <Stepper v-if="!withoutStepper" />
-          <nuxt />
+            <div class="form">
+              <div class="form-fields">
+                <nuxt />
+              </div>
+              <Help :content="helpContent" />
+            </div>
+
         </div>
       </div>
     </div>
@@ -111,10 +117,12 @@
   import Stepper from '~/components/Stepper.vue';
   import Tabs from '~/components/Tabs.vue';
   import Saving from '~/components/Saving.vue';
+  import Help from '~/components/Help.vue';
 
   export default {
     components: {
       Back,
+      Help,
       Saving,
       Stepper,
       Tabs,
@@ -135,6 +143,9 @@
       currentExperience() {
         return this.$store.getters['experiences/current'];
       },
+      helpContent() {
+        return this.$store.state.helpContent;
+      },
       withoutStepper() {
         return this.$store.getters.currentTab === 'experiences'
           && !this.$store.getters['experiences/current'];
@@ -152,8 +163,9 @@
         }
       }
     },
-    middleware: function() {
-      console.log('coucou')
+    middleware: async function({store, route}) {
+      const helpContent = await import(`~/contents/help${route.path}${route.path.split('/').length == 2 ? '/index' : ''}.md`);
+      store.commit('setHelpContent', helpContent.default);
     },
     mounted() {
       if (this.$store.state.isReadOnly) {

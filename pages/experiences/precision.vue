@@ -1,36 +1,30 @@
 <template>
-  <div class="form">
-
-    <div class="form-fields">
-      <div class="field">
-        <h3 class="title is-5">{{label}}</h3>
-        <ItemInput :items="activities" :addItem="addActivity" placeholder="Ex: Je pétris de la pâte à pain" />
-      </div>
-
-      <ItemList :items="activities" :removeItem="removeActivity" />
-
-      <div class="field" v-if="activities.length === 0">
-        <div class="notification is-danger">
-          Je dois saisir au minimum une activité.
-        </div>
-      </div>
-
-      <ContinueOrFillLater to="/experiences/periode" :value="activities" />
+  <div>
+    <div class="field">
+      <h3 class="title is-5">{{label}}</h3>
+      <ItemInput :items="activities" :addItem="addActivity" placeholder="Ex: Je pétris de la pâte à pain" />
     </div>
-    <Help :content="help" img="help.png" />
+
+    <ItemList :items="activities" :removeItem="removeActivity" />
+
+    <div class="field" v-if="activities.length === 0">
+      <div class="notification is-danger">
+        Je dois saisir au minimum une activité.
+      </div>
+    </div>
+
+    <ContinueOrFillLater to="/experiences/periode" :value="activities" />
   </div>
 </template>
 
 <script>
   import get from 'lodash.get';
-  import helpLoaderMixin from '~/mixins/helpLoader.js';
   import {isBlank} from 'avril/js/utils/boolean.js';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
   import ItemList from '~/components/ItemList.vue';
   import ItemInput from '~/components/ItemInput.vue';
 
   export default {
-    mixins: [helpLoaderMixin],
     beforeCreate() {
       if (!this.$store.getters['experiences/current']) {
         this.$router.push('/experiences');
