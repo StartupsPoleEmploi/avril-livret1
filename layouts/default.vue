@@ -2,7 +2,6 @@
   <div>
     <Saving />
     <div class="container">
-
       <div class="avril-layout">
         <div class="avril-aside">
           <a @click="toggleMobileMenu()" role="button" class="navbar-burger burger" :class="showMobileMenu ? 'is-active' : ''" aria-label="menu" :aria-expanded="`${showMobileMenu}`" data-target="mobile-menu">
@@ -42,6 +41,7 @@
                 Retour vers mon profil
               </a>
             </div>
+            <hr class="navbar-divider" />
             <div class="navbar-item has-dropdown is-hoverable">
               <nuxt-link to="/formations" class="navbar-link">
                 Ma formation
@@ -85,8 +85,9 @@
                 </nuxt-link>
               </div>
             </div>
+            <hr class="navbar-divider" />
             <div class="navbar-item">
-              <nuxt-link to="/recapitulatif" class="button" :class="progress === 100 ? 'is-primary' : 'is-default'">
+              <nuxt-link to="/recapitulatif" class="button" :class="progress === 100 ? 'is-dark' : 'is-default'">
                 Enregistrer mon dossier de recevabilité
               </nuxt-link>
             </div>
@@ -150,6 +151,9 @@
           titleTemplate: `${this.$store.getters.pageTitle} - %s`,
         }
       }
+    },
+    middleware: function() {
+      console.log('coucou')
     },
     mounted() {
       if (this.$store.state.isReadOnly) {

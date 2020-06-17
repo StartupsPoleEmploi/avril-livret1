@@ -39,9 +39,12 @@ a, button {
 
   svg{
     height: 1rem;
-    padding-right: 0.5rem;
-    // margin-left: -6px;
-
+    padding-right: 0.25rem;
+    vertical-align: middle;
     fill: avril-color('marine');
+  }
+  span svg {
+    position: relative;
+    top: -1px;
   }
 }

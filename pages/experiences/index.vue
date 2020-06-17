@@ -1,7 +1,7 @@
 <template>
   <div class="form experience-index">
     <div class="form-fields">
-      <h1 class="title is-4">Mes expériences professionnelles</h1>
+      <h1 class="title is-3">Mes expériences professionnelles</h1>
 
       <nuxt-link
         v-on:click.native="newExperience()"
@@ -112,6 +112,11 @@
       },
       experiencesProgress() {
         return this.$store.getters['experiences/progress'];
+      }
+    },
+    data: function() {
+      return {
+        noStepper: true,
       }
     },
     methods: {

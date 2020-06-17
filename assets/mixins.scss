@@ -4,3 +4,19 @@
   ::-moz-placeholder          {@content}
   :-ms-input-placeholder      {@content}
 }
+
+@mixin touch_or_asideless {
+  body.is-asideless & {
+    @content;
+
+    &.is-hidden-asideless {
+      display: none;
+    }
+  }
+  @include touch {
+    @content;
+    &.is-hidden-asideless {
+      display: none;
+    }
+  }
+}
