@@ -1,9 +1,9 @@
 <template>
   <div class="nav-back">
-    <button @click="back" class="button is-default" :class="!displayBack ? 'is-static' : ''">
+    <button @click="back" class="button is-default" :disabled="!displayBack">
       <ArrowLeft />
     </button>
-    <button @click="next" class="button is-default" :class="!displayNext ? 'is-static' : ''">
+    <button @click="next" class="button is-default" :disabled="!displayNext">
       <ArrowRight />
     </button>
   </div>

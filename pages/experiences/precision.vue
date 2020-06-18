@@ -45,7 +45,7 @@
       label() {
         const roleString = this.role ? `de ${this.role}` : ''
         const companyString = this.companyName ? `au sein de ${this.companyName}` : '';
-        return `Quelles activités avez-vous pratiqué dans votre emploi ${roleString} ${companyString} ?`
+        return `Quelles activités avez-vous pratiquées dans votre emploi ${roleString} ${companyString} ?`
       },
       activities() {
         return get(this.$store.getters['experiences/current'], 'activities') || [];

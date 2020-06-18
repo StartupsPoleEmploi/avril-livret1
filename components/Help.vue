@@ -28,6 +28,11 @@
       'content',
       'img',
     ],
+    watch: {
+      content: function(newVal, oldVal) {
+        this.isExpanded = false;
+      },
+    }
   }
 </script>
 <style lang="scss">

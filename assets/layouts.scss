@@ -39,7 +39,7 @@
       }
       .progress-label {
         &:before {
-          content: ' - ';
+          content: ' : ';
         }
       }
     }
@@ -109,7 +109,11 @@
 .form-header {
   height: 6rem;
   @include touch {
-    display: none;
+    position: absolute;
+    height: auto;
+    .stepper {
+      display: none;
+    }
   }
 }
 .form {
