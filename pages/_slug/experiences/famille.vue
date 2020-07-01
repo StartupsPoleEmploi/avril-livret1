@@ -5,13 +5,13 @@
         Quelle est la famille professionnelle de votre métier ?
       </h3>
       <RadioList
-        :value="category"
+        :value="jobIndustry"
         :options="possibleAnswers"
         to="/experiences/statut"
         :click="addCategory"
       />
     </div>
-    <ContinueOrFillLater to="/experiences/statut" :value="category" />
+    <ContinueOrFillLater to="/experiences/statut" :value="jobIndustry" />
   </div>
 </template>
 
@@ -32,8 +32,8 @@
       RadioList,
     },
     computed: {
-      category() {
-        return get(this.$store.getters['experiences/current'], 'category');
+      jobIndustry() {
+        return get(this.$store.getters['experiences/current'], 'jobIndustry');
       }
     },
     data() {
@@ -42,8 +42,8 @@
       };
     },
     methods: {
-      addCategory(category) {
-        this.$store.dispatch('experiences/addCategory', category);
+      addJobIndustry(jobIndustry) {
+        this.$store.dispatch('experiences/addCategory', jobIndustry);
       }
     }
   };

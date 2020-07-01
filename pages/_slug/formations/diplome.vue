@@ -5,19 +5,19 @@
         Quel est le diplôme le plus élevé que vous avez obtenu en France ?
       </h3>
       <RadioList
-        :value="latestDegree"
+        :value="degree"
         :options="possibleAnswers"
         to="/formations/rncp"
-        :click="addLatestDegree"
+        :click="addDegree"
       />
     </div>
-    <ContinueOrFillLater to="/formations/rncp" :value="latestDegree" />
+    <ContinueOrFillLater to="/formations/rncp" :value="degree" />
   </div>
 </template>
 
 <script>
   import RadioList from '~/components/RadioList.vue';
-  import possibleAnswers from '~/contents/data/latestDegree';
+  import possibleAnswers from '~/contents/data/degree';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
 
   export default {
@@ -26,8 +26,8 @@
       RadioList,
     },
     computed: {
-      latestDegree() {
-        return this.$store.state.education.latestDegree;
+      degree() {
+        return this.$store.state.education.degree;
       }
     },
     data() {
@@ -36,8 +36,8 @@
       };
     },
     methods: {
-      addLatestDegree(e) {
-        this.$store.commit('education/addLatestDegree', e);
+      addDegree(e) {
+        this.$store.commit('education/addDegree', e);
       }
     }
   };

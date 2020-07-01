@@ -5,13 +5,13 @@
         Quel était votre statut au moment où vous avez exercé ce métier ?
       </h3>
       <RadioList
-        :value="contractType"
+        :value="employmentType"
         :options="possibleAnswers"
         to="/experiences/precision"
-        :click="addContractType"
+        :click="addEmploymentType"
       />
     </div>
-    <ContinueOrFillLater to="/experiences/precision" :value="contractType" />
+    <ContinueOrFillLater to="/experiences/precision" :value="employmentType" />
   </div>
 </template>
 
@@ -32,8 +32,8 @@
       RadioList,
     },
     computed: {
-      contractType() {
-        return get(this.$store.getters['experiences/current'], 'contractType');
+      employmentType() {
+        return get(this.$store.getters['experiences/current'], 'employmentType');
       }
     },
     data() {
@@ -42,8 +42,8 @@
       }
     },
     methods: {
-      addContractType(e) {
-        this.$store.dispatch('experiences/addContractType', e);
+      addEmploymentType(e) {
+        this.$store.dispatch('experiences/addEmploymentType', e);
       }
     }
   };

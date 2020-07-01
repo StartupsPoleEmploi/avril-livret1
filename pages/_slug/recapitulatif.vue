@@ -12,18 +12,18 @@
       <div class="content">
         <h1 class="title is-3">Ma formation</h1>
         <div class="recap-cell cell-classe">
-          <p v-if="!education.latestCourseLevel">Je n'ai pas encore renseigné ma dernière classe.</p>
-          <p v-else>Je suis {{feminize('allé')}} jusqu'en <strong>{{latestCourseLevelLabel}}</strong></p>
+          <p v-if="!education.grade">Je n'ai pas encore renseigné ma dernière classe.</p>
+          <p v-else>Je suis {{feminize('allé')}} jusqu'en <strong>{{gradeLabel}}</strong></p>
         </div>
         <div class="recap-cell cell-diplome">
-          <p v-if="!education.latestDegree">Je n'ai pas encore renseigné mon diplôme le plus élevé.</p>
-          <p v-else>{{education.latestDegree > 1 ? 'J\'ai un' : 'Je n\'ai'}} <strong>{{latestDegreeLabel}}</strong></p>
+          <p v-if="!education.degree">Je n'ai pas encore renseigné mon diplôme le plus élevé.</p>
+          <p v-else>{{education.degree > 1 ? 'J\'ai un' : 'Je n\'ai'}} <strong>{{degreeLabel}}</strong></p>
         </div>
         <div class="recap-cell cell-titres">
-          <div v-if="relatedDegrees.length" >
+          <div v-if="education.diplomas.length" >
             J'ai un diplôme de
-            <span v-for="degree, index in relatedDegrees">
-              <span><strong>{{ degree }}</strong> <span v-if="index < relatedDegrees.length-1">et de </span></span>
+            <span v-for="diploma, index in education.diplomas">
+              <span><strong>{{ diploma }}</strong> <span v-if="index < education.diplomas.length-1">et de </span></span>
             </span>
           </div>
           <div v-else>
@@ -31,10 +31,10 @@
           </div>
         </div>
         <div class="recap-cell cell-formations">
-          <div v-if="education.trainings.length">
+          <div v-if="education.courses.length">
             J'ai suivi une formation de
-            <span v-for="training, index in education.trainings">
-              <span><strong>{{ training }}</strong> <span v-if="index < education.trainings.length-1">et de </span></span>
+            <span v-for="course, index in education.courses">
+              <span><strong>{{ course }}</strong> <span v-if="index < education.courses.length-1">et de </span></span>
             </span>
           </div>
           <div v-else>
@@ -54,7 +54,7 @@
               <h3 class="is-4">
                 <CompanyDisplay :experience="experience" />
               </h3>
-              <p>{{addressLabelify(experience.companyAddress)}}</p>
+              <p>{{addressLabelify(experience.fullAddress)}}</p>
               <p class="has-text-weight-bold  ">Périodes :</p>
               <ul>
                 <li v-for="period in experience.periods">
@@ -64,10 +64,10 @@
               <p class="has-text-weight-bold">Mes activités :</p>
               <div>
                 <ul>
-                  <li v-for="activity in experience.activities">{{activity}}</li>
+                  <li v-for="skill in experience.skills">{{skill}}</li>
                 </ul>
               </div>
-              <p v-if="experience.activities.length === 0">Pas d'activité renseignée.</p>
+              <p v-if="experience.skills.length === 0">Pas d'activité renseignée.</p>
             </div>
           </div>
         </div>
@@ -194,14 +194,11 @@
       education() {
         return this.$store.state.education
       },
-      latestCourseLevelLabel() {
-        return this.$store.getters['education/latestCourseLevelLabel'];
+      gradeLabel() {
+        return this.$store.getters['education/gradeLabel'];
       },
-      latestDegreeLabel() {
-        return this.$store.getters['education/latestDegreeLabel'];
-      },
-      relatedDegrees () {
-        return this.$store.state.education.relatedDegrees
+      degreeLabel() {
+        return this.$store.getters['education/degreeLabel'];
       },
       identity() {
         return this.$store.state.identity

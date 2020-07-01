@@ -2,18 +2,18 @@
   <div>
     <div class="field">
       <h3 class="title is-5">{{label}}</h3>
-      <ItemInput :items="activities" :addItem="addActivity" placeholder="Ex: Je pétris de la pâte à pain" />
+      <ItemInput :items="skills" :addItem="addSkill" placeholder="Ex: Je pétris de la pâte à pain" />
     </div>
 
-    <ItemList :items="activities" :removeItem="removeActivity" />
+    <ItemList :items="skills" :removeItem="removeSkill" />
 
-    <div class="field" v-if="activities.length === 0">
+    <div class="field" v-if="skills.length === 0">
       <div class="notification is-danger">
         Je dois saisir au minimum une activité.
       </div>
     </div>
 
-    <ContinueOrFillLater to="/experiences/periode" :value="activities" />
+    <ContinueOrFillLater to="/experiences/periode" :value="skills" />
   </div>
 </template>
 
@@ -47,20 +47,20 @@
         const companyString = this.companyName ? `au sein de ${this.companyName}` : '';
         return `Quelles activités avez-vous pratiquées dans votre emploi ${roleString} ${companyString} ?`
       },
-      activities() {
-        return get(this.$store.getters['experiences/current'], 'activities') || [];
+      skills() {
+        return get(this.$store.getters['experiences/current'], 'skills') || [];
       },
       experiencesProgress() {
         return this.$store.getters['experiences/progress'];
       },
     },
     methods: {
-      addActivity(value) {
-        this.$store.dispatch('experiences/addActivity', value)
+      addSkill(skill) {
+        this.$store.dispatch('experiences/addSkill', skill)
       },
-      removeActivity(activity) {
+      removeSkill(skill) {
         if(window.confirm('Je confirme vouloir supprimer cette activité ?')){
-          this.$store.dispatch('experiences/removeActivity', activity)
+          this.$store.dispatch('experiences/removeSkill', skill)
         }
       }
     }

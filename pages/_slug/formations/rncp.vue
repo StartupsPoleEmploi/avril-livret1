@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="field">
-      <h3 class="title is-5">Quels diplômes avez-vous obtenu en rapport avec le diplôme {{certification || ' que vous souhaitez obtenir'}} ?</h3>
-      <ItemInput :items="relatedDegrees" :addItem="addRelatedDegree" placeholder="Ex: Bac pro commerce" />
+      <h3 class="title is-5">Quels diplômes avez-vous obtenu en rapport avec le diplôme {{certificationName || ' que vous souhaitez obtenir'}} ?</h3>
+      <ItemInput :items="diplomas" :addItem="addDiplomas" placeholder="Ex: Bac pro commerce" />
     </div>
-    <ItemList :items="relatedDegrees" :removeItem="removeRelatedDegree" />
-    <ContinueOrFillLater to="/formations/formations" :value="relatedDegrees" />
+    <ItemList :items="diplomas" :removeItem="removeRelatedDegree" />
+    <ContinueOrFillLater to="/formations/formations" :value="diplomas" />
   </div>
 </template>
 
@@ -21,16 +21,16 @@
       ItemList,
     },
     computed: {
-      certification() {
-        return this.$store.state.certificationLabel;
+      certificationName() {
+        return this.$store.state.certificationName;
       },
-      relatedDegrees() {
-        return this.$store.state.education.relatedDegrees;
+      diplomas() {
+        return this.$store.state.education.diplomas;
       },
     },
     methods: {
-      addRelatedDegree(value) {
-        this.$store.commit('education/addRelatedDegree', value)
+      addDiplomas(value) {
+        this.$store.commit('education/addDiplomas', value)
       },
       removeRelatedDegree(value) {
         if(window.confirm('Je confirme vouloir supprimer ce diplôme ?')){

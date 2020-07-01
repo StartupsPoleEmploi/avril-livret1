@@ -2,10 +2,10 @@
   <div>
     <div class="field">
       <h3 class="title is-5">Si vous avez suivi des formations courtes, effectué des stages ou obtenu des habilitations, indiquez les.</h3>
-      <ItemInput :items="trainings" :addItem="addTraining" placeholder="Ex: CACES, TOEIC, permis B, FIMO" />
+      <ItemInput :items="courses" :addItem="addCourse" placeholder="Ex: CACES, TOEIC, permis B, FIMO" />
     </div>
-    <ItemList :items="trainings" :removeItem="removeTraining" />
-    <ContinueOrFillLater to="/experiences" :value="trainings" />
+    <ItemList :items="courses" :removeItem="removeCourse" />
+    <ContinueOrFillLater to="/experiences" :value="courses" />
   </div>
 </template>
 
@@ -21,17 +21,17 @@
       ItemList,
     },
     computed: {
-      trainings () {
-        return this.$store.state.education.trainings;
+      courses () {
+        return this.$store.state.education.courses;
       },
     },
     methods: {
-      addTraining(value) {
-        this.$store.commit('education/addTraining', value)
+      addCourse(value) {
+        this.$store.commit('education/addCourse', value)
       },
-      removeTraining(value) {
+      removeCourse(value) {
         if(window.confirm('Je confirme vouloir supprimer cette formation ?')){
-          this.$store.commit('education/removeTraining', value);
+          this.$store.commit('education/removeCourse', value);
         }
       }
     }

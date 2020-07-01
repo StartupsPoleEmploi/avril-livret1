@@ -17,7 +17,7 @@
           </div>
           <div class="aside-section">
             <h3 class="title is-4">Dossier de recevabilité</h3>
-            <h4 class="subtitle">{{certificationLabel}}</h4>
+            <h4 class="subtitle">{{certificationName}}</h4>
             <div class="progress-bar is-hidden-touch">
               <div class="bar" :style="`width:${progress}%`"></div>
             </div>
@@ -137,8 +137,8 @@
       progress() {
         return this.$store.getters.progress;
       },
-      certificationLabel() {
-        return this.$store.state.certificationLabel;
+      certificationName() {
+        return this.$store.state.certificationName;
       },
       currentExperience() {
         return this.$store.getters['experiences/current'];

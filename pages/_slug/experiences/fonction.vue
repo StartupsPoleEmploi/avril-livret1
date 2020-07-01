@@ -31,8 +31,8 @@
       <label class="label">Adresse de l'entreprise ou association</label>
       <div class="control">
         <GeoInput
-          :input="addCompanyAddress"
-          :value="companyAddress"
+          :input="addFullAddress"
+          :value="fullAddress"
           :credentials="credentials"
           placeholder="Ex: 44 rue de dupont, 13000 Marseille"
         />
@@ -64,8 +64,8 @@
       companyName() {
         return get(this.$store.getters['experiences/current'], 'companyName');
       },
-      companyAddress() {
-        return get(this.$store.getters['experiences/current'], 'companyAddress');
+      fullAddress() {
+        return get(this.$store.getters['experiences/current'], 'fullAddress');
       }
     },
     data: function() {
@@ -85,8 +85,8 @@
       addCompanyName(e) {
         this.$store.dispatch('experiences/addCompanyName', e.target.value);
       },
-      addCompanyAddress(result) {
-        this.$store.dispatch('experiences/addCompanyAddress', result);
+      addFullAddress(result) {
+        this.$store.dispatch('experiences/addFullAddress', result);
       },
     }
   };

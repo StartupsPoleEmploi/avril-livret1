@@ -78,14 +78,14 @@
         return 'fonction';
       case 'companyName':
         return 'nom de l\'entreprise';
-      case 'companyAddress':
+      case 'fullAddress':
         return 'adresse de l\'entreprise';
-      case 'category':
+      case 'jobIndustry':
         return 'famille professionnelle';
-      case 'contractType':
+      case 'employmentType':
         return 'statut';
-      case 'activities':
-        return 'activités';
+      case 'skills':
+        return 'compétences';
       case 'periods':
         return 'périodes d\'emploi';
       default:

@@ -44,13 +44,13 @@
           <div class="column">
             <div class="atome">
               <label>Nature, intitulé complet et niveau de la certification&nbsp;:</label>
-              <p class="title is-6 is-uppercase is-spaced">{{certificationLabel}}</p>
+              <p class="title is-6 is-uppercase is-spaced">{{certificationName}}</p>
             </div>
           </div>
           <div class="column">
             <div class="atome">
               <label>Autorité responsable de la certification&nbsp;:</label>
-              <p class="title is-6 is-uppercase is-spaced">{{certifierLabel}}</p>
+              <p class="title is-6 is-uppercase is-spaced">{{certifierName}}</p>
             </div>
           </div>
         </div>
@@ -302,14 +302,14 @@
                 <div class="atome">
                   <label>Dernière classe suivie&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">
-                    {{education.latestCourseLevel ? `${education.latestCourseLevel} : ${latestCourseLevelLabel}` : '-'}}
+                    {{education.grade ? `${education.grade} : ${gradeLabel}` : '-'}}
                   </p>
                 </div>
 
                 <div class="atome">
                   <label>Titre ou diplôme le plus élevé obtenu en France&nbsp;:</label>
                   <p class="title is-6 is-uppercase is-spaced">
-                    {{education.latestDegree ? `${education.latestDegree} : ${latestDegreeLabel}` : '-'}}
+                    {{education.degree ? `${education.degree} : ${degreeLabel}` : '-'}}
                   </p>
                 </div>
 
@@ -319,7 +319,7 @@
                 </div>
                 <div class="atome">
                   <label>Partie(s) de certification professionnelle obtenue/s&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.trainings.length ? 'Oui' : 'Non'}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.courses.length ? 'Oui' : 'Non'}}</p>
                 </div>
               </div>
               <div class="column" style="background-color: rgba(0, 0, 0, 0.05);">
@@ -377,13 +377,13 @@
               <div class="column">
                 <div class="atome">
                   <label>Certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE)&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.trainings.join(', ') || '-'}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.courses.join(', ') || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
                   <label>Formations courtes suivies dans le cadre de la formation continue&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.relatedDegrees.join(', ') || '-'}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.diplomas.join(', ') || '-'}}</p>
                 </div>
               </div>
             </div>
@@ -409,16 +409,16 @@
                     <td>Nom et adresse de l'organisme&nbsp;:</td>
                     <td>
                       <strong>{{experience.companyName  || 'A COMPLETER'}}</strong><br />
-                      {{addressLabelify(experience.companyAddress)}}
+                      {{addressLabelify(experience.fullAddress)}}
                     </td>
                   </tr>
                   <tr>
                     <td>Statut&nbsp;:</td>
-                    <td><strong>{{experience.contractType}}</strong> - {{experienceStatusesLabel(experience)}}</td>
+                    <td><strong>{{experience.employmentType}}</strong> - {{experienceStatusesLabel(experience)}}</td>
                   </tr>
                   <tr>
                     <td>Famille professionnelle&nbsp;:</td>
-                    <td><strong>{{experience.category}}</strong> - {{experienceCategoriesLabel(experience)}}</td>
+                    <td><strong>{{experience.jobIndustry}}</strong> - {{experienceCategoriesLabel(experience)}}</td>
                   </tr>
                   <tr>
                     <td>Certification et niveau de formation suivie&nbsp;:</td>
@@ -435,10 +435,10 @@
                     </td>
                   </tr>
                   <tr>
-                    <td>{{pluralize('Activité', experience.activities.length)}}&nbsp;:</td>
+                    <td>{{pluralize('Activité', experience.skills.length)}}&nbsp;:</td>
                     <td>
                       <ul>
-                        <li v-for="activity in experience.activities">{{activity}}</li>
+                        <li v-for="skill in experience.skills">{{skill}}</li>
                       </ul>
                     </td>
                   </tr>
@@ -590,11 +590,11 @@
       completedAt() {
         return this.$store.state.completedAt
       },
-      certificationLabel() {
-        return this.$store.state.certificationLabel
+      certificationName() {
+        return this.$store.state.certificationName
       },
-      certifierLabel() {
-        return this.$store.state.certifierLabel
+      certifierName() {
+        return this.$store.state.certifierName
       },
       identity() {
         return this.$store.state.identity
@@ -608,11 +608,11 @@
       experiences() {
         return this.$store.state.experiences
       },
-      latestDegreeLabel() {
-        return this.$store.getters['education/latestDegreeLabel'];
+      degreeLabel() {
+        return this.$store.getters['education/degreeLabel'];
       },
-      latestCourseLevelLabel() {
-        return this.$store.getters['education/latestCourseLevelLabel'];
+      gradeLabel() {
+        return this.$store.getters['education/gradeLabel'];
       },
     },
     data() {
@@ -627,10 +627,10 @@
       pluralize,
       addressLabelify,
       experienceStatusesLabel(experience) {
-        return labelGetter(experienceStatusesAnswers, experience.contractType)
+        return labelGetter(experienceStatusesAnswers, experience.employmentType)
       },
       experienceCategoriesLabel(experience) {
-        return labelGetter(experienceCategoriesAnswers, experience.category)
+        return labelGetter(experienceCategoriesAnswers, experience.jobIndustry)
       },
       formatDate,
     }

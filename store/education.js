@@ -1,19 +1,19 @@
 import {isPresent} from 'avril/js/utils/boolean';
 import {percent} from 'avril/js/utils/number';
 import {labelGetter} from 'avril/js/utils/function';
-import latestDegreeAnswers from '~/contents/data/latestDegree';
-import latestCourseLevelAnswers from '~/contents/data/latestCourseLevel';
+import degreeAnswers from '~/contents/data/degree';
+import gradeAnswers from '~/contents/data/grade';
 
 export const state = () => ({
-  relatedDegrees: [],
-  trainings: [],
-  latestCourseLevel: null,
-  latestDegree: null,
+  diplomas: [],
+  courses: [],
+  grade: null,
+  degree: null,
 })
 
 const OPTIONAL_FIELDS = [
-  'relatedDegrees',
-  'trainings'
+  'diplomas',
+  'courses',
 ];
 
 export const getters = {
@@ -31,30 +31,30 @@ export const getters = {
   progress: (state, {filledFields, totalFields}) => {
     return percent(filledFields/totalFields);
   },
-  latestDegreeLabel: state => labelGetter(latestDegreeAnswers, state.latestDegree),
-  latestCourseLevelLabel: state => labelGetter(latestCourseLevelAnswers, state.latestCourseLevel),
+  degreeLabel: state => labelGetter(degreeAnswers, state.degree),
+  gradeLabel: state => labelGetter(gradeAnswers, state.grade),
 }
 
 export const mutations = {
   initState (state, serverState) {
     state = Object.assign(state, serverState);
   },
-  addLatestCourseLevel (state, latestCourseLevel) {
-    state.latestCourseLevel = latestCourseLevel;
+  addGrade (state, grade) {
+    state.grade = grade;
   },
-  addLatestDegree (state, latestDegree) {
-    state.latestDegree = latestDegree;
+  addDegree (state, degree) {
+    state.degree = degree;
   },
-  addRelatedDegree (state, val) {
-    state.relatedDegrees.push(val);
+  addDiplomas (state, val) {
+    state.diplomas.push(val);
   },
-  removeRelatedDegree (state, val) {
-    state.relatedDegrees.splice(state.relatedDegrees.findIndex(rd => rd === val), 1);
+  removeDiplomas (state, val) {
+    state.diplomas.splice(state.diplomas.findIndex(rd => rd === val), 1);
   },
-  addTraining (state, val) {
-    state.trainings.push(val);
+  addCourse (state, val) {
+    state.courses.push(val);
   },
-  removeTraining (state, val) {
-    state.trainings.splice(state.trainings.findIndex(rd => rd === val), 1);
+  removeCourse (state, val) {
+    state.courses.splice(state.courses.findIndex(rd => rd === val), 1);
   },
 }

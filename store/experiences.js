@@ -32,7 +32,7 @@ export const mutations = {
       isCurrent: false,
       role: null,
       companyName: null,
-      companyAddress: {
+      fullAddress: {
         street: null,
         city: null,
         postalCode: null,
@@ -40,9 +40,9 @@ export const mutations = {
         lat: null,
         lng: null
       },
-      category: null,
-      contractType: null,
-      activities: [],
+      jobIndustry: null,
+      employmentType: null,
+      skills: [],
       periods: []
     });
   },
@@ -85,22 +85,22 @@ export const actions = {
       companyName
     });
   },
-  addCompanyAddress({ commit, getters }, companyAddress) {
+  addFullAddress({ commit, getters }, fullAddress) {
     commit('mutateExperience', {
       id: getters.current.uuid,
-      companyAddress
+      fullAddress
     });
   },
-  addCategory({ commit, getters }, category) {
+  addJobIndustry({ commit, getters }, jobIndustry) {
     commit('mutateExperience', {
       id: getters.current.uuid,
-      category
+      jobIndustry
     });
   },
-  addContractType({ commit, getters }, contractType) {
+  addEmploymentType({ commit, getters }, employmentType) {
     commit('mutateExperience', {
       id: getters.current.uuid,
-      contractType
+      employmentType
     });
   },
   addPeriod({ commit, getters }, period) {
@@ -117,16 +117,16 @@ export const actions = {
       periods: getters.current.periods.filter(p => p.uuid !== periodId)
     });
   },
-  addActivity({ commit, getters }, activity) {
+  addSkill({ commit, getters }, skill) {
     commit('mutateExperience', {
       id: getters.current.uuid,
-      activities: getters.current.activities.concat(activity)
+      skills: getters.current.skills.concat(skill)
     });
   },
-  removeActivity({ commit, getters }, activity) {
+  removeSkill({ commit, getters }, skill) {
     commit('mutateExperience', {
       id: getters.current.uuid,
-      activities: getters.current.activities.filter(a => a !== activity)
+      skills: getters.current.skills.filter(a => a !== skill)
     });
   }
 };

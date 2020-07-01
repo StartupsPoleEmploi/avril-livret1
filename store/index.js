@@ -11,8 +11,8 @@ import { backendToStore } from '~/mappers/toStore';
 
 export const state = () => ({
   applicationId: null,
-  certificationLabel: null,
-  certifierLabel: null,
+  certificationName: null,
+  certifierName: null,
   currentPath: null,
   delegateHash: null,
   hash: null,

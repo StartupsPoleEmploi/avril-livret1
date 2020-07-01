@@ -130,7 +130,7 @@
         const period = {
           start: this.periodStart,
           end: this.isCurrentJob ? null : this.periodEnd,
-          weekHours: this.periodWeekHours ? parseInt(this.periodWeekHours) : null,
+          weekHoursDuration: this.periodWeekHours ? parseInt(this.periodWeekHours) : null,
           totalHours: this.periodTotalHours ? parseInt(this.periodTotalHours) : null,
         };
         this.$store.dispatch('experiences/addPeriod', period);
@@ -146,10 +146,10 @@
         const period = this.$store.getters['experiences/current'].periods.find(p => p.uuid == periodId)
         this.periodStart = period.start;
         this.periodEnd = period.end;
-        this.periodWeekHours = period.weekHours;
+        this.periodWeekHours = period.weekHoursDuration;
         this.periodTotalHours = period.totalHours;
         this.isCurrentJob = !period.end;
-        this.showWeekHours = !!period.weekHours;
+        this.showWeekHours = !!period.weekHoursDuration;
         this.showNewPeriod = true;
         this.$store.dispatch('experiences/removePeriod', periodId);
       },

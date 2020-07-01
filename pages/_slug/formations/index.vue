@@ -3,20 +3,20 @@
     <div class="field">
       <h3 class="title is-5">Quelle classe avez vous suivi en dernier ?</h3>
       <RadioList
-        :value="latestCourseLevel"
+        :value="grade"
         :options="possibleAnswers"
         to="/formations/diplome"
-        :click="addLatestCourseLevel"
+        :click="addGrade"
       />
     </div>
-    <ContinueOrFillLater to="/formations/diplome" :value="latestCourseLevel" />
+    <ContinueOrFillLater to="/formations/diplome" :value="grade" />
   </div>
 </template>
 
 <script>
   import RadioList from '~/components/RadioList.vue';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
-  import possibleAnswers from '~/contents/data/latestCourseLevel';
+  import possibleAnswers from '~/contents/data/grade';
 
   export default {
     components: {
@@ -24,8 +24,8 @@
       RadioList,
     },
     computed: {
-      latestCourseLevel() {
-        return this.$store.state.education.latestCourseLevel;
+      grade() {
+        return this.$store.state.education.grade;
       }
     },
     data() {
@@ -34,8 +34,8 @@
       };
     },
     methods: {
-      addLatestCourseLevel(e) {
-        this.$store.commit('education/addLatestCourseLevel', e);
+      addGrade(e) {
+        this.$store.commit('education/addGrade', e);
       }
     }
   };
