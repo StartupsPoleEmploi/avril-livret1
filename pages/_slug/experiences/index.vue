@@ -70,6 +70,7 @@
 
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
   import CompanyDisplay from '~/components/CompanyDisplay.vue';
+  import NuxtLink from '~/components/NuxtLink.vue';
 
   const translateKey = k => {
     switch(k) {
@@ -98,6 +99,7 @@
     },
     components: {
       CompanyDisplay,
+      NuxtLink,
       PeriodDisplay,
       Plus,
     },

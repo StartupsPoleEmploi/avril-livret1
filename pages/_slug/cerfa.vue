@@ -84,7 +84,7 @@
                 </div>
                 <div class="atome">
                   <label>Sexe&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{identity.sex && identity.sex[0] === 'm' ? 'Masculin' : 'Féminin'}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{identity.gender && identity.gender[0] === 'm' ? 'Masculin' : 'Féminin'}}</p>
                 </div>
               </div>
             </div>
@@ -500,7 +500,7 @@
                 <div class="column">
                   <div class="box content" style="height: 200px;">
                     <p>
-                      Nom et signature <span v-if="identity.sex === 'm'">du candidat</span><span v-else>de la candidate</span> :
+                      Nom et signature <span v-if="isMan">du candidat</span><span v-else>de la candidate</span> :
                       <br /><br /><br />
                       <br /><br /><br />
                     </p>
@@ -568,6 +568,7 @@
 
 <script>
   import ArrowRight from 'avril/images/icons/arrow-right.svg';
+  import {first} from 'avril/js/utils/array.js';
   import {capitalize, pluralize} from 'avril/js/utils/string.js';
   import {labelGetter} from 'avril/js/utils/function.js';
   import {addressLabelify} from 'avril/js/utils/geo.js';
@@ -597,6 +598,9 @@
       },
       identity() {
         return this.$store.state.identity
+      },
+      isMan() {
+        return this.$store.getters['identity/isMan'];
       },
       education() {
         return this.$store.state.education

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import RadioList from 'avril/js/components/RadioList.vue';
+  import RadioList from '~/components/RadioList.vue';
   import possibleAnswers from '~/contents/data/latestDegree';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
 

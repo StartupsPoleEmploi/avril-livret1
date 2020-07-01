@@ -21,15 +21,20 @@
   </div>
 </template>
 <script>
+  import get from 'lodash.get';
   import Check from 'avril/images/icons/check.svg';
-
+  import NuxtLink from '~/components/NuxtLink.vue';
   import {BOOKLET_MIN_HOURS} from '~/constants/index';
 
   export default {
     components: {
       Check,
+      NuxtLink,
     },
     computed: {
+      basePath() {
+        return `/${get(this, '$route.params.slug')}`;
+      },
       educationProgress() {
         return this.$store.getters['education/progress'];
       },

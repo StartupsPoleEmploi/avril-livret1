@@ -10,6 +10,7 @@ import steps from '~/contents/data/steps';
 import { backendToStore } from '~/mappers/toStore';
 
 export const state = () => ({
+  applicationId: null,
   certificationLabel: null,
   certifierLabel: null,
   currentPath: null,
@@ -24,7 +25,7 @@ export const state = () => ({
 
 export const getters = {
   currentTab: state => {
-    return state.currentPath && state.currentPath.split("/")[1];
+    return state.currentPath && state.currentPath.split("/")[2];
   },
   currentSteps: (state, getters) => {
     return state.steps.find(step => step.path == getters.currentTab);
@@ -79,74 +80,27 @@ export const mutations = {
 };
 
 export const actions = {
-  async nuxtServerInit({ commit, dispatch }, context) {
-    let {
-      app,
-      env,
-      req: {
-        path: path,
-        query: {
-          delegate_hash,
-          hash,
-        },
-      },
-      redirect,
-    } = context;
-
-    if (hash) {
-      app.$cookies.set('hash', hash);
-    } else {
-      hash = app.$cookies.get('hash');
-    }
-
-    if (env.serverToPhoenixUrl && (hash || delegate_hash)) {
-      const query = delegate_hash ? `delegate_hash=${delegate_hash}` : `hash=${hash}`
-      const apiUrl = `${env.serverToPhoenixUrl}/api/booklet?${query}`;
-      const identityData = await queryApiWithContext(context)('identity');
-      const result = await fetch(apiUrl, {
-        headers: {
-          'X-auth': get(context, 'env.serverAuthKey'),
+  async nuxtServerInit({ commit }, context) {
+    const applicationId = parseInt(first(get(context, 'params.slug', '').split('-')))
+    if (!applicationId) return;
+    const [identity, bookletData] = await Promise.all([
+      queryApiWithContext(context)('identity'),
+      queryApiWithContext(context)({
+        name: 'booklet',
+        params: {
+          applicationId,
         }
-      });
-      if (result.ok) {
-        const dataWithStatus = await result.json();
-        dispatch(
-          'initState', {
-            ...dataWithStatus.data,
-            civility: identityData,
-            isReadOnly: !!delegate_hash,
-            delegateHash: delegate_hash,
-            hash,
-          }
-        );
-      } else {
-        console.error('Request failed', result);
-        redirectToPhoenix({redirect, path}, {hash}, 'request_failed');
-      }
-    } else {
-      console.warn(env.serverToPhoenixUrl ? 'No hash no request' : 'env.serverToPhoenixUrl not set');
-      redirectToPhoenix({redirect, path}, {hash}, 'not_allowed');
-    }
-  },
-  initState(
-    { commit },
-    { civility, experiences, education, ...rest }
-  ) {
-    commit(
-      'initState',
-      backendToStore.index(rest)
-    );
-    commit(
-      'identity/initState',
-      backendToStore.identity(civility || {})
-    );
-    commit(
-      'experiences/initState',
-      backendToStore.experiences(experiences || [])
-    );
-    commit(
-      'education/initState',
-      backendToStore.education(education || {})
-    );
+      })
+    ]);
+
+    const {education, experiences, ...rest} = bookletData;
+
+    commit('initState', {
+      applicationId,
+      ...rest,
+    });
+    commit('identity/initState', identity);
+    commit('education/initState', education);
+    commit('experiences/initState', experiences);
   }
 };

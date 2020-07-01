@@ -17,7 +17,7 @@
 
 <script>
   import get from 'lodash.get';
-  import RadioList from 'avril/js/components/RadioList.vue';
+  import RadioList from '~/components/RadioList.vue';
   import possibleAnswers from '~/contents/data/experienceStatuses';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
 

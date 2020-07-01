@@ -49,5 +49,10 @@ a, .button {
     height: 1rem;
     padding-right: 0.25rem;
     fill: avril-color('marine');
+    stroke: avril-color('marine');
+  }
+  &.is-primary svg {
+    fill: $white;
+    stroke: $white;
   }
 }

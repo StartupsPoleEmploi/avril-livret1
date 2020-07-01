@@ -1,4 +1,5 @@
-import {saveLocalState} from '~/utils/url';
+import { mutateApi } from 'avril/js/utils/api';
+
 import {
   NO_SAVING,
   SAVING_PENDING,
@@ -12,34 +13,28 @@ const savingStateNull = store => {
   }, 3000);
 }
 
-export default function({ store, req, env }) {
-  if (process.client && store.state.hash) {
+export default async function({store}) {
+  if (process.client) {
     store.commit('setSavingState', SAVING_PENDING);
-    saveLocalState(env.clientToPhoenixUrl)(store).then(response => {
-      if (response.ok) {
-        response.json().then(data => {
-          if (data.status === 'ok') {
-            store.commit('setSavingState', SAVING_SUCCESS);
-          } else {
-            store.commit('setSavingState', SAVING_ERROR);
+    try {
+      await mutateApi({
+        name: 'setBooklet',
+        type: 'booklet',
+        params: {
+          input: {
+            applicationId: store.state.applicationId,
+            booklet: {
+              education: store.state.education,
+              experiences: store.state.experiences,
+            }
           }
-          savingStateNull(store);
-        })
-      } else {
-        console.error(response);
-        store.commit('setSavingState', SAVING_ERROR);
-        savingStateNull(store);
-      }
-
-    }).catch(error => {
-        console.error(error);
-        store.commit('setSavingState', SAVING_ERROR);
-        savingStateNull(store);
+        }
       })
-    return Promise.resolve(true);
-  } else {
-    store.commit('setSavingState', NO_SAVING);
-    savingStateNull(store);
-    return Promise.resolve(true);
+      store.commit('setSavingState', SAVING_SUCCESS);
+    } catch(error) {
+      console.error(error);
+      store.commit('setSavingState', SAVING_ERROR);
+      savingStateNull(store);
+    }
   }
 }

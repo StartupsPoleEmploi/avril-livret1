@@ -163,9 +163,10 @@
         }
       }
     },
-    middleware: async function({store, route}) {
+    middleware: async function({store, route, params}) {
       try {
-        const helpContent = await import(`~/contents/help${route.path}${route.path.split('/').length == 2 ? '/index' : ''}.md`);
+        const pathWithoutSlug = route.path.replace(`/${params.slug}`, '')
+        const helpContent = await import(`~/contents/help${pathWithoutSlug}${pathWithoutSlug.split('/').length == 2 ? '/index' : ''}.md`);
         store.commit('setHelpContent', helpContent.default);
       } catch(e) {}
     },

@@ -62,12 +62,12 @@
           </p>
         </client-only>
         <div class="buttons" style="justify-content: space-between; align-items: bottom;">
-          <button class="button is-primary" @click="addPeriod">
-            + Ajouter cette période
-          </button>
           <button class="button is-text is-small" @click="toggleWeekHours">
             <span v-if="showWeekHours">Je saisis le nombre d'heure total</span>
             <span v-else>Je saisis mes heures par semaine</span>
+          </button>
+          <button class="button is-primary" @click="addPeriod">
+            + Ajouter cette période
           </button>
         </div>
       </div>
@@ -80,7 +80,7 @@
   import get from 'lodash.get';
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
 
-  import RadioList from 'avril/js/components/RadioList.vue';
+  import RadioList from '~/components/RadioList.vue';
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
 

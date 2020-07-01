@@ -13,7 +13,12 @@
 
 <script type="text/javascript">
   import {isArray} from 'avril/js/utils/boolean';
+  import NuxtLink from '~/components/NuxtLink.vue';
+
   export default {
+    components: {
+      NuxtLink,
+    },
     computed: {
       isEmptyArray: function() {
         return isArray(this.value) && this.value.length === 0;
