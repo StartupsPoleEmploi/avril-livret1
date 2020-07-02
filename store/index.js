@@ -63,6 +63,7 @@ export const getters = {
 
 export const mutations = {
   initState(state, serverState) {
+    console.log('assigning', serverState)
     state = Object.assign(state, serverState)
   },
   setSavingState(state, value){

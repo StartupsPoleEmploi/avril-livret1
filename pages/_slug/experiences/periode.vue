@@ -84,6 +84,11 @@
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
 
+  import {
+    parseISODate,
+    formatISODate,
+  } from 'avril/js/utils/time.js';
+
   export default {
     mixins: [
       withDatePickerMixin,
@@ -118,6 +123,7 @@
       },
     },
     methods: {
+      parseISODate,
       addPeriod() {
         if (!this.$refs.periodStart.value) return this.$refs.periodStart.focus();
         if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.focus();
@@ -128,8 +134,8 @@
         }
 
         const period = {
-          start: this.periodStart,
-          end: this.isCurrentJob ? null : this.periodEnd,
+          startDate: formatISODate(this.periodStart),
+          endDate: this.isCurrentJob ? null : formatISODate(this.periodEnd),
           weekHoursDuration: this.periodWeekHours ? parseInt(this.periodWeekHours) : null,
           totalHours: this.periodTotalHours ? parseInt(this.periodTotalHours) : null,
         };
@@ -144,11 +150,11 @@
       },
       editPeriod(periodId) {
         const period = this.$store.getters['experiences/current'].periods.find(p => p.uuid == periodId)
-        this.periodStart = period.start;
-        this.periodEnd = period.end;
+        this.periodStart = parseISODate(period.startDate);
+        this.periodEnd = parseISODate(period.endDate);
         this.periodWeekHours = period.weekHoursDuration;
         this.periodTotalHours = period.totalHours;
-        this.isCurrentJob = !period.end;
+        this.isCurrentJob = !period.endDate;
         this.showWeekHours = !!period.weekHoursDuration;
         this.showNewPeriod = true;
         this.$store.dispatch('experiences/removePeriod', periodId);

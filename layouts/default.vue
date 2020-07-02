@@ -110,7 +110,7 @@
 
 <script>
   import {capitalize, pluralize} from 'avril/js/utils/string';
-  import {phoenixUrl} from '~/utils/url.js';
+  import {profileUrl} from '~/utils/url.js';
 
   import Back from 'avril/images/icons/back.svg';
 
@@ -118,6 +118,7 @@
   import Tabs from '~/components/Tabs.vue';
   import Saving from '~/components/Saving.vue';
   import Help from '~/components/Help.vue';
+  import NuxtLink from '~/components/NuxtLink.vue';
 
   export default {
     components: {
@@ -126,10 +127,11 @@
       Saving,
       Stepper,
       Tabs,
+      NuxtLink,
     },
     computed: {
       backUrl() {
-        return phoenixUrl({hash: this.$store.state.hash});
+        return profileUrl(this);
       },
       isTheEnd() {
         return this.$store.getters.isTheEnd;

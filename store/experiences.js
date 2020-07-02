@@ -117,16 +117,16 @@ export const actions = {
       periods: getters.current.periods.filter(p => p.uuid !== periodId)
     });
   },
-  addSkill({ commit, getters }, skill) {
+  addSkill({ commit, getters }, label) {
     commit('mutateExperience', {
       id: getters.current.uuid,
-      skills: getters.current.skills.concat(skill)
+      skills: getters.current.skills.concat({label})
     });
   },
   removeSkill({ commit, getters }, skill) {
     commit('mutateExperience', {
       id: getters.current.uuid,
-      skills: getters.current.skills.filter(a => a !== skill)
+      skills: getters.current.skills.filter(s => s.label !== skill)
     });
   }
 };

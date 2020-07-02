@@ -1,5 +1,8 @@
+import get from 'lodash.get';
 import {objectToQueryString} from 'avril/js/utils/url';
 import { storeToBackend } from '~/mappers/toBackend';
+
+export const profileUrl = that => `${process.env.profilePath}/mes-candidatures/${get(that, '$route.params.slug')}`
 
 export const phoenixUrl = (hash, msg) =>
   (process.env.clientToPhoenixUrl ? `${process.env.clientToPhoenixUrl}/candidatures?${objectToQueryString({...hash, msg})}` : null);

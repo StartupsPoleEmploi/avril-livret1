@@ -36,8 +36,8 @@
       };
     },
     methods: {
-      addDegree(e) {
-        this.$store.commit('education/addDegree', e);
+      addDegree(value) {
+        this.$store.commit('education/addDegree', value);
       }
     }
   };

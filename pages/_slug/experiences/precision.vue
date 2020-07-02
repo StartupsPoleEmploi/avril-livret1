@@ -48,7 +48,7 @@
         return `Quelles activités avez-vous pratiquées dans votre emploi ${roleString} ${companyString} ?`
       },
       skills() {
-        return get(this.$store.getters['experiences/current'], 'skills') || [];
+        return get(this.$store.getters['experiences/current'], 'skills', []).map(s => s.label);
       },
       experiencesProgress() {
         return this.$store.getters['experiences/progress'];

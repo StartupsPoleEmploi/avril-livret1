@@ -45,16 +45,16 @@ export const mutations = {
   addDegree (state, degree) {
     state.degree = degree;
   },
-  addDiplomas (state, val) {
-    state.diplomas.push(val);
+  addDiplomas (state, label) {
+    state.diplomas.push({label});
   },
   removeDiplomas (state, val) {
-    state.diplomas.splice(state.diplomas.findIndex(rd => rd === val), 1);
+    state.diplomas.splice(state.diplomas.findIndex(rd => rd.label === val), 1);
   },
-  addCourse (state, val) {
-    state.courses.push(val);
+  addCourse (state, label) {
+    state.courses.push({label});
   },
   removeCourse (state, val) {
-    state.courses.splice(state.courses.findIndex(rd => rd === val), 1);
+    state.courses.splice(state.courses.findIndex(rd => rd.label === val), 1);
   },
 }

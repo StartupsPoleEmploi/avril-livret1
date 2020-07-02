@@ -1,3 +1,4 @@
+import { exceptKeys } from 'avril/js/utils/object';
 import { mutateApi } from 'avril/js/utils/api';
 
 import {
@@ -25,7 +26,7 @@ export default async function({store}) {
             applicationId: store.state.applicationId,
             booklet: {
               education: store.state.education,
-              experiences: store.state.experiences,
+              experiences: store.state.experiences.map(e => exceptKeys(e, ['isCurrent'])),
             }
           }
         }

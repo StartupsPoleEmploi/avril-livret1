@@ -1,7 +1,7 @@
 <template>
   <div>
-    Du {{ formatDate(period.start) }}
-    <span v-if="period.end">au {{ formatDate(period.end) }}</span>
+    Du {{ startDate }}
+    <span v-if="period.endDate">au {{ endDate }}</span>
     <span v-else>à aujourd'hui</span> :
     <span v-if="isMoreThanOneWeek && period.weekHoursDuration"><strong>{{Math.round(period.weekHoursDuration)}}h/semaine</strong> soit</span>
     <strong>{{ periodTotalHours }} heures</strong> en cumulé
@@ -14,15 +14,23 @@
     formatDate,
     isMoreThanOneWeek,
     periodTotalHours,
+    parseISODate,
+    formatISODate,
   } from 'avril/js/utils/time.js';
 
   export default {
     computed: {
+      startDate() {
+        return formatDate(parseISODate(this.period.startDate))
+      },
+      endDate() {
+        return formatDate(parseISODate(this.period.endDate))
+      },
       isMoreThanOneWeek(){
         return isMoreThanOneWeek(this.period);
       },
       periodTotalHours(){
-        return this.period.totalHours || periodTotalHours(this.period);
+        return periodTotalHours(this.period);
       },
     },
     data() {
@@ -32,6 +40,8 @@
     },
     methods: {
       formatDate,
+      formatISODate,
+      parseISODate,
     },
     props: ['period'],
   }

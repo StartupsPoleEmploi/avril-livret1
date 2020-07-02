@@ -8,7 +8,7 @@
         :value="jobIndustry"
         :options="possibleAnswers"
         to="/experiences/statut"
-        :click="addCategory"
+        :click="addJobIndustry"
       />
     </div>
     <ContinueOrFillLater to="/experiences/statut" :value="jobIndustry" />
@@ -43,7 +43,7 @@
     },
     methods: {
       addJobIndustry(jobIndustry) {
-        this.$store.dispatch('experiences/addCategory', jobIndustry);
+        this.$store.dispatch('experiences/addJobIndustry', jobIndustry);
       }
     }
   };

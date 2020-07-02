@@ -22,7 +22,7 @@
     },
     computed: {
       courses () {
-        return this.$store.state.education.courses;
+        return this.$store.state.education.courses.map(c => c.label);
       },
     },
     methods: {

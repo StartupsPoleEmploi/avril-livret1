@@ -23,7 +23,7 @@
           <div v-if="education.diplomas.length" >
             J'ai un diplôme de
             <span v-for="diploma, index in education.diplomas">
-              <span><strong>{{ diploma }}</strong> <span v-if="index < education.diplomas.length-1">et de </span></span>
+              <span><strong>{{ diploma.label }}</strong> <span v-if="index < education.diplomas.length-1">et de </span></span>
             </span>
           </div>
           <div v-else>
@@ -34,7 +34,7 @@
           <div v-if="education.courses.length">
             J'ai suivi une formation de
             <span v-for="course, index in education.courses">
-              <span><strong>{{ course }}</strong> <span v-if="index < education.courses.length-1">et de </span></span>
+              <span><strong>{{ course.label }}</strong> <span v-if="index < education.courses.length-1">et de </span></span>
             </span>
           </div>
           <div v-else>
@@ -64,7 +64,7 @@
               <p class="has-text-weight-bold">Mes activités :</p>
               <div>
                 <ul>
-                  <li v-for="skill in experience.skills">{{skill}}</li>
+                  <li v-for="skill in experience.skills">{{skill.label}}</li>
                 </ul>
               </div>
               <p v-if="experience.skills.length === 0">Pas d'activité renseignée.</p>
@@ -161,7 +161,11 @@
 
 <script>
   import {isPresent} from 'avril/js/utils/boolean.js';
-  import {periodTotalHours, formatDate} from 'avril/js/utils/time.js';
+  import {
+    periodTotalHours,
+    parseISODate,
+    formatISODate,
+  } from 'avril/js/utils/time.js';
   import {addressLabelify} from 'avril/js/utils/geo.js';
   import {feminize} from 'avril/js/utils/string.js';
   import {phoenixUrl} from '~/utils/url.js';
@@ -169,6 +173,7 @@
 
   import {BOOKLET_MIN_HOURS} from '~/constants/index';
 
+  import NuxtLink from '~/components/NuxtLink.vue';
   import CompanyDisplay from '~/components/CompanyDisplay.vue';
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
   import Back from 'avril/images/icons/back.svg';
@@ -189,6 +194,7 @@
       Pencil,
       CompanyDisplay,
       PeriodDisplay,
+      NuxtLink,
     },
     computed: {
       education() {
@@ -232,7 +238,9 @@
       feminize: function(word, feminineVersion) {
         return feminize(word, this.identity.gender ? this.isMan : undefined, feminineVersion);
       },
-      formatDate,
+      formatDate: function(d){
+        return formatISODate(parseISODate(d));
+      },
       periodTotalHours,
       addressLabelify,
       isPresent,
