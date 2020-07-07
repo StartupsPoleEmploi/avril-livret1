@@ -30,7 +30,7 @@
             <Tabs></Tabs>
           </div>
           <div class="aside-section is-hidden-touch">
-            <nuxt-link v-if="!isTheEnd" to="/recapitulatif" class="button is-default is-wrapped">
+            <nuxt-link to="/recapitulatif" class="button is-default is-wrapped">
               Enregistrer mon dossier de recevabilité
             </nuxt-link>
           </div>

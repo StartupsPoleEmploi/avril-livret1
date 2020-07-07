@@ -80,8 +80,8 @@
     <section class="recap-section section-identite">
       <h3 class="title is-3">Mon identité</h3>
       <div class="recap-cell cell-name">
-        <p v-if="identity.firstNames && identity.lastName">
-          Je me nomme <strong>{{identity.lastName}} {{identity.firstNames}}</strong>
+        <p v-if="identity.firstName && identity.lastName">
+          Je me nomme <strong>{{identity.lastName}} {{identity.firstName}}</strong>
           <span v-if="identity.usageName">(Nom d'usage : {{identity.usageName}})</span>
         </p>
         <p v-else>
@@ -92,13 +92,13 @@
       <div class="recap-cell cell-contact">
         <p v-if="identity.email">Mon email : <strong>{{identity.email}}</strong></p>
         <p v-else><strong>Je n'ai pas encore renseigné mon email.</strong></p>
-        <p v-if="identity.homePhoneNumber">Numéro de téléphone fixe : {{identity.homePhoneNumber}}.</p>
+        <p v-if="identity.homePhone">Numéro de téléphone fixe : {{identity.homePhone}}.</p>
         <p v-else>Je n'ai pas renseigné mon numéro de téléphone fixe.</p>
-        <p v-if="identity.cellPhoneNumber">Numéro de téléphone mobile : {{identity.cellPhoneNumber}}.</p>
+        <p v-if="identity.mobilePhone">Numéro de téléphone mobile : {{identity.mobilePhone}}.</p>
         <p v-else>Je n'ai pas renseigné mon numéro de téléphone mobile.</p>
       </div>
       <div class="recap-cell cell-birthday">
-        <p v-if="identity.birthday">Je suis {{feminize('né')}} le {{formatDate(identity.birthday)}} à {{addressLabelify(identity.birthPlace)}}</p>
+        <p v-if="identity.birthday">Je suis {{feminize('né')}} le {{parseAndFormat(identity.birthday)}} à {{addressLabelify(identity.birthPlace)}}</p>
         <p v-else>Je n'ai pas encore renseigné ma date de naissance.</p>
         <p v-if="identity.nationality && identity.nationality.countryCode">Je suis de nationalité {{identity.nationality.countryCode.toUpperCase()}}.</p>
         <p v-else>Je n'ai pas encore renseigné ma nationalité.</p>
@@ -115,7 +115,7 @@
         Je suis actuellement en <strong>{{currentSituationStatusLabel}}</strong><span v-if="identity.currentSituation.employmentType"> : <strong>{{currentSituationEmploymentTypeLabel}}</strong></span>.</p>
       <p v-else>Je n'ai pas renseigné ma situation d'emploi.</p>
       <p v-if="identity.currentSituation.registerToPoleEmploi !== null">
-        Je {{identity.currentSituation.registerToPoleEmploi ? 'suis' : 'ne suis pas'}} {{feminize('inscrit')}} à Pôle-emploi<span v-if="identity.currentSituation.registerToPoleEmploiSince"> depuis le {{formatDate(identity.currentSituation.registerToPoleEmploiSince)}}</span>.</p>
+        Je {{identity.currentSituation.registerToPoleEmploi ? 'suis' : 'ne suis pas'}} {{feminize('inscrit')}} à Pôle-emploi<span v-if="identity.currentSituation.registerToPoleEmploiSince"> depuis le {{parseAndFormat(identity.currentSituation.registerToPoleEmploiSince)}}</span>.</p>
       <p v-if="identity.currentSituation.compensationType">Je suis {{feminize('indemnisé')}} <strong>{{currentSituationCompensationTypeLabel}}</strong>.</p>
     </section>
     <section class="recap-section section-confirmation">
@@ -163,12 +163,12 @@
   import {isPresent} from 'avril/js/utils/boolean.js';
   import {
     periodTotalHours,
-    parseISODate,
-    formatISODate,
+    parseAndFormat,
   } from 'avril/js/utils/time.js';
   import {addressLabelify} from 'avril/js/utils/geo.js';
   import {feminize} from 'avril/js/utils/string.js';
-  import {phoenixUrl} from '~/utils/url.js';
+  import {profileUrl} from '~/utils/url.js';
+
   import { track } from 'avril/js/utils/analytics';
 
   import {BOOKLET_MIN_HOURS} from '~/constants/index';
@@ -219,7 +219,7 @@
         return this.$store.getters.progress;
       },
       backUrl() {
-        return phoenixUrl({hash: this.$store.state.hash});
+        return profileUrl(this);
       },
       currentSituationStatusLabel() {
         return this.$store.getters['identity/currentSituationStatusLabel'];
@@ -238,9 +238,7 @@
       feminize: function(word, feminineVersion) {
         return feminize(word, this.identity.gender ? this.isMan : undefined, feminineVersion);
       },
-      formatDate: function(d){
-        return formatISODate(parseISODate(d));
-      },
+      parseAndFormat,
       periodTotalHours,
       addressLabelify,
       isPresent,

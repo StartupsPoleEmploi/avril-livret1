@@ -95,6 +95,9 @@ export const actions = {
       })
     ]);
 
+    console.log('bookletData', bookletData)
+    console.log('identity', identity)
+
     const {education, experiences, ...rest} = bookletData;
 
     commit('initState', {

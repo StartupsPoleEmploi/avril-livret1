@@ -52,11 +52,11 @@
       GeoInput,
       ContinueOrFillLater,
     },
-    beforeCreate() {
-      if (!this.$store.getters['experiences/current']) {
-        this.$router.push('../experiences');
-      }
-    },
+    // beforeCreate() {
+    //   if (!this.$store.getters['experiences/current']) {
+    //     this.$router.push('../experiences');
+    //   }
+    // },
     computed: {
       experienceTitle() {
         console.log('fuck', get(this.$store.getters['experiences/current'], 'title'))

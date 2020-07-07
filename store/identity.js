@@ -6,11 +6,11 @@ import currentSituationAnswers from '~/contents/data/currentSituation';
 export const state = () => ({
   lastName: null,
   usageName: null,
-  firstNames: null,
+  firstName: null,
   gender: null,
   email: null,
-  homePhoneNumber: null,
-  cellPhoneNumber: null,
+  homePhone: null,
+  mobilePhone: null,
   birthday: null,
   birthPlace: {
     city: null,

@@ -18,7 +18,7 @@ export const getters = {
     return percent(getters.totalHours / BOOKLET_MIN_HOURS);
   },
   current: state => {
-    console.log('calculating current', state)
+    console.log('calculating current', state.find(e => e.isCurrent))
     return state.find(e => e.isCurrent);
   },
 };
@@ -48,27 +48,25 @@ export const mutations = {
     });
   },
   setCurrent(state, uuid) {
-    state.map(e => Object.assign(e, { isCurrent: e.uuid === uuid }));
+    state.forEach((exp, i) => {
+      state.splice(i, 1, {...exp, isCurrent: exp.uuid === uuid })
+    });
+    // state.map(e => Object.assign(e, { isCurrent: e.uuid === uuid }));
   },
   removeCurrent(state) {
-    state.map(e => Object.assign(e, { isCurrent: false }));
+    state.forEach((exp, i) => {
+      state.splice(i, 1, {...exp, isCurrent: false })
+    });
   },
   removeNotFilled(state) {
     state.forEach((exp, i) => {
       if (!(exp.companyName && exp.title)) {
-        state.splice(state.findIndex(e => e.uuid === exp.uuid));
+        state.splice(i);
       }
     });
   },
   mutateExperience(state, updatedExperience) {
-    console.log(state, updatedExperience)
-    // state.forEach((exp, i) => {
-    //   if (exp.uuid === updatedExperience.uuid) {
-    //     state[i] = {...exp, ...updatedExperience}
-    //   }
-    // });
-
-    state.map(e => (e.uuid === updatedExperience.uuid ? Object.assign(e, updatedExperience) : e));
+    state.splice(state.findIndex(a => a.uuid === updatedExperience.uuid), 1, updatedExperience)
   },
   remove(state, uuid) {
     state.splice(state.findIndex(e => e.uuid === uuid), 1);
@@ -84,38 +82,38 @@ export const actions = {
   addTitle({ commit, getters }, title) {
     console.log('store title', getters.current.uuid, title)
     commit('mutateExperience', {
-      uuid: getters.current.uuid,
+      ...getters.current,
       title
     });
   },
   addCompanyName({ commit, getters }, companyName) {
     console.log(getters.current.uuid, companyName)
     commit('mutateExperience', {
-      uuid: getters.current.uuid,
+      ...getters.current,
       companyName
     });
   },
   addFullAddress({ commit, getters }, fullAddress) {
     commit('mutateExperience', {
-      uuid: getters.current.uuid,
+      ...getters.current,
       fullAddress
     });
   },
   addJobIndustry({ commit, getters }, jobIndustry) {
     commit('mutateExperience', {
-      uuid: getters.current.uuid,
+      ...getters.current,
       jobIndustry
     });
   },
   addEmploymentType({ commit, getters }, employmentType) {
     commit('mutateExperience', {
-      uuid: getters.current.uuid,
+      ...getters.current,
       employmentType
     });
   },
   addPeriod({ commit, getters }, period) {
     commit('mutateExperience', {
-      uuid: getters.current.uuid,
+      ...getters.current,
       periods: getters.current.periods.concat({
         ...period,
         uuid: generateUuid()
@@ -124,19 +122,19 @@ export const actions = {
   },
   removePeriod({ commit, getters }, periodId) {
     commit('mutateExperience', {
-      uuid: getters.current.uuid,
+      ...getters.current,
       periods: getters.current.periods.filter(p => p.uuid !== periodId)
     });
   },
   addSkill({ commit, getters }, label) {
     commit('mutateExperience', {
-      uuid: getters.current.uuid,
+      ...getters.current,
       skills: [{label}, ...getters.current.skills],
     });
   },
   removeSkill({ commit, getters }, skill) {
     commit('mutateExperience', {
-      uuid: getters.current.uuid,
+      ...getters.current,
       skills: getters.current.skills.filter(s => s.label !== skill)
     });
   }
