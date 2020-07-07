@@ -10,7 +10,7 @@ export default ({ env }) => {
         a.appendChild(r);
       })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     } else {
-      console.log('NUXT_HOTJAR_ID not set : Hotjar not loaded');
+      console.debug('NUXT_HOTJAR_ID not set : Hotjar not loaded');
     }
   }
 }

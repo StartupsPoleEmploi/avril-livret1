@@ -64,7 +64,6 @@ export const getters = {
 
 export const mutations = {
   initState(state, serverState) {
-    console.log(serverState)
     state = Object.assign(state, serverState)
   },
   setSavingState(state, value){
@@ -94,9 +93,6 @@ export const actions = {
         }
       })
     ]);
-
-    console.log('bookletData', bookletData)
-    console.log('identity', identity)
 
     const {education, experiences, ...rest} = bookletData;
 

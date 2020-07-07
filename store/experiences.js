@@ -18,7 +18,6 @@ export const getters = {
     return percent(getters.totalHours / BOOKLET_MIN_HOURS);
   },
   current: state => {
-    console.log('calculating current', state.find(e => e.isCurrent))
     return state.find(e => e.isCurrent);
   },
 };
@@ -80,14 +79,12 @@ export const actions = {
     commit('setCurrent', uuid);
   },
   addTitle({ commit, getters }, title) {
-    console.log('store title', getters.current.uuid, title)
     commit('mutateExperience', {
       ...getters.current,
       title
     });
   },
   addCompanyName({ commit, getters }, companyName) {
-    console.log(getters.current.uuid, companyName)
     commit('mutateExperience', {
       ...getters.current,
       companyName

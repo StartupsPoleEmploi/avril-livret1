@@ -9,7 +9,7 @@ export default ({ env }) => {
         d.getElementsByTagName("head")[0].appendChild(s);
       })();
     } else {
-      console.log('NUXT_CRISP_WEBSITE_ID not set : Crisp not loaded');
+      console.debug('NUXT_CRISP_WEBSITE_ID not set : Crisp not loaded');
     }
   }
 }

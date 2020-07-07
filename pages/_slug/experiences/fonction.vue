@@ -59,11 +59,9 @@
     // },
     computed: {
       experienceTitle() {
-        console.log('fuck', get(this.$store.getters['experiences/current'], 'title'))
         return get(this.$store.getters['experiences/current'], 'title');
       },
       companyName() {
-        console.log(get(this.$store.getters['experiences/current'], 'companyName'))
         return get(this.$store.getters['experiences/current'], 'companyName');
       },
       fullAddress() {
