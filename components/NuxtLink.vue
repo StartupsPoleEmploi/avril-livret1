@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link v-bind="{...$props, ...$attrs}" :to="toWithPrefix">
+  <nuxt-link v-on:click.native="$emit('click')" v-bind="{...$props, ...$attrs}" :to="toWithPrefix">
     <slot></slot>
   </nuxt-link>
 </template>
@@ -10,7 +10,7 @@
   export default {
     computed: {
       toWithPrefix: function() {
-        return `${prepend(get(this, '$route.params.slug'), '/')}${this.to}`;
+        return `${prepend(get(this, '$route.params.slug'), '/')}${this.to || ''}`;
       },
     },
     props: [

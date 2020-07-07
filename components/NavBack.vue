@@ -1,52 +1,37 @@
 <template>
   <div class="nav-back">
-    <button @click="back" class="button is-default" :disabled="!displayBack">
+    <nuxt-link :to="toBack" class="button is-default" :disabled="!toBack">
       <ArrowLeft />
-    </button>
-    <button @click="next" class="button is-default" :disabled="!displayNext">
+    </nuxt-link>
+    <nuxt-link :to="toNext" class="button is-default" :disabled="!toNext">
       <ArrowRight />
-    </button>
+    </nuxt-link>
   </div>
 </template>
 
 <script>
   import ArrowLeft from 'avril/images/icons/arrow-left.svg';
   import ArrowRight from 'avril/images/icons/arrow-right.svg';
+  import NuxtLink from '~/components/NuxtLink.vue';
+  import { endsWithNoCase } from 'avril/js/utils/string';
 
   export default {
     components: {
       ArrowLeft,
       ArrowRight,
+      NuxtLink,
     },
     computed: {
-      displayBack() {
-        return !this.$store.getters.isTheBeginning;
-      },
-      displayNext() {
-        return !this.$store.getters.isTheEnd;
-      }
-    },
-    methods: {
-      back: function(e) {
+      toBack: function() {
         if (this.$store.getters.isTheBeginning) return;
         const paths = this.$store.getters.flatPaths;
-        this.$router.push({
-          path: paths[paths.findIndex(p => p === this.$store.state.currentPath) - 1]
-        });
+        return paths[paths.findIndex(p => endsWithNoCase(this.$store.state.currentPath, p)) - 1];
       },
-      next: function(e) {
+      toNext: function() {
         if (this.$store.getters.isTheEnd) return;
         const paths = this.$store.getters.flatPaths;
-        this.$router.push({
-          path: paths[paths.findIndex(p => p === this.$store.state.currentPath) + 1]
-        });
-      }
+        return paths[paths.findIndex(p => endsWithNoCase(this.$store.state.currentPath, p)) + 1];
+      },
     },
   }
 </script>
-
-<style scoped lang="scss">
-  // .nav-back {
-  //   margin-right: 1rem;
-  // }
-</style>

@@ -30,7 +30,7 @@
             <div class="columns">
               <div class="column">
                 <nuxt-link
-                  v-on:click.native="setCurrentExperience(experience.uuid)"
+                  @click="setCurrentExperience(experience.uuid)"
                   class="button is-text"
                   to="/experiences/fonction"
                   >{{incompleteFields(experience).length ? 'Compléter' : 'Modifier'}}</nuxt-link
@@ -74,7 +74,7 @@
 
   const translateKey = k => {
     switch(k) {
-      case 'role':
+      case 'title':
         return 'fonction';
       case 'companyName':
         return 'nom de l\'entreprise';

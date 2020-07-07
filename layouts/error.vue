@@ -12,15 +12,12 @@
 </template>
 
 <script>
-  import {phoenixUrl} from '~/utils/url.js';
+  import {profileUrl} from '~/utils/url.js';
 
   export default {
     computed: {
       backUrl() {
-        if (this.$store.state.delegateHash) {
-          return phoenixUrl({delegate_hash: this.$store.state.delegateHash});
-        }
-        return phoenixUrl({hash: this.$store.state.hash});
+        return profileUrl(this);
       },
     },
     props: ['error'],

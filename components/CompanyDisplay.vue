@@ -1,6 +1,6 @@
 <template>
   <span>
-    {{ experience.role || 'Fonction à compléter' }} chez {{ experience.companyName || 'Entreprise à compléter' }}
+    {{ experience.title || 'Fonction à compléter' }} chez {{ experience.companyName || 'Entreprise à compléter' }}
   </span>
 </template>
 

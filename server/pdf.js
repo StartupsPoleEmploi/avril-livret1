@@ -1,6 +1,6 @@
 import pdf from 'html-pdf';
 import fetch from 'node-fetch';
-import {uuid} from 'avril/js/utils/string';
+import {generateUuid} from 'avril/js/utils/string';
 
 export default async (req, res) => {
   if (req.body.body) {
@@ -15,7 +15,7 @@ export default async (req, res) => {
       footer: {
         height: '1cm',
       }
-    }).toFile(`./tmp/${uuid()}.pdf`, (err, pdfRes) => {
+    }).toFile(`./tmp/${generateUuid()}.pdf`, (err, pdfRes) => {
       if (err) {
         console.error(err);
       } else {

@@ -1,12 +1,12 @@
 import get from 'lodash.get';
-import { uuid } from 'avril/js/utils/string';
+import { generateUuid } from 'avril/js/utils/string';
 import { parseISODate } from 'avril/js/utils/time';
 
 const mapClassification = data => data.label;
 
 const mapExperience = experience => {
   const map = {
-    uuid: experience.uuid || uuid(),
+    uuid: experience.uuid || generateUuid(),
     isCurrent: false,
     role: experience.title,
     companyName: experience.company_name,

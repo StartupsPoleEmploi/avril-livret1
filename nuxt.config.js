@@ -7,7 +7,7 @@ export default deepMerge(sharedConfig, {
     'swiper/dist/css/swiper.css'
   ],
   head: {
-    title: 'Livret 1 by Avril, la VAE facile',
+    title: 'Mon dossier de recevabilité Avril - la VAE facile',
   },
   loading: false,
   plugins: [

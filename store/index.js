@@ -1,6 +1,7 @@
 import get from 'lodash.get';
 import { percent } from 'avril/js/utils/number';
 import { first, last } from 'avril/js/utils/array';
+import { endsWithNoCase } from 'avril/js/utils/string';
 import { queryApiWithContext } from 'avril/js/utils/api';
 import { fraToEng } from '~/utils/translate';
 import { redirectToPhoenix } from '~/utils/url';
@@ -54,16 +55,16 @@ export const getters = {
       .map(s => s.to);
   },
   isTheBeginning: (state, getters) => {
-    return state.currentPath === first(getters.flatPaths);
+    return endsWithNoCase(state.currentPath, first(getters.flatPaths));
   },
   isTheEnd: (state, getters) => {
-    return state.currentPath === '/experiences' && getters['experiences/progress'] === 100
+    return endsWithNoCase(state.currentPath, '/experiences') && getters['experiences/progress'] === 100
   }
 };
 
 export const mutations = {
   initState(state, serverState) {
-    console.log('assigning', serverState)
+    console.log(serverState)
     state = Object.assign(state, serverState)
   },
   setSavingState(state, value){

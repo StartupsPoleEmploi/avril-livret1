@@ -4,12 +4,12 @@
       <label class="label">Emploi ou fonction occupée</label>
       <div class="control">
         <input
-          :value="role"
-          ref="role"
+          :value="experienceTitle"
+          ref="experienceTitle"
           class="input"
           type="text"
           placeholder="Ex: Boulanger Pâtissier"
-          @input="addRole"
+          @input="addTitle"
         />
       </div>
     </div>
@@ -38,7 +38,7 @@
         />
       </div>
     </div>
-    <ContinueOrFillLater to="/experiences/famille" :value="role && companyName" />
+    <ContinueOrFillLater to="/experiences/famille" :value="experienceTitle && companyName" />
   </div>
 </template>
 
@@ -54,14 +54,16 @@
     },
     beforeCreate() {
       if (!this.$store.getters['experiences/current']) {
-        this.$router.push('/experiences');
+        this.$router.push('../experiences');
       }
     },
     computed: {
-      role() {
-        return get(this.$store.getters['experiences/current'], 'role');
+      experienceTitle() {
+        console.log('fuck', get(this.$store.getters['experiences/current'], 'title'))
+        return get(this.$store.getters['experiences/current'], 'title');
       },
       companyName() {
+        console.log(get(this.$store.getters['experiences/current'], 'companyName'))
         return get(this.$store.getters['experiences/current'], 'companyName');
       },
       fullAddress() {
@@ -74,13 +76,13 @@
       }
     },
     mounted() {
-      if (this.$refs.role) {
-        this.$refs.role.focus();
+      if (this.$refs.experienceTitle) {
+        this.$refs.experienceTitle.focus();
       }
     },
     methods: {
-      addRole(e) {
-        this.$store.dispatch('experiences/addRole', e.target.value);
+      addTitle(e) {
+        this.$store.dispatch('experiences/addTitle', e.target.value);
       },
       addCompanyName(e) {
         this.$store.dispatch('experiences/addCompanyName', e.target.value);

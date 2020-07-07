@@ -24,7 +24,7 @@
   export default {
     beforeCreate() {
       if (!this.$store.getters['experiences/current']) {
-        this.$router.push('/experiences');
+        this.$router.push('../experiences');
       }
     },
     components: {

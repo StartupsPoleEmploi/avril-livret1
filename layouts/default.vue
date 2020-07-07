@@ -43,51 +43,51 @@
             </div>
             <hr class="navbar-divider" />
             <div class="navbar-item has-dropdown is-hoverable">
-              <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations" class="navbar-link">
+              <nuxt-link @click="toggleMobileMenu(false)" to="/formations" class="navbar-link">
                 Ma formation
               </nuxt-link>
 
               <div class="navbar-dropdown">
-                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations" class="navbar-item">
+                <nuxt-link @click="toggleMobileMenu(false)" to="/formations" class="navbar-item">
                   Dernière formation
                 </nuxt-link>
-                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations/diplome" class="navbar-item">
+                <nuxt-link @click="toggleMobileMenu(false)" to="/formations/diplome" class="navbar-item">
                   Niveau
                 </nuxt-link>
-                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations/rncp" class="navbar-item">
+                <nuxt-link @click="toggleMobileMenu(false)" to="/formations/rncp" class="navbar-item">
                   Diplôme(s)
                 </nuxt-link>
-                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/formations/formations" class="navbar-item">
+                <nuxt-link @click="toggleMobileMenu(false)" to="/formations/formations" class="navbar-item">
                   Formations
                 </nuxt-link>
               </div>
             </div>
             <div class="navbar-item has-dropdown is-hoverable">
-              <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences" class="navbar-link">
+              <nuxt-link @click="toggleMobileMenu(false)" to="/experiences" class="navbar-link">
                 Mes expériences professionnelles
               </nuxt-link>
 
               <div class="navbar-dropdown" v-if="currentExperience">
-                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/fonction" class="navbar-item">
+                <nuxt-link @click="toggleMobileMenu(false)" to="/experiences/fonction" class="navbar-item">
                   Fonction
                 </nuxt-link>
-                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/famille" class="navbar-item">
+                <nuxt-link @click="toggleMobileMenu(false)" to="/experiences/famille" class="navbar-item">
                   Famille pro
                 </nuxt-link>
-                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/statut" class="navbar-item">
+                <nuxt-link @click="toggleMobileMenu(false)" to="/experiences/statut" class="navbar-item">
                   Statut
                 </nuxt-link>
-                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/precision" class="navbar-item">
+                <nuxt-link @click="toggleMobileMenu(false)" to="/experiences/precision" class="navbar-item">
                   Activités
                 </nuxt-link>
-                <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/experiences/periode" class="navbar-item">
+                <nuxt-link @click="toggleMobileMenu(false)" to="/experiences/periode" class="navbar-item">
                   Période
                 </nuxt-link>
               </div>
             </div>
             <hr class="navbar-divider" />
             <div class="navbar-item">
-              <nuxt-link v-on:click.native="toggleMobileMenu(false)" to="/recapitulatif" class="button" :class="progress === 100 ? 'is-primary' : 'is-default'">
+              <nuxt-link @click="toggleMobileMenu(false)" to="/recapitulatif" class="button" :class="progress === 100 ? 'is-primary' : 'is-default'">
                 Enregistrer mon dossier de recevabilité
               </nuxt-link>
             </div>

@@ -8,6 +8,17 @@ import {
   SAVING_ERROR,
 } from '~/constants/index';
 
+const mapExperiences = experiences => experiences
+  .filter(e => e.title && e.companyName)
+  .map(({isCurrent, periods, ...experienceInfos}) => {
+    return {
+      ...experienceInfos,
+      periods: periods.map(({uuid, ...periodInfos}) => {
+        return periodInfos
+      }),
+    }
+  })
+
 const savingStateNull = store => {
   setTimeout(() => {
     store.commit('setSavingState', null);
@@ -26,7 +37,7 @@ export default async function({store}) {
             applicationId: store.state.applicationId,
             booklet: {
               education: store.state.education,
-              experiences: store.state.experiences.map(e => exceptKeys(e, ['isCurrent'])),
+              experiences: mapExperiences(store.state.experiences),
             }
           }
         }
@@ -35,7 +46,7 @@ export default async function({store}) {
     } catch(error) {
       console.error(error);
       store.commit('setSavingState', SAVING_ERROR);
-      savingStateNull(store);
     }
+    savingStateNull(store);
   }
 }
