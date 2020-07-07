@@ -1,6 +1,3 @@
-import { exceptKeys } from 'avril/js/utils/object';
-import { mutateApi } from 'avril/js/utils/api';
-
 import {
   NO_SAVING,
   SAVING_PENDING,
@@ -8,16 +5,7 @@ import {
   SAVING_ERROR,
 } from '~/constants/index';
 
-const mapExperiences = experiences => experiences
-  .filter(e => e.title && e.companyName)
-  .map(({isCurrent, periods, ...experienceInfos}) => {
-    return {
-      ...experienceInfos,
-      periods: periods.map(({uuid, ...periodInfos}) => {
-        return periodInfos
-      }),
-    }
-  })
+import {saveLocalState} from '~/utils/url';
 
 const savingStateNull = store => {
   setTimeout(() => {
@@ -29,19 +17,7 @@ export default async function({store}) {
   if (process.client) {
     store.commit('setSavingState', SAVING_PENDING);
     try {
-      await mutateApi({
-        name: 'setBooklet',
-        type: 'booklet',
-        params: {
-          input: {
-            applicationId: store.state.applicationId,
-            booklet: {
-              education: store.state.education,
-              experiences: mapExperiences(store.state.experiences),
-            }
-          }
-        }
-      })
+      await saveLocalState(store);
       store.commit('setSavingState', SAVING_SUCCESS);
     } catch(error) {
       console.error(error);

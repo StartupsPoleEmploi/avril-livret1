@@ -8,8 +8,6 @@ import { redirectToPhoenix } from '~/utils/url';
 
 import steps from '~/contents/data/steps';
 
-import { backendToStore } from '~/mappers/toStore';
-
 export const state = () => ({
   applicationId: null,
   certificationName: null,

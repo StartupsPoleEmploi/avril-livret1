@@ -8,9 +8,15 @@
       </div>
     </section>
 
-    <section class="recap-section section-formation">
+    <section class="recap-section section-diplome">
       <div class="content">
+        <h1 class="title is-3">Diplôme demandé :</h1>
+        <p><strong>{{certificationName}} dispensé par {{certifierName}}</strong></p>
+      </div>
+    </section>
+    <section class="recap-section section-formation">
         <h1 class="title is-3">Ma formation</h1>
+      <div class="content">
         <div class="recap-cell cell-classe">
           <p v-if="!education.grade">Je n'ai pas encore renseigné ma dernière classe.</p>
           <p v-else>Je suis {{feminize('allé')}} jusqu'en <strong>{{gradeLabel}}</strong></p>
@@ -197,6 +203,12 @@
       NuxtLink,
     },
     computed: {
+      certificationName() {
+        return this.$store.state.certificationName
+      },
+      certifierName() {
+        return this.$store.state.certifierName
+      },
       education() {
         return this.$store.state.education
       },
@@ -242,16 +254,11 @@
       periodTotalHours,
       addressLabelify,
       isPresent,
-      markAsCompleteAndGoBack: function() {
+      markAsCompleteAndGoBack: async function() {
         this.$store.commit('markAsComplete');
-        saveLocalState()(this.$store).then(res => {
-          if (res.ok) {
-            track(this, '?finished=true');
-            window.location.href = this.backUrl;
-          } else {
-            this.errorMsg = 'Désolé nous ne sommes pas parvenu à enregistrer. Merci de réessayer plus tard.'
-          }
-        })
+        await saveLocalState(this.$store);
+        track(this, '?finished=true');
+        window.location.href = this.backUrl;
       },
     }
   }
