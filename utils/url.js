@@ -3,7 +3,7 @@ import {objectToQueryString} from 'avril/js/utils/url';
 import { mutateApi } from 'avril/js/utils/api';
 // import { mutateApi } from 'avril/js/utils/time';
 
-export const profileUrl = that => `${process.env.profilePath}/mes-candidatures/${get(that, '$route.params.slug')}`
+export const profileUrl = that => `${process.env.profilePath}/mes-candidatures/${get(that, '$route.params.slug', '')}`
 
 const mapExperiences = experiences => experiences
   .filter(e => e.title && e.companyName)
