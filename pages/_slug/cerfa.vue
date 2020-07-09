@@ -97,7 +97,7 @@
               <div class="column">
                 <div class="atome">
                   <label>Date de naissance&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{formatDate(identity.birthday)}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{parseAndFormat(identity.birthday)}}</p>
                 </div>
                 <div class="atome">
                   <label>Commune de naissance&nbsp;:</label>
@@ -201,7 +201,7 @@
                           Inscrit à Pôle-emploi :
                           <input type="checkbox" :checked="identity.currentSituation.status === 'jobseeking' && identity.currentSituation.registerToPoleEmploi">
                           <label>Oui</label>
-                          <span v-if="identity.currentSituation.registerToPoleEmploiSince">depuis le {{formatDate(identity.currentSituation.registerToPoleEmploiSince)}}</span>
+                          <span v-if="identity.currentSituation.registerToPoleEmploiSince">depuis le {{parseAndFormat(identity.currentSituation.registerToPoleEmploiSince)}}</span>
                           <input type="checkbox" style="margin-left: 1rem;" :checked="identity.currentSituation.status === 'jobseeking' && !identity.currentSituation.registerToPoleEmploi">
                           <label>Non</label>
                         </li>
@@ -377,13 +377,13 @@
               <div class="column">
                 <div class="atome">
                   <label>Certification ou partie/s de certification professionnelle inscrite/s au Répertoire National des Certifications Professionnelles (RNCP) en rapport avec la certification professionnelle que vous souhaitez obtenir par la validation des acquis de l'expérience (VAE)&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.courses.join(', ') || '-'}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.courses.map(c => c.label).join(', ') || '-'}}</p>
                 </div>
               </div>
               <div class="column">
                 <div class="atome">
                   <label>Formations courtes suivies dans le cadre de la formation continue&nbsp;:</label>
-                  <p class="title is-6 is-uppercase is-spaced">{{education.diplomas.join(', ') || '-'}}</p>
+                  <p class="title is-6 is-uppercase is-spaced">{{education.diplomas.map(c => c.label).join(', ') || '-'}}</p>
                 </div>
               </div>
             </div>
@@ -438,7 +438,7 @@
                     <td>{{pluralize('Activité', experience.skills.length)}}&nbsp;:</td>
                     <td>
                       <ul>
-                        <li v-for="skill in experience.skills">{{skill}}</li>
+                        <li v-for="skill in experience.skills">{{skill.label}}</li>
                       </ul>
                     </td>
                   </tr>
@@ -572,7 +572,7 @@
   import {capitalize, pluralize} from 'avril/js/utils/string.js';
   import {labelGetter} from 'avril/js/utils/function.js';
   import {addressLabelify} from 'avril/js/utils/geo.js';
-  import {formatDate} from 'avril/js/utils/time.js';
+  import {parseAndFormat} from 'avril/js/utils/time.js';
   import CerfaMenu from '~/components/CerfaMenu';
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
   import currentSituationAnswers from '~/contents/data/currentSituation';
@@ -632,7 +632,7 @@
       experienceCategoriesLabel(experience) {
         return labelGetter(experienceCategoriesAnswers, experience.jobIndustry)
       },
-      formatDate,
+      parseAndFormat,
     }
   }
 </script>

@@ -11,20 +11,18 @@
 
 <script type="text/javascript">
   import {
-    formatDate,
     isMoreThanOneWeek,
     periodTotalHours,
-    parseISODate,
-    formatISODate,
+    parseAndFormat,
   } from 'avril/js/utils/time.js';
 
   export default {
     computed: {
       startDate() {
-        return formatDate(parseISODate(this.period.startDate))
+        return parseAndFormat(this.period.startDate)
       },
       endDate() {
-        return formatDate(parseISODate(this.period.endDate))
+        return parseAndFormat(this.period.endDate)
       },
       isMoreThanOneWeek(){
         return isMoreThanOneWeek(this.period);
@@ -37,11 +35,6 @@
       return {
         fullTimeWeekHours: 35,
       };
-    },
-    methods: {
-      formatDate,
-      formatISODate,
-      parseISODate,
     },
     props: ['period'],
   }
