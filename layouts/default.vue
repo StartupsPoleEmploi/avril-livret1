@@ -172,13 +172,6 @@
         store.commit('setHelpContent', helpContent.default);
       } catch(e) {}
     },
-    mounted() {
-      if (this.$store.state.isReadOnly) {
-        return this.$router.push({
-          path: '/cerfa'
-        })
-      }
-    },
     methods: {
       toggleMobileMenu: function(value) {
         this.showMobileMenu = typeof value === 'undefined' ? !this.showMobileMenu : value;

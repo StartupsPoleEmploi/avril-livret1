@@ -5,3 +5,5 @@ Voici un lien vers la fiche du métier pour trouver des exemples d'activités :
 <a href="https://www.pole-emploi.fr/candidat/decouvrir-le-marche-du-travail/les-fiches-metiers.html" target="_blank">Fiches métiers</a>
 
 Exemple :
+
+![Exemple](/ma-candidature-vae/help.png)
