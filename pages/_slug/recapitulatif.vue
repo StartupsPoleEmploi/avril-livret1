@@ -4,14 +4,14 @@
       <h1 class="title is-1">Récapitulatif</h1>
       <div class="notification is-avril section is-small">
         <p>Vérifiez que toutes ces informations sont correctes. Si besoin corrigez-les en cliquant sur le bouton "Je dois modifier certaines informations" en bas de page.</p>
-        <p>Si tout vous semble correct, votre dossier est enregistré et vous pouvez continuer.</p>
+        <p>Si tout vous semble correct, cliquez sur "Je certifie exacte ...", votre dossier sera enregistré et vous pourrez le transmettre une fois vos pièces justificatives ajoutées.</p>
       </div>
     </section>
 
     <section class="recap-section section-diplome">
       <div class="content">
         <h1 class="title is-3">Diplôme demandé :</h1>
-        <p><strong>{{certificationName}} dispensé par {{certifierName}}</strong></p>
+        <p><strong>{{certificationName}} <span v-if="certifierName">dispensé par {{certifierName}}</span></strong></p>
       </div>
     </section>
     <section class="recap-section section-formation">
