@@ -2,7 +2,6 @@ import get from 'lodash.get'
 import express from 'express'
 import consola from 'consola'
 import { Nuxt, Builder } from 'nuxt'
-import pdfGenerator from './pdf'
 import config from '../nuxt.config.js'
 
 const app = express()
@@ -12,12 +11,6 @@ config.dev = process.env.NODE_ENV !== 'production'
 app.get('/healthcheck', (req, res) => {
   res.sendStatus(200);
 })
-
-app.post(
-  `${get(config, 'router.base')}/cerfa.pdf`,
-  express.urlencoded({ extended: true, limit: '1mb', }),
-  pdfGenerator
-);
 
 async function start () {
   // Init Nuxt.js
