@@ -89,7 +89,7 @@
       case 'periods':
         return 'périodes d\'emploi';
       default:
-        return '';
+        return k;
     }
   }
 
@@ -134,7 +134,7 @@
             return result.concat(translateKey(k))
           }
           return result
-        }, [])
+        }, []);
       },
     }
   };

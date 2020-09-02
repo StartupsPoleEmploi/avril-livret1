@@ -24,7 +24,10 @@ export const getters = {
 
 export const mutations = {
   initState(state, serverState) {
-    serverState.forEach(e => state.push(e));
+    serverState.forEach(e => state.push({
+      ...e,
+      uuid: e.uuid || generateUuid(),
+    }));
   },
   new(state, uuid) {
     state.push({
