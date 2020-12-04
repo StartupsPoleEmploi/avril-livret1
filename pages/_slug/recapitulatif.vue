@@ -126,27 +126,47 @@
     </section>
     <section class="recap-section section-confirmation">
       <div class="notification is-avril section is-small has-text-centered">
-        <h3 class="title is-3">Est-ce que ces informations sont exactes et complètes ?</h3>
         <div class="control">
           <div class="columns is-centered">
             <div class="column">
-              <button @click="markAsCompleteAndGoBack" class="button is-primary is-fullwidth is-wrapped">
+              <h5 class="title is-5">Je certifie que :</h5>
+              <div class="control atome box">
+                <label>
+                  <input type="checkbox" v-model="completed">
+                  Toutes les informations fournies sont exactes
+                </label>
+              </div>
+              <div class="control atome box">
+                <label>
+                  <input type="checkbox" v-model="condamnationFree">
+                  Je ne fais pas l'objet d'une mesure pénale ou administrative d'interdiction de présentation devant un jury d'examens ou de validation des acquis de l'expérience
+                </label>
+              </div>
+              <div class="control atome box">
+                <label>
+                  <input type="checkbox" v-model="onlyCertificationApplication">
+                  La présente candidature constitue l'unique demande pour cette certification pour la même année civile
+                </label>
+              </div>
+              <div class="control atome box">
+                <label>
+                  <input type="checkbox" v-model="lessThan3Applications">
+                  Je ne présente pas plus de 3 candidatures à la validation des acquis de l'expérience pour des diplômes certificats ou titres durant la présente année civile
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <button @click="markAsCompleteAndGoBack" class="button is-primary is-fullwidth is-wrapped" :disabled="!canSubmit">
                 <span>
                   <Check />
-                  Je certifie exacte l'intégralité des informations fournies dans ce document
+                  Je termine mon dossier de recevabilité
                 </span>
               </button>
             </div>
           </div>
           <div class="columns is-centered">
-            <div class="column">
-              <a class="button is-fullwidth is-white is-wrapped" :href="backUrl">
-                <span>
-                  <Back />
-                  Je complèterai plus tard
-                </span>
-              </a>
-            </div>
             <div class="column">
               <nuxt-link to="/" class="button is-fullwidth is-white is-wrapped">
                 <span>
@@ -154,6 +174,14 @@
                   Je dois modifier certaines informations
                 </span>
               </nuxt-link>
+            </div>
+            <div class="column">
+              <a class="button is-fullwidth is-white is-wrapped" :href="backUrl">
+                <span>
+                  <Wait />
+                  Je terminerai mon dossier de recevabilité plus tard
+                </span>
+              </a>
             </div>
           </div>
         </div>
@@ -182,25 +210,21 @@
   import NuxtLink from '~/components/NuxtLink.vue';
   import CompanyDisplay from '~/components/CompanyDisplay.vue';
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
-  import Back from 'avril/images/icons/back.svg';
+  import Wait from 'avril/images/icons/wait.svg';
   import Pencil from 'avril/images/icons/pencil.svg';
   import Check from 'avril/images/icons/check.svg';
 
   import {saveLocalState} from '~/utils/url';
 
   export default {
-    data: () => ({
-      bookletMinHours: BOOKLET_MIN_HOURS,
-      errorMsg: null,
-    }),
     layout: 'recapitulatif',
     components: {
-      Back,
       Check,
       Pencil,
       CompanyDisplay,
       PeriodDisplay,
       NuxtLink,
+      Wait,
     },
     computed: {
       certificationName() {
@@ -245,6 +269,19 @@
       isMan() {
         return this.$store.getters['identity/isMan'];
       },
+      canSubmit() {
+        return this.completed && this.condamnationFree && this.onlyCertificationApplication && this.lessThan3Applications;
+      },
+    },
+    data: function() {
+      return {
+        completed: this.$store.state.completedAt,
+        condamnationFree: this.$store.state.condamnationFree,
+        onlyCertificationApplication: this.$store.state.onlyCertificationApplication,
+        lessThan3Applications: this.$store.state.lessThan3Applications,
+        bookletMinHours: BOOKLET_MIN_HOURS,
+        errorMsg: null,
+      };
     },
     methods: {
       feminize: function(word, feminineVersion) {
@@ -267,5 +304,14 @@
 <style lang="scss" scoped>
   .recap-section:not(:last-child) {
     padding-bottom: 3rem;
+  }
+
+  label {
+    cursor: pointer;
+    input {
+      margin-right: 0.3rem;
+      position: relative;
+      top: 1px;
+    }
   }
 </style>
