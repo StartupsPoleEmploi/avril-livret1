@@ -285,7 +285,7 @@
     },
     methods: {
       feminize: function(word, feminineVersion) {
-        return feminize(word, this.identity.gender ? this.isMan : undefined, feminineVersion);
+        return feminize(word, this.identity.gender ? !this.isMan : undefined, feminineVersion);
       },
       parseAndFormat,
       periodTotalHours,
