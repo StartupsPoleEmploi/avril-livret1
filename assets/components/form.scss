@@ -3,7 +3,7 @@
     margin-bottom: 3rem;
   }
 
-  .input, .textarea{
+  .input, .textarea, .select select{
     -moz-appearance: none;
     -webkit-appearance: none;
     align-items: center;
@@ -31,6 +31,11 @@
     &:hover {
       border-color: #E7E8EB;
     }
+  }
+  .select select {
+    height: 3em;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .mx-datepicker {

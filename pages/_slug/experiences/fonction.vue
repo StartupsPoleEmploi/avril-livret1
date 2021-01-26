@@ -30,10 +30,10 @@
     <div class="field">
       <label class="label">Adresse de l'entreprise ou association</label>
       <div class="control">
-        <GeoInput
+        <BanGeoInput
           :input="addFullAddress"
+          inputclass="input"
           :value="fullAddress"
-          :credentials="credentials"
           placeholder="Ex: 44 rue de dupont, 13000 Marseille"
         />
       </div>
@@ -44,12 +44,12 @@
 
 <script>
   import get from 'lodash.get';
-  import GeoInput from 'avril/js/components/GeoInput.vue';
+  import BanGeoInput from 'avril/js/components/BanGeoInput.vue';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
 
   export default {
     components: {
-      GeoInput,
+      BanGeoInput,
       ContinueOrFillLater,
     },
     // beforeCreate() {
