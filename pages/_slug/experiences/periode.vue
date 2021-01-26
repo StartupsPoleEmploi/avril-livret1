@@ -119,7 +119,7 @@
         return this.$store.getters['experiences/current'];
       },
       periods() {
-        return get(this.$store.getters['experiences/current'], 'periods');
+        return get(this.$store.getters['experiences/current'], 'periods', []);
       },
     },
     methods: {

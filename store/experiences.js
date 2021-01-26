@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import get from 'lodash.get';
 import { generateUuid } from 'avril/js/utils/string';
 import { periodTotalHours } from 'avril/js/utils/time';
 import { percent } from 'avril/js/utils/number';
@@ -9,7 +10,7 @@ export const state = () => [];
 export const getters = {
   totalHours: state => {
     return state.reduce((accumulatedHours, experience) => {
-      return experience.periods.reduce((accumulatedHours2, period) => {
+      return get(experience, 'periods', []).reduce((accumulatedHours2, period) => {
         return accumulatedHours2 + periodTotalHours(period);
       }, accumulatedHours);
     }, 0);

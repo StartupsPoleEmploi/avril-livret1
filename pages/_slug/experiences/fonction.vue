@@ -75,10 +75,10 @@
     },
     methods: {
       addTitle(e) {
-        this.$store.dispatch('experiences/addTitle', e.target.value);
+        this.$store.dispatch('experiences/addTitle', get(e, 'target.value'));
       },
       addCompanyName(e) {
-        this.$store.dispatch('experiences/addCompanyName', e.target.value);
+        this.$store.dispatch('experiences/addCompanyName', get(e, 'target.value'));
       },
       addFullAddress(result) {
         this.$store.dispatch('experiences/addFullAddress', result);
