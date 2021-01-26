@@ -117,12 +117,12 @@
     <section class="recap-section section-situation">
       <h3 class="title is-3">Ma situation actuelle</h3>
       <p>Je {{identity.isHandicapped ? 'suis' : 'ne suis pas'}} {{feminize('reconnu')}} {{feminize('travailleur', 'travailleuse')}} {{feminize('handicapé')}}.</p>
-      <p v-if="identity.currentSituation.status">
-        Je suis actuellement en <strong>{{currentSituationStatusLabel}}</strong><span v-if="identity.currentSituation.employmentType"> : <strong>{{currentSituationEmploymentTypeLabel}}</strong></span>.</p>
+      <p v-if="currentSituation.status">
+        Je suis actuellement en <strong>{{currentSituationStatusLabel}}</strong><span v-if="currentSituation.employmentType"> : <strong>{{currentSituationEmploymentTypeLabel}}</strong></span>.</p>
       <p v-else>Je n'ai pas renseigné ma situation d'emploi.</p>
-      <p v-if="identity.currentSituation.registerToPoleEmploi !== null">
-        Je {{identity.currentSituation.registerToPoleEmploi ? 'suis' : 'ne suis pas'}} {{feminize('inscrit')}} à Pôle-emploi<span v-if="identity.currentSituation.registerToPoleEmploiSince"> depuis le {{parseAndFormat(identity.currentSituation.registerToPoleEmploiSince)}}</span>.</p>
-      <p v-if="identity.currentSituation.compensationType">Je suis {{feminize('indemnisé')}} <strong>{{currentSituationCompensationTypeLabel}}</strong>.</p>
+      <p v-if="currentSituation.registerToPoleEmploi !== null">
+        Je {{currentSituation.registerToPoleEmploi ? 'suis' : 'ne suis pas'}} {{feminize('inscrit')}} à Pôle-emploi<span v-if="currentSituation.registerToPoleEmploiSince"> depuis le {{parseAndFormat(currentSituation.registerToPoleEmploiSince)}}</span>.</p>
+      <p v-if="currentSituation.compensationType">Je suis {{feminize('indemnisé')}} <strong>{{currentSituationCompensationTypeLabel}}</strong>.</p>
     </section>
     <section class="recap-section section-confirmation">
       <div class="notification is-avril section is-small has-text-centered">
@@ -256,6 +256,9 @@
       },
       backUrl() {
         return profileUrl(this);
+      },
+      currentSituation() {
+        return this.identity.currentSituation || {};
       },
       currentSituationStatusLabel() {
         return this.$store.getters['identity/currentSituationStatusLabel'];
