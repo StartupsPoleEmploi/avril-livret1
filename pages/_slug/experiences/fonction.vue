@@ -68,11 +68,6 @@
         return get(this.$store.getters['experiences/current'], 'fullAddress');
       }
     },
-    data: function() {
-      return {
-        credentials: process.env.algoliaCredentials,
-      }
-    },
     mounted() {
       if (this.$refs.experienceTitle) {
         this.$refs.experienceTitle.focus();
