@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.2.2",
-    "@nuxtjs/markdownit": "^1.2.7",
+    "@nuxtjs/markdownit": "^1.2.10",
     "@nuxtjs/sentry": "^3.0.1",
     "@trevoreyre/autocomplete-vue": "^2.0.3",
     "avril": "StartupsPoleEmploi/avril-shared",

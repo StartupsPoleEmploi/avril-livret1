@@ -1213,7 +1213,7 @@
     loader-utils "^1.1.0"
     markdown-it "^8.3.1"
 
-"@nuxtjs/markdownit@^1.2.7":
+"@nuxtjs/markdownit@^1.2.10":
   version "1.2.10"
   resolved "https://registry.yarnpkg.com/@nuxtjs/markdownit/-/markdownit-1.2.10.tgz#be559cdf45f5569e8c9874b2dcf9fbabc2b11b03"
   integrity sha512-MWvrVrQNxpnfN4bUUH6mCe7wjpDLj1MUij84u4Rfd4vw+koaj1OzX63Q7MAdrDtFT6Li6yn3YNpq7oJQKmyyPQ==
@@ -1988,6 +1988,7 @@ avril@StartupsPoleEmploi/avril-shared:
   resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/b800d597c11c19cd2c6ac86d17ae996052d6f00f"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
+    algoliasearch "^3.35.1"
     bulma "^0.8.0"
     date-fns "^2.11.0"
     debounce "^1.2.0"
