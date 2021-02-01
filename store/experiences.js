@@ -115,7 +115,7 @@ export const actions = {
   addPeriod({ commit, getters }, period) {
     commit('mutateExperience', {
       ...getters.current,
-      periods: getters.current.periods.concat({
+      periods: get(getters, 'current.periods', []).concat({
         ...period,
         uuid: generateUuid()
       })
@@ -124,19 +124,19 @@ export const actions = {
   removePeriod({ commit, getters }, periodId) {
     commit('mutateExperience', {
       ...getters.current,
-      periods: getters.current.periods.filter(p => p.uuid !== periodId)
+      periods: get(getters, 'current.periods', []).filter(p => p.uuid !== periodId)
     });
   },
   addSkill({ commit, getters }, label) {
     commit('mutateExperience', {
       ...getters.current,
-      skills: [{label}, ...getters.current.skills],
+      skills: [{label}, ...get(getters, 'current.skills', [])],
     });
   },
   removeSkill({ commit, getters }, skill) {
     commit('mutateExperience', {
       ...getters.current,
-      skills: getters.current.skills.filter(s => s.label !== skill)
+      skills: get(getters, 'current.skills', []).filter(s => s.label !== skill)
     });
   }
 };
