@@ -203,8 +203,6 @@
   import {feminize} from 'avril/js/utils/string.js';
   import {profileUrl} from '~/utils/url.js';
 
-  import { track } from 'avril/js/utils/analytics';
-
   import {BOOKLET_MIN_HOURS} from '~/constants/index';
 
   import NuxtLink from '~/components/NuxtLink.vue';
