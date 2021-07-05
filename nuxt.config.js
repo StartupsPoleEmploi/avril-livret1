@@ -12,6 +12,7 @@ export default deepMerge(sharedConfig, {
   loading: false,
   plugins: [
     { src: '~/plugins/expandable-image', mode: 'client' },
+    '~/plugins/filters',
   ],
   router: {
     base: process.env.NUXT_BOOKLET_PATH,

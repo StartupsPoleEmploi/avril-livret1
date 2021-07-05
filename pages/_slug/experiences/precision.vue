@@ -5,13 +5,19 @@
       <ItemInput :items="skills" :addItem="addSkill" placeholder="Ex: Je pétris de la pâte à pain" />
     </div>
 
-    <ItemList :items="skills" :removeItem="removeSkill" />
 
     <div class="field" v-if="skills.length === 0">
       <div class="notification is-danger">
         Je dois saisir au minimum une activité.
       </div>
     </div>
+
+    <div class="field" v-if="skills.length && skills.length < 5">
+      <div class="notification is-warning">
+        Nous vous invitons à remplir plus d'activités pour mieux décrire votre expérience professionnelle.
+      </div>
+    </div>
+    <ItemList :items="skills" :removeItem="removeSkill" />
 
     <ContinueOrFillLater to="/experiences/periode" :value="skills" />
   </div>
