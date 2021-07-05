@@ -1978,10 +1978,10 @@ available-typed-arrays@^1.0.0, available-typed-arrays@^1.0.2:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/6b1547da61a4d7d173eb5610ac15bcbe0ca9277d"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/6944b27b969a316160e9c7ced14dc491b4b804bf"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
-    bulma "^0.8.0"
+    bulma "^0.9.3"
     date-fns "^2.11.0"
     debounce "^1.2.0"
     lodash.get "^4.4.2"
@@ -2306,10 +2306,10 @@ bulma@^0.7.1:
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.5.tgz#35066c37f82c088b68f94450be758fc00a967208"
   integrity sha512-cX98TIn0I6sKba/DhW0FBjtaDpxTelU166pf7ICXpCCuplHWyu6C9LYZmL5PEsnePIeJaiorsTEzzNk3Tsm1hw==
 
-bulma@^0.8.0:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.8.2.tgz#5d928f16ed4a84549c2873f95c92c38c69c631a7"
-  integrity sha512-vMM/ijYSxX+Sm+nD7Lmc1UgWDy2JcL2nTKqwgEqXuOMU+IGALbXd5MLt/BcjBAPLIx36TtzhzBcSnOP974gcqA==
+bulma@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.9.3.tgz#ddccb7436ebe3e21bf47afe01d3c43a296b70243"
+  integrity sha512-0d7GNW1PY4ud8TWxdNcP6Cc8Bu7MxcntD/RRLGWuiw/s0a9P+XlH/6QoOIrmbj6o8WWJzJYhytiu9nFjTszk1g==
 
 bytes@3.0.0:
   version "3.0.0"
@@ -3278,9 +3278,9 @@ date-fns@^2.0.1, date-fns@^2.8.1:
   integrity sha512-sAJVKx/FqrLYHAQeN7VpJrPhagZc9R4ImZIWYRFZaaohR3KzmuK88touwsSwSVT8Qcbd4zoDsnGfX4GFB4imyQ==
 
 date-fns@^2.11.0:
-  version "2.21.3"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.21.3.tgz#8f5f6889d7a96bbcc1f0ea50239b397a83357f9b"
-  integrity sha512-HeYdzCaFflc1i4tGbj7JKMjM4cKGYoyxwcIIkHzNgCkX8xXDNJDZXgDDVchIWpN4eQc3lH37WarduXFZJOtxfw==
+  version "2.22.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.22.1.tgz#1e5af959831ebb1d82992bf67b765052d8f0efc4"
+  integrity sha512-yUFPQjrxEmIsMqlHhAhmxkuH769baF21Kk+nZwZGyrMoyLA+LugaQtC0+Tqf9CBUUULWwUJt6Q5ySI3LJDDCGg==
 
 date-format-parse@^0.2.5, date-format-parse@^0.2.6:
   version "0.2.6"
@@ -9209,13 +9209,18 @@ vue2-datepicker@^3.3.0:
     date-format-parse "^0.2.5"
 
 vue2-datepicker@^3.4.1:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.9.0.tgz#239a251960bcff22d2a14b7e5fe0b1038cad9473"
-  integrity sha512-nRqIZx5Ks0TDHFyzyHYIlfmuszEsEvRhwJ6HGuGGHQpjOfrIgkJ9B0pnEEJaVS3LKX6IWCVQMUq0H7I2UKmHqA==
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.9.1.tgz#00d11cf30942e850f8b1a397af3c15c7465f248e"
+  integrity sha512-LuvcgGR+sDYKcih0z+cyvYufGyBwUtIiwzJPwxE63C8gOsAWiE09KuGtZ3OxdQXJEQM2MGQ9t9t1t7382FiFOg==
   dependencies:
     date-format-parse "^0.2.6"
 
-vue@^2.6.11, vue@^2.6.12:
+vue@^2.6.11:
+  version "2.6.14"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
+  integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==
+
+vue@^2.6.12:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==

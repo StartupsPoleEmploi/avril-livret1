@@ -295,7 +295,6 @@
       markAsCompleteAndGoBack: async function() {
         this.$store.commit('markAsComplete');
         await saveLocalState(this.$store);
-        track(this, '?finished=true');
         window.location.href = this.backUrl;
       },
     }
