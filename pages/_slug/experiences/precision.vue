@@ -14,7 +14,7 @@
 
     <div class="field" v-if="skills.length && skills.length < 5">
       <div class="notification is-warning">
-        Nous vous invitons à remplir plus d'activités pour mieux décrire votre expérience professionnelle.
+        Nous vous invitons à renseigner plus d'activités pour permettre au certificateur de se prononcer sur votre dossier.
       </div>
     </div>
     <ItemList :items="skills" :removeItem="removeSkill" />
