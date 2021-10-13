@@ -5,6 +5,19 @@
       <ItemInput :items="skills" :addItem="addSkill" placeholder="Ex: Je pétris de la pâte à pain" />
     </div>
 
+    <div class="field">
+      <div class="notification is-info content">
+        <p>
+          <strong>Manque d'inspiration ?</strong>
+          Ci-dessous les fiches métier correspondant à votre diplôme. Consultez-y la rubrique "Compétences" pour obtenir des suggestions :
+        </p>
+        <ul>
+          <li v-for="rome in romes">
+            <a :href="`https://candidat.pole-emploi.fr/marche-du-travail/fichemetierrome?codeRome=${rome.code}`" target="_blank">{{rome.label}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <div class="field" v-if="skills.length === 0">
       <div class="notification is-danger">
@@ -17,6 +30,7 @@
         Nous vous invitons à renseigner plus d'activités pour permettre au certificateur de se prononcer sur votre dossier.
       </div>
     </div>
+
     <ItemList :items="skills" :removeItem="removeSkill" />
 
     <ContinueOrFillLater to="/experiences/periode" :value="skills" />
@@ -52,6 +66,9 @@
         const roleString = this.role ? `de ${this.role}` : ''
         const companyString = this.companyName ? `au sein de ${this.companyName}` : '';
         return `Quelles activités avez-vous pratiquées dans votre emploi ${roleString} ${companyString} ?`
+      },
+      romes() {
+        return this.$store.state.certificationRomes;
       },
       skills() {
         return get(this.$store.getters['experiences/current'], 'skills', []).map(s => s.label);

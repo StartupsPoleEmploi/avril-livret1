@@ -11,6 +11,7 @@ import steps from '~/contents/data/steps';
 export const state = () => ({
   applicationId: null,
   certificationName: null,
+  certificationRomes: [],
   certifierName: null,
   condamnationFree: false,
   onlyCertificationApplication: false,
@@ -101,6 +102,7 @@ export const actions = {
       applicationId,
       ...rest,
     });
+
     commit('identity/initState', identity);
     commit('education/initState', education);
     commit('experiences/initState', experiences);
