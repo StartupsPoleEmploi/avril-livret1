@@ -22,10 +22,10 @@
     padding-top: calc(1.5em - 1px);
     position: relative;
     vertical-align: top;
-    color: avril-color('marine');
+    color: $primary;
     font-size: 22px;
     &:focus {
-      box-shadow: 0 0 0 2px avril-color('marine');
+      box-shadow: 0 0 0 2px $primary;
       border-color: transparent;
     }
     &:hover {
@@ -66,17 +66,17 @@
     background: none;
     box-shadow: none;
     border: none;
-    border-bottom: 2px solid avril-color('marine');
+    border-bottom: 2px solid $primary;
     border-radius: 0;
-    color: avril-color('marine');
+    color: $primary;
     outline: none;
     font-family: $family-serif;
     &:hover {
-      border-color: avril-color('marine');
+      border-color: $primary;
     }
     &:focus {
       box-shadow: none;
-      border-color: avril-color('marine');
+      border-color: $primary;
     }
   }
 

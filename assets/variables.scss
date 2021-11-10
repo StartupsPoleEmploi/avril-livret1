@@ -1,5 +1,7 @@
 @import '~avril/scss/variables/fonts';
 
+@import '~avril/scss/avril-bulma';
+
 $avril-colors: (
   'gray': #F5F6F9,
   'gray-dark': #DEE1E8,
@@ -16,16 +18,17 @@ $avril-help: (
   'width': 24rem
 );
 
-@function avril-color($key: 'gray') {
-  @return map-get($avril-colors, $key);
-}
-$primary: avril-color('marine');
-$success: avril-color('blue');
-$info: avril-color('gray-dark');
-$danger: avril-color('red');
-$link: avril-color('marine');
-$link-hover: lighten(avril-color('marine'), 5%);
-$background: avril-color('gray');
-$notification-padding: 0.5rem 1rem;
-$radius: 6px;
+// @function avril-color($key: 'gray') {
+//   @return map-get($avril-colors, $key);
+// }
+
+// $primary: avril-color('marine');
+// $success: avril-color('blue');
+// $info: avril-color('gray-dark');
+// $danger: avril-color('red');
+// $link: avril-color('marine');
+// $link-hover: lighten(avril-color('marine'), 5%);
+// $background: avril-color('gray');
+// $notification-padding: 0.5rem 1rem;
+// $radius: 6px;
 // $button-background-color: #dedede;

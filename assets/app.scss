@@ -23,8 +23,8 @@ html {
 }
 
 .steps.is-hollow .is-active .steps-marker, .steps .is-active .steps-marker.is-hollow {
-    border-color: avril-color('marine');
-    background: avril-color('marine');
+  border-color: $primary;
+  background: $primary;
 }
 
 ul {

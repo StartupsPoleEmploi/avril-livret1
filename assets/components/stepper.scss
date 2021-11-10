@@ -2,8 +2,8 @@
 @import "~bulma-o-steps/styles/utilities/_all.sass";
 
 $steps-default-color: #ECEEF2 !default;
-$steps-completed-color: avril-color('marine') !default;
-$steps-active-color: avril-color('marine') !default;
+$steps-completed-color: $primary !default;
+$steps-active-color: $primary !default;
 $steps-horizontal-min-width: 10em !default;
 $steps-vertical-min-height: 4em !default;
 $steps-marker-size: 1.7 !default;
