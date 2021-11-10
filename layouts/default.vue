@@ -4,6 +4,7 @@
     <div class="container">
       <div class="avril-layout">
         <div class="avril-aside">
+          <a href="/" class="logo" title="Retour à l'accueil"><Logo/></a>
           <a @click="toggleMobileMenu()" role="button" class="navbar-burger burger" :class="showMobileMenu ? 'is-active' : ''" aria-label="menu" :aria-expanded="`${showMobileMenu}`" data-target="mobile-menu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -12,7 +13,7 @@
           <div class="aside-section is-hidden-touch">
             <a :href="backUrl" class="button is-default is-wrapped">
               <Back />
-              Retour vers mon profil
+              Retour vers mon espace VAE
             </a>
           </div>
           <div class="aside-section">
@@ -38,7 +39,7 @@
             <div class="navbar-item">
               <a :href="backUrl" class="button is-default">
                 <Back />
-                Retour vers mon profil
+                Retour vers mon espace VAE
               </a>
             </div>
             <hr class="navbar-divider" />
@@ -119,6 +120,7 @@
   import Saving from '~/components/Saving.vue';
   import Help from '~/components/Help.vue';
   import NuxtLink from '~/components/NuxtLink.vue';
+  import Logo from 'avril/images/avril-logo.svg';
 
   export default {
     components: {
@@ -128,6 +130,7 @@
       Stepper,
       Tabs,
       NuxtLink,
+      Logo,
     },
     computed: {
       backUrl() {

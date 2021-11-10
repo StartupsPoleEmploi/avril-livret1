@@ -25,6 +25,17 @@
     display: flex;
     flex: 1.2;
 
+    .logo {
+      text-align: center;
+      padding: 1.5rem;
+      svg {
+        height: 1.5rem;
+        fill: none;
+        stroke: none;
+        padding: 0;
+      }
+    }
+
     @include widescreen {
       flex: 1;
     }
