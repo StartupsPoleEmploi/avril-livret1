@@ -133,6 +133,14 @@
     methods: {
       parseISODate,
       addPeriod() {
+        if (!this.$refs.periodStart.value) return this.$refs.periodStart.$el.focus();
+        if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.$el.focus();
+        if (this.showWeekHours) {
+          if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.focus();
+        } else {
+          if (!this.$refs.periodTotalHours.value) return this.$refs.periodTotalHours.focus();
+        }
+
         const period = {
           startDate: formatISODate(this.periodStart),
           endDate: this.isCurrentJob ? null : formatISODate(this.periodEnd),
@@ -148,13 +156,7 @@
         this.isCurrentJob = false;
         this.showNewPeriod = false;
 
-        if (!this.$refs.periodStart.value) return this.$refs.periodStart.$el.focus();
-        if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.$el.focus();
-        if (this.showWeekHours) {
-          if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.$el.focus();
-        } else {
-          if (!this.$refs.periodTotalHours.value) return this.$refs.periodTotalHours.$el.focus();
-        }
+
       },
       editPeriod(periodId) {
         const period = this.$store.getters['experiences/current'].periods.find(p => p.uuid == periodId)
