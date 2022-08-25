@@ -38,17 +38,9 @@
     padding-bottom: 0;
   }
 
-  .mx-datepicker {
-    width: 10rem;
-    // width: 100%;
-  }
   .autocomplete-input {
     padding-left: 3rem;
   }
-}
-
-.autocomplete-input, .mx-input {
-  @extend .input;
 }
 
 .autocomplete-input {
@@ -58,53 +50,60 @@
   background-position: 1rem center;
 }
 
+.autocomplete-input {
+  @extend .input;
+}
+
+
 .natural-language {
-  .input.heure, .mx-input {
-    font-size: 1em;
-    height: 41px;
-    padding: 0;
-    background: none;
-    box-shadow: none;
-    border: none;
-    border-bottom: 2px solid $primary;
-    border-radius: 0;
-    color: $primary;
-    outline: none;
-    font-family: $family-serif;
-    &:hover {
-      border-color: $primary;
-    }
-    &:focus {
+  .input {
+    &.is-heure, &.is-date {
+      font-size: 1em;
+      height: 41px;
+      width: 3rem;
+      padding: 0;
+      background: none;
       box-shadow: none;
-      border-color: $primary;
+      border: none;
+      border-bottom: 2px solid $primary;
+      border-radius: 0;
+      color: $primary;
+      outline: none;
+      font-family: $family-serif;
+      &:hover {
+        border-color: $primary;
+      }
+      &:focus {
+        box-shadow: none;
+        border-color: $primary;
+      }
+      &.is-date {
+        width: 10rem;
+        padding-left: 0.5rem;
+      }
+      &.is-heure {
+        width: 45px;
+        text-align: center;
+        &.is-total {
+          width: 70px;
+        }
+
+        @include placeholder {
+          opacity: 0.6;
+        }
+
+        &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        &[type=number] {
+          -moz-appearance:textfield;
+        }
+      }
     }
   }
 
-  .mx-datepicker {
-    .mx-input{
-      padding-left: 0.5rem;
-    }
-  }
-  .input.heure{
-    width: 45px;
-    text-align: center;
-    &.total {
-      width: 70px;
-    }
-
-    @include placeholder {
-      opacity: 0.6;
-    }
-
-    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    &[type=number] {
-      -moz-appearance:textfield;
-    }
-  }
   .title{
     line-height: 47px !important;
     font-weight: 400 !important;

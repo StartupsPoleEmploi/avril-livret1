@@ -44,23 +44,34 @@
         />
       </div>
       <div class="field box natural-language">
-        <client-only placeholder="Chargement du calendrier ...">
-          <p class="title is-5">
-            {{isCurrentJob ? 'Je travaille depuis le' : 'J\'y ai travaillé du'}}
-            <date-picker ref="periodStart" v-model="periodStart" :format="datePickerFormat" :disabled-date="maxDate" placeholder="date"/>
-            <span v-if="!isCurrentJob">
-              au <date-picker ref="periodEnd" v-model="periodEnd" :disabled-date="minDate" :format="datePickerFormat" placeholder="date" />
-            </span>
-            <span v-if="showWeekHours">
-              à <input ref="periodWeekHours" class="input heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
-            </span>
-            <span v-else>
-              pour un total de <input ref="periodTotalHours" class="input heure total" type="number" v-model="periodTotalHours" placeholder="1607" min="0"> heures.
-            </span>
-          </p>
-          <p class="has-text-right">
-          </p>
-        </client-only>
+        <p class="title is-5">
+          {{isCurrentJob ? 'Je travaille depuis le' : 'J\'y ai travaillé du'}}
+          <DatePicker
+            class="input is-date"
+            ref="periodStart"
+            v-model="periodStart"
+            :disabled-date="maxDate"
+            placeholder="date"
+          />
+          <span v-if="!isCurrentJob">
+            au
+            <DatePicker
+              class="input is-date"
+              ref="periodEnd"
+              v-model="periodEnd"
+              :disabled-date="minDate"
+              placeholder="date"
+            />
+          </span>
+          <span v-if="showWeekHours">
+            à <input ref="periodWeekHours" class="input is-heure" type="number" v-model="periodWeekHours" placeholder="35" min="0"> heures par semaine.
+          </span>
+          <span v-else>
+            pour un total de <input ref="periodTotalHours" class="input is-heure is-total" type="number" v-model="periodTotalHours" placeholder="1607" min="0"> heures.
+          </span>
+        </p>
+        <p class="has-text-right">
+        </p>
         <div class="buttons" style="justify-content: space-between; align-items: bottom;">
           <button class="button is-text is-small" @click="toggleWeekHours">
             <span v-if="showWeekHours">Je saisis le nombre d'heure total</span>
@@ -78,11 +89,10 @@
 
 <script>
   import get from 'lodash.get';
-  import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
-
   import RadioList from '~/components/RadioList.vue';
   import PeriodDisplay from '~/components/PeriodDisplay.vue';
   import ContinueOrFillLater from '~/components/ContinueOrFillLater.vue';
+  import DatePicker from 'avril/js/components/DatePicker.vue';
 
   import {
     parseISODate,
@@ -90,9 +100,6 @@
   } from 'avril/js/utils/time.js';
 
   export default {
-    mixins: [
-      withDatePickerMixin,
-    ],
     beforeCreate() {
       if (!this.$store.getters['experiences/current']) {
         this.$router.push('../experiences');
@@ -113,6 +120,7 @@
       ContinueOrFillLater,
       PeriodDisplay,
       RadioList,
+      DatePicker,
     },
     computed: {
       experience() {
@@ -125,14 +133,6 @@
     methods: {
       parseISODate,
       addPeriod() {
-        if (!this.$refs.periodStart.value) return this.$refs.periodStart.focus();
-        if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.focus();
-        if (this.showWeekHours) {
-          if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.focus();
-        } else {
-          if (!this.$refs.periodTotalHours.value) return this.$refs.periodTotalHours.focus();
-        }
-
         const period = {
           startDate: formatISODate(this.periodStart),
           endDate: this.isCurrentJob ? null : formatISODate(this.periodEnd),
@@ -147,6 +147,14 @@
         this.periodTotalHours = '';
         this.isCurrentJob = false;
         this.showNewPeriod = false;
+
+        if (!this.$refs.periodStart.value) return this.$refs.periodStart.$el.focus();
+        if (!this.isCurrentJob && !this.$refs.periodEnd.value) return this.$refs.periodEnd.$el.focus();
+        if (this.showWeekHours) {
+          if (!this.$refs.periodWeekHours.value) return this.$refs.periodWeekHours.$el.focus();
+        } else {
+          if (!this.$refs.periodTotalHours.value) return this.$refs.periodTotalHours.$el.focus();
+        }
       },
       editPeriod(periodId) {
         const period = this.$store.getters['experiences/current'].periods.find(p => p.uuid == periodId)
