@@ -10,7 +10,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "setup": "yarn install && yarn upgrade avril && yarn start"
+    "setup": "yarn install && yarn upgrade avril && yarn build && yarn start"
   },
   "dependencies": {
     "@nuxtjs/markdownit": "^1.2.10",
