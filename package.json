@@ -22,7 +22,7 @@
     "debounce": "^1.2.0",
     "esm": "^3.2.25",
     "express": "^4.16.4",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.12.2",
     "nuxt-sass-resources-loader": "^2.0.5",
     "nuxt-svg-loader": "^1.2.0",
