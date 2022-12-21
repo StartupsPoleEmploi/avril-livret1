@@ -24,12 +24,12 @@ export default [
   },
   {
     label:
-      "DEUG, DUT, DEUST, BTS ou autre certification de niveau III (niveau. CEC : 5)",
+      "DEUG, DEUST, BTS ou autre certification de niveau III (niveau. CEC : 5)",
     value: 6,
   },
   {
     label:
-      "Licence, licence professionnelle, Maîtrise ou autre certification de niveau II (niveau CEC : 6)",
+      "Licence, licence professionnelle, Maîtrise, BUT ou autre certification de niveau II (niveau CEC : 6)",
     value: 7,
   },
   {
