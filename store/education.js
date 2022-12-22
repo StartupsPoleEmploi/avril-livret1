@@ -1,5 +1,8 @@
+import get from 'lodash.get';
 import {isPresent} from 'avril/js/utils/boolean';
+import {deduce} from 'avril/js/utils/array';
 import {percent} from 'avril/js/utils/number';
+import {getKeysDeep} from 'avril/js/utils/number';
 import {labelGetter} from 'avril/js/utils/function';
 import degreeAnswers from '~/contents/data/degree';
 import gradeAnswers from '~/contents/data/grade';
@@ -16,17 +19,14 @@ const OPTIONAL_FIELDS = [
   'courses',
 ];
 
+const MANDATORY_FIELDS = deduce(getKeysDeep(state()), OPTIONAL_FIELDS.concat(UNSAVABLE_FIELDS));
+
 export const getters = {
-  mandatoryState: state => {
-    return Object.keys(state).filter(k => !OPTIONAL_FIELDS.includes(k)).reduce((subState, k) => {
-      return Object.assign(subState, {[k]: state[k]})
-    }, {});
+  totalFields: (state) => {
+    return MANDATORY_FIELDS.length;
   },
-  totalFields: (state, {mandatoryState}) => {
-    return Object.values(mandatoryState).length;
-  },
-  filledFields: (state, {mandatoryState}) => {
-    return Object.values(mandatoryState).filter(v => isPresent(v)).length;
+  filledFields: (state) => {
+    return MANDATORY_FIELDS.filter(f => isPresent(get(state, f))).length
   },
   progress: (state, {filledFields, totalFields}) => {
     return percent(filledFields/totalFields);
