@@ -28,6 +28,7 @@
     "vue-template-compiler": "2.6.12"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "nodemon": "^1.18.9"
   }
 }
